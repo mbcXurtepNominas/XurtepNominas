@@ -1,0 +1,17 @@
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmPrincipal.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmAcceso.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmUsuarios.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.Resources.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbproj.GenerateResource.Cache
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmBuscarEmpleado.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmEmpleados.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmnominasmarinos.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.dll
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmIncapacidad.resources

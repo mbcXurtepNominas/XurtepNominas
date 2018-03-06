@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "XurtepNominas", "XurtepNominas\XurtepNominas.vbproj", "{912D2CC6-EB55-4AFD-8CA5-7C01B4A340FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{912D2CC6-EB55-4AFD-8CA5-7C01B4A340FE}.Debug|x86.ActiveCfg = Debug|x86
+		{912D2CC6-EB55-4AFD-8CA5-7C01B4A340FE}.Debug|x86.Build.0 = Debug|x86
+		{912D2CC6-EB55-4AFD-8CA5-7C01B4A340FE}.Release|x86.ActiveCfg = Release|x86
+		{912D2CC6-EB55-4AFD-8CA5-7C01B4A340FE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
