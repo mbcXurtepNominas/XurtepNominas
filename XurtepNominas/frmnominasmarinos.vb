@@ -1435,7 +1435,7 @@ Public Class frmnominasmarinos
                 'apExcel.Quit()
                 libro = Nothing
 
-                MessageBox.Show("Archivo generado.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Archivo generado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             Else
                 MessageBox.Show("No hay datos a mostrar", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
