@@ -608,6 +608,7 @@ Public Class frmEmpleados
                 'item.SubItems.Add("" & Fila.Item("dFechaAntiguedad"))
                 txtdireccionP.Text = Fila.Item("cDireccionP")
                 txtciudadP.Text = Fila.Item("cCiudadP")
+                txtcp2.Text = Fila.Item("cCPP")
                 'item.SubItems.Add("" & Fila.Item("cDireccionP") & "" & Fila.Item("cCiudadP"))
                 txtduracion.Text = Fila.Item("cDuracion")
                 'item.SubItems.Add("" & Fila.Item("cDuracion"))
