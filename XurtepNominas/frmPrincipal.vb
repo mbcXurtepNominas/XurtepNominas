@@ -101,6 +101,13 @@
 
                     Catch ex As Exception
                     End Try
+                Case "Exportar Excel"
+                    Try
+                        Dim Forma As New frmExcel
+                        Forma.ShowDialog()
+
+                    Catch ex As Exception
+                    End Try
             End Select
 
         Catch ex As Exception
@@ -108,10 +115,7 @@
         End Try
     End Sub
 
-    Private Sub lsvPanel_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lsvPanel.SelectedIndexChanged
-
-    End Sub
-
+   
     Private Sub lsvPanel_SizeChanged(sender As Object, e As System.EventArgs) Handles lsvPanel.SizeChanged
         Dim sRuta As String
         sRuta = System.IO.Path.GetTempPath
@@ -151,5 +155,8 @@
 
         End Try
     End Sub
+
+   
+   
 End Class
 

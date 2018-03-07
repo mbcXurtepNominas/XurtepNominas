@@ -306,7 +306,21 @@ Public Class frmImportarEmpleadosAlta
                         Else
                             b = 0
                         End If
+                        Dim p As String = Trim(empleadofull.SubItems(15).Text) ''idPuesto
+                        Dim cPuesto As String
+                        If p <> "" Then
+                            Dim puesto As DataRow() = nConsulta("SELECT * FROM Puestos where iIdPuesto =" & p)
+                            If puesto Is Nothing Then
+                                cPuesto = ""
+                                mensa = "Revise el tipo de banco"
+                                bandera = False
+                            Else
+                                cPuesto = puesto(0).Item("cNombre")
+                            End If
 
+                        Else
+                            p = 0
+                        End If
 
                         Dim factor As Integer
                         Select Case Trim(empleadofull.SubItems(33).Text)
@@ -353,7 +367,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "','" & Trim(empleadofull.SubItems(8).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(9).Text) & "'," & Trim(empleadofull.SubItems(10).Text) & ",'" & Trim(empleadofull.SubItems(11).Text)
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(12).Text) = "FEMENINO", 0, 1) & ",'" & dFechaNac & "','" & dFechaCap
-                        SQL &= "','" & Trim(empleadofull.SubItems(15).Text) & "','" & Trim(empleadofull.SubItems(16).Text)
+                        SQL &= "','" & cPuesto & "','" & Trim(empleadofull.SubItems(16).Text)
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
                         SQL &= ",'" & Trim(empleadofull.SubItems(19).Text) & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
                         SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco

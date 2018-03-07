@@ -75,6 +75,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmExcel.Designer.vb">
+      <DependentUpon>frmExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmHojasNomina.designer.vb">
       <DependentUpon>frmHojasNomina.vb</DependentUpon>
     </Compile>
@@ -160,6 +166,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmBuscarEmpleado.resx">
       <DependentUpon>frmBuscarEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExcel.resx">
+      <DependentUpon>frmExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHojasNomina.resx">
       <DependentUpon>frmHojasNomina.vb</DependentUpon>

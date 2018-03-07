@@ -25,6 +25,7 @@ Partial Class frmPrincipal
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Nomina Marinos"}, 11, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Exportar Excel"}, 19, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
         Me.pnlBar = New System.Windows.Forms.Panel()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.chkCBB = New System.Windows.Forms.CheckBox()
@@ -135,7 +136,8 @@ Partial Class frmPrincipal
         Me.lsvPanel.HideSelection = False
         Me.lsvPanel.HoverSelection = True
         ListViewItem1.ToolTipText = "Calculo de nomina Marinos"
-        Me.lsvPanel.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        ListViewItem2.ToolTipText = "Exportar Excel  Nominas"
+        Me.lsvPanel.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2})
         Me.lsvPanel.LargeImageList = Me.ImageList1
         Me.lsvPanel.Location = New System.Drawing.Point(0, 0)
         Me.lsvPanel.Name = "lsvPanel"
@@ -167,6 +169,7 @@ Partial Class frmPrincipal
         Me.ImageList1.Images.SetKeyName(16, "1474867410_upload.png")
         Me.ImageList1.Images.SetKeyName(17, "1474867386_advantage_cloud.png")
         Me.ImageList1.Images.SetKeyName(18, "1474867277_web.png")
+        Me.ImageList1.Images.SetKeyName(19, "sobresalir (1).png")
         '
         'MenuInicio
         '
