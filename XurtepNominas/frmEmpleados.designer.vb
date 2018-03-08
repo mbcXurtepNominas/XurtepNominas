@@ -33,7 +33,7 @@ Partial Class frmEmpleados
         Me.txtsalario = New System.Windows.Forms.TextBox()
         Me.cbojornada = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.cmdIncapacidad = New System.Windows.Forms.Button()
+        Me.cmdContrato = New System.Windows.Forms.Button()
         Me.cmdprestamo = New System.Windows.Forms.Button()
         Me.cmdincidencias = New System.Windows.Forms.Button()
         Me.cmdbuscar = New System.Windows.Forms.Button()
@@ -136,6 +136,7 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
+        Me.cmdIncapacidad = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -218,6 +219,7 @@ Partial Class frmEmpleados
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
+        Me.Panel1.Controls.Add(Me.cmdContrato)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
         Me.Panel1.Controls.Add(Me.cmdincidencias)
         Me.Panel1.Controls.Add(Me.cmdbuscar)
@@ -229,17 +231,17 @@ Partial Class frmEmpleados
         Me.Panel1.Size = New System.Drawing.Size(105, 689)
         Me.Panel1.TabIndex = 184
         '
-        'cmdIncapacidad
+        'cmdContrato
         '
-        Me.cmdIncapacidad.Image = CType(resources.GetObject("cmdIncapacidad.Image"), System.Drawing.Image)
-        Me.cmdIncapacidad.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 388)
-        Me.cmdIncapacidad.Name = "cmdIncapacidad"
-        Me.cmdIncapacidad.Size = New System.Drawing.Size(95, 72)
-        Me.cmdIncapacidad.TabIndex = 43
-        Me.cmdIncapacidad.Text = "Incapacidad"
-        Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdIncapacidad.UseVisualStyleBackColor = True
+        Me.cmdContrato.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5a90660e3aaa9
+        Me.cmdContrato.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdContrato.Location = New System.Drawing.Point(3, 388)
+        Me.cmdContrato.Name = "cmdContrato"
+        Me.cmdContrato.Size = New System.Drawing.Size(95, 72)
+        Me.cmdContrato.TabIndex = 43
+        Me.cmdContrato.Text = "Contrato"
+        Me.cmdContrato.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdContrato.UseVisualStyleBackColor = True
         '
         'cmdprestamo
         '
@@ -1128,6 +1130,18 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
+        'cmdIncapacidad
+        '
+        Me.cmdIncapacidad.Image = CType(resources.GetObject("cmdIncapacidad.Image"), System.Drawing.Image)
+        Me.cmdIncapacidad.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 306)
+        Me.cmdIncapacidad.Name = "cmdIncapacidad"
+        Me.cmdIncapacidad.Size = New System.Drawing.Size(95, 72)
+        Me.cmdIncapacidad.TabIndex = 44
+        Me.cmdIncapacidad.Text = "Incapacidad"
+        Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdIncapacidad.UseVisualStyleBackColor = True
+        '
         'frmEmpleados
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1347,6 +1361,7 @@ Partial Class frmEmpleados
     Friend WithEvents cmdprestamo As Button
     Friend WithEvents Label52 As Label
     Friend WithEvents txtExtra As TextBox
-    Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
+    Friend WithEvents cmdContrato As System.Windows.Forms.Button
     Friend WithEvents chkInfonavit As System.Windows.Forms.CheckBox
+    Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
 End Class

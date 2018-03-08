@@ -770,7 +770,7 @@ Public Class frmEmpleados
     End Sub
 
   
-    Private Sub cmdIncapacidad_Click(sender As System.Object, e As System.EventArgs) Handles cmdIncapacidad.Click
+    Private Sub cmdIncapacidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdContrato.Click
         If blnNuevo = False Then
             Dim Forma As New frmIncapacidad
             Forma.gIdEmpleado = gIdEmpleado

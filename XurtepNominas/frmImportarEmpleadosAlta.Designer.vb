@@ -28,14 +28,15 @@ Partial Class frmImportarEmpleadosAlta
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.chkAll = New System.Windows.Forms.CheckBox()
         Me.lsvLista = New System.Windows.Forms.ListView()
         Me.tsbNuevo = New System.Windows.Forms.ToolStripButton()
+        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbContrato = New System.Windows.Forms.ToolStripButton()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -94,22 +95,12 @@ Partial Class frmImportarEmpleadosAlta
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbCancelar, Me.tsbContrato, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
         Me.ToolStrip1.TabIndex = 30
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'tsbImportar
-        '
-        Me.tsbImportar.Enabled = False
-        Me.tsbImportar.Image = Global.XurtepNominas.My.Resources.Resources._1361008137_export_excel
-        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbImportar.Name = "tsbImportar"
-        Me.tsbImportar.Size = New System.Drawing.Size(99, 51)
-        Me.tsbImportar.Text = "Importar archivo"
-        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbProcesar
         '
@@ -174,6 +165,16 @@ Partial Class frmImportarEmpleadosAlta
         Me.tsbNuevo.Text = "Agregar Flujo"
         Me.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
+        'tsbImportar
+        '
+        Me.tsbImportar.Enabled = False
+        Me.tsbImportar.Image = Global.XurtepNominas.My.Resources.Resources._1361008137_export_excel
+        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbImportar.Name = "tsbImportar"
+        Me.tsbImportar.Size = New System.Drawing.Size(99, 51)
+        Me.tsbImportar.Text = "Importar archivo"
+        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
         'tsbGuardar
         '
         Me.tsbGuardar.AutoSize = False
@@ -195,6 +196,14 @@ Partial Class frmImportarEmpleadosAlta
         Me.tsbCancelar.Size = New System.Drawing.Size(90, 51)
         Me.tsbCancelar.Text = "Cancelar"
         Me.tsbCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbContrato
+        '
+        Me.tsbContrato.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5a90660e3aaa9
+        Me.tsbContrato.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbContrato.Name = "tsbContrato"
+        Me.tsbContrato.Size = New System.Drawing.Size(90, 51)
+        Me.tsbContrato.Text = "Contrato"
         '
         'frmImportarEmpleadosAlta
         '
@@ -235,4 +244,5 @@ Partial Class frmImportarEmpleadosAlta
     Friend WithEvents pnlCatalogo As Panel
     Friend WithEvents chkAll As CheckBox
     Friend WithEvents lsvLista As ListView
+    Friend WithEvents tsbContrato As System.Windows.Forms.ToolStripButton
 End Class

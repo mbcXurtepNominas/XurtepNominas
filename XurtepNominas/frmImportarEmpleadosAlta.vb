@@ -1,7 +1,9 @@
 ﻿Imports ClosedXML.Excel
 Imports System.IO
 Imports System.Text.RegularExpressions
-
+Imports Microsoft.Office.Interop.Word 'control de office
+Imports Microsoft.Office.Interop
+Imports System.Data
 Public Class frmImportarEmpleadosAlta
     Dim sheetIndex As Integer = -1
     Dim SQL As String
@@ -33,7 +35,7 @@ Public Class frmImportarEmpleadosAlta
             .Title = "Búsqueda de archivos de saldos."
             .Filter = "Hoja de cálculo de excel (xlsx)|*.xlsx;"
             .CheckFileExists = True
-            If .ShowDialog = Windows.Forms.DialogResult.OK Then
+            If .ShowDialog = System.Windows.Forms.DialogResult.OK Then
                 lblRuta.Text = .FileName
             End If
         End With
@@ -74,7 +76,7 @@ Public Class frmImportarEmpleadosAlta
                             Hojas &= book.Worksheets(i).Name & IIf(i < (book.Worksheets.Count - 1), "|", "")
                         Next
                         Forma.Hojas = Hojas
-                        If Forma.ShowDialog = Windows.Forms.DialogResult.OK Then
+                        If Forma.ShowDialog = System.Windows.Forms.DialogResult.OK Then
                             sheetIndex = Forma.selectedIndex + 1
                         Else
                             Exit Sub
@@ -464,5 +466,65 @@ Public Class frmImportarEmpleadosAlta
                         "Registro de Datos Personales",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub tsbContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbContrato.Click
+        Dim MSWord As New Word.Application
+        Dim Documento As Word.Document
+        Dim Ruta As String, strPWD As String
+        Dim SQL As String
+        Try
+
+            Ruta = System.Windows.Forms.Application.StartupPath & "\Archivos\test.docx"
+
+            FileCopy(Ruta, "C:\Temp\TMM.docx")
+            Documento = MSWord.Documents.Open("C:\Temp\TMM.docx")
+
+            'SQL = "select iIdEmpleadoAlta,cCodigoEmpleado,empleadosAlta.cNombre,cApellidoP,cApellidoM,cRFC,cCURP,"
+            'SQL &= "cIMSS,cDescanso,cCalleNumero,cCiudadP,cCP,iSexo,iEstadoCivil, dFechaNac,puestos.cNombre as cPuesto,fSueldoBase,"
+            'SQL &= "cNacionalidad,empleadosAlta.cFuncionesPuesto, fSueldoOrd, iOrigen,empresa.iIdEmpresa ,empresa.calle +' '+ empresa.numero AS cDireccionP, empresa.localidad as cCiudadP, empresa.cp as cCPP, iCategoria, cJornada, cHorario,"
+            'SQL &= "cHoras, cDescanso, cFechaPago, cFormaPago, cLugarPago, cLugarFirmaContrato,empleadosAlta.cLugarPrestacion, dFechaPatrona,"
+            'SQL &= "empresa.nombrefiscal, empresa.RFC AS cRFCP, empresa.cRepresentanteP, empresa.cObjetoSocialP,  Cat_SindicatosAlta.cNombre AS cNombreSindicato"
+            'SQL &= " from ((empleadosAlta"
+            'SQL &= " inner join empresa on fkiIdEmpresa= iIdEmpresa)"
+            'SQL &= " inner join puestos on fkiIdPuesto= iIdPuesto)"
+            'SQL &= " inner join (clientes inner join Cat_SindicatosAlta on fkiIdSindicato= iIdSindicato) on fkiIdCliente=iIdCliente"
+            'SQL &= " where iIdEmpleadoAlta = " & gIdEmpleado
+            SQL = "SELECT * FROM (empleadosC INNER JOIN familiar on iIdEmpleadoC=fkiIdEmpleadoC) WHERE iIdEmpleado="
+            Dim rwEmpleado As DataRow() = nConsulta(SQL)
+
+            If rwEmpleado Is Nothing = False Then
+                Dim fEmpleado As DataRow = rwEmpleado(0)
+
+
+                Documento.Bookmarks.Item("cNombreLargo").Range.Text = fEmpleado.Item("cNombre") & " " & fEmpleado.Item("cApellidoP") & " " & fEmpleado.Item("cApellidoM")
+                Documento.Bookmarks.Item("cNombreLargo2").Range.Text = fEmpleado.Item("cNombre") & " " & fEmpleado.Item("cApellidoP") & " " & fEmpleado.Item("cApellidoM")
+                Documento.Bookmarks.Item("cNombreFiscal").Range.Text = fEmpleado.Item("nombrefiscal")
+                Documento.Bookmarks.Item("cFecha").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                Documento.Bookmarks.Item("cFecha2").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                Documento.Bookmarks.Item("cLugarFirma").Range.Text = fEmpleado.Item("cLugarFirmaContrato")
+                Documento.Bookmarks.Item("cCURP").Range.Text = fEmpleado.Item("cCURP")
+                Documento.Bookmarks.Item("cRFC").Range.Text = fEmpleado.Item("cRFC")
+                Documento.Bookmarks.Item("cRFCP").Range.Text = fEmpleado.Item("cRFCP")
+
+                Documento.Bookmarks.Item("cDireccionP").Range.Text = fEmpleado.Item("cDireccionP") & ", " & fEmpleado.Item("cCiudadP") & ", " & fEmpleado.Item("cCPP")
+                Documento.Bookmarks.Item("cDireccionP2").Range.Text = fEmpleado.Item("cDireccionP") & ", " & fEmpleado.Item("cCiudadP") & ", " & fEmpleado.Item("cCPP")
+                Documento.Bookmarks.Item("cDireccion").Range.Text = fEmpleado.Item("cCalleNumero") & ", " & fEmpleado.Item("cCiudadP") & ", " & fEmpleado.Item("cCP")
+                If IsDBNull(fEmpleado.Item("cRepresentanteP")) = False Then
+                    Documento.Bookmarks.Item("cRepresentanteP").Range.Text = fEmpleado.Item("cRepresentanteP")
+                    Documento.Bookmarks.Item("cRepresentanteP2").Range.Text = fEmpleado.Item("cRepresentanteP")
+                Else
+                    MessageBox.Show("Falta agregar Representante Patrona", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                End If
+                Documento.Save()
+                MSWord.Visible = True
+            End If
+
+        Catch ex As Exception
+            Documento.Close()
+            MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End Try
     End Sub
 End Class
