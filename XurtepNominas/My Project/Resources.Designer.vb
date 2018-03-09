@@ -83,6 +83,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property bloggif_5aa1be4bd8d66() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("bloggif_5aa1be4bd8d66", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property cerrar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cerrar", resourceCulture)
@@ -96,6 +106,26 @@ Namespace My.Resources
         Friend ReadOnly Property disquete() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("disquete", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property familia() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("familia", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property familia__2_() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("familia (2)", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

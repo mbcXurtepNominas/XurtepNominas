@@ -52,6 +52,9 @@
     <Reference Include="ClosedXML">
       <HintPath>..\..\..\..\asp\crear recibos\recibos\recibos\bin\Debug\ClosedXML.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -75,6 +78,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmIncapacidad.Designer.vb">
+      <DependentUpon>frmIncapacidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmIncapacidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmExcel.Designer.vb">
       <DependentUpon>frmExcel.vb</DependentUpon>
     </Compile>
@@ -93,11 +102,11 @@
     <Compile Include="frmImportarEmpleadosAlta.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmIncapacidad.vb">
+    <Compile Include="frmFamilia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmIncapacidad.Designer.vb">
-      <DependentUpon>frmIncapacidad.vb</DependentUpon>
+    <Compile Include="frmFamilia.Designer.vb">
+      <DependentUpon>frmFamilia.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmBuscarEmpleado.designer.vb">
@@ -164,6 +173,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmIncapacidad.resx">
+      <DependentUpon>frmIncapacidad.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBuscarEmpleado.resx">
       <DependentUpon>frmBuscarEmpleado.vb</DependentUpon>
     </EmbeddedResource>
@@ -176,8 +188,8 @@
     <EmbeddedResource Include="frmImportarEmpleadosAlta.resx">
       <DependentUpon>frmImportarEmpleadosAlta.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmIncapacidad.resx">
-      <DependentUpon>frmIncapacidad.vb</DependentUpon>
+    <EmbeddedResource Include="frmFamilia.resx">
+      <DependentUpon>frmFamilia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmnominasmarinos.resx">
       <DependentUpon>frmnominasmarinos.vb</DependentUpon>
@@ -223,6 +235,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1361008137_export_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bloggif_5a90660e3aaa9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\familia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\familia %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bloggif_5aa1be4bd8d66.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -43,7 +43,7 @@ Public Class frmEmpleados
 
             'Validar si ya esta el codigo del empleado
             If blnNuevo Then
-                SQL = "select * from empleados where cCodigoEmpleado=" & txtcodigo.Text
+                SQL = "select * from empleadosC where cCodigoEmpleado=" & txtcodigo.Text
                 Dim rwCodigo As DataRow() = nConsulta(SQL)
 
                 If rwCodigo Is Nothing = False Then
@@ -124,7 +124,7 @@ Public Class frmEmpleados
                 SQL &= "," & cbobanco2.SelectedValue
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
-                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text)
+                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
             Else
                 'Actualizar
 
@@ -151,7 +151,7 @@ Public Class frmEmpleados
                 SQL &= "," & cbobanco2.SelectedValue
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
-                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text)
+                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
 
             End If
             If nExecute(SQL) = False Then
@@ -240,6 +240,7 @@ Public Class frmEmpleados
         Dim rwFilas As DataRow() = nConsulta(SQL)
         Try
             If rwFilas Is Nothing = False Then
+
 
                 Dim Fila As DataRow = rwFilas(0)
                 cbostatus.SelectedIndex = IIf(Fila.Item("fkiIdClienteInter") = 1, 1, 0)
@@ -348,8 +349,13 @@ Public Class frmEmpleados
 
                 txtExtra.Text = Fila.Item("fsindicatoExtra")
 
+                dtFecPlanta.Value = Fila.Item("dFechaPlanta")
+                txtInicio.Text = Fila.Item("cInicioEmbarque")
+                txtFin.Text = Fila.Item("cFinalEmbarque")
+
                 blnNuevo = False
             End If
+
         Catch ex As Exception
 
         End Try
@@ -770,18 +776,35 @@ Public Class frmEmpleados
     End Sub
 
   
-    Private Sub cmdIncapacidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdContrato.Click
+  
+
+  
+    Private Sub cmdIncapacidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdIncapacidad.Click
         If blnNuevo = False Then
             Dim Forma As New frmIncapacidad
             Forma.gIdEmpleado = gIdEmpleado
 
             Forma.ShowDialog()
 
-
-
         Else
             MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         End If
+    End Sub
+
+    Private Sub cmdContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdContrato.Click
+
+    End Sub
+
+    Private Sub cmdFamiliar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFamiliar.Click
+        If blnNuevo = False Then
+            Dim frm As New frmFamilia
+            frm.gIdEmpleado = gIdEmpleado
+            frm.ShowDialog()
+        Else
+            MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End If
+
     End Sub
 End Class

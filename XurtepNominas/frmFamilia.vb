@@ -1,14 +1,14 @@
-﻿Public Class frmIncapacidad
+﻿Public Class frmFamilia
     Dim blnNuevo As Boolean = True
-    Dim IdIncapacidad As String
+    Dim IdFamilia As String
     Public gIdEmpleado As String
 
 
 
 
-    Private Sub frmIncapacidad_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ListarIncapacidad()
+    Private Sub frmFamilia_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+        ListarFamilia()
     End Sub
 
     Private Sub Limpiar(Optional ByRef Contenedor = Nothing)
@@ -49,11 +49,11 @@
     Private Sub tsbGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbGuardar.Click
         Dim SQL As String, Mensaje As String = ""
         Try
-            If txtFolio.Text.Trim.Length = 0 And Mensaje = "" Then
-                Mensaje = "Por favor indique el folio"
+            If txtNombre.Text.Trim.Length = 0 And Mensaje = "" Then
+                Mensaje = "Por favor indique el Nombre"
             End If
-            If nudDias.Value = "0" And Mensaje = "" Then
-                Mensaje = "Por favor indique el numero de dias"
+            If dtpFechaNac.Value.ToString = "" And Mensaje = "" Then
+                Mensaje = "Por favor indique la fecha de nacimiento"
             End If
 
             If Mensaje <> "" Then
@@ -63,56 +63,55 @@
 
             If blnNuevo Then
                 'Insertar nuevo
-                SQL = "EXEC setIncapacidadInsertar 0," & gIdEmpleado & ",'" & txtFolio.Text
-                SQL &= "'," & cboTipo.SelectedIndex
-                SQL &= "," & nudDias.Value
-                SQL &= ",'" & dtpFechaInicio.Value.ToShortDateString
-                SQL &= "','" & calculofechafinal(dtpFechaInicio.Value, nudDias.Value)
-                SQL &= "'," & cboRamoSeguro.SelectedIndex
-                SQL &= "," & cboriesgo.SelectedIndex
-                SQL &= "," & nudPorcentaje.Value
-                SQL &= ",1"
+                SQL = "EXEC setfamiliarInsertar 0,'" & txtNombre.Text
+                SQL &= "','" & txtApellidoP.Text
+                SQL &= "','" & txtApellidoM.Text
+                SQL &= "','" & Format(dtpFechaNac.Value, "yyyy/dd/MM")
+                SQL &= "'," & 1
+                SQL &= ",'" & gIdEmpleado
+                SQL &= "'," & cboTipo.SelectedIndex + 1
+               
             Else
                 'Actualizar
 
-                SQL = "EXEC setIncapacidadActualizar " & IdIncapacidad & "," & gIdEmpleado & ",'" & txtFolio.Text
-                SQL &= "'," & cboTipo.SelectedIndex
-                SQL &= "," & nudDias.Value
-                SQL &= ",'" & dtpFechaInicio.Value.ToShortDateString
-                SQL &= "','" & calculofechafinal(dtpFechaInicio.Value, nudDias.Value)
-                SQL &= "'," & cboRamoSeguro.SelectedIndex
-                SQL &= "," & cboriesgo.SelectedIndex
-                SQL &= "," & nudPorcentaje.Value
-                SQL &= ",1"
+                SQL = "EXEC setfamiliarActualizar " & IdFamilia & ",'" & txtNombre.Text
+                SQL &= "','" & txtApellidoP.Text
+                SQL &= "','" & txtApellidoM.Text
+                SQL &= "','" & Format(dtpFechaNac.Value, "yyyy/dd/MM")
+                SQL &= "'," & 1
+                SQL &= ",'" & gIdEmpleado
+                SQL &= "'," & cboTipo.SelectedIndex + 1
 
             End If
             If nExecute(Sql) = False Then
                 Exit Sub
             End If
 
-            MessageBox.Show("Los datos de la incapacidad se han dado de alta correctamente.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ListarIncapacidad()
+            MessageBox.Show("Datos guardados correctamente.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            ListarFamilia()
+
             pnlDatos.Enabled = False
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Function calculofechafinal(ByVal fechainicio As Date, ByVal dias As Integer) As String
-        Dim fechafinal As String = ""
-        Dim fechainicial As Date = fechainicio
+    'Function calculofechafinal(ByVal fechainicio As Date, ByVal dias As Integer) As String
+    '    Dim fechafinal As String = ""
+    '    Dim fechainicial As Date = fechainicio
 
-        Return (fechainicial.AddDays(dias)).ToShortDateString()
+    '    Return (fechainicial.AddDays(dias)).ToShortDateString()
 
-    End Function
+    'End Function
 
-    Private Sub ListarIncapacidad()
+    Private Sub ListarFamilia()
         Dim SQL As String
         Dim tipoincidencia As String = ""
         Dim Alter As Boolean = False
+
         Try
-            SQL = "SELECT * from Incapacidad WHERE fkiIdEmpleado=" & gIdEmpleado
-            SQL &= " ORDER BY FechaInicio"
+            SQL = "SELECT * from familiar WHERE fkiIdEmpleadoC=" & gIdEmpleado
+            SQL &= " ORDER BY fkIdTipoFamiliar"
 
             lsvLista.Items.Clear()
 
@@ -121,28 +120,27 @@
             If rwFolios Is Nothing = False Then
                 For Each Fila In rwFolios
 
+                    
 
+                    item = lsvLista.Items.Add("" & Fila.Item("dFechaNac"))
 
-
-                    item = lsvLista.Items.Add("" & Fila.Item("Folio"))
-
-                    If Fila.Item("TipoIncidencia") = "0" Then
-                        tipoincidencia = "Accidente de trabajo"
-                    ElseIf Fila.Item("TipoIncidencia") = "1" Then
-                        tipoincidencia = "Accidente de trayecto"
-                    ElseIf Fila.Item("TipoIncidencia") = "2" Then
-                        tipoincidencia = "Enfermedad general"
-                    ElseIf Fila.Item("TipoIncidencia") = "3" Then
-                        tipoincidencia = "Incapacidad pagada por la empresa"
-                    ElseIf Fila.Item("TipoIncidencia") = "4" Then
-                        tipoincidencia = "Incapacidad por maternidad"
+                    If Fila.Item("fkIdTipoFamiliar") = "1" Then
+                        tipoincidencia = "Hijo"
+                    ElseIf Fila.Item("fkIdTipoFamiliar") = "2" Then
+                        tipoincidencia = "Padre"
+                    ElseIf Fila.Item("fkIdTipoFamiliar") = "3" Then
+                        tipoincidencia = "Madre"
+                    ElseIf Fila.Item("fkIdTipoFamiliar") = "4" Then
+                        tipoincidencia = "Conyuge"
                     End If
 
+                    Dim Nombre As String = Fila.Item("cNombre") & " " & Fila.Item("cApellidoP") & " " & Fila.Item("cApellidoM")
                     item.SubItems.Add("" & tipoincidencia)
+                    item.SubItems.Add(Nombre)
 
-                    item.SubItems.Add("" & Fila.Item("Dias"))
 
-                    item.Tag = Fila.Item("iIdIncapacidad")
+
+                    item.Tag = Fila.Item("iIdFamiliar")
                     item.BackColor = IIf(Alter, Color.WhiteSmoke, Color.White)
                     Alter = Not Alter
 
@@ -156,9 +154,8 @@
         Catch ex As Exception
 
         End Try
-
     End Sub
-
+    
     Private Sub tsbCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbCancelar.Click
         pnlDatos.Enabled = False
     End Sub
@@ -170,24 +167,22 @@
 
 
 
-    Private Sub MostrarDatosIcapacidad(ByVal id As String)
+    Private Sub MostrarDatosFamilia(ByVal id As String)
         Dim sql As String
-        IdIncapacidad = id
-        sql = "select * from Incapacidad where iIdIncapacidad = " & id
-        Dim rwFilas As DataRow() = nConsulta(Sql)
+        IdFamilia = id
+        sql = "select * from familiar where iIdFamiliar = " & id
+        Dim rwFilas As DataRow() = nConsulta(sql)
         Try
             If rwFilas Is Nothing = False Then
                 blnNuevo = False
                 pnlDatos.Enabled = True
                 Dim Fila As DataRow = rwFilas(0)
 
-                txtFolio.Text = Fila.Item("Folio")
-                cboTipo.SelectedIndex = Fila.Item("TipoIncidencia")
-                nudDias.Value = Fila.Item("Dias")
-                dtpFechaInicio.Value = Fila.Item("Fechainicio")
-                cboRamoSeguro.SelectedIndex = Fila.Item("RamoRiesgo")
-                cboriesgo.SelectedIndex = Fila.Item("TipoRiesgo")
-                nudPorcentaje.Value = Fila.Item("Porcentaje")
+                txtNombre.Text = Fila.Item("cNombre")
+                cboTipo.SelectedIndex = Fila.Item("fkIdTipoFamiliar") - 1
+                txtApellidoP.Text = Fila.Item("cApellidoP")
+                txtApellidoM.Text = Fila.Item("cApellidoM")
+                dtpFechaNac.Value = Fila.Item("dFechaNac")
 
 
 
@@ -200,11 +195,12 @@
 
     Private Sub lsvLista_ItemActivate1(ByVal sender As Object, ByVal e As System.EventArgs) Handles lsvLista.ItemActivate
         If lsvLista.SelectedItems.Count > 0 Then
-            MostrarDatosIcapacidad(lsvLista.SelectedItems(0).Tag)
+            MostrarDatosFamilia(lsvLista.SelectedItems(0).Tag)
         End If
     End Sub
 
     Private Sub lsvLista_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lsvLista.SelectedIndexChanged
 
     End Sub
+
 End Class

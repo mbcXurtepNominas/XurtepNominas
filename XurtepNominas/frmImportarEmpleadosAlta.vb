@@ -58,7 +58,7 @@ Public Class frmImportarEmpleadosAlta
         Me.cmdCerrar.Enabled = False
         Me.Cursor = Cursors.WaitCursor
         Me.Enabled = False
-        Application.DoEvents()
+        'Application.DoEvents()
 
         Try
             If File.Exists(lblRuta.Text) Then
@@ -238,7 +238,7 @@ Public Class frmImportarEmpleadosAlta
 
                 pnlProgreso.Visible = True
                 pnlCatalogo.Enabled = False
-                Application.DoEvents()
+                'Application.DoEvents()
 
 
                 Dim IdEmpleado As Long
@@ -352,10 +352,11 @@ Public Class frmImportarEmpleadosAlta
 
 
 
-                        Dim dFechaNac, dFechaCap, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
+                        Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
 
                         dFechaNac = Trim(empleadofull.SubItems(13).Text) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM")
                         dFechaCap = (Trim(empleadofull.SubItems(14).Text))
+                        dFechaPlanta = Trim(empleadofull.SubItems(41).Text)
                         'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
@@ -381,11 +382,12 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & 0 & ",'" & number & "','" & Trim(empleadofull.SubItems(35).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "','" & Trim(empleadofull.SubItems(38).Text) & "'," & -1 ''estatus 
                         SQL &= "," & Trim(empleadofull.SubItems(15).Text) & "," & Trim(empleadofull.SubItems(39).Text)
-                        SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
+                        SQL &= "," & IIf(Trim(empleadofull.SubItems(40).Text) = "SOLTERO", 0, 1)
                         SQL &= "," & 1
                         SQL &= ",'" & " "
                         SQL &= "','" & "" & "'"
-                        SQL &= "," & 0
+                        SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(42).Text) & "','" & Trim(empleadofull.SubItems(43).Text) & "'"
+
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -393,7 +395,7 @@ Public Class frmImportarEmpleadosAlta
                             Exit Sub
                         End If
                         pgbProgreso.Value += 1
-                        Application.DoEvents()
+                        ''Application.DoEvents()
                         t = t + 1
                     Else
                         MessageBox.Show(mensa, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -468,7 +470,7 @@ Public Class frmImportarEmpleadosAlta
                         MessageBoxIcon.Information)
     End Sub
 
-    Private Sub tsbContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbContrato.Click
+    Private Sub tsbContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim MSWord As New Word.Application
         Dim Documento As Word.Document
         Dim Ruta As String, strPWD As String
