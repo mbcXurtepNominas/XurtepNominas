@@ -93,6 +93,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property bloggif_5aa2e2fc58d9a() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("bloggif_5aa2e2fc58d9a", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property cerrar() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cerrar", resourceCulture)
@@ -106,6 +116,16 @@ Namespace My.Resources
         Friend ReadOnly Property disquete() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("disquete", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property escala_de_la_justicia() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("escala-de-la-justicia", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

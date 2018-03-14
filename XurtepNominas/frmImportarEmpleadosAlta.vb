@@ -387,7 +387,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= ",'" & " "
                         SQL &= "','" & "" & "'"
                         SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(42).Text) & "','" & Trim(empleadofull.SubItems(43).Text) & "'"
-
+                        SQL &= ",'" & Trim(empleadofull.SubItems(44).Text) & "'"
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

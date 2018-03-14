@@ -147,7 +147,7 @@ Public Class frmExcel
                     lsvLista.Columns(40).Width = 119
 
 
-                    Dim Filas As Long = sheet.RowsUsed().Count()
+                    Dim Filas As Long = sheet.RowsUsed().Count() + 1
                     For f As Integer = 2 To Filas
                         Dim item As ListViewItem = lsvLista.Items.Add((f - 1).ToString())
                         For c As Integer = colIni To colFin
@@ -205,7 +205,7 @@ Public Class frmExcel
                     'End If
                     pnlCatalogo.Enabled = True
                     If lsvLista.Items.Count = 0 Then
-                        MessageBox.Show("El catálogo no puso ser importado o no contiene registros." & vbCrLf & "¿Por favor verifique?", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                        MessageBox.Show("El catálogo no pudo ser importado o no contiene registros." & vbCrLf & "¿Por favor verifique?", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Else
                         MessageBox.Show("Se han encontrado " & FormatNumber(lsvLista.Items.Count, 0) & " registros en el archivo.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         tsbGuardar.Enabled = True
@@ -446,9 +446,10 @@ Public Class frmExcel
                 hoja4.Cell(3, 3).Value = "   Importe   "
                 hoja4.Cell(3, 4).Value = "   Subsidio Causado"
 
+                '' filaExcel = 6
                 For Each dato As ListViewItem In lsvLista.CheckedItems
-
-                    hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "0000000"
+                    hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "000000000000000000"
+                    ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "##################"
                     ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.NumberFormatId = 7
                     ''Generales
                     hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
@@ -479,7 +480,7 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 26).Value = ""  ''dato.SubItems(26).Text
                     hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
                     hoja.Cell(filaExcel, 28).Value = "NA"  ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = "2"  '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 29).Value = txtMes.Text '' dato.SubItems(29).Text MES DE PAGO
                     hoja.Cell(filaExcel, 30).Value = dato.SubItems(10).Text
 
                     filaExcel = filaExcel + 1
@@ -610,38 +611,12 @@ Public Class frmExcel
     End Sub
 
 
-    Public Sub cargar()
-        Dim oExcel As Object
-        Dim oBook As Object
-        Dim oSheet As Object
-
-        'Start a new workbook in Excel
-        oExcel = CreateObject("Excel.Application")
-        oBook = oExcel.Workbooks.Add
-        Try
-            'Add data to cells of the first worksheet in the new workbook
-            oSheet = oBook.Worksheets(1)
-            oSheet.Range("A1").Value = "Last Name"
-            oSheet.Range("B1").Value = "First Name"
-            oSheet.Range("A1:B1").Font.Bold = True
-            oSheet.Range("A2").Value = "Doe"
-            oSheet.Range("B2").Value = "John"
-
-            'Save the Workbook and Quit Excel
-            oBook.SaveAs("C:\Temp\Book1.xls")
-            oExcel.Quit()
-        Catch ex As Exception
-
-        End Try
-
-
-    End Sub
 
     Public Sub cargarND()
 
         Try
 
-            Dim filaExcel As Integer = 2
+            Dim filaExcel As Integer = 6
             Dim dialogo As New SaveFileDialog()
 
             If lsvLista.CheckedItems.Count > 0 Then
@@ -844,8 +819,8 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 25).Value = dato.SubItems(41).Text
                     hoja.Cell(filaExcel, 26).Value = ""  ''dato.SubItems(26).Text
                     hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
-                    hoja.Cell(filaExcel, 28).Value = "NA"  ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = "2"  '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 28).Value = "ND"  ''dato.SubItems(28).Text
+                    hoja.Cell(filaExcel, 29).Value = txtMes.Text '' dato.SubItems(29).Text MES DE PAGO
                     hoja.Cell(filaExcel, 30).Value = dato.SubItems(10).Text
 
                     filaExcel = filaExcel + 1
@@ -905,7 +880,7 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month.ToString()
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = "ND-" & month.ToString() & "-" & year.ToString()
+                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " ND"
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 dialogo.ShowDialog()
                 libro.SaveAs(dialogo.FileName)
@@ -1026,4 +1001,6 @@ Public Class frmExcel
 
 
     End Sub
+
+    
 End Class

@@ -137,13 +137,15 @@ Partial Class frmEmpleados
         Me.Label54 = New System.Windows.Forms.Label()
         Me.cmdFamiliar = New System.Windows.Forms.Button()
         Me.cmdIncapacidad = New System.Windows.Forms.Button()
-        Me.cmdContrato = New System.Windows.Forms.Button()
+        Me.cmdJuridico = New System.Windows.Forms.Button()
         Me.cmdprestamo = New System.Windows.Forms.Button()
         Me.cmdincidencias = New System.Windows.Forms.Button()
         Me.cmdbuscar = New System.Windows.Forms.Button()
         Me.cmdcancelar = New System.Windows.Forms.Button()
         Me.cmdsalir = New System.Windows.Forms.Button()
         Me.cmdguardar = New System.Windows.Forms.Button()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -227,7 +229,7 @@ Partial Class frmEmpleados
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
-        Me.Panel1.Controls.Add(Me.cmdContrato)
+        Me.Panel1.Controls.Add(Me.cmdJuridico)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
         Me.Panel1.Controls.Add(Me.cmdincidencias)
         Me.Panel1.Controls.Add(Me.cmdbuscar)
@@ -1126,17 +1128,17 @@ Partial Class frmEmpleados
         Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdIncapacidad.UseVisualStyleBackColor = True
         '
-        'cmdContrato
+        'cmdJuridico
         '
-        Me.cmdContrato.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5a90660e3aaa9
-        Me.cmdContrato.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdContrato.Location = New System.Drawing.Point(4, 461)
-        Me.cmdContrato.Name = "cmdContrato"
-        Me.cmdContrato.Size = New System.Drawing.Size(95, 72)
-        Me.cmdContrato.TabIndex = 43
-        Me.cmdContrato.Text = "Contrato"
-        Me.cmdContrato.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdContrato.UseVisualStyleBackColor = True
+        Me.cmdJuridico.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a
+        Me.cmdJuridico.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdJuridico.Location = New System.Drawing.Point(4, 461)
+        Me.cmdJuridico.Name = "cmdJuridico"
+        Me.cmdJuridico.Size = New System.Drawing.Size(95, 72)
+        Me.cmdJuridico.TabIndex = 43
+        Me.cmdJuridico.Text = "Juridico"
+        Me.cmdJuridico.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdJuridico.UseVisualStyleBackColor = True
         '
         'cmdprestamo
         '
@@ -1211,10 +1213,28 @@ Partial Class frmEmpleados
         Me.cmdguardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdguardar.UseVisualStyleBackColor = True
         '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(609, 243)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(63, 18)
+        Me.Label55.TabIndex = 215
+        Me.Label55.Text = "Telefono"
+        '
+        'txtTelefono
+        '
+        Me.txtTelefono.Location = New System.Drawing.Point(608, 220)
+        Me.txtTelefono.Name = "txtTelefono"
+        Me.txtTelefono.Size = New System.Drawing.Size(153, 26)
+        Me.txtTelefono.TabIndex = 214
+        '
         'frmEmpleados
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(971, 705)
+        Me.Controls.Add(Me.Label55)
+        Me.Controls.Add(Me.txtTelefono)
         Me.Controls.Add(Me.Label54)
         Me.Controls.Add(Me.Label53)
         Me.Controls.Add(Me.txtFin)
@@ -1436,7 +1456,7 @@ Partial Class frmEmpleados
     Friend WithEvents cmdprestamo As Button
     Friend WithEvents Label52 As Label
     Friend WithEvents txtExtra As TextBox
-    Friend WithEvents cmdContrato As System.Windows.Forms.Button
+    Friend WithEvents cmdJuridico As System.Windows.Forms.Button
     Friend WithEvents chkInfonavit As System.Windows.Forms.CheckBox
     Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
     Friend WithEvents dtFecPlanta As System.Windows.Forms.DateTimePicker
@@ -1446,4 +1466,6 @@ Partial Class frmEmpleados
     Friend WithEvents Label53 As System.Windows.Forms.Label
     Friend WithEvents Label54 As System.Windows.Forms.Label
     Friend WithEvents cmdFamiliar As System.Windows.Forms.Button
+    Friend WithEvents Label55 As System.Windows.Forms.Label
+    Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
 End Class

@@ -125,6 +125,7 @@ Public Class frmEmpleados
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+                SQL &= ", '" & txttelefono.text & "'"
             Else
                 'Actualizar
 
@@ -152,6 +153,7 @@ Public Class frmEmpleados
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+                SQL &= ", '" & txttelefono.text & "'"
 
             End If
             If nExecute(SQL) = False Then
@@ -783,7 +785,6 @@ Public Class frmEmpleados
         If blnNuevo = False Then
             Dim Forma As New frmIncapacidad
             Forma.gIdEmpleado = gIdEmpleado
-
             Forma.ShowDialog()
 
         Else
@@ -792,9 +793,6 @@ Public Class frmEmpleados
         End If
     End Sub
 
-    Private Sub cmdContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdContrato.Click
-
-    End Sub
 
     Private Sub cmdFamiliar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFamiliar.Click
         If blnNuevo = False Then
@@ -803,8 +801,14 @@ Public Class frmEmpleados
             frm.ShowDialog()
         Else
             MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-
         End If
+
+    End Sub
+
+    Private Sub cmdJuridico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdJuridico.Click
+        Dim frmJ As New frmJuridico
+        frmJ.gIdEmpleado = gIdEmpleado
+        frmJ.ShowDialog()
 
     End Sub
 End Class

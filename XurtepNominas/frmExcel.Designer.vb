@@ -41,6 +41,8 @@ Partial Class frmExcel
         Me.cmdVerificar = New System.Windows.Forms.Button()
         Me.txtBuscar = New System.Windows.Forms.TextBox()
         Me.cmdBuscar = New System.Windows.Forms.Button()
+        Me.txtMes = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -225,9 +227,9 @@ Partial Class frmExcel
         '
         'txtBuscar
         '
-        Me.txtBuscar.Location = New System.Drawing.Point(523, 13)
+        Me.txtBuscar.Location = New System.Drawing.Point(690, 13)
         Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(337, 27)
+        Me.txtBuscar.Size = New System.Drawing.Size(170, 27)
         Me.txtBuscar.TabIndex = 35
         '
         'cmdBuscar
@@ -239,10 +241,28 @@ Partial Class frmExcel
         Me.cmdBuscar.Text = "Buscar"
         Me.cmdBuscar.UseVisualStyleBackColor = True
         '
+        'txtMes
+        '
+        Me.txtMes.Location = New System.Drawing.Point(472, 10)
+        Me.txtMes.Name = "txtMes"
+        Me.txtMes.Size = New System.Drawing.Size(170, 27)
+        Me.txtMes.TabIndex = 37
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(514, 35)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(73, 19)
+        Me.Label1.TabIndex = 38
+        Me.Label1.Text = "Mes Pago"
+        '
         'frmExcel
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1056, 533)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.txtMes)
         Me.Controls.Add(Me.cmdBuscar)
         Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.cmdVerificar)
@@ -285,4 +305,6 @@ Partial Class frmExcel
     Friend WithEvents cmdVerificar As System.Windows.Forms.Button
     Friend WithEvents txtBuscar As System.Windows.Forms.TextBox
     Friend WithEvents cmdBuscar As System.Windows.Forms.Button
+    Friend WithEvents txtMes As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

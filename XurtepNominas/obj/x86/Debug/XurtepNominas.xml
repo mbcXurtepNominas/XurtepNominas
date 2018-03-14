@@ -27,11 +27,19 @@ XurtepNominas
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:XurtepNominas.My.Resources.Resources.cerrar">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:XurtepNominas.My.Resources.Resources.disquete">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:XurtepNominas.My.Resources.Resources.escala_de_la_justicia">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

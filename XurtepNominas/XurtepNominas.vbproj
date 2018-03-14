@@ -52,6 +52,9 @@
     <Reference Include="ClosedXML">
       <HintPath>..\..\..\..\asp\crear recibos\recibos\recibos\bin\Debug\ClosedXML.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -113,6 +116,12 @@
       <DependentUpon>frmBuscarEmpleado.vb</DependentUpon>
     </Compile>
     <Compile Include="frmBuscarEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmJuridico.Designer.vb">
+      <DependentUpon>frmJuridico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmJuridico.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmnominasmarinos.designer.vb">
@@ -191,6 +200,9 @@
     <EmbeddedResource Include="frmFamilia.resx">
       <DependentUpon>frmFamilia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmJuridico.resx">
+      <DependentUpon>frmJuridico.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmnominasmarinos.resx">
       <DependentUpon>frmnominasmarinos.vb</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +259,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bloggif_5aa1be4bd8d66.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\escala-de-la-justicia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bloggif_5aa2e2fc58d9a.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
