@@ -11,6 +11,11 @@ Public Class frmExcel
 
     Private Sub frmExcel_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         'MostrarEmpresasC()
+        Dim moment As Date = Date.Now()
+
+
+        cboMes.SelectedIndex = moment.Month - 1
+
     End Sub
 
     'Private Sub MostrarEmpresasC()
@@ -181,6 +186,12 @@ Public Class frmExcel
                                     item.SubItems(item.SubItems.Count - 1).Text = Valor
                                 End If
 
+                                'If f = 2 And c = 4 Then
+                                Dim fecha As Date = sheet.Cell(2, 4).Value.ToString()
+
+                                Dim fec As Date = fecha
+                                cboMes.SelectedIndex = fec.Month - 1
+                                'End If
 
 
 
@@ -273,290 +284,292 @@ Public Class frmExcel
     End Function
 
     Private Sub tsbGuardar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles tsbGuardar.Click
-        Try
-
-            Dim filaExcel As Integer = 2
-            Dim dialogo As New SaveFileDialog()
-
-            If lsvLista.CheckedItems.Count > 0 Then
-
-                Dim libro As New ClosedXML.Excel.XLWorkbook
-                Dim hoja As IXLWorksheet = libro.Worksheets.Add("Generales")
-                Dim hoja2 As IXLWorksheet = libro.Worksheets.Add("Percepciones")
-                Dim hoja3 As IXLWorksheet = libro.Worksheets.Add("Deducciones")
-                Dim hoja4 As IXLWorksheet = libro.Worksheets.Add("Otros Pagos")
-
-                hoja.Column("A").Width = 20
-                hoja.Column("B").Width = 15
-                hoja.Column("C").Width = 15
-                hoja.Column("D").Width = 12
-                hoja.Column("E").Width = 12
-                hoja.Column("F").Width = 25
-                hoja.Column("G").Width = 15
-                hoja.Column("H").Width = 15
-                hoja.Column("I").Width = 25
-                hoja.Column("J").Width = 15
-                hoja.Column("K").Width = 15
-                hoja.Column("L").Width = 15
-                hoja.Column("M").Width = 15
-                hoja.Column("N").Width = 50
-                hoja.Column("O").Width = 12
-
-                hoja.Range(1, 1, 1, 30).Style.Font.FontSize = 10
-                hoja.Range(1, 1, 1, 30).Style.Font.SetBold(True)
-                hoja.Range(1, 1, 1, 30).Style.Alignment.WrapText = True
-                hoja.Range(1, 1, 1, 30).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
-                hoja.Range(1, 1, 1, 30).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
-                hoja.Range(1, 1, 1, 30).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
-                hoja.Range(1, 1, 1, 30).Style.Font.FontColor = XLColor.FromHtml("#000000")
+            Try
 
 
-                hoja.Cell(1, 1).Value = "No. Empleado"
-                hoja.Cell(1, 2).Value = "RFC"
-                hoja.Cell(1, 3).Value = "Nombre"
-                hoja.Cell(1, 4).Value = "CURP"
-                hoja.Cell(1, 5).Value = "SSA"
-                hoja.Cell(1, 6).Value = "Cuenta Bancaria"
-                hoja.Cell(1, 7).Value = "SBC"
-                hoja.Cell(1, 8).Value = "SDI"
-                hoja.Cell(1, 9).Value = "Reg. Patronal"
-                hoja.Cell(1, 10).Value = "Ent. Federativa"
-                hoja.Cell(1, 11).Value = "Días Pagados"
-                hoja.Cell(1, 12).Value = "FechaInicioRelLaboral"
-                hoja.Cell(1, 13).Value = "TipoContrato" ''Numero
-                hoja.Cell(1, 14).Value = "TipoContrato"
-                hoja.Cell(1, 15).Value = "Sindicalizado"
-                hoja.Cell(1, 16).Value = "TipoJornada"
-                hoja.Cell(1, 17).Value = "Tipo Regimen" ''Numero
-                hoja.Cell(1, 18).Value = "Tipo Regimen"
-                hoja.Cell(1, 19).Value = "Departamento"
-                hoja.Cell(1, 20).Value = "Puesto"
-                hoja.Cell(1, 21).Value = "Riesgo Puesto" ''Numero
-                hoja.Cell(1, 22).Value = "Riesgo Puesto"
-                hoja.Cell(1, 23).Value = "Periodicidad Pago" ''Numero
-                hoja.Cell(1, 24).Value = "Periodicidad Pago"
-                hoja.Cell(1, 25).Value = "Banco" ''Numero
-                hoja.Cell(1, 26).Value = "Banco"
-                hoja.Cell(1, 27).Value = "Subcontratacion"
-                hoja.Cell(1, 28).Value = "Tipo Recibo"
-                hoja.Cell(1, 29).Value = "Mes Pago"
-                hoja.Cell(1, 30).Value = "Buque"
+                Dim filaExcel As Integer = 2
+                Dim dialogo As New SaveFileDialog()
 
-                ''Percepciones
-                hoja2.Range(3, 1, 3, 23).Style.Font.FontSize = 10
-                hoja2.Range(3, 1, 3, 23).Style.Font.SetBold(True)
-                hoja2.Range(3, 1, 3, 23).Style.Alignment.WrapText = True
-                hoja2.Range(3, 1, 3, 23).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
-                hoja2.Range(3, 1, 3, 23).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
-                hoja2.Range(3, 1, 3, 23).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
-                hoja2.Range(3, 1, 3, 23).Style.Font.FontColor = XLColor.FromHtml("#000000")
-                hoja2.Range(2, 3, 2, 23).Style.Border.BottomBorderColor = XLColor.FromHtml("#000000")
+                If lsvLista.CheckedItems.Count > 0 Then
 
-                hoja2.Cell(3, 1).Value = "	RFC	"
-                hoja2.Cell(3, 2).Value = "	Nombre	"
-                hoja2.Cell(1, 3).Value = "37/001"
-                hoja2.Range(2, 3, 2, 4).Merge(True)
-                hoja2.Cell(2, 3).Value = "VACACIONES PROPORCIONALES"
-                hoja2.Cell(3, 3).Value = "	Gravado	"
-                hoja2.Cell(3, 4).Value = "	Exento	"
-                hoja2.Cell(1, 5).Value = "36/001"
-                hoja2.Range(2, 5, 2, 6).Merge(True)
-                hoja2.Cell(2, 5).Value = "DESC. SEM OBLIGATORIO"
-                hoja2.Cell(3, 5).Value = "	Gravado	"
-                hoja2.Cell(3, 6).Value = "	Exento	"
-                hoja2.Cell(1, 7).Value = "35/001"
-                hoja2.Range(2, 7, 2, 8).Merge(True)
-                hoja2.Cell(2, 7).Value = "TIEMPO EXTRA OCASIONAL"
-                hoja2.Cell(3, 7).Value = "	Gravado	"
-                hoja2.Cell(3, 8).Value = "   Exento    "
-                hoja2.Cell(1, 9).Value = "34/001"
-                hoja2.Range(2, 9, 2, 10).Merge(True)
-                hoja2.Cell(2, 9).Value = "TIEMPO EXTRA FIJO"
-                hoja2.Cell(3, 9).Value = "   Gravado   "
-                hoja2.Cell(3, 10).Value = "  Exento    "
-                hoja2.Cell(1, 11).Value = "33/001"
-                hoja2.Range(2, 11, 2, 12).Merge(True)
-                hoja2.Cell(2, 11).Value = "SUELDO BASE"
-                hoja2.Cell(3, 11).Value = "  Gravado   "
-                hoja2.Cell(3, 12).Value = "  Exento    "
-                hoja2.Cell(1, 13).Value = "38/001"
-                hoja2.Range(2, 13, 2, 14).Merge(True)
-                hoja2.Cell(2, 13).Value = "AGUINALDO"
-                hoja2.Cell(3, 13).Value = "  Gravado   "
-                hoja2.Cell(3, 14).Value = "  Exento    "
-                hoja2.Cell(1, 15).Value = "39/001"
-                hoja2.Range(2, 15, 2, 16).Merge(True)
-                hoja2.Cell(2, 15).Value = "PRIMA VACACIONAL"
-                hoja2.Cell(3, 15).Value = "  Gravado   "
-                hoja2.Cell(3, 16).Value = "  Exento    "
-                hoja2.Cell(1, 17).Value = "40/001"
-                hoja2.Range(2, 17, 2, 22).Merge(True)
-                hoja2.Cell(2, 17).Value = "PRIMA DE ANTIGÜEDAD"
-                hoja2.Cell(3, 17).Value = "  Gravado   "
-                hoja2.Cell(3, 18).Value = "  Exento    "
-                hoja2.Cell(3, 19).Value = "  Total Pagado   "
-                hoja2.Cell(3, 20).Value = "  Años Servicio  "
-                hoja2.Cell(3, 21).Value = "  Ult sueldo mensual ord   "
-                hoja2.Cell(3, 22).Value = "  Ing Acumulable "
-                hoja2.Cell(3, 23).Value = "  Ing No Acumulable   "
+                    Dim libro As New ClosedXML.Excel.XLWorkbook
+                    Dim hoja As IXLWorksheet = libro.Worksheets.Add("Generales")
+                    Dim hoja2 As IXLWorksheet = libro.Worksheets.Add("Percepciones")
+                    Dim hoja3 As IXLWorksheet = libro.Worksheets.Add("Deducciones")
+                    Dim hoja4 As IXLWorksheet = libro.Worksheets.Add("Otros Pagos")
 
-                ''Deducciones
-                hoja3.Range(3, 1, 3, 9).Style.Font.FontSize = 10
-                hoja3.Range(3, 1, 3, 9).Style.Font.SetBold(True)
-                hoja3.Range(3, 1, 3, 9).Style.Alignment.WrapText = True
-                hoja3.Range(3, 1, 3, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
-                hoja3.Range(3, 1, 3, 9).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
+                    hoja.Column("A").Width = 20
+                    hoja.Column("B").Width = 15
+                    hoja.Column("C").Width = 15
+                    hoja.Column("D").Width = 12
+                    hoja.Column("E").Width = 12
+                    hoja.Column("F").Width = 25
+                    hoja.Column("G").Width = 15
+                    hoja.Column("H").Width = 15
+                    hoja.Column("I").Width = 25
+                    hoja.Column("J").Width = 15
+                    hoja.Column("K").Width = 15
+                    hoja.Column("L").Width = 15
+                    hoja.Column("M").Width = 15
+                    hoja.Column("N").Width = 50
+                    hoja.Column("O").Width = 12
 
-                hoja3.Range(3, 1, 3, 9).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
-                hoja3.Range(3, 1, 3, 9).Style.Font.FontColor = XLColor.FromHtml("#000000")
-
-                hoja3.Cell(3, 1).Value = "   RFC  "
-                hoja3.Cell(3, 2).Value = "   Nombre    "
-                hoja3.Cell(1, 3).Value = "42/001"
-                hoja3.Cell(2, 3).Value = "IMSS"
-                hoja3.Cell(3, 3).Value = "   Importe   "
-                hoja3.Cell(1, 4).Value = "41/002"
-                hoja3.Cell(2, 4).Value = "ISR"
-                hoja3.Cell(3, 4).Value = "   Importe   "
-                hoja3.Cell(1, 5).Value = "40/006"
-                hoja3.Range(2, 5, 2, 7).Merge(True)
-                hoja3.Cell(2, 5).Value = "INCAPACIDAD"
-                hoja3.Cell(3, 5).Value = "   Dias Incapacidad"
-                hoja3.Cell(3, 6).Value = "   Tipo "
-                hoja3.Cell(3, 7).Value = "   Importe   "
-                hoja3.Cell(1, 8).Value = "43/007"
-                hoja3.Cell(2, 8).Value = "PENSIÓN ALIMENTICIA"
-                hoja3.Cell(3, 8).Value = "   Importe   "
-                hoja3.Cell(1, 8).Value = "44/010"
-                hoja3.Cell(2, 8).Value = "INFONAVIT"
-                hoja3.Cell(3, 9).Value = "   Importe   "
-
-                ''Otros Pagos
-                hoja4.Range(3, 1, 3, 4).Style.Font.FontSize = 10
-                hoja4.Range(3, 1, 3, 4).Style.Font.SetBold(True)
-                hoja4.Range(3, 1, 3, 4).Style.Alignment.WrapText = True
-                hoja4.Range(3, 1, 3, 4).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
-                hoja4.Range(3, 1, 3, 4).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
+                    hoja.Range(1, 1, 1, 30).Style.Font.FontSize = 10
+                    hoja.Range(1, 1, 1, 30).Style.Font.SetBold(True)
+                    hoja.Range(1, 1, 1, 30).Style.Alignment.WrapText = True
+                    hoja.Range(1, 1, 1, 30).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                    hoja.Range(1, 1, 1, 30).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
+                    hoja.Range(1, 1, 1, 30).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
+                    hoja.Range(1, 1, 1, 30).Style.Font.FontColor = XLColor.FromHtml("#000000")
 
 
-                hoja4.Range(3, 1, 3, 4).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
-                hoja4.Range(3, 1, 3, 4).Style.Font.FontColor = XLColor.FromHtml("#000000")
-                hoja4.Cell(3, 1).Value = "   RFC  "
-                hoja4.Cell(3, 2).Value = "   Nombre    "
-                hoja4.Cell(3, 3).Value = "   Importe   "
-                hoja4.Cell(3, 4).Value = "   Subsidio Causado"
+                    hoja.Cell(1, 1).Value = "No. Empleado"
+                    hoja.Cell(1, 2).Value = "RFC"
+                    hoja.Cell(1, 3).Value = "Nombre"
+                    hoja.Cell(1, 4).Value = "CURP"
+                    hoja.Cell(1, 5).Value = "SSA"
+                    hoja.Cell(1, 6).Value = "Cuenta Bancaria"
+                    hoja.Cell(1, 7).Value = "SBC"
+                    hoja.Cell(1, 8).Value = "SDI"
+                    hoja.Cell(1, 9).Value = "Reg. Patronal"
+                    hoja.Cell(1, 10).Value = "Ent. Federativa"
+                    hoja.Cell(1, 11).Value = "Días Pagados"
+                    hoja.Cell(1, 12).Value = "FechaInicioRelLaboral"
+                    hoja.Cell(1, 13).Value = "TipoContrato" ''Numero
+                    hoja.Cell(1, 14).Value = "TipoContrato"
+                    hoja.Cell(1, 15).Value = "Sindicalizado"
+                    hoja.Cell(1, 16).Value = "TipoJornada"
+                    hoja.Cell(1, 17).Value = "Tipo Regimen" ''Numero
+                    hoja.Cell(1, 18).Value = "Tipo Regimen"
+                    hoja.Cell(1, 19).Value = "Departamento"
+                    hoja.Cell(1, 20).Value = "Puesto"
+                    hoja.Cell(1, 21).Value = "Riesgo Puesto" ''Numero
+                    hoja.Cell(1, 22).Value = "Riesgo Puesto"
+                    hoja.Cell(1, 23).Value = "Periodicidad Pago" ''Numero
+                    hoja.Cell(1, 24).Value = "Periodicidad Pago"
+                    hoja.Cell(1, 25).Value = "Banco" ''Numero
+                    hoja.Cell(1, 26).Value = "Banco"
+                    hoja.Cell(1, 27).Value = "Subcontratacion"
+                    hoja.Cell(1, 28).Value = "Tipo Recibo"
+                    hoja.Cell(1, 29).Value = "Mes Pago"
+                    hoja.Cell(1, 30).Value = "Buque"
 
-                '' filaExcel = 6
-                For Each dato As ListViewItem In lsvLista.CheckedItems
-                    hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "000000000000000000"
-                    ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "##################"
-                    ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.NumberFormatId = 7
-                    ''Generales
-                    hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
-                    hoja.Cell(filaExcel, 2).Value = dato.SubItems(4).Text
-                    hoja.Cell(filaExcel, 3).Value = dato.SubItems(2).Text
-                    hoja.Cell(filaExcel, 4).Value = dato.SubItems(5).Text
-                    hoja.Cell(filaExcel, 5).Value = dato.SubItems(6).Text
-                    hoja.Cell(filaExcel, 6).Value = dato.SubItems(42).Text
-                    hoja.Cell(filaExcel, 7).Value = dato.SubItems(14).Text
-                    hoja.Cell(filaExcel, 8).Value = dato.SubItems(13).Text
-                    hoja.Cell(filaExcel, 9).Value = "A1131077105" ''dato.SubItems(8).Text 
-                    hoja.Cell(filaExcel, 10).Value = "CAM" ''dato.SubItems(9).Text  
-                    hoja.Cell(filaExcel, 11).Value = dato.SubItems(15).Text
-                    hoja.Cell(filaExcel, 12).Value = dato.SubItems(43).Text
-                    hoja.Cell(filaExcel, 13).Value = "3" ''dato.SubItems(12).Text 
-                    hoja.Cell(filaExcel, 14).Value = ""  ''dato.SubItems(14).Text
-                    hoja.Cell(filaExcel, 15).Value = "1"  ''dato.SubItems(15).Text
-                    hoja.Cell(filaExcel, 16).Value = ""  ''dato.SubItems(16).Text
-                    hoja.Cell(filaExcel, 17).Value = "2"  ''dato.SubItems(17).Text
-                    hoja.Cell(filaExcel, 18).Value = ""  ''dato.SubItems(18).Text
-                    hoja.Cell(filaExcel, 19).Value = ""  ''dato.SubItems(19).Text
-                    hoja.Cell(filaExcel, 20).Value = dato.SubItems(9).Text
-                    hoja.Cell(filaExcel, 21).Value = "4"  '' dato.SubItems(21).Text
-                    hoja.Cell(filaExcel, 22).Value = ""  ''dato.SubItems(22).Text
-                    hoja.Cell(filaExcel, 23).Value = "5"  ''dato.SubItems(23).Text
-                    hoja.Cell(filaExcel, 24).Value = ""  ''dato.SubItems(24).Text
-                    hoja.Cell(filaExcel, 25).Value = dato.SubItems(41).Text
-                    hoja.Cell(filaExcel, 26).Value = ""  ''dato.SubItems(26).Text
-                    hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
-                    hoja.Cell(filaExcel, 28).Value = "NA"  ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = txtMes.Text '' dato.SubItems(29).Text MES DE PAGO
-                    hoja.Cell(filaExcel, 30).Value = dato.SubItems(10).Text
+                    ''Percepciones
+                    hoja2.Range(3, 1, 3, 23).Style.Font.FontSize = 10
+                    hoja2.Range(3, 1, 3, 23).Style.Font.SetBold(True)
+                    hoja2.Range(3, 1, 3, 23).Style.Alignment.WrapText = True
+                    hoja2.Range(3, 1, 3, 23).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                    hoja2.Range(3, 1, 3, 23).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
+                    hoja2.Range(3, 1, 3, 23).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
+                    hoja2.Range(3, 1, 3, 23).Style.Font.FontColor = XLColor.FromHtml("#000000")
+                    hoja2.Range(2, 3, 2, 23).Style.Border.BottomBorderColor = XLColor.FromHtml("#000000")
 
-                    filaExcel = filaExcel + 1
-                Next
-
-                filaExcel = 4
-                For Each dato As ListViewItem In lsvLista.CheckedItems
-
-                    hoja2.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
-                    hoja2.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
-                    hoja2.Cell(filaExcel, 3).Value = dato.SubItems(23).Text
-                    hoja2.Cell(filaExcel, 4).Value = ""
-                    hoja2.Cell(filaExcel, 5).Value = dato.SubItems(22).Text
-                    hoja2.Cell(filaExcel, 6).Value = ""
-                    hoja2.Cell(filaExcel, 7).Value = dato.SubItems(21).Text
-                    hoja2.Cell(filaExcel, 8).Value = ""
-                    hoja2.Cell(filaExcel, 9).Value = dato.SubItems(19).Text
-                    hoja2.Cell(filaExcel, 10).Value = ""
-                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(20).Text
-                    hoja2.Cell(filaExcel, 12).Value = dato.SubItems(18).Text
-                    hoja2.Cell(filaExcel, 13).Value = dato.SubItems(24).Text
-                    hoja2.Cell(filaExcel, 14).Value = dato.SubItems(25).Text
-                    hoja2.Cell(filaExcel, 15).Value = dato.SubItems(27).Text
-                    hoja2.Cell(filaExcel, 16).Value = dato.SubItems(28).Text
-                    hoja2.Cell(filaExcel, 17).Value = ""
-                    hoja2.Cell(filaExcel, 18).Value = ""
-                    hoja2.Cell(filaExcel, 19).Value = ""
-                    hoja2.Cell(filaExcel, 20).Value = ""
-                    hoja2.Cell(filaExcel, 21).Value = ""
-                    hoja2.Cell(filaExcel, 22).Value = ""
-                    hoja2.Cell(filaExcel, 23).Value = ""
+                    hoja2.Cell(3, 1).Value = "	RFC	"
+                    hoja2.Cell(3, 2).Value = "	Nombre	"
+                    hoja2.Cell(1, 3).Value = "37/001"
+                    hoja2.Range(2, 3, 2, 4).Merge(True)
+                    hoja2.Cell(2, 3).Value = "VACACIONES PROPORCIONALES"
+                    hoja2.Cell(3, 3).Value = "	Gravado	"
+                    hoja2.Cell(3, 4).Value = "	Exento	"
+                    hoja2.Cell(1, 5).Value = "36/001"
+                    hoja2.Range(2, 5, 2, 6).Merge(True)
+                    hoja2.Cell(2, 5).Value = "DESC. SEM OBLIGATORIO"
+                    hoja2.Cell(3, 5).Value = "	Gravado	"
+                    hoja2.Cell(3, 6).Value = "	Exento	"
+                    hoja2.Cell(1, 7).Value = "35/001"
+                    hoja2.Range(2, 7, 2, 8).Merge(True)
+                    hoja2.Cell(2, 7).Value = "TIEMPO EXTRA OCASIONAL"
+                    hoja2.Cell(3, 7).Value = "	Gravado	"
+                    hoja2.Cell(3, 8).Value = "   Exento    "
+                    hoja2.Cell(1, 9).Value = "34/001"
+                    hoja2.Range(2, 9, 2, 10).Merge(True)
+                    hoja2.Cell(2, 9).Value = "TIEMPO EXTRA FIJO"
+                    hoja2.Cell(3, 9).Value = "   Gravado   "
+                    hoja2.Cell(3, 10).Value = "  Exento    "
+                    hoja2.Cell(1, 11).Value = "33/001"
+                    hoja2.Range(2, 11, 2, 12).Merge(True)
+                    hoja2.Cell(2, 11).Value = "SUELDO BASE"
+                    hoja2.Cell(3, 11).Value = "  Gravado   "
+                    hoja2.Cell(3, 12).Value = "  Exento    "
+                    hoja2.Cell(1, 13).Value = "38/001"
+                    hoja2.Range(2, 13, 2, 14).Merge(True)
+                    hoja2.Cell(2, 13).Value = "AGUINALDO"
+                    hoja2.Cell(3, 13).Value = "  Gravado   "
+                    hoja2.Cell(3, 14).Value = "  Exento    "
+                    hoja2.Cell(1, 15).Value = "39/001"
+                    hoja2.Range(2, 15, 2, 16).Merge(True)
+                    hoja2.Cell(2, 15).Value = "PRIMA VACACIONAL"
+                    hoja2.Cell(3, 15).Value = "  Gravado   "
+                    hoja2.Cell(3, 16).Value = "  Exento    "
+                    hoja2.Cell(1, 17).Value = "40/001"
+                    hoja2.Range(2, 17, 2, 22).Merge(True)
+                    hoja2.Cell(2, 17).Value = "PRIMA DE ANTIGÜEDAD"
+                    hoja2.Cell(3, 17).Value = "  Gravado   "
+                    hoja2.Cell(3, 18).Value = "  Exento    "
+                    hoja2.Cell(3, 19).Value = "  Total Pagado   "
+                    hoja2.Cell(3, 20).Value = "  Años Servicio  "
+                    hoja2.Cell(3, 21).Value = "  Ult sueldo mensual ord   "
+                    hoja2.Cell(3, 22).Value = "  Ing Acumulable "
+                    hoja2.Cell(3, 23).Value = "  Ing No Acumulable   "
 
                     ''Deducciones
-                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
-                    hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
-                    hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text
-                    hoja3.Cell(filaExcel, 4).Value = dato.SubItems(33).Text
-                    hoja3.Cell(filaExcel, 5).Value = ""
-                    hoja3.Cell(filaExcel, 6).Value = ""
-                    hoja3.Cell(filaExcel, 7).Value = dato.SubItems(32).Text
-                    hoja3.Cell(filaExcel, 8).Value = dato.SubItems(36).Text
-                    hoja3.Cell(filaExcel, 9).Value = dato.SubItems(35).Text
+                    hoja3.Range(3, 1, 3, 9).Style.Font.FontSize = 10
+                    hoja3.Range(3, 1, 3, 9).Style.Font.SetBold(True)
+                    hoja3.Range(3, 1, 3, 9).Style.Alignment.WrapText = True
+                    hoja3.Range(3, 1, 3, 9).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                    hoja3.Range(3, 1, 3, 9).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
 
+                    hoja3.Range(3, 1, 3, 9).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
+                    hoja3.Range(3, 1, 3, 9).Style.Font.FontColor = XLColor.FromHtml("#000000")
+
+                    hoja3.Cell(3, 1).Value = "   RFC  "
+                    hoja3.Cell(3, 2).Value = "   Nombre    "
+                    hoja3.Cell(1, 3).Value = "42/001"
+                    hoja3.Cell(2, 3).Value = "IMSS"
+                    hoja3.Cell(3, 3).Value = "   Importe   "
+                    hoja3.Cell(1, 4).Value = "41/002"
+                    hoja3.Cell(2, 4).Value = "ISR"
+                    hoja3.Cell(3, 4).Value = "   Importe   "
+                    hoja3.Cell(1, 5).Value = "40/006"
+                    hoja3.Range(2, 5, 2, 7).Merge(True)
+                    hoja3.Cell(2, 5).Value = "INCAPACIDAD"
+                    hoja3.Cell(3, 5).Value = "   Dias Incapacidad"
+                    hoja3.Cell(3, 6).Value = "   Tipo "
+                    hoja3.Cell(3, 7).Value = "   Importe   "
+                    hoja3.Cell(1, 8).Value = "43/007"
+                    hoja3.Cell(2, 8).Value = "PENSIÓN ALIMENTICIA"
+                    hoja3.Cell(3, 8).Value = "   Importe   "
+                    hoja3.Cell(1, 8).Value = "44/010"
+                    hoja3.Cell(2, 8).Value = "INFONAVIT"
+                    hoja3.Cell(3, 9).Value = "   Importe   "
 
                     ''Otros Pagos
-                    hoja4.Columns("A").Width = 20
-                    hoja4.Columns("B").Width = 20
-                    hoja4.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
-                    hoja4.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
-                    hoja4.Cell(filaExcel, 3).Value = dato.SubItems(37).Text
-                    hoja4.Cell(filaExcel, 4).Value = dato.SubItems(48).Text
+                    hoja4.Range(3, 1, 3, 4).Style.Font.FontSize = 10
+                    hoja4.Range(3, 1, 3, 4).Style.Font.SetBold(True)
+                    hoja4.Range(3, 1, 3, 4).Style.Alignment.WrapText = True
+                    hoja4.Range(3, 1, 3, 4).Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center)
+                    hoja4.Range(3, 1, 3, 4).Style.Alignment.SetVertical(XLAlignmentVerticalValues.Center)
 
-                    filaExcel = filaExcel + 1
 
-                Next
-                Dim moment As Date = Date.Now()
-                Dim month As Integer = moment.Month
-                Dim year As Integer = moment.Year
-                dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " NA"
-                dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
-                dialogo.ShowDialog()
-                libro.SaveAs(dialogo.FileName)
-                libro = Nothing
+                    hoja4.Range(3, 1, 3, 4).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
+                    hoja4.Range(3, 1, 3, 4).Style.Font.FontColor = XLColor.FromHtml("#000000")
+                    hoja4.Cell(3, 1).Value = "   RFC  "
+                    hoja4.Cell(3, 2).Value = "   Nombre    "
+                    hoja4.Cell(3, 3).Value = "   Importe   "
+                    hoja4.Cell(3, 4).Value = "   Subsidio Causado"
 
-                MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    '' filaExcel = 6
+                    For Each dato As ListViewItem In lsvLista.CheckedItems
+                        hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "000000000000000000"
+                        ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "##################"
+                        ''hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.NumberFormatId = 7
+                        ''Generales
+                        hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
+                        hoja.Cell(filaExcel, 2).Value = dato.SubItems(4).Text
+                        hoja.Cell(filaExcel, 3).Value = dato.SubItems(2).Text
+                        hoja.Cell(filaExcel, 4).Value = dato.SubItems(5).Text
+                        hoja.Cell(filaExcel, 5).Value = dato.SubItems(6).Text
+                        hoja.Cell(filaExcel, 6).Value = dato.SubItems(42).Text
+                        hoja.Cell(filaExcel, 7).Value = dato.SubItems(14).Text
+                        hoja.Cell(filaExcel, 8).Value = dato.SubItems(13).Text
+                        hoja.Cell(filaExcel, 9).Value = "A1131077105" ''dato.SubItems(8).Text 
+                        hoja.Cell(filaExcel, 10).Value = "CAM" ''dato.SubItems(9).Text  
+                        hoja.Cell(filaExcel, 11).Value = dato.SubItems(15).Text
+                        hoja.Cell(filaExcel, 12).Value = dato.SubItems(43).Text
+                        hoja.Cell(filaExcel, 13).Value = "3" ''dato.SubItems(12).Text 
+                        hoja.Cell(filaExcel, 14).Value = ""  ''dato.SubItems(14).Text
+                        hoja.Cell(filaExcel, 15).Value = "1"  ''dato.SubItems(15).Text
+                        hoja.Cell(filaExcel, 16).Value = ""  ''dato.SubItems(16).Text
+                        hoja.Cell(filaExcel, 17).Value = "2"  ''dato.SubItems(17).Text
+                        hoja.Cell(filaExcel, 18).Value = ""  ''dato.SubItems(18).Text
+                        hoja.Cell(filaExcel, 19).Value = ""  ''dato.SubItems(19).Text
+                        hoja.Cell(filaExcel, 20).Value = dato.SubItems(9).Text
+                        hoja.Cell(filaExcel, 21).Value = "4"  '' dato.SubItems(21).Text
+                        hoja.Cell(filaExcel, 22).Value = ""  ''dato.SubItems(22).Text
+                        hoja.Cell(filaExcel, 23).Value = "5"  ''dato.SubItems(23).Text
+                        hoja.Cell(filaExcel, 24).Value = ""  ''dato.SubItems(24).Text
+                        hoja.Cell(filaExcel, 25).Value = dato.SubItems(41).Text
+                        hoja.Cell(filaExcel, 26).Value = ""  ''dato.SubItems(26).Text
+                        hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
+                        hoja.Cell(filaExcel, 28).Value = "NA"  ''dato.SubItems(28).Text
+                        hoja.Cell(filaExcel, 29).Value = cboMes.SelectedIndex + 1 '' dato.SubItems(29).Text MES DE PAGO
+                        hoja.Cell(filaExcel, 30).Value = dato.SubItems(10).Text
 
-            Else
+                        filaExcel = filaExcel + 1
+                    Next
 
-                MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
+                    filaExcel = 4
+                    For Each dato As ListViewItem In lsvLista.CheckedItems
 
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        hoja2.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                        hoja2.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                        hoja2.Cell(filaExcel, 3).Value = dato.SubItems(23).Text
+                        hoja2.Cell(filaExcel, 4).Value = ""
+                        hoja2.Cell(filaExcel, 5).Value = dato.SubItems(22).Text
+                        hoja2.Cell(filaExcel, 6).Value = ""
+                        hoja2.Cell(filaExcel, 7).Value = dato.SubItems(21).Text
+                        hoja2.Cell(filaExcel, 8).Value = ""
+                        hoja2.Cell(filaExcel, 9).Value = dato.SubItems(19).Text
+                        hoja2.Cell(filaExcel, 10).Value = ""
+                        hoja2.Cell(filaExcel, 11).Value = dato.SubItems(20).Text
+                        hoja2.Cell(filaExcel, 12).Value = dato.SubItems(18).Text
+                        hoja2.Cell(filaExcel, 13).Value = dato.SubItems(24).Text
+                        hoja2.Cell(filaExcel, 14).Value = dato.SubItems(25).Text
+                        hoja2.Cell(filaExcel, 15).Value = dato.SubItems(27).Text
+                        hoja2.Cell(filaExcel, 16).Value = dato.SubItems(28).Text
+                        hoja2.Cell(filaExcel, 17).Value = ""
+                        hoja2.Cell(filaExcel, 18).Value = ""
+                        hoja2.Cell(filaExcel, 19).Value = ""
+                        hoja2.Cell(filaExcel, 20).Value = ""
+                        hoja2.Cell(filaExcel, 21).Value = ""
+                        hoja2.Cell(filaExcel, 22).Value = ""
+                        hoja2.Cell(filaExcel, 23).Value = ""
 
-        End Try
+                        ''Deducciones
+                        hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                        hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                        hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text
+                        hoja3.Cell(filaExcel, 4).Value = dato.SubItems(33).Text
+                        hoja3.Cell(filaExcel, 5).Value = ""
+                        hoja3.Cell(filaExcel, 6).Value = ""
+                        hoja3.Cell(filaExcel, 7).Value = dato.SubItems(32).Text
+                        hoja3.Cell(filaExcel, 8).Value = dato.SubItems(36).Text
+                        hoja3.Cell(filaExcel, 9).Value = dato.SubItems(35).Text
+
+
+                        ''Otros Pagos
+                        hoja4.Columns("A").Width = 20
+                        hoja4.Columns("B").Width = 20
+                        hoja4.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                        hoja4.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                        hoja4.Cell(filaExcel, 3).Value = dato.SubItems(37).Text
+                        hoja4.Cell(filaExcel, 4).Value = dato.SubItems(48).Text
+
+                        filaExcel = filaExcel + 1
+
+                    Next
+                    Dim moment As Date = Date.Now()
+                    Dim month As Integer = moment.Month
+                    Dim year As Integer = moment.Year
+                    dialogo.DefaultExt = "*.xlsx"
+                    dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " NA"
+                    dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+                    dialogo.ShowDialog()
+                    libro.SaveAs(dialogo.FileName)
+                    libro = Nothing
+
+                    MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                Else
+
+                    MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End If
+
+            Catch ex As Exception
+                '' MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            End Try
+
 
 
     End Sub
@@ -616,7 +629,7 @@ Public Class frmExcel
 
         Try
 
-            Dim filaExcel As Integer = 6
+            Dim filaExcel As Integer = 2
             Dim dialogo As New SaveFileDialog()
 
             If lsvLista.CheckedItems.Count > 0 Then
@@ -820,7 +833,7 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 26).Value = ""  ''dato.SubItems(26).Text
                     hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
                     hoja.Cell(filaExcel, 28).Value = "ND"  ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = txtMes.Text '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 29).Value = cboMes.SelectedIndex + 1 '' dato.SubItems(29).Text MES DE PAGO
                     hoja.Cell(filaExcel, 30).Value = dato.SubItems(10).Text
 
                     filaExcel = filaExcel + 1
@@ -1003,4 +1016,5 @@ Public Class frmExcel
     End Sub
 
     
+
 End Class
