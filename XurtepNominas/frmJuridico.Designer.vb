@@ -34,7 +34,6 @@ Partial Class frmJuridico
         Me.cmdempleo = New System.Windows.Forms.Button()
         Me.cmdingreso = New System.Windows.Forms.Button()
         Me.cmdsimple = New System.Windows.Forms.Button()
-        Me.cmdcontrato = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -51,7 +50,6 @@ Partial Class frmJuridico
         Me.Panel1.Controls.Add(Me.cmdempleo)
         Me.Panel1.Controls.Add(Me.cmdingreso)
         Me.Panel1.Controls.Add(Me.cmdsimple)
-        Me.Panel1.Controls.Add(Me.cmdcontrato)
         Me.Panel1.Location = New System.Drawing.Point(3, 5)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(478, 250)
@@ -61,7 +59,7 @@ Partial Class frmJuridico
         '
         Me.cmdDeterminado.Image = CType(resources.GetObject("cmdDeterminado.Image"), System.Drawing.Image)
         Me.cmdDeterminado.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdDeterminado.Location = New System.Drawing.Point(7, 82)
+        Me.cmdDeterminado.Location = New System.Drawing.Point(7, 5)
         Me.cmdDeterminado.Name = "cmdDeterminado"
         Me.cmdDeterminado.Size = New System.Drawing.Size(87, 72)
         Me.cmdDeterminado.TabIndex = 46
@@ -134,7 +132,7 @@ Partial Class frmJuridico
         '
         Me.cmdoficio.Image = CType(resources.GetObject("cmdoficio.Image"), System.Drawing.Image)
         Me.cmdoficio.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdoficio.Location = New System.Drawing.Point(286, 4)
+        Me.cmdoficio.Location = New System.Drawing.Point(286, 160)
         Me.cmdoficio.Name = "cmdoficio"
         Me.cmdoficio.Size = New System.Drawing.Size(87, 72)
         Me.cmdoficio.TabIndex = 40
@@ -146,7 +144,7 @@ Partial Class frmJuridico
         '
         Me.cmdempleo.Image = CType(resources.GetObject("cmdempleo.Image"), System.Drawing.Image)
         Me.cmdempleo.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdempleo.Location = New System.Drawing.Point(193, 4)
+        Me.cmdempleo.Location = New System.Drawing.Point(193, 160)
         Me.cmdempleo.Name = "cmdempleo"
         Me.cmdempleo.Size = New System.Drawing.Size(87, 72)
         Me.cmdempleo.TabIndex = 39
@@ -158,7 +156,7 @@ Partial Class frmJuridico
         '
         Me.cmdingreso.Image = CType(resources.GetObject("cmdingreso.Image"), System.Drawing.Image)
         Me.cmdingreso.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdingreso.Location = New System.Drawing.Point(100, 4)
+        Me.cmdingreso.Location = New System.Drawing.Point(100, 160)
         Me.cmdingreso.Name = "cmdingreso"
         Me.cmdingreso.Size = New System.Drawing.Size(87, 72)
         Me.cmdingreso.TabIndex = 38
@@ -170,25 +168,13 @@ Partial Class frmJuridico
         '
         Me.cmdsimple.Image = CType(resources.GetObject("cmdsimple.Image"), System.Drawing.Image)
         Me.cmdsimple.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdsimple.Location = New System.Drawing.Point(379, 4)
+        Me.cmdsimple.Location = New System.Drawing.Point(379, 160)
         Me.cmdsimple.Name = "cmdsimple"
         Me.cmdsimple.Size = New System.Drawing.Size(87, 72)
         Me.cmdsimple.TabIndex = 37
         Me.cmdsimple.Text = "Oficio S."
         Me.cmdsimple.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdsimple.UseVisualStyleBackColor = True
-        '
-        'cmdcontrato
-        '
-        Me.cmdcontrato.Image = CType(resources.GetObject("cmdcontrato.Image"), System.Drawing.Image)
-        Me.cmdcontrato.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdcontrato.Location = New System.Drawing.Point(7, 4)
-        Me.cmdcontrato.Name = "cmdcontrato"
-        Me.cmdcontrato.Size = New System.Drawing.Size(87, 72)
-        Me.cmdcontrato.TabIndex = 34
-        Me.cmdcontrato.Text = "Planta"
-        Me.cmdcontrato.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdcontrato.UseVisualStyleBackColor = True
         '
         'frmJuridico
         '
@@ -209,7 +195,6 @@ Partial Class frmJuridico
     Friend WithEvents cmdempleo As System.Windows.Forms.Button
     Friend WithEvents cmdingreso As System.Windows.Forms.Button
     Friend WithEvents cmdsimple As System.Windows.Forms.Button
-    Friend WithEvents cmdcontrato As System.Windows.Forms.Button
     Friend WithEvents btnAnexos As System.Windows.Forms.Button
     Friend WithEvents btnAnexo4 As System.Windows.Forms.Button
     Friend WithEvents btnAnexo3 As System.Windows.Forms.Button
