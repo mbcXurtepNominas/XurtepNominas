@@ -33,6 +33,16 @@ Partial Class frmEmpleados
         Me.txtsalario = New System.Windows.Forms.TextBox()
         Me.cbojornada = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cmdDocumentos = New System.Windows.Forms.Button()
+        Me.cmdFamiliar = New System.Windows.Forms.Button()
+        Me.cmdIncapacidad = New System.Windows.Forms.Button()
+        Me.cmdJuridico = New System.Windows.Forms.Button()
+        Me.cmdprestamo = New System.Windows.Forms.Button()
+        Me.cmdincidencias = New System.Windows.Forms.Button()
+        Me.cmdbuscar = New System.Windows.Forms.Button()
+        Me.cmdcancelar = New System.Windows.Forms.Button()
+        Me.cmdsalir = New System.Windows.Forms.Button()
+        Me.cmdguardar = New System.Windows.Forms.Button()
         Me.cbobanco = New System.Windows.Forms.ComboBox()
         Me.txthoras = New System.Windows.Forms.TextBox()
         Me.txthorario = New System.Windows.Forms.TextBox()
@@ -137,16 +147,8 @@ Partial Class frmEmpleados
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.txtTelefono = New System.Windows.Forms.TextBox()
-        Me.cmdDocumentos = New System.Windows.Forms.Button()
-        Me.cmdFamiliar = New System.Windows.Forms.Button()
-        Me.cmdIncapacidad = New System.Windows.Forms.Button()
-        Me.cmdJuridico = New System.Windows.Forms.Button()
-        Me.cmdprestamo = New System.Windows.Forms.Button()
-        Me.cmdincidencias = New System.Windows.Forms.Button()
-        Me.cmdbuscar = New System.Windows.Forms.Button()
-        Me.cmdcancelar = New System.Windows.Forms.Button()
-        Me.cmdsalir = New System.Windows.Forms.Button()
-        Me.cmdguardar = New System.Windows.Forms.Button()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -242,6 +244,127 @@ Partial Class frmEmpleados
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(105, 689)
         Me.Panel1.TabIndex = 184
+        '
+        'cmdDocumentos
+        '
+        Me.cmdDocumentos.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aac5ea61bc88
+        Me.cmdDocumentos.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdDocumentos.Location = New System.Drawing.Point(4, 457)
+        Me.cmdDocumentos.Name = "cmdDocumentos"
+        Me.cmdDocumentos.Size = New System.Drawing.Size(95, 72)
+        Me.cmdDocumentos.TabIndex = 46
+        Me.cmdDocumentos.Text = "Documentos"
+        Me.cmdDocumentos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdDocumentos.UseVisualStyleBackColor = True
+        '
+        'cmdFamiliar
+        '
+        Me.cmdFamiliar.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa1be4bd8d66
+        Me.cmdFamiliar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdFamiliar.Location = New System.Drawing.Point(2, 384)
+        Me.cmdFamiliar.Name = "cmdFamiliar"
+        Me.cmdFamiliar.Size = New System.Drawing.Size(95, 72)
+        Me.cmdFamiliar.TabIndex = 45
+        Me.cmdFamiliar.Text = "Familiares"
+        Me.cmdFamiliar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdFamiliar.UseVisualStyleBackColor = True
+        '
+        'cmdIncapacidad
+        '
+        Me.cmdIncapacidad.Image = CType(resources.GetObject("cmdIncapacidad.Image"), System.Drawing.Image)
+        Me.cmdIncapacidad.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 306)
+        Me.cmdIncapacidad.Name = "cmdIncapacidad"
+        Me.cmdIncapacidad.Size = New System.Drawing.Size(95, 72)
+        Me.cmdIncapacidad.TabIndex = 44
+        Me.cmdIncapacidad.Text = "Incapacidad"
+        Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdIncapacidad.UseVisualStyleBackColor = True
+        '
+        'cmdJuridico
+        '
+        Me.cmdJuridico.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a
+        Me.cmdJuridico.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdJuridico.Location = New System.Drawing.Point(4, 533)
+        Me.cmdJuridico.Name = "cmdJuridico"
+        Me.cmdJuridico.Size = New System.Drawing.Size(95, 72)
+        Me.cmdJuridico.TabIndex = 43
+        Me.cmdJuridico.Text = "Juridico"
+        Me.cmdJuridico.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdJuridico.UseVisualStyleBackColor = True
+        '
+        'cmdprestamo
+        '
+        Me.cmdprestamo.Image = CType(resources.GetObject("cmdprestamo.Image"), System.Drawing.Image)
+        Me.cmdprestamo.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdprestamo.Location = New System.Drawing.Point(3, 309)
+        Me.cmdprestamo.Name = "cmdprestamo"
+        Me.cmdprestamo.Size = New System.Drawing.Size(95, 72)
+        Me.cmdprestamo.TabIndex = 42
+        Me.cmdprestamo.Text = "Prestamo"
+        Me.cmdprestamo.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdprestamo.UseVisualStyleBackColor = True
+        '
+        'cmdincidencias
+        '
+        Me.cmdincidencias.Image = CType(resources.GetObject("cmdincidencias.Image"), System.Drawing.Image)
+        Me.cmdincidencias.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdincidencias.Location = New System.Drawing.Point(3, 231)
+        Me.cmdincidencias.Name = "cmdincidencias"
+        Me.cmdincidencias.Size = New System.Drawing.Size(94, 72)
+        Me.cmdincidencias.TabIndex = 41
+        Me.cmdincidencias.Text = "Incidencias"
+        Me.cmdincidencias.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdincidencias.UseVisualStyleBackColor = True
+        '
+        'cmdbuscar
+        '
+        Me.cmdbuscar.Image = CType(resources.GetObject("cmdbuscar.Image"), System.Drawing.Image)
+        Me.cmdbuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdbuscar.Location = New System.Drawing.Point(3, 155)
+        Me.cmdbuscar.Name = "cmdbuscar"
+        Me.cmdbuscar.Size = New System.Drawing.Size(94, 72)
+        Me.cmdbuscar.TabIndex = 40
+        Me.cmdbuscar.Text = "Buscar"
+        Me.cmdbuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdbuscar.UseVisualStyleBackColor = True
+        '
+        'cmdcancelar
+        '
+        Me.cmdcancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdcancelar.Image = CType(resources.GetObject("cmdcancelar.Image"), System.Drawing.Image)
+        Me.cmdcancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdcancelar.Location = New System.Drawing.Point(3, 80)
+        Me.cmdcancelar.Name = "cmdcancelar"
+        Me.cmdcancelar.Size = New System.Drawing.Size(91, 72)
+        Me.cmdcancelar.TabIndex = 38
+        Me.cmdcancelar.Text = "Cancelar"
+        Me.cmdcancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdcancelar.UseVisualStyleBackColor = True
+        '
+        'cmdsalir
+        '
+        Me.cmdsalir.Image = CType(resources.GetObject("cmdsalir.Image"), System.Drawing.Image)
+        Me.cmdsalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdsalir.Location = New System.Drawing.Point(4, 609)
+        Me.cmdsalir.Name = "cmdsalir"
+        Me.cmdsalir.Size = New System.Drawing.Size(94, 72)
+        Me.cmdsalir.TabIndex = 37
+        Me.cmdsalir.Text = "Salir"
+        Me.cmdsalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdsalir.UseVisualStyleBackColor = True
+        '
+        'cmdguardar
+        '
+        Me.cmdguardar.Image = CType(resources.GetObject("cmdguardar.Image"), System.Drawing.Image)
+        Me.cmdguardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdguardar.Location = New System.Drawing.Point(3, 4)
+        Me.cmdguardar.Name = "cmdguardar"
+        Me.cmdguardar.Size = New System.Drawing.Size(91, 72)
+        Me.cmdguardar.TabIndex = 34
+        Me.cmdguardar.Text = "Guardar"
+        Me.cmdguardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdguardar.UseVisualStyleBackColor = True
         '
         'cbobanco
         '
@@ -1122,131 +1245,29 @@ Partial Class frmEmpleados
         Me.txtTelefono.Size = New System.Drawing.Size(153, 26)
         Me.txtTelefono.TabIndex = 214
         '
-        'cmdDocumentos
+        'Label56
         '
-        Me.cmdDocumentos.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aac5ea61bc88
-        Me.cmdDocumentos.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdDocumentos.Location = New System.Drawing.Point(4, 457)
-        Me.cmdDocumentos.Name = "cmdDocumentos"
-        Me.cmdDocumentos.Size = New System.Drawing.Size(95, 72)
-        Me.cmdDocumentos.TabIndex = 46
-        Me.cmdDocumentos.Text = "Documentos"
-        Me.cmdDocumentos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdDocumentos.UseVisualStyleBackColor = True
+        Me.Label56.AutoSize = True
+        Me.Label56.Location = New System.Drawing.Point(683, 633)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(170, 18)
+        Me.Label56.TabIndex = 217
+        Me.Label56.Text = "Fecha de Final de contrato"
         '
-        'cmdFamiliar
+        'dtpFinContrato
         '
-        Me.cmdFamiliar.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa1be4bd8d66
-        Me.cmdFamiliar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdFamiliar.Location = New System.Drawing.Point(2, 384)
-        Me.cmdFamiliar.Name = "cmdFamiliar"
-        Me.cmdFamiliar.Size = New System.Drawing.Size(95, 72)
-        Me.cmdFamiliar.TabIndex = 45
-        Me.cmdFamiliar.Text = "Familiares"
-        Me.cmdFamiliar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdFamiliar.UseVisualStyleBackColor = True
-        '
-        'cmdIncapacidad
-        '
-        Me.cmdIncapacidad.Image = CType(resources.GetObject("cmdIncapacidad.Image"), System.Drawing.Image)
-        Me.cmdIncapacidad.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 306)
-        Me.cmdIncapacidad.Name = "cmdIncapacidad"
-        Me.cmdIncapacidad.Size = New System.Drawing.Size(95, 72)
-        Me.cmdIncapacidad.TabIndex = 44
-        Me.cmdIncapacidad.Text = "Incapacidad"
-        Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdIncapacidad.UseVisualStyleBackColor = True
-        '
-        'cmdJuridico
-        '
-        Me.cmdJuridico.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a
-        Me.cmdJuridico.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdJuridico.Location = New System.Drawing.Point(4, 533)
-        Me.cmdJuridico.Name = "cmdJuridico"
-        Me.cmdJuridico.Size = New System.Drawing.Size(95, 72)
-        Me.cmdJuridico.TabIndex = 43
-        Me.cmdJuridico.Text = "Juridico"
-        Me.cmdJuridico.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdJuridico.UseVisualStyleBackColor = True
-        '
-        'cmdprestamo
-        '
-        Me.cmdprestamo.Image = CType(resources.GetObject("cmdprestamo.Image"), System.Drawing.Image)
-        Me.cmdprestamo.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdprestamo.Location = New System.Drawing.Point(3, 309)
-        Me.cmdprestamo.Name = "cmdprestamo"
-        Me.cmdprestamo.Size = New System.Drawing.Size(95, 72)
-        Me.cmdprestamo.TabIndex = 42
-        Me.cmdprestamo.Text = "Prestamo"
-        Me.cmdprestamo.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdprestamo.UseVisualStyleBackColor = True
-        '
-        'cmdincidencias
-        '
-        Me.cmdincidencias.Image = CType(resources.GetObject("cmdincidencias.Image"), System.Drawing.Image)
-        Me.cmdincidencias.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdincidencias.Location = New System.Drawing.Point(3, 231)
-        Me.cmdincidencias.Name = "cmdincidencias"
-        Me.cmdincidencias.Size = New System.Drawing.Size(94, 72)
-        Me.cmdincidencias.TabIndex = 41
-        Me.cmdincidencias.Text = "Incidencias"
-        Me.cmdincidencias.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdincidencias.UseVisualStyleBackColor = True
-        '
-        'cmdbuscar
-        '
-        Me.cmdbuscar.Image = CType(resources.GetObject("cmdbuscar.Image"), System.Drawing.Image)
-        Me.cmdbuscar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdbuscar.Location = New System.Drawing.Point(3, 155)
-        Me.cmdbuscar.Name = "cmdbuscar"
-        Me.cmdbuscar.Size = New System.Drawing.Size(94, 72)
-        Me.cmdbuscar.TabIndex = 40
-        Me.cmdbuscar.Text = "Buscar"
-        Me.cmdbuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdbuscar.UseVisualStyleBackColor = True
-        '
-        'cmdcancelar
-        '
-        Me.cmdcancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdcancelar.Image = CType(resources.GetObject("cmdcancelar.Image"), System.Drawing.Image)
-        Me.cmdcancelar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdcancelar.Location = New System.Drawing.Point(3, 80)
-        Me.cmdcancelar.Name = "cmdcancelar"
-        Me.cmdcancelar.Size = New System.Drawing.Size(91, 72)
-        Me.cmdcancelar.TabIndex = 38
-        Me.cmdcancelar.Text = "Cancelar"
-        Me.cmdcancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdcancelar.UseVisualStyleBackColor = True
-        '
-        'cmdsalir
-        '
-        Me.cmdsalir.Image = CType(resources.GetObject("cmdsalir.Image"), System.Drawing.Image)
-        Me.cmdsalir.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdsalir.Location = New System.Drawing.Point(4, 609)
-        Me.cmdsalir.Name = "cmdsalir"
-        Me.cmdsalir.Size = New System.Drawing.Size(94, 72)
-        Me.cmdsalir.TabIndex = 37
-        Me.cmdsalir.Text = "Salir"
-        Me.cmdsalir.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdsalir.UseVisualStyleBackColor = True
-        '
-        'cmdguardar
-        '
-        Me.cmdguardar.Image = CType(resources.GetObject("cmdguardar.Image"), System.Drawing.Image)
-        Me.cmdguardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdguardar.Location = New System.Drawing.Point(3, 4)
-        Me.cmdguardar.Name = "cmdguardar"
-        Me.cmdguardar.Size = New System.Drawing.Size(91, 72)
-        Me.cmdguardar.TabIndex = 34
-        Me.cmdguardar.Text = "Guardar"
-        Me.cmdguardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdguardar.UseVisualStyleBackColor = True
+        Me.dtpFinContrato.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFinContrato.Location = New System.Drawing.Point(686, 609)
+        Me.dtpFinContrato.Name = "dtpFinContrato"
+        Me.dtpFinContrato.Size = New System.Drawing.Size(154, 26)
+        Me.dtpFinContrato.TabIndex = 216
         '
         'frmEmpleados
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(971, 705)
+        Me.Controls.Add(Me.Label56)
+        Me.Controls.Add(Me.dtpFinContrato)
         Me.Controls.Add(Me.Label55)
         Me.Controls.Add(Me.txtTelefono)
         Me.Controls.Add(Me.Label54)
@@ -1483,4 +1504,6 @@ Partial Class frmEmpleados
     Friend WithEvents Label55 As System.Windows.Forms.Label
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
     Friend WithEvents cmdDocumentos As System.Windows.Forms.Button
+    Friend WithEvents Label56 As System.Windows.Forms.Label
+    Friend WithEvents dtpFinContrato As System.Windows.Forms.DateTimePicker
 End Class

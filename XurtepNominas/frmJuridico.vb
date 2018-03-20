@@ -330,4 +330,70 @@ Public Class frmJuridico
     End Sub
     
    
+    Private Sub cmdConvenios_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdConvenios.Click
+        Dim MSWord As New Word.Application
+        Dim Documento As Word.Document
+        Dim Ruta As String, strPWD As String
+        Dim SQL As String
+        Try
+            Ruta = System.Windows.Forms.Application.StartupPath & "\Archivos\convenio_practicas.doc"
+
+
+            FileCopy(Ruta, "C:\Temp\XURTEP_CONVENIO_OFICIAL_PRACTICAS.doc")
+            Documento = MSWord.Documents.Open("C:\Temp\XURTEP_CONVENIO_OFICIAL_PRACTICAS.doc")
+
+            'Buscamos datos del empleado
+
+
+            '' SQL = "SELECT * FROM (empleadosC INNER JOIN familiar on iIdEmpleadoC=fkiIdEmpleadoC) WHERE iIdEmpleadoC="
+            SQL = "SELECT * FROM empleadosC WHERE iIdEmpleadoC="
+            SQL &= gIdEmpleado
+            Dim rwEmpleado As DataRow() = nConsulta(SQL)
+            If rwEmpleado Is Nothing = False Then
+
+                Dim fEmpleado As DataRow = rwEmpleado(0)
+
+                Documento.Bookmarks.Item("cNombreLargo").Range.Text = Trim(fEmpleado.Item("cNombre")) & " " & Trim(fEmpleado.Item("cApellidoP")) & " " & Trim(fEmpleado.Item("cApellidoM"))
+                Documento.Bookmarks.Item("cNombreLargo2").Range.Text = Trim(fEmpleado.Item("cNombre")) & " " & Trim(fEmpleado.Item("cApellidoP")) & " " & Trim(fEmpleado.Item("cApellidoM"))
+
+                Documento.Bookmarks.Item("cNacionalidad").Range.Text = Trim(fEmpleado.Item("cNacionalidad"))
+                Documento.Bookmarks.Item("cDireccion").Range.Text = Trim(fEmpleado.Item("cDireccion"))
+                Documento.Bookmarks.Item("iSexo").Range.Text = IIf(fEmpleado.Item("iSexo") = "0", "FEMENINO", "MASCULINO")
+                Documento.Bookmarks.Item("iEstadoCivil").Range.Text = IIf(fEmpleado.Item("iEstadoCivil") = "0", "SOLTERO", "CASADO")
+
+                Dim fechanac As Date
+                fechanac = Trim(fEmpleado.Item("dFechaNac"))
+                Dim hoy As Date = Date.Now.ToLongDateString() ''.ToString("dd/MM/yyyy")
+                Dim hoys As String = Date.Now.ToLongDateString()
+                Dim hoyA As String() = hoys.Split(",")
+
+                Dim edad As Integer = DateDiff(DateInterval.Year, fechanac, Date.Today)
+                Documento.Bookmarks.Item("cEdad").Range.Text = edad
+
+                Documento.Bookmarks.Item("dFechaIn").Range.Text = hoyA(1)
+                Documento.Bookmarks.Item("dFechaIn2").Range.Text = hoyA(1)
+                Dim fin As Date = Trim(fEmpleado.Item("dFechaFin"))
+                hoyA = fin.ToLongDateString().Split(",")
+                Documento.Bookmarks.Item("dFechaFin").Range.Text = hoyA(1)
+
+                Documento.Bookmarks.Item("cPuesto").Range.Text = fEmpleado.Item("cFuncionesPuesto")
+
+
+                Documento.Save()
+                MSWord.Visible = True
+
+
+            End If
+
+
+        Catch ex As Exception
+
+            Documento.Close()
+
+            MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+
+    End Sub
+
+  
 End Class

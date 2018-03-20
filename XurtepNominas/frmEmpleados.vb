@@ -125,7 +125,7 @@ Public Class frmEmpleados
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
-                SQL &= ", '" & txttelefono.text & "'"
+                SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
             Else
                 'Actualizar
 
@@ -153,7 +153,7 @@ Public Class frmEmpleados
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
-                SQL &= ", '" & txttelefono.text & "'"
+                SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
 
             End If
             If nExecute(SQL) = False Then
