@@ -89,7 +89,10 @@ Public Class frmJuridico
                 Documento.Bookmarks.Item("dFecha2").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("fSueldoBase").Range.Text = Trim(fEmpleado.Item("fSueldoBase"))
 
-
+                Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
+                Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
+                ''dFechaCap
+                Documento.Bookmarks.Item("cTelefono2").Range.Text = Trim(fEmpleado.Item("cTelefono"))
 
                 Dim cFamilia As DataRow() = nConsulta("SELECT * FROM familiar where fkiIdEmpleadoC=" & fEmpleado.Item("iIdEmpleadoC"))
                 '' Dim tipoFamily As Integer = cFamilia(0).Item("fkIdTipoFamiliar")
@@ -142,7 +145,27 @@ Public Class frmJuridico
                     Next
                 End If
 
-               
+                Dim cDocumento As DataRow() = nConsulta("SELECT * FROM documentos where fkiIdEmpleadoC=" & fEmpleado.Item("iIdEmpleadoC"))
+                If cDocumento Is Nothing = False Then
+                    For Each Fila In cDocumento
+                        Dim cTipo As DataRow() = nConsulta("SELECT * FROM TipoDocumento where iIdTipoDocumento=" & Trim(Fila.Item("fkiIdTipoDocumento")))
+
+                        If cTipo(0).Item("iIdTipoDocumento") = 1 Then
+                            Documento.Bookmarks.Item("cReferendo").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cReferendoVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+                        If cTipo(0).Item("iIdTipoDocumento") = 2 Then
+                            Documento.Bookmarks.Item("cIdentidadM").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cIdentidadMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+                        If cTipo(0).Item("iIdTipoDocumento") = 3 Then
+                            Documento.Bookmarks.Item("cCertificadoM").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cCertificadoMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+
+                    Next
+
+                End If
 
                 Documento.Save()
                 MSWord.Visible = True
@@ -169,8 +192,8 @@ Public Class frmJuridico
             Ruta = System.Windows.Forms.Application.StartupPath & "\Archivos\xurtepPlanta_ProcesoD.docx"
 
 
-            FileCopy(Ruta, "C:\Temp\Xurtep_Determinado_D.docx")
-            Documento = MSWord.Documents.Open("C:\Temp\Xurtep_Determinado_D.docx")
+            FileCopy(Ruta, "C:\Temp\XURTEP_PLANTA_PROCESO_D.docx")
+            Documento = MSWord.Documents.Open("C:\Temp\XURTEP_PLANTA_PROCESO_D.docx")
 
             'Buscamos datos del empleado
 
@@ -217,7 +240,11 @@ Public Class frmJuridico
                 Documento.Bookmarks.Item("dFecha2").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("fSueldoBase").Range.Text = Trim(fEmpleado.Item("fSueldoBase"))
 
+                Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
+                Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
+                ''dFechaCap
 
+                Documento.Bookmarks.Item("cTelefono2").Range.Text = Trim(fEmpleado.Item("cTelefono"))
 
                 Dim cFamilia As DataRow() = nConsulta("SELECT * FROM familiar where fkiIdEmpleadoC=" & fEmpleado.Item("iIdEmpleadoC"))          
 
@@ -267,24 +294,27 @@ Public Class frmJuridico
                 End If
 
                 Dim cDocumento As DataRow() = nConsulta("SELECT * FROM documentos where fkiIdEmpleadoC=" & fEmpleado.Item("iIdEmpleadoC"))
-              
-                For Each Fila In cDocumento
-                    Dim cTipo As DataRow() = nConsulta("SELECT * FROM TipoDocumento where iIdTipoDocumento=" & Trim(Fila.Item("fkiIdTipoDocumento")))
+                If cDocumento Is Nothing = False Then
 
-                    If cTipo(0).Item("iIdTipoDocumento") = 1 Then
-                        Documento.Bookmarks.Item("cReferendo").Range.Text = Trim(Fila.Item("cCodigo"))
-                        Documento.Bookmarks.Item("cReferendoVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
-                    End If
-                    If cTipo(0).Item("iIdTipoDocumento") = 2 Then
-                        Documento.Bookmarks.Item("cIdentidadM").Range.Text = Trim(Fila.Item("cCodigo"))
-                        Documento.Bookmarks.Item("cIdentidadMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
-                    End If
-                    If cTipo(0).Item("iIdTipoDocumento") = 3 Then
-                        Documento.Bookmarks.Item("cCertificadoM").Range.Text = Trim(Fila.Item("cCodigo"))
-                        Documento.Bookmarks.Item("cCertificadoMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
-                    End If
-                   
-                Next
+
+                    For Each Fila In cDocumento
+                        Dim cTipo As DataRow() = nConsulta("SELECT * FROM TipoDocumento where iIdTipoDocumento=" & Trim(Fila.Item("fkiIdTipoDocumento")))
+
+                        If cTipo(0).Item("iIdTipoDocumento") = 1 Then
+                            Documento.Bookmarks.Item("cReferendo").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cReferendoVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+                        If cTipo(0).Item("iIdTipoDocumento") = 2 Then
+                            Documento.Bookmarks.Item("cIdentidadM").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cIdentidadMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+                        If cTipo(0).Item("iIdTipoDocumento") = 3 Then
+                            Documento.Bookmarks.Item("cCertificadoM").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cCertificadoMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+
+                    Next
+                End If
 
                 Documento.Save()
                 MSWord.Visible = True

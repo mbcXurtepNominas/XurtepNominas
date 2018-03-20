@@ -293,7 +293,7 @@ Public Class frmImportarEmpleadosAlta
 
                     If bandera <> False Then
 
-                        Dim b As String = Trim(empleadofull.SubItems(25).Text)
+                        Dim b As String = Trim(empleadofull.SubItems(24).Text)
                         Dim idbanco As Integer
                         If b <> "" Then
                             Dim banco As DataRow() = nConsulta("select * from bancos where clave =" & b)
@@ -325,7 +325,7 @@ Public Class frmImportarEmpleadosAlta
                         End If
 
                         Dim factor As Integer
-                        Select Case Trim(empleadofull.SubItems(33).Text)
+                        Select Case Trim(empleadofull.SubItems(32).Text)
                             Case "VSM"
                                 factor = 0
                                 ' The following is the only Case clause that evaluates to True.
@@ -338,7 +338,7 @@ Public Class frmImportarEmpleadosAlta
                         End Select
 
                         Dim number As Integer
-                        Select Case Trim(empleadofull.SubItems(34).Text)
+                        Select Case Trim(empleadofull.SubItems(33).Text)
                             Case "QUINCENAL"
                                 number = 4
                                 ' The following is the only Case clause that evaluates to True.
@@ -356,7 +356,7 @@ Public Class frmImportarEmpleadosAlta
 
                         dFechaNac = Trim(empleadofull.SubItems(13).Text) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM")
                         dFechaCap = (Trim(empleadofull.SubItems(14).Text))
-                        dFechaPlanta = Trim(empleadofull.SubItems(41).Text)
+                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text)
                         'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
@@ -374,20 +374,20 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
                         SQL &= ",'" & Trim(empleadofull.SubItems(19).Text) & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
                         SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco
-                        SQL &= ",'" & Trim(empleadofull.SubItems(26).Text) & "',1,'" & Trim(empleadofull.SubItems(27).Text)
-                        SQL &= "','" & Trim(empleadofull.SubItems(28).Text) & "'," & Trim(empleadofull.SubItems(29).Text) & ",'" & Trim(empleadofull.SubItems(30).Text)
+                        SQL &= ",'" & Trim(empleadofull.SubItems(25).Text) & "',1,'" & Trim(empleadofull.SubItems(26).Text)
+                        SQL &= "','" & Trim(empleadofull.SubItems(27).Text) & "'," & Trim(empleadofull.SubItems(28).Text) & ",'" & Trim(empleadofull.SubItems(29).Text)
                         SQL &= "','" & dFechaCap & "','" & dFechaCap & "','" & dFechaCap
-                        SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & " "
-                        SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(32).Text) & "','" & factor
-                        SQL &= "'," & 0 & ",'" & number & "','" & Trim(empleadofull.SubItems(35).Text)
-                        SQL &= "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "','" & Trim(empleadofull.SubItems(38).Text) & "'," & -1 ''estatus 
-                        SQL &= "," & Trim(empleadofull.SubItems(15).Text) & "," & Trim(empleadofull.SubItems(39).Text)
-                        SQL &= "," & IIf(Trim(empleadofull.SubItems(40).Text) = "SOLTERO", 0, 1)
+                        SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(30).Text) & "','" & " "
+                        SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & Trim(empleadofull.SubItems(32).Text) ''factor
+                        SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
+                        SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''estatus 
+                        SQL &= "," & Trim(empleadofull.SubItems(15).Text) & "," & Trim(empleadofull.SubItems(38).Text)
+                        SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
                         SQL &= "," & 1
                         SQL &= ",'" & " "
                         SQL &= "','" & "" & "'"
-                        SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(42).Text) & "','" & Trim(empleadofull.SubItems(43).Text) & "'"
-                        SQL &= ",'" & Trim(empleadofull.SubItems(44).Text) & "'"
+                        SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(41).Text) & "','" & Trim(empleadofull.SubItems(42).Text) & "'"
+                        SQL &= ",'" & Trim(empleadofull.SubItems(43).Text) & "'"
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
