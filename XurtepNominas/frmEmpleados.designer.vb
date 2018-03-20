@@ -135,6 +135,9 @@ Partial Class frmEmpleados
         Me.txtFin = New System.Windows.Forms.TextBox()
         Me.Label53 = New System.Windows.Forms.Label()
         Me.Label54 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.txtTelefono = New System.Windows.Forms.TextBox()
+        Me.cmdDocumentos = New System.Windows.Forms.Button()
         Me.cmdFamiliar = New System.Windows.Forms.Button()
         Me.cmdIncapacidad = New System.Windows.Forms.Button()
         Me.cmdJuridico = New System.Windows.Forms.Button()
@@ -144,8 +147,6 @@ Partial Class frmEmpleados
         Me.cmdcancelar = New System.Windows.Forms.Button()
         Me.cmdsalir = New System.Windows.Forms.Button()
         Me.cmdguardar = New System.Windows.Forms.Button()
-        Me.Label55 = New System.Windows.Forms.Label()
-        Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -227,6 +228,7 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.cmdDocumentos)
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
         Me.Panel1.Controls.Add(Me.cmdJuridico)
@@ -1104,6 +1106,34 @@ Partial Class frmEmpleados
         Me.Label54.TabIndex = 213
         Me.Label54.Text = "Termino Embarque"
         '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(609, 243)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(63, 18)
+        Me.Label55.TabIndex = 215
+        Me.Label55.Text = "Telefono"
+        '
+        'txtTelefono
+        '
+        Me.txtTelefono.Location = New System.Drawing.Point(608, 220)
+        Me.txtTelefono.Name = "txtTelefono"
+        Me.txtTelefono.Size = New System.Drawing.Size(153, 26)
+        Me.txtTelefono.TabIndex = 214
+        '
+        'cmdDocumentos
+        '
+        Me.cmdDocumentos.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aac5ea61bc88
+        Me.cmdDocumentos.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdDocumentos.Location = New System.Drawing.Point(4, 457)
+        Me.cmdDocumentos.Name = "cmdDocumentos"
+        Me.cmdDocumentos.Size = New System.Drawing.Size(95, 72)
+        Me.cmdDocumentos.TabIndex = 46
+        Me.cmdDocumentos.Text = "Documentos"
+        Me.cmdDocumentos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdDocumentos.UseVisualStyleBackColor = True
+        '
         'cmdFamiliar
         '
         Me.cmdFamiliar.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa1be4bd8d66
@@ -1132,7 +1162,7 @@ Partial Class frmEmpleados
         '
         Me.cmdJuridico.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a
         Me.cmdJuridico.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdJuridico.Location = New System.Drawing.Point(4, 461)
+        Me.cmdJuridico.Location = New System.Drawing.Point(4, 533)
         Me.cmdJuridico.Name = "cmdJuridico"
         Me.cmdJuridico.Size = New System.Drawing.Size(95, 72)
         Me.cmdJuridico.TabIndex = 43
@@ -1212,22 +1242,6 @@ Partial Class frmEmpleados
         Me.cmdguardar.Text = "Guardar"
         Me.cmdguardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdguardar.UseVisualStyleBackColor = True
-        '
-        'Label55
-        '
-        Me.Label55.AutoSize = True
-        Me.Label55.Location = New System.Drawing.Point(609, 243)
-        Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(63, 18)
-        Me.Label55.TabIndex = 215
-        Me.Label55.Text = "Telefono"
-        '
-        'txtTelefono
-        '
-        Me.txtTelefono.Location = New System.Drawing.Point(608, 220)
-        Me.txtTelefono.Name = "txtTelefono"
-        Me.txtTelefono.Size = New System.Drawing.Size(153, 26)
-        Me.txtTelefono.TabIndex = 214
         '
         'frmEmpleados
         '
@@ -1468,4 +1482,5 @@ Partial Class frmEmpleados
     Friend WithEvents cmdFamiliar As System.Windows.Forms.Button
     Friend WithEvents Label55 As System.Windows.Forms.Label
     Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
+    Friend WithEvents cmdDocumentos As System.Windows.Forms.Button
 End Class

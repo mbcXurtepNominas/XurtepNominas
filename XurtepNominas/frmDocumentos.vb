@@ -1,14 +1,14 @@
-﻿Public Class frmFamilia
+﻿Public Class frmDocumentos
     Dim blnNuevo As Boolean = True
-    Dim IdFamilia As String
+    Dim IdDocumento As String
     Public gIdEmpleado As String
 
 
 
 
-    Private Sub frmFamilia_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        IndexTab()
-        ListarFamilia()
+    Private Sub frmDocumentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ListarDocumentos()
+        listar()
     End Sub
 
     Private Sub Limpiar(Optional ByRef Contenedor = Nothing)
@@ -49,10 +49,10 @@
     Private Sub tsbGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbGuardar.Click
         Dim SQL As String, Mensaje As String = ""
         Try
-            If txtNombre.Text.Trim.Length = 0 And Mensaje = "" Then
+            If txtFolio.Text.Trim.Length = 0 And Mensaje = "" Then
                 Mensaje = "Por favor indique el Nombre"
             End If
-            If dtpFechaNac.Value.ToString = "" And Mensaje = "" Then
+            If dtpFechaVenc.Value.ToString = "" And Mensaje = "" Then
                 Mensaje = "Por favor indique la fecha de nacimiento"
             End If
 
@@ -63,24 +63,23 @@
 
             If blnNuevo Then
                 'Insertar nuevo
-                SQL = "EXEC setfamiliarInsertar 0,'" & txtNombre.Text
-                SQL &= "','" & txtApellidoP.Text
-                SQL &= "','" & txtApellidoM.Text
-                SQL &= "','" & Format(dtpFechaNac.Value, "yyyy/dd/MM")
-                SQL &= "'," & 1
-                SQL &= ",'" & gIdEmpleado
-                SQL &= "'," & cboTipo.SelectedIndex + 1
-               
+                SQL = "EXEC setdocumentosInsertar 0,'" & txtFolio.Text
+                SQL &= "','" & cboTipo.SelectedValue
+                SQL &= "','" & Format(dtpFechaVenc.Value, "yyyy/dd/MM")
+                '' SQL &= "'," & 1
+                SQL &= "','" & gIdEmpleado & "'"
+                '' SQL &= "'," & cboTipo.SelectedIndex + 1
+
             Else
                 'Actualizar
 
-                SQL = "EXEC setfamiliarActualizar " & IdFamilia & ",'" & txtNombre.Text
-                SQL &= "','" & txtApellidoP.Text
-                SQL &= "','" & txtApellidoM.Text
-                SQL &= "','" & Format(dtpFechaNac.Value, "yyyy/dd/MM")
-                SQL &= "'," & 1
-                SQL &= ",'" & gIdEmpleado
-                SQL &= "'," & cboTipo.SelectedIndex + 1
+                SQL = "EXEC setdocumentosActualizar " & IdDocumento & ",'" & txtFolio.Text
+                SQL &= "','" & cboTipo.SelectedValue
+                SQL &= "','" & Format(dtpFechaVenc.Value, "yyyy/dd/MM")
+                '' SQL &= "'," & 1
+                SQL &= "','" & gIdEmpleado & "'"
+                '' SQL &= "'," & cboTipo.SelectedIndex + 1
+
 
             End If
             If nExecute(Sql) = False Then
@@ -88,7 +87,7 @@
             End If
 
             MessageBox.Show("Datos guardados correctamente.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            ListarFamilia()
+            listar()
 
             pnlDatos.Enabled = False
         Catch ex As Exception
@@ -96,23 +95,23 @@
         End Try
     End Sub
 
-    Private Sub IndexTab()
-        dtpFechaNac.TabIndex = 1
-        cboTipo.TabIndex = 2
-        txtNombre.TabIndex = 3
-        txtApellidoP.TabIndex = 4
-        txtApellidoP.TabIndex = 5
+    Public Sub listarDocumentos()
+
+        Dim sql As String
+        sql = "SELECT * FROM TipoDocumento order by cDescripcion"
+        nCargaCBO(cboTipo, sql, "cDescripcion", "iIdTipoDocumento")
+        cboTipo.SelectedIndex = 0
 
     End Sub
 
-    Private Sub ListarFamilia()
+    Private Sub listar()
         Dim SQL As String
-        Dim tipoincidencia As String = ""
+        Dim tipoDoc As String = ""
         Dim Alter As Boolean = False
 
         Try
-            SQL = "SELECT * from familiar WHERE fkiIdEmpleadoC=" & gIdEmpleado
-            SQL &= " ORDER BY fkIdTipoFamiliar"
+            SQL = "SELECT * from documentos WHERE fkiIdEmpleadoC=" & gIdEmpleado
+            SQL &= " ORDER BY fkiIdTipoDocumento"
 
             lsvLista.Items.Clear()
 
@@ -121,27 +120,16 @@
             If rwFolios Is Nothing = False Then
                 For Each Fila In rwFolios
 
-                    
+                    Dim cTipo As DataRow() = nConsulta("SELECT * FROM TipoDocumento where iIdTipoDocumento=" & Fila.Item("fkiIdTipoDocumento"))
 
-                    item = lsvLista.Items.Add("" & Fila.Item("dFechaNac"))
+                    tipoDoc = cTipo(0).Item("cDescripcion")
 
-                    If Fila.Item("fkIdTipoFamiliar") = "1" Then
-                        tipoincidencia = "Hijo"
-                    ElseIf Fila.Item("fkIdTipoFamiliar") = "2" Then
-                        tipoincidencia = "Padre"
-                    ElseIf Fila.Item("fkIdTipoFamiliar") = "3" Then
-                        tipoincidencia = "Madre"
-                    ElseIf Fila.Item("fkIdTipoFamiliar") = "4" Then
-                        tipoincidencia = "Conyuge"
-                    End If
+                    item = lsvLista.Items.Add("" & Fila.Item("cCodigo"))
 
-                    Dim Nombre As String = Fila.Item("cNombre") & " " & Fila.Item("cApellidoP") & " " & Fila.Item("cApellidoM")
-                    item.SubItems.Add("" & tipoincidencia)
-                    item.SubItems.Add(Nombre)
+                    item.SubItems.Add("" & tipoDoc)
+                    item.SubItems.Add("" & Fila.Item("dFechaVencimiento"))
+                    item.Tag = Fila.Item("iIdDocumentos")
 
-
-
-                    item.Tag = Fila.Item("iIdFamiliar")
                     item.BackColor = IIf(Alter, Color.WhiteSmoke, Color.White)
                     Alter = Not Alter
 
@@ -156,7 +144,7 @@
 
         End Try
     End Sub
-    
+
     Private Sub tsbCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbCancelar.Click
         pnlDatos.Enabled = False
     End Sub
@@ -170,8 +158,8 @@
 
     Private Sub MostrarDatosFamilia(ByVal id As String)
         Dim sql As String
-        IdFamilia = id
-        sql = "select * from familiar where iIdFamiliar = " & id
+        IdDocumento = id
+        sql = "SELECT * from documentos where iIdDocumentos=" & id
         Dim rwFilas As DataRow() = nConsulta(sql)
         Try
             If rwFilas Is Nothing = False Then
@@ -179,11 +167,9 @@
                 pnlDatos.Enabled = True
                 Dim Fila As DataRow = rwFilas(0)
 
-                txtNombre.Text = Fila.Item("cNombre")
-                cboTipo.SelectedIndex = Fila.Item("fkIdTipoFamiliar") - 1
-                txtApellidoP.Text = Fila.Item("cApellidoP")
-                txtApellidoM.Text = Fila.Item("cApellidoM")
-                dtpFechaNac.Value = Fila.Item("dFechaNac")
+                txtFolio.Text = Fila.Item("cCodigo")
+                cboTipo.SelectedValue = Fila.Item("fkiIdTipoDocumento")
+                dtpFechaVenc.Value = Fila.Item("dFechaVencimiento")
 
 
 
@@ -200,8 +186,7 @@
         End If
     End Sub
 
-    Private Sub lsvLista_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lsvLista.SelectedIndexChanged
+    
 
-    End Sub
-
+  
 End Class

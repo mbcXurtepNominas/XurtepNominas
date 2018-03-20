@@ -811,4 +811,15 @@ Public Class frmEmpleados
         frmJ.ShowDialog()
 
     End Sub
+
+    Private Sub cmdDocumentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdDocumentos.Click
+        If blnNuevo = False Then
+            Dim frm As New frmDocumentos
+            frm.gIdEmpleado = gIdEmpleado
+            frm.ShowDialog()
+        Else
+            MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+    End Sub
 End Class
