@@ -58,7 +58,7 @@ Partial Class frmEmpleados
         Me.Label38 = New System.Windows.Forms.Label()
         Me.dtpantiguedad = New System.Windows.Forms.DateTimePicker()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.gpb1 = New System.Windows.Forms.GroupBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.cboestado = New System.Windows.Forms.ComboBox()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -67,7 +67,7 @@ Partial Class frmEmpleados
         Me.txtdireccion = New System.Windows.Forms.TextBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gpb2 = New System.Windows.Forms.GroupBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.cboestadoP = New System.Windows.Forms.ComboBox()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -150,8 +150,8 @@ Partial Class frmEmpleados
         Me.Label56 = New System.Windows.Forms.Label()
         Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.gpb1.SuspendLayout()
+        Me.gpb2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label48
@@ -491,22 +491,22 @@ Partial Class frmEmpleados
         Me.Label37.TabIndex = 167
         Me.Label37.Text = "Fecha de antiguedad"
         '
-        'GroupBox2
+        'gpb1
         '
-        Me.GroupBox2.Controls.Add(Me.Label35)
-        Me.GroupBox2.Controls.Add(Me.cboestado)
-        Me.GroupBox2.Controls.Add(Me.Label34)
-        Me.GroupBox2.Controls.Add(Me.txtcp)
-        Me.GroupBox2.Controls.Add(Me.txtciudad)
-        Me.GroupBox2.Controls.Add(Me.txtdireccion)
-        Me.GroupBox2.Controls.Add(Me.Label33)
-        Me.GroupBox2.Controls.Add(Me.Label29)
-        Me.GroupBox2.Location = New System.Drawing.Point(8, 362)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(843, 76)
-        Me.GroupBox2.TabIndex = 166
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Direccion del trabajador"
+        Me.gpb1.Controls.Add(Me.Label35)
+        Me.gpb1.Controls.Add(Me.cboestado)
+        Me.gpb1.Controls.Add(Me.Label34)
+        Me.gpb1.Controls.Add(Me.txtcp)
+        Me.gpb1.Controls.Add(Me.txtciudad)
+        Me.gpb1.Controls.Add(Me.txtdireccion)
+        Me.gpb1.Controls.Add(Me.Label33)
+        Me.gpb1.Controls.Add(Me.Label29)
+        Me.gpb1.Location = New System.Drawing.Point(8, 362)
+        Me.gpb1.Name = "gpb1"
+        Me.gpb1.Size = New System.Drawing.Size(843, 76)
+        Me.gpb1.TabIndex = 166
+        Me.gpb1.TabStop = False
+        Me.gpb1.Text = "Direccion del trabajador"
         '
         'Label35
         '
@@ -574,22 +574,22 @@ Partial Class frmEmpleados
         Me.Label29.TabIndex = 70
         Me.Label29.Text = "Dirección (Calle, Ext., Int., Delegacion o municipio)"
         '
-        'GroupBox1
+        'gpb2
         '
-        Me.GroupBox1.Controls.Add(Me.Label30)
-        Me.GroupBox1.Controls.Add(Me.cboestadoP)
-        Me.GroupBox1.Controls.Add(Me.Label31)
-        Me.GroupBox1.Controls.Add(Me.txtcp2)
-        Me.GroupBox1.Controls.Add(Me.txtciudadP)
-        Me.GroupBox1.Controls.Add(Me.txtdireccionP)
-        Me.GroupBox1.Controls.Add(Me.Label32)
-        Me.GroupBox1.Controls.Add(Me.Label36)
-        Me.GroupBox1.Location = New System.Drawing.Point(8, 444)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(843, 69)
-        Me.GroupBox1.TabIndex = 165
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Lugar de prestación de servicios"
+        Me.gpb2.Controls.Add(Me.Label30)
+        Me.gpb2.Controls.Add(Me.cboestadoP)
+        Me.gpb2.Controls.Add(Me.Label31)
+        Me.gpb2.Controls.Add(Me.txtcp2)
+        Me.gpb2.Controls.Add(Me.txtciudadP)
+        Me.gpb2.Controls.Add(Me.txtdireccionP)
+        Me.gpb2.Controls.Add(Me.Label32)
+        Me.gpb2.Controls.Add(Me.Label36)
+        Me.gpb2.Location = New System.Drawing.Point(8, 444)
+        Me.gpb2.Name = "gpb2"
+        Me.gpb2.Size = New System.Drawing.Size(843, 69)
+        Me.gpb2.TabIndex = 165
+        Me.gpb2.TabStop = False
+        Me.gpb2.Text = "Lugar de prestación de servicios"
         '
         'Label30
         '
@@ -1312,8 +1312,8 @@ Partial Class frmEmpleados
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.dtpantiguedad)
         Me.Controls.Add(Me.Label37)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.gpb1)
+        Me.Controls.Add(Me.gpb2)
         Me.Controls.Add(Me.txtnacionalidad)
         Me.Controls.Add(Me.txtclabe)
         Me.Controls.Add(Me.txtcuenta)
@@ -1372,10 +1372,10 @@ Partial Class frmEmpleados
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Alta o modificación de empleados"
         Me.Panel1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gpb1.ResumeLayout(False)
+        Me.gpb1.PerformLayout()
+        Me.gpb2.ResumeLayout(False)
+        Me.gpb2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1409,7 +1409,7 @@ Partial Class frmEmpleados
     Friend WithEvents Label38 As Label
     Friend WithEvents dtpantiguedad As DateTimePicker
     Friend WithEvents Label37 As Label
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents gpb1 As GroupBox
     Friend WithEvents Label35 As Label
     Friend WithEvents cboestado As ComboBox
     Friend WithEvents Label34 As Label
@@ -1418,7 +1418,7 @@ Partial Class frmEmpleados
     Friend WithEvents txtdireccion As TextBox
     Friend WithEvents Label33 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gpb2 As GroupBox
     Friend WithEvents Label30 As Label
     Friend WithEvents cboestadoP As ComboBox
     Friend WithEvents Label31 As Label

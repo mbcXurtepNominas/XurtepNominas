@@ -428,7 +428,7 @@ Public Class frmEmpleados
         MostrarPuesto()
         MostrarDepartamentos()
         blnNuevo = True
-
+        IndexTab()
 
         'blnNuevo = gIdEmpleado = ""
 
@@ -457,6 +457,71 @@ Public Class frmEmpleados
             blnNuevo = False
             MostrarEmpleado()
         End If
+    End Sub
+
+    Private Sub IndexTab()
+        cbostatus.TabIndex = 1
+        txtcodigo.TabIndex = 2
+        dtpCaptura.TabIndex = 3
+        cbopertenece.TabIndex = 4
+        txtpaterno.TabIndex = 5
+        txtmaterno.TabIndex = 6
+        txtnombre.TabIndex = 7
+        cbosexo.TabIndex = 8
+        cboedocivil.TabIndex = 9
+        cbopuesto.TabIndex = 10
+        txtfunciones.TabIndex = 11
+        cbocategoria.TabIndex = 12
+        dtppatrona.TabIndex = 13
+        dtpsindicato.TabIndex = 14
+        txtintegrar.TabIndex = 15
+        txtsd.TabIndex = 16
+        txtsdi.TabIndex = 17
+        dtpfechanac.TabIndex = 18
+        txtedad.TabIndex = 19
+        txtcurp.TabIndex = 20
+        txtrfc.TabIndex = 21
+        txtimss.TabIndex = 22
+        dtpantiguedad.TabIndex = 23
+        txtTelefono.TabIndex = 24
+        txtcredito.TabIndex = 25
+        cbotipofactor.TabIndex = 26
+        txtfactor.TabIndex = 27
+        chkInfonavit.TabIndex = 28
+        txtcuenta.TabIndex = 29
+        txtclabe.TabIndex = 30
+        cbobanco.TabIndex = 31
+        txtnacionalidad.TabIndex = 32
+        gpb1.TabIndex = 33
+        txtdireccion.TabIndex = 34
+        txtciudad.TabIndex = 35
+        cboestado.TabIndex = 36
+        txtcp.TabIndex = 37
+        gpb2.TabIndex = 38
+        txtdireccionP.TabIndex = 39
+        txtciudadP.TabIndex = 40
+        cboestadoP.TabIndex = 41
+        txtcp2.TabIndex = 42
+        txtduracion.TabIndex = 43
+        cbojornada.TabIndex = 44
+        txtsalario.TabIndex = 45
+        txtcomentarios.TabIndex = 46
+        txtcorreo.TabIndex = 47
+        txthorario.TabIndex = 48
+        txthoras.TabIndex = 49
+        txtdescanso.TabIndex = 50
+        cbodepartamento.TabIndex = 51
+        txtExtra.TabIndex = 52
+        dtFecPlanta.TabIndex = 53
+        dtpFinContrato.TabIndex = 54
+        txtcuenta2.TabIndex = 55
+        txtclabe2.TabIndex = 56
+        cbobanco2.TabIndex = 57
+        txtInicio.TabIndex = 58
+        txtFin.TabIndex = 59
+
+
+
     End Sub
 
     Private Sub MostrarDepartamentos()
@@ -650,7 +715,7 @@ Public Class frmEmpleados
                 SQL = "select * from bancos where iIdBanco=" & Fila.Item("fkiIdBanco2")
                 Dim Banco2 As DataRow() = nConsulta(SQL)
                 cbobanco2.SelectedValue = Banco2(0).Item("iIdBanco")
-
+                dtpFinContrato.Value = Fila.Item("dFechaFin")
 
                 blnNuevo = False
             End If

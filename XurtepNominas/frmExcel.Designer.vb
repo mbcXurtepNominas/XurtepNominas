@@ -114,7 +114,7 @@ Partial Class frmExcel
         Me.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbNuevo.Name = "tsbNuevo"
         Me.tsbNuevo.Size = New System.Drawing.Size(82, 51)
-        Me.tsbNuevo.Text = "Agregar Flujo"
+        Me.tsbNuevo.Text = "Agregar Excel"
         Me.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbImportar
@@ -276,7 +276,7 @@ Partial Class frmExcel
         Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmExcel"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Importar Empleados "
+        Me.Text = "Importar Excel"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pnlProgreso.ResumeLayout(False)
         Me.pnlProgreso.PerformLayout()

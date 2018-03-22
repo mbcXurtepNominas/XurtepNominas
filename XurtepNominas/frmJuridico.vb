@@ -25,6 +25,7 @@ Public Class frmJuridico
         'End If
 
 
+
     End Sub
 
 
@@ -243,8 +244,9 @@ Public Class frmJuridico
                 Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
                 Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
                 ''dFechaCap
-
-                Documento.Bookmarks.Item("cTelefono2").Range.Text = Trim(fEmpleado.Item("cTelefono"))
+                Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                'dFechaFinContrato
+                Documento.Bookmarks.Item("dFechaFinContrato").Range.Text = Trim(fEmpleado.Item("dFechaFin"))
 
                 Dim cFamilia As DataRow() = nConsulta("SELECT * FROM familiar where fkiIdEmpleadoC=" & fEmpleado.Item("iIdEmpleadoC"))          
 
