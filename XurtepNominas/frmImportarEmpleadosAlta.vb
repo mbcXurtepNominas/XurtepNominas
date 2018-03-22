@@ -387,7 +387,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= ",'" & " "
                         SQL &= "','" & "" & "'"
                         SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(41).Text) & "','" & Trim(empleadofull.SubItems(42).Text) & "'"
-                        SQL &= ",'" & Trim(empleadofull.SubItems(43).Text) & "'"
+                        SQL &= ",'" & Trim(empleadofull.SubItems(43).Text) & "','" & " " & "'"
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -414,6 +414,7 @@ Public Class frmImportarEmpleadosAlta
 
                     MessageBox.Show(t.ToString() & "  Proceso terminado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
+                    pnlProgreso.Visible = False
                     MessageBox.Show("No se guardo ninguna dato, revise y vuelva a intentarlo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
 

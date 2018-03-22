@@ -106,8 +106,8 @@ Partial Class frmImportarEmpleadosAlta
         Me.tsbNuevo.Image = Global.XurtepNominas.My.Resources.Resources.sobresalir__1_
         Me.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbNuevo.Name = "tsbNuevo"
-        Me.tsbNuevo.Size = New System.Drawing.Size(82, 51)
-        Me.tsbNuevo.Text = "Agregar Flujo"
+        Me.tsbNuevo.Size = New System.Drawing.Size(114, 51)
+        Me.tsbNuevo.Text = "Agregar Empleados"
         Me.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbImportar
