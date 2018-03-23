@@ -33,16 +33,16 @@ Partial Class frmExcel
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar2 = New System.Windows.Forms.ToolStripButton()
+        Me.cmdNN = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.chkAll = New System.Windows.Forms.CheckBox()
         Me.lsvLista = New System.Windows.Forms.ListView()
         Me.cmdVerificar = New System.Windows.Forms.Button()
-        Me.txtBuscar = New System.Windows.Forms.TextBox()
-        Me.cmdBuscar = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboMes = New System.Windows.Forms.ComboBox()
+        Me.cboTipoR = New System.Windows.Forms.ComboBox()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -101,7 +101,7 @@ Partial Class frmExcel
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.cmdNN, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
@@ -148,6 +148,17 @@ Partial Class frmExcel
         Me.tsbGuardar2.Size = New System.Drawing.Size(90, 51)
         Me.tsbGuardar2.Text = "N. Descanso"
         Me.tsbGuardar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'cmdNN
+        '
+        Me.cmdNN.AutoSize = False
+        Me.cmdNN.Enabled = False
+        Me.cmdNN.Image = Global.XurtepNominas.My.Resources.Resources.disquete
+        Me.cmdNN.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.cmdNN.Name = "cmdNN"
+        Me.cmdNN.Size = New System.Drawing.Size(90, 51)
+        Me.cmdNN.Text = "Marinos"
+        Me.cmdNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbCancelar
         '
@@ -225,26 +236,10 @@ Partial Class frmExcel
         Me.cmdVerificar.Text = "Verificar"
         Me.cmdVerificar.UseVisualStyleBackColor = True
         '
-        'txtBuscar
-        '
-        Me.txtBuscar.Location = New System.Drawing.Point(801, 12)
-        Me.txtBuscar.Name = "txtBuscar"
-        Me.txtBuscar.Size = New System.Drawing.Size(170, 27)
-        Me.txtBuscar.TabIndex = 35
-        '
-        'cmdBuscar
-        '
-        Me.cmdBuscar.Location = New System.Drawing.Point(977, 13)
-        Me.cmdBuscar.Name = "cmdBuscar"
-        Me.cmdBuscar.Size = New System.Drawing.Size(75, 23)
-        Me.cmdBuscar.TabIndex = 36
-        Me.cmdBuscar.Text = "Buscar"
-        Me.cmdBuscar.UseVisualStyleBackColor = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(469, 20)
+        Me.Label1.Location = New System.Drawing.Point(558, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(93, 19)
         Me.Label1.TabIndex = 38
@@ -254,19 +249,27 @@ Partial Class frmExcel
         '
         Me.cboMes.FormattingEnabled = True
         Me.cboMes.Items.AddRange(New Object() {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
-        Me.cboMes.Location = New System.Drawing.Point(568, 17)
+        Me.cboMes.Location = New System.Drawing.Point(657, 17)
         Me.cboMes.Name = "cboMes"
         Me.cboMes.Size = New System.Drawing.Size(142, 27)
         Me.cboMes.TabIndex = 39
+        '
+        'cboTipoR
+        '
+        Me.cboTipoR.FormattingEnabled = True
+        Me.cboTipoR.Items.AddRange(New Object() {"NA", "ND", "NN"})
+        Me.cboTipoR.Location = New System.Drawing.Point(823, 17)
+        Me.cboTipoR.Name = "cboTipoR"
+        Me.cboTipoR.Size = New System.Drawing.Size(142, 27)
+        Me.cboTipoR.TabIndex = 40
         '
         'frmExcel
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1056, 533)
+        Me.Controls.Add(Me.cboTipoR)
         Me.Controls.Add(Me.cboMes)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.cmdBuscar)
-        Me.Controls.Add(Me.txtBuscar)
         Me.Controls.Add(Me.cmdVerificar)
         Me.Controls.Add(Me.lblRuta)
         Me.Controls.Add(Me.cmdCerrar)
@@ -305,8 +308,8 @@ Partial Class frmExcel
     Friend WithEvents lsvLista As ListView
     Friend WithEvents tsbGuardar2 As System.Windows.Forms.ToolStripButton
     Friend WithEvents cmdVerificar As System.Windows.Forms.Button
-    Friend WithEvents txtBuscar As System.Windows.Forms.TextBox
-    Friend WithEvents cmdBuscar As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cboMes As System.Windows.Forms.ComboBox
+    Friend WithEvents cmdNN As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
 End Class
