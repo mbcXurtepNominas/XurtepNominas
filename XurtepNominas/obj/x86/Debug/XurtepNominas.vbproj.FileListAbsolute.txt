@@ -22,7 +22,6 @@ D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 =======
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmBuscarEmpleado.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmHojasNomina.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmImportarEmpleadosAlta.resources
@@ -38,9 +37,6 @@ D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmExcel.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmFamilia.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmJuridico.resources
