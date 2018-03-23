@@ -1,8 +1,9 @@
-﻿Public Class frmPrincipal
+﻿
+Public Class frmPrincipal
     Dim SQL As String
-    Private Sub frmPrincipal_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
+    Private Sub frmPrincipal_FormClosed(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         If sender Is Nothing = False Then
-            Dim Forma As Windows.Forms.Form = CType(sender, Windows.Forms.Form)
+            Dim Forma As Form = CType(sender, Form)
             Dim Nombre As String = Forma.Name
             If Nombre = "frmFacturar" Then
                 chkCFDI.Visible = False
@@ -19,23 +20,23 @@
         chkCBB.Left = lblUsuario.Left + lblUsuario.Width + IIf(chkCFDI.Visible, chkCFDI.Width + 5, 0) + 10
     End Sub
 
-    Private Sub frmPrincipal_FormClosing(sender As Object, e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub frmPrincipal_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If MessageBox.Show("¿Desea salir del sistema?", Me.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.No Then
             e.Cancel = True
         End If
     End Sub
 
-    Private Sub frmPrincipal_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+    Private Sub frmPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         lblUsuario.Text = Usuario.Nombre
         clsConfiguracion.Actualizar()
     End Sub
 
-    Private Sub CatálogoDeClientesToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
+    Private Sub CatálogoDeClientesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'Dim Forma As New Vendedores
         'Forma.ShowDialog()
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles CheckBox1.CheckedChanged
+    Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         Dim PT As Point = Me.PointToScreen(CheckBox1.Location)
 
         If CheckBox1.Checked Then
@@ -44,9 +45,9 @@
         End If
     End Sub
 
-    Private Sub frmPrincipal_SizeChanged(sender As Object, e As System.EventArgs) Handles Me.SizeChanged
+    Private Sub frmPrincipal_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.SizeChanged
         If sender Is Nothing = False Then
-            Dim Forma As Windows.Forms.Form = CType(sender, Windows.Forms.Form)
+            Dim Forma As Form = CType(sender, Form)
             Dim Nombre As String = Forma.Name
             If Nombre = "frmFacturar" Then
                 'RemoveHandler chkCFDI.CheckedChanged, AddressOf chkCFDI_CheckedChanged
@@ -62,7 +63,7 @@
         End If
     End Sub
 
-    Private Sub lsvPanel_ItemActivate(sender As Object, e As System.EventArgs) Handles lsvPanel.ItemActivate
+    Private Sub lsvPanel_ItemActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles lsvPanel.ItemActivate
         Try
             If lsvPanel.SelectedItems.Count <= 0 Then
                 Exit Sub
@@ -93,10 +94,17 @@
                 'Else
                 '    chkCFDI.Checked = True
                 'End If
-                
+
                 Case "Nomina Marinos"
                     Try
                         Dim Forma As New frmnominasmarinos
+                        Forma.ShowDialog()
+
+                    Catch ex As Exception
+                    End Try
+                Case "Importar Excel"
+                    Try
+                        Dim Forma As New frmExcel
                         Forma.ShowDialog()
 
                     Catch ex As Exception
@@ -108,11 +116,8 @@
         End Try
     End Sub
 
-    Private Sub lsvPanel_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lsvPanel.SelectedIndexChanged
 
-    End Sub
-
-    Private Sub lsvPanel_SizeChanged(sender As Object, e As System.EventArgs) Handles lsvPanel.SizeChanged
+    Private Sub lsvPanel_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lsvPanel.SizeChanged
         Dim sRuta As String
         sRuta = System.IO.Path.GetTempPath
         Try
@@ -123,11 +128,11 @@
         End Try
     End Sub
 
-    Private Sub pnlBar_Paint(sender As Object, e As System.Windows.Forms.PaintEventArgs) Handles pnlBar.Paint
+    Private Sub pnlBar_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pnlBar.Paint
         Degradado(e, sender, Color.White, Color.Gray, Drawing2D.LinearGradientMode.Vertical)
     End Sub
 
-    Private Sub lblUsuario_SizeChanged(sender As Object, e As System.EventArgs) Handles lblUsuario.SizeChanged
+    Private Sub lblUsuario_SizeChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles lblUsuario.SizeChanged
         AjustarBarra()
     End Sub
 
@@ -135,13 +140,13 @@
         Me.Close()
     End Sub
 
-    
-    Private Sub CatalogosToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles CatalogosToolStripMenuItem.Click
-        
+
+    Private Sub CatalogosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CatalogosToolStripMenuItem.Click
+
 
     End Sub
 
-    Private Sub ClientesToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ClientesToolStripMenuItem.Click
+    Private Sub ClientesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ClientesToolStripMenuItem.Click
         Dim Forma As New frmEmpleados
         Try
             Forma.gIdTipoPuesto = 0
@@ -151,5 +156,9 @@
 
         End Try
     End Sub
+
+
+
+  
 End Class
 

@@ -33,7 +33,10 @@ Partial Class frmEmpleados
         Me.txtsalario = New System.Windows.Forms.TextBox()
         Me.cbojornada = New System.Windows.Forms.ComboBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.cmdDocumentos = New System.Windows.Forms.Button()
+        Me.cmdFamiliar = New System.Windows.Forms.Button()
         Me.cmdIncapacidad = New System.Windows.Forms.Button()
+        Me.cmdJuridico = New System.Windows.Forms.Button()
         Me.cmdprestamo = New System.Windows.Forms.Button()
         Me.cmdincidencias = New System.Windows.Forms.Button()
         Me.cmdbuscar = New System.Windows.Forms.Button()
@@ -55,7 +58,7 @@ Partial Class frmEmpleados
         Me.Label38 = New System.Windows.Forms.Label()
         Me.dtpantiguedad = New System.Windows.Forms.DateTimePicker()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.gpb1 = New System.Windows.Forms.GroupBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.cboestado = New System.Windows.Forms.ComboBox()
         Me.Label34 = New System.Windows.Forms.Label()
@@ -64,7 +67,7 @@ Partial Class frmEmpleados
         Me.txtdireccion = New System.Windows.Forms.TextBox()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.gpb2 = New System.Windows.Forms.GroupBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.cboestadoP = New System.Windows.Forms.ComboBox()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -136,10 +139,23 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
+<<<<<<< HEAD
         Me.cmdPension = New System.Windows.Forms.Button()
+=======
+        Me.dtFecPlanta = New System.Windows.Forms.DateTimePicker()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtInicio = New System.Windows.Forms.TextBox()
+        Me.txtFin = New System.Windows.Forms.TextBox()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label54 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.txtTelefono = New System.Windows.Forms.TextBox()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
+>>>>>>> Empleados
         Me.Panel1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.gpb1.SuspendLayout()
+        Me.gpb2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label48
@@ -218,8 +234,14 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+<<<<<<< HEAD
         Me.Panel1.Controls.Add(Me.cmdPension)
+=======
+        Me.Panel1.Controls.Add(Me.cmdDocumentos)
+        Me.Panel1.Controls.Add(Me.cmdFamiliar)
+>>>>>>> Empleados
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
+        Me.Panel1.Controls.Add(Me.cmdJuridico)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
         Me.Panel1.Controls.Add(Me.cmdincidencias)
         Me.Panel1.Controls.Add(Me.cmdbuscar)
@@ -231,17 +253,53 @@ Partial Class frmEmpleados
         Me.Panel1.Size = New System.Drawing.Size(105, 689)
         Me.Panel1.TabIndex = 184
         '
+        'cmdDocumentos
+        '
+        Me.cmdDocumentos.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aac5ea61bc88
+        Me.cmdDocumentos.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdDocumentos.Location = New System.Drawing.Point(4, 457)
+        Me.cmdDocumentos.Name = "cmdDocumentos"
+        Me.cmdDocumentos.Size = New System.Drawing.Size(95, 72)
+        Me.cmdDocumentos.TabIndex = 46
+        Me.cmdDocumentos.Text = "Documentos"
+        Me.cmdDocumentos.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdDocumentos.UseVisualStyleBackColor = True
+        '
+        'cmdFamiliar
+        '
+        Me.cmdFamiliar.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa1be4bd8d66
+        Me.cmdFamiliar.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdFamiliar.Location = New System.Drawing.Point(2, 384)
+        Me.cmdFamiliar.Name = "cmdFamiliar"
+        Me.cmdFamiliar.Size = New System.Drawing.Size(95, 72)
+        Me.cmdFamiliar.TabIndex = 45
+        Me.cmdFamiliar.Text = "Familiares"
+        Me.cmdFamiliar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdFamiliar.UseVisualStyleBackColor = True
+        '
         'cmdIncapacidad
         '
         Me.cmdIncapacidad.Image = CType(resources.GetObject("cmdIncapacidad.Image"), System.Drawing.Image)
         Me.cmdIncapacidad.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 388)
+        Me.cmdIncapacidad.Location = New System.Drawing.Point(3, 306)
         Me.cmdIncapacidad.Name = "cmdIncapacidad"
         Me.cmdIncapacidad.Size = New System.Drawing.Size(95, 72)
-        Me.cmdIncapacidad.TabIndex = 43
+        Me.cmdIncapacidad.TabIndex = 44
         Me.cmdIncapacidad.Text = "Incapacidad"
         Me.cmdIncapacidad.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdIncapacidad.UseVisualStyleBackColor = True
+        '
+        'cmdJuridico
+        '
+        Me.cmdJuridico.Image = Global.XurtepNominas.My.Resources.Resources.bloggif_5aa2e2fc58d9a
+        Me.cmdJuridico.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdJuridico.Location = New System.Drawing.Point(4, 533)
+        Me.cmdJuridico.Name = "cmdJuridico"
+        Me.cmdJuridico.Size = New System.Drawing.Size(95, 72)
+        Me.cmdJuridico.TabIndex = 43
+        Me.cmdJuridico.Text = "Juridico"
+        Me.cmdJuridico.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdJuridico.UseVisualStyleBackColor = True
         '
         'cmdprestamo
         '
@@ -441,22 +499,22 @@ Partial Class frmEmpleados
         Me.Label37.TabIndex = 167
         Me.Label37.Text = "Fecha de antiguedad"
         '
-        'GroupBox2
+        'gpb1
         '
-        Me.GroupBox2.Controls.Add(Me.Label35)
-        Me.GroupBox2.Controls.Add(Me.cboestado)
-        Me.GroupBox2.Controls.Add(Me.Label34)
-        Me.GroupBox2.Controls.Add(Me.txtcp)
-        Me.GroupBox2.Controls.Add(Me.txtciudad)
-        Me.GroupBox2.Controls.Add(Me.txtdireccion)
-        Me.GroupBox2.Controls.Add(Me.Label33)
-        Me.GroupBox2.Controls.Add(Me.Label29)
-        Me.GroupBox2.Location = New System.Drawing.Point(8, 362)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(843, 76)
-        Me.GroupBox2.TabIndex = 166
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Direccion del trabajador"
+        Me.gpb1.Controls.Add(Me.Label35)
+        Me.gpb1.Controls.Add(Me.cboestado)
+        Me.gpb1.Controls.Add(Me.Label34)
+        Me.gpb1.Controls.Add(Me.txtcp)
+        Me.gpb1.Controls.Add(Me.txtciudad)
+        Me.gpb1.Controls.Add(Me.txtdireccion)
+        Me.gpb1.Controls.Add(Me.Label33)
+        Me.gpb1.Controls.Add(Me.Label29)
+        Me.gpb1.Location = New System.Drawing.Point(8, 362)
+        Me.gpb1.Name = "gpb1"
+        Me.gpb1.Size = New System.Drawing.Size(843, 76)
+        Me.gpb1.TabIndex = 166
+        Me.gpb1.TabStop = False
+        Me.gpb1.Text = "Direccion del trabajador"
         '
         'Label35
         '
@@ -524,22 +582,22 @@ Partial Class frmEmpleados
         Me.Label29.TabIndex = 70
         Me.Label29.Text = "Dirección (Calle, Ext., Int., Delegacion o municipio)"
         '
-        'GroupBox1
+        'gpb2
         '
-        Me.GroupBox1.Controls.Add(Me.Label30)
-        Me.GroupBox1.Controls.Add(Me.cboestadoP)
-        Me.GroupBox1.Controls.Add(Me.Label31)
-        Me.GroupBox1.Controls.Add(Me.txtcp2)
-        Me.GroupBox1.Controls.Add(Me.txtciudadP)
-        Me.GroupBox1.Controls.Add(Me.txtdireccionP)
-        Me.GroupBox1.Controls.Add(Me.Label32)
-        Me.GroupBox1.Controls.Add(Me.Label36)
-        Me.GroupBox1.Location = New System.Drawing.Point(8, 444)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(843, 69)
-        Me.GroupBox1.TabIndex = 165
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Lugar de prestación de servicios"
+        Me.gpb2.Controls.Add(Me.Label30)
+        Me.gpb2.Controls.Add(Me.cboestadoP)
+        Me.gpb2.Controls.Add(Me.Label31)
+        Me.gpb2.Controls.Add(Me.txtcp2)
+        Me.gpb2.Controls.Add(Me.txtciudadP)
+        Me.gpb2.Controls.Add(Me.txtdireccionP)
+        Me.gpb2.Controls.Add(Me.Label32)
+        Me.gpb2.Controls.Add(Me.Label36)
+        Me.gpb2.Location = New System.Drawing.Point(8, 444)
+        Me.gpb2.Name = "gpb2"
+        Me.gpb2.Size = New System.Drawing.Size(843, 69)
+        Me.gpb2.TabIndex = 165
+        Me.gpb2.TabStop = False
+        Me.gpb2.Text = "Lugar de prestación de servicios"
         '
         'Label30
         '
@@ -1130,6 +1188,7 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
+<<<<<<< HEAD
         'cmdPension
         '
         Me.cmdPension.Image = CType(resources.GetObject("cmdPension.Image"), System.Drawing.Image)
@@ -1141,11 +1200,104 @@ Partial Class frmEmpleados
         Me.cmdPension.Text = "Pensión Ali."
         Me.cmdPension.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdPension.UseVisualStyleBackColor = True
+=======
+        'dtFecPlanta
+        '
+        Me.dtFecPlanta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtFecPlanta.Location = New System.Drawing.Point(560, 609)
+        Me.dtFecPlanta.Name = "dtFecPlanta"
+        Me.dtFecPlanta.Size = New System.Drawing.Size(91, 26)
+        Me.dtFecPlanta.TabIndex = 208
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(557, 633)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(105, 18)
+        Me.Label21.TabIndex = 209
+        Me.Label21.Text = "Fecha de Planta"
+        '
+        'txtInicio
+        '
+        Me.txtInicio.Location = New System.Drawing.Point(540, 657)
+        Me.txtInicio.Name = "txtInicio"
+        Me.txtInicio.Size = New System.Drawing.Size(148, 26)
+        Me.txtInicio.TabIndex = 210
+        '
+        'txtFin
+        '
+        Me.txtFin.Location = New System.Drawing.Point(707, 657)
+        Me.txtFin.Name = "txtFin"
+        Me.txtFin.Size = New System.Drawing.Size(153, 26)
+        Me.txtFin.TabIndex = 211
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Location = New System.Drawing.Point(548, 681)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(109, 18)
+        Me.Label53.TabIndex = 212
+        Me.Label53.Text = "Inicio embarque"
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Location = New System.Drawing.Point(716, 678)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(125, 18)
+        Me.Label54.TabIndex = 213
+        Me.Label54.Text = "Termino Embarque"
+        '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Location = New System.Drawing.Point(609, 243)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(63, 18)
+        Me.Label55.TabIndex = 215
+        Me.Label55.Text = "Telefono"
+        '
+        'txtTelefono
+        '
+        Me.txtTelefono.Location = New System.Drawing.Point(608, 220)
+        Me.txtTelefono.Name = "txtTelefono"
+        Me.txtTelefono.Size = New System.Drawing.Size(153, 26)
+        Me.txtTelefono.TabIndex = 214
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.Location = New System.Drawing.Point(683, 633)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(170, 18)
+        Me.Label56.TabIndex = 217
+        Me.Label56.Text = "Fecha de Final de contrato"
+        '
+        'dtpFinContrato
+        '
+        Me.dtpFinContrato.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFinContrato.Location = New System.Drawing.Point(686, 609)
+        Me.dtpFinContrato.Name = "dtpFinContrato"
+        Me.dtpFinContrato.Size = New System.Drawing.Size(154, 26)
+        Me.dtpFinContrato.TabIndex = 216
+>>>>>>> Empleados
         '
         'frmEmpleados
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(971, 705)
+        Me.Controls.Add(Me.Label56)
+        Me.Controls.Add(Me.dtpFinContrato)
+        Me.Controls.Add(Me.Label55)
+        Me.Controls.Add(Me.txtTelefono)
+        Me.Controls.Add(Me.Label54)
+        Me.Controls.Add(Me.Label53)
+        Me.Controls.Add(Me.txtFin)
+        Me.Controls.Add(Me.txtInicio)
+        Me.Controls.Add(Me.Label21)
+        Me.Controls.Add(Me.dtFecPlanta)
         Me.Controls.Add(Me.chkInfonavit)
         Me.Controls.Add(Me.txtExtra)
         Me.Controls.Add(Me.Label52)
@@ -1182,8 +1334,8 @@ Partial Class frmEmpleados
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.dtpantiguedad)
         Me.Controls.Add(Me.Label37)
-        Me.Controls.Add(Me.GroupBox2)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.gpb1)
+        Me.Controls.Add(Me.gpb2)
         Me.Controls.Add(Me.txtnacionalidad)
         Me.Controls.Add(Me.txtclabe)
         Me.Controls.Add(Me.txtcuenta)
@@ -1242,10 +1394,10 @@ Partial Class frmEmpleados
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Alta o modificación de empleados"
         Me.Panel1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.gpb1.ResumeLayout(False)
+        Me.gpb1.PerformLayout()
+        Me.gpb2.ResumeLayout(False)
+        Me.gpb2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1279,7 +1431,7 @@ Partial Class frmEmpleados
     Friend WithEvents Label38 As Label
     Friend WithEvents dtpantiguedad As DateTimePicker
     Friend WithEvents Label37 As Label
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents gpb1 As GroupBox
     Friend WithEvents Label35 As Label
     Friend WithEvents cboestado As ComboBox
     Friend WithEvents Label34 As Label
@@ -1288,7 +1440,7 @@ Partial Class frmEmpleados
     Friend WithEvents txtdireccion As TextBox
     Friend WithEvents Label33 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents gpb2 As GroupBox
     Friend WithEvents Label30 As Label
     Friend WithEvents cboestadoP As ComboBox
     Friend WithEvents Label31 As Label
@@ -1361,7 +1513,23 @@ Partial Class frmEmpleados
     Friend WithEvents cmdprestamo As Button
     Friend WithEvents Label52 As Label
     Friend WithEvents txtExtra As TextBox
-    Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
+    Friend WithEvents cmdJuridico As System.Windows.Forms.Button
     Friend WithEvents chkInfonavit As System.Windows.Forms.CheckBox
+<<<<<<< HEAD
     Friend WithEvents cmdPension As System.Windows.Forms.Button
+=======
+    Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
+    Friend WithEvents dtFecPlanta As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label21 As System.Windows.Forms.Label
+    Friend WithEvents txtInicio As System.Windows.Forms.TextBox
+    Friend WithEvents txtFin As System.Windows.Forms.TextBox
+    Friend WithEvents Label53 As System.Windows.Forms.Label
+    Friend WithEvents Label54 As System.Windows.Forms.Label
+    Friend WithEvents cmdFamiliar As System.Windows.Forms.Button
+    Friend WithEvents Label55 As System.Windows.Forms.Label
+    Friend WithEvents txtTelefono As System.Windows.Forms.TextBox
+    Friend WithEvents cmdDocumentos As System.Windows.Forms.Button
+    Friend WithEvents Label56 As System.Windows.Forms.Label
+    Friend WithEvents dtpFinContrato As System.Windows.Forms.DateTimePicker
+>>>>>>> Empleados
 End Class

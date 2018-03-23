@@ -43,7 +43,7 @@ Public Class frmEmpleados
 
             'Validar si ya esta el codigo del empleado
             If blnNuevo Then
-                SQL = "select * from empleados where cCodigoEmpleado=" & txtcodigo.Text
+                SQL = "select * from empleadosC where cCodigoEmpleado=" & txtcodigo.Text
                 Dim rwCodigo As DataRow() = nConsulta(SQL)
 
                 If rwCodigo Is Nothing = False Then
@@ -124,7 +124,8 @@ Public Class frmEmpleados
                 SQL &= "," & cbobanco2.SelectedValue
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
-                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text)
+                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+                SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
             Else
                 'Actualizar
 
@@ -151,7 +152,8 @@ Public Class frmEmpleados
                 SQL &= "," & cbobanco2.SelectedValue
                 SQL &= ",'" & txtcuenta2.Text
                 SQL &= "','" & txtclabe2.Text & "'"
-                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text)
+                SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+                SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
 
             End If
             If nExecute(SQL) = False Then
@@ -241,6 +243,7 @@ Public Class frmEmpleados
         Try
             If rwFilas Is Nothing = False Then
 
+
                 Dim Fila As DataRow = rwFilas(0)
                 cbostatus.SelectedIndex = IIf(Fila.Item("fkiIdClienteInter") = 1, 1, 0)
                 txtcodigo.Text = Fila.Item("cCodigoEmpleado")
@@ -288,6 +291,11 @@ Public Class frmEmpleados
                 'item.SubItems.Add("" & IIf(Fila.Item("iPermanente") = "0", "No", "Si"))
                 txtcredito.Text = Fila.Item("cInfonavit")
                 'item.SubItems.Add("" & Fila.Item("cInfonavit"))
+                If Fila.Item("cInfonavit") <> Nothing Then
+                    chkInfonavit.Checked = True
+                Else
+                    chkInfonavit.Checked = False
+                End If
                 cbotipofactor.Text = Fila.Item("cTipoFactor")
                 'item.SubItems.Add("" & Fila.Item("cTipoFactor"))
                 txtfactor.Text = Fila.Item("fFactor")
@@ -348,8 +356,13 @@ Public Class frmEmpleados
 
                 txtExtra.Text = Fila.Item("fsindicatoExtra")
 
+                dtFecPlanta.Value = Fila.Item("dFechaPlanta")
+                txtInicio.Text = Fila.Item("cInicioEmbarque")
+                txtFin.Text = Fila.Item("cFinalEmbarque")
+
                 blnNuevo = False
             End If
+
         Catch ex As Exception
 
         End Try
@@ -415,7 +428,7 @@ Public Class frmEmpleados
         MostrarPuesto()
         MostrarDepartamentos()
         blnNuevo = True
-
+        IndexTab()
 
         'blnNuevo = gIdEmpleado = ""
 
@@ -444,6 +457,71 @@ Public Class frmEmpleados
             blnNuevo = False
             MostrarEmpleado()
         End If
+    End Sub
+
+    Private Sub IndexTab()
+        cbostatus.TabIndex = 1
+        txtcodigo.TabIndex = 2
+        dtpCaptura.TabIndex = 3
+        cbopertenece.TabIndex = 4
+        txtpaterno.TabIndex = 5
+        txtmaterno.TabIndex = 6
+        txtnombre.TabIndex = 7
+        cbosexo.TabIndex = 8
+        cboedocivil.TabIndex = 9
+        cbopuesto.TabIndex = 10
+        txtfunciones.TabIndex = 11
+        cbocategoria.TabIndex = 12
+        dtppatrona.TabIndex = 13
+        dtpsindicato.TabIndex = 14
+        txtintegrar.TabIndex = 15
+        txtsd.TabIndex = 16
+        txtsdi.TabIndex = 17
+        dtpfechanac.TabIndex = 18
+        txtedad.TabIndex = 19
+        txtcurp.TabIndex = 20
+        txtrfc.TabIndex = 21
+        txtimss.TabIndex = 22
+        dtpantiguedad.TabIndex = 23
+        txtTelefono.TabIndex = 24
+        txtcredito.TabIndex = 25
+        cbotipofactor.TabIndex = 26
+        txtfactor.TabIndex = 27
+        chkInfonavit.TabIndex = 28
+        txtcuenta.TabIndex = 29
+        txtclabe.TabIndex = 30
+        cbobanco.TabIndex = 31
+        txtnacionalidad.TabIndex = 32
+        gpb1.TabIndex = 33
+        txtdireccion.TabIndex = 34
+        txtciudad.TabIndex = 35
+        cboestado.TabIndex = 36
+        txtcp.TabIndex = 37
+        gpb2.TabIndex = 38
+        txtdireccionP.TabIndex = 39
+        txtciudadP.TabIndex = 40
+        cboestadoP.TabIndex = 41
+        txtcp2.TabIndex = 42
+        txtduracion.TabIndex = 43
+        cbojornada.TabIndex = 44
+        txtsalario.TabIndex = 45
+        txtcomentarios.TabIndex = 46
+        txtcorreo.TabIndex = 47
+        txthorario.TabIndex = 48
+        txthoras.TabIndex = 49
+        txtdescanso.TabIndex = 50
+        cbodepartamento.TabIndex = 51
+        txtExtra.TabIndex = 52
+        dtFecPlanta.TabIndex = 53
+        dtpFinContrato.TabIndex = 54
+        txtcuenta2.TabIndex = 55
+        txtclabe2.TabIndex = 56
+        cbobanco2.TabIndex = 57
+        txtInicio.TabIndex = 58
+        txtFin.TabIndex = 59
+
+
+
     End Sub
 
     Private Sub MostrarDepartamentos()
@@ -608,6 +686,7 @@ Public Class frmEmpleados
                 'item.SubItems.Add("" & Fila.Item("dFechaAntiguedad"))
                 txtdireccionP.Text = Fila.Item("cDireccionP")
                 txtciudadP.Text = Fila.Item("cCiudadP")
+                txtcp2.Text = Fila.Item("cCPP")
                 'item.SubItems.Add("" & Fila.Item("cDireccionP") & "" & Fila.Item("cCiudadP"))
                 txtduracion.Text = Fila.Item("cDuracion")
                 'item.SubItems.Add("" & Fila.Item("cDuracion"))
@@ -636,7 +715,7 @@ Public Class frmEmpleados
                 SQL = "select * from bancos where iIdBanco=" & Fila.Item("fkiIdBanco2")
                 Dim Banco2 As DataRow() = nConsulta(SQL)
                 cbobanco2.SelectedValue = Banco2(0).Item("iIdBanco")
-
+                dtpFinContrato.Value = Fila.Item("dFechaFin")
 
                 blnNuevo = False
             End If
@@ -769,18 +848,48 @@ Public Class frmEmpleados
     End Sub
 
   
-    Private Sub cmdIncapacidad_Click(sender As System.Object, e As System.EventArgs) Handles cmdIncapacidad.Click
+  
+
+  
+    Private Sub cmdIncapacidad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdIncapacidad.Click
         If blnNuevo = False Then
             Dim Forma As New frmIncapacidad
             Forma.gIdEmpleado = gIdEmpleado
-
             Forma.ShowDialog()
-
-
 
         Else
             MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         End If
+    End Sub
+
+
+    Private Sub cmdFamiliar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdFamiliar.Click
+        If blnNuevo = False Then
+            Dim frm As New frmFamilia
+            frm.gIdEmpleado = gIdEmpleado
+            frm.ShowDialog()
+        Else
+            MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+    End Sub
+
+    Private Sub cmdJuridico_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdJuridico.Click
+        Dim frmJ As New frmJuridico
+        frmJ.gIdEmpleado = gIdEmpleado
+        frmJ.ShowDialog()
+
+    End Sub
+
+    Private Sub cmdDocumentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdDocumentos.Click
+        If blnNuevo = False Then
+            Dim frm As New frmDocumentos
+            frm.gIdEmpleado = gIdEmpleado
+            frm.ShowDialog()
+        Else
+            MessageBox.Show("Seleccione un empleado primeramente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 End Class

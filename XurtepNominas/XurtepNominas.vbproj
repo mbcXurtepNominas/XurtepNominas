@@ -96,18 +96,36 @@
     <Compile Include="frmExcel.Designer.vb">
       <DependentUpon>frmExcel.vb</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="frmExcel.vb" />
     <Compile Include="frmHojasNomina.designer.vb">
       <DependentUpon>frmHojasNomina.vb</DependentUpon>
     </Compile>
     <Compile Include="frmHojasNomina.vb" />
+=======
+    <Compile Include="frmExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHojasNomina.designer.vb">
+      <DependentUpon>frmHojasNomina.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmHojasNomina.vb">
+      <SubType>Form</SubType>
+    </Compile>
+>>>>>>> Empleados
     <Compile Include="frmImportarEmpleadosAlta.Designer.vb">
       <DependentUpon>frmImportarEmpleadosAlta.vb</DependentUpon>
     </Compile>
     <Compile Include="frmImportarEmpleadosAlta.vb">
       <SubType>Form</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="frmFamilia.vb" />
+=======
+    <Compile Include="frmFamilia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+>>>>>>> Empleados
     <Compile Include="frmFamilia.Designer.vb">
       <DependentUpon>frmFamilia.vb</DependentUpon>
       <SubType>Form</SubType>
@@ -121,7 +139,13 @@
     <Compile Include="frmJuridico.Designer.vb">
       <DependentUpon>frmJuridico.vb</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="frmJuridico.vb" />
+=======
+    <Compile Include="frmJuridico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+>>>>>>> Empleados
     <Compile Include="frmnominasmarinos.designer.vb">
       <DependentUpon>frmnominasmarinos.vb</DependentUpon>
     </Compile>

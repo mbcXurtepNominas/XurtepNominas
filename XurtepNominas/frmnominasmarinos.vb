@@ -2099,4 +2099,9 @@ Public Class frmnominasmarinos
             Return
         End If
     End Sub
+
+    Private Sub tsbEmpleados_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbEmpleados.Click
+        Dim frm As New frmImportarEmpleadosAlta
+        frm.ShowDialog()
+    End Sub
 End Class
