@@ -460,7 +460,10 @@ Public Class frmExcel
                     hoja4.Range(3, 1, 3, 4).Style.Fill.BackgroundColor = XLColor.FromHtml("#BDBDBD")
                     hoja4.Range(3, 1, 3, 4).Style.Font.FontColor = XLColor.FromHtml("#000000")
                     hoja4.Cell(3, 1).Value = "   RFC  "
-                    hoja4.Cell(3, 2).Value = "   Nombre    "
+                hoja4.Cell(3, 2).Value = "   Nombre    "
+                hoja4.Cell(1, 3).Value = "60/002"
+                hoja4.Range(2, 3, 2, 4).Merge(True)
+                hoja4.Cell(2, 3).Value = "SUBSIDIO"
                     hoja4.Cell(3, 3).Value = "   Importe   "
                     hoja4.Cell(3, 4).Value = "   Subsidio Causado"
 
@@ -503,7 +506,7 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 26).Value = dato.SubItems(41).Text  ''dato.SubItems(26).Text
                     hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
                     hoja.Cell(filaExcel, 28).Value = "" ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = "NA" '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 29).Value = cboTipoR.SelectedItem.ToString() ''"NA" '' dato.SubItems(29).Text MES DE PAGO
                     hoja.Cell(filaExcel, 30).Value = cboMes.SelectedIndex + 1
                     hoja.Cell(filaExcel, 31).Value = dato.SubItems(10).Text
                     filaExcel = filaExcel + 1
@@ -563,7 +566,7 @@ Public Class frmExcel
                     Dim month As Integer = moment.Month
                     Dim year As Integer = moment.Year
                     dialogo.DefaultExt = "*.xlsx"
-                    dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " NA"
+                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " " & cboTipoR.SelectedItem.ToString()
                     dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                     dialogo.ShowDialog()
                     libro.SaveAs(dialogo.FileName)
@@ -1129,8 +1132,8 @@ Public Class frmExcel
                 hoja2.Cell(3, 3).Value = "  Gravado   "
                 hoja2.Cell(3, 4).Value = "  Exento    "
 
-                hoja2.Cell(1, 9).Value = "16/001"
-                hoja2.Range(2, 9, 2, 10).Merge(True)
+                hoja2.Cell(1, 5).Value = "16/001"
+                hoja2.Range(2, 5, 2, 6).Merge(True)
                 hoja2.Cell(2, 5).Value = "TIEMPO EXTRA FIJO"
                 hoja2.Cell(3, 5).Value = "   Gravado   "
                 hoja2.Cell(3, 6).Value = "  Exento    "
