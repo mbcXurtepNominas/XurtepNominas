@@ -43,6 +43,7 @@ Partial Class frmExcel
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboMes = New System.Windows.Forms.ComboBox()
         Me.cboTipoR = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -135,7 +136,7 @@ Partial Class frmExcel
         Me.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGuardar.Name = "tsbGuardar"
         Me.tsbGuardar.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar.Text = "N. Abordo"
+        Me.tsbGuardar.Text = "Nominas"
         Me.tsbGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbGuardar2
@@ -148,6 +149,7 @@ Partial Class frmExcel
         Me.tsbGuardar2.Size = New System.Drawing.Size(90, 51)
         Me.tsbGuardar2.Text = "N. Descanso"
         Me.tsbGuardar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbGuardar2.Visible = False
         '
         'cmdNN
         '
@@ -258,15 +260,25 @@ Partial Class frmExcel
         '
         Me.cboTipoR.FormattingEnabled = True
         Me.cboTipoR.Items.AddRange(New Object() {"NA", "ND", "NN"})
-        Me.cboTipoR.Location = New System.Drawing.Point(823, 17)
+        Me.cboTipoR.Location = New System.Drawing.Point(864, 17)
         Me.cboTipoR.Name = "cboTipoR"
         Me.cboTipoR.Size = New System.Drawing.Size(142, 27)
         Me.cboTipoR.TabIndex = 40
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(805, 20)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(53, 19)
+        Me.Label3.TabIndex = 41
+        Me.Label3.Text = "Recibo"
         '
         'frmExcel
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1056, 533)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.cboTipoR)
         Me.Controls.Add(Me.cboMes)
         Me.Controls.Add(Me.Label1)
@@ -312,4 +324,5 @@ Partial Class frmExcel
     Friend WithEvents cboMes As System.Windows.Forms.ComboBox
     Friend WithEvents cmdNN As System.Windows.Forms.ToolStripButton
     Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

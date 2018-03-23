@@ -852,7 +852,7 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 26).Value = dato.SubItems(41).Text  ''dato.SubItems(26).Text
                     hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
                     hoja.Cell(filaExcel, 28).Value = "" ''dato.SubItems(28).Text
-                    hoja.Cell(filaExcel, 29).Value = "NA" '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 29).Value = cboTipoR.SelectedItem.ToString() ''"NA" 
                     hoja.Cell(filaExcel, 30).Value = cboMes.SelectedIndex + 1
                     hoja.Cell(filaExcel, 31).Value = dato.SubItems(10).Text
 
@@ -913,7 +913,8 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month.ToString()
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " ND"
+                ''  dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " ND"
+                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & cboTipoR.SelectedItem.ToString()
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 dialogo.ShowDialog()
                 libro.SaveAs(dialogo.FileName)
