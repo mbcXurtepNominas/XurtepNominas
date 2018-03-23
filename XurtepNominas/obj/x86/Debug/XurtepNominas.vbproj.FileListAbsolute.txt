@@ -15,3 +15,4 @@ C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\Xur
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.dll
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmIncapacidad.resources
+C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache

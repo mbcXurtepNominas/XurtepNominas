@@ -136,6 +136,7 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
+        Me.cmdPension = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -217,6 +218,7 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel1.Controls.Add(Me.cmdPension)
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
         Me.Panel1.Controls.Add(Me.cmdincidencias)
@@ -1128,6 +1130,18 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
+        'cmdPension
+        '
+        Me.cmdPension.Image = CType(resources.GetObject("cmdPension.Image"), System.Drawing.Image)
+        Me.cmdPension.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdPension.Location = New System.Drawing.Point(4, 466)
+        Me.cmdPension.Name = "cmdPension"
+        Me.cmdPension.Size = New System.Drawing.Size(95, 72)
+        Me.cmdPension.TabIndex = 44
+        Me.cmdPension.Text = "Pensión Ali."
+        Me.cmdPension.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdPension.UseVisualStyleBackColor = True
+        '
         'frmEmpleados
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -1349,4 +1363,5 @@ Partial Class frmEmpleados
     Friend WithEvents txtExtra As TextBox
     Friend WithEvents cmdIncapacidad As System.Windows.Forms.Button
     Friend WithEvents chkInfonavit As System.Windows.Forms.CheckBox
+    Friend WithEvents cmdPension As System.Windows.Forms.Button
 End Class

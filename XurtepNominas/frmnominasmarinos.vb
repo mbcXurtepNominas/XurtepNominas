@@ -409,7 +409,7 @@ Public Class frmnominasmarinos
                         fila.Item("IMSS") = ""
                         fila.Item("Infonavit") = ""
                         fila.Item("Infonavit_bim_anterior") = ""
-                        fila.Item("Pension_Alimenticia") = ""
+                        fila.Item("Ajuste_infonavit") = ""
                         fila.Item("Pension_Alimenticia") = ""
                         fila.Item("Prestamo") = ""
                         fila.Item("Fonacot") = ""
@@ -614,7 +614,7 @@ Public Class frmnominasmarinos
                     dtgDatos.Columns(39).Width = 150
                     'Pension_Alimenticia
                     dtgDatos.Columns(40).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                    dtgDatos.Columns(40).ReadOnly = True
+                    'dtgDatos.Columns(40).ReadOnly = True
                     dtgDatos.Columns(40).Width = 150
                     'Prestamo
                     dtgDatos.Columns(41).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -980,6 +980,17 @@ Public Class frmnominasmarinos
     Private Sub calcular()
         Dim Sueldo As Double
         Dim ValorIncapacidad As Double
+        Dim TotalPercepciones As Double
+        Dim Incapacidad As Double
+        Dim isr As Double
+        Dim imss As Double
+        Dim infonavitvalor As Double
+        Dim infonavitanterior As Double
+        Dim ajusteinfonavit As Double
+        Dim pension As Double
+        Dim prestamo As Double
+        Dim fonacot As Double
+
         Try
             'verificamos que tenga dias a calcular
             For x As Integer = 0 To dtgDatos.Rows.Count - 1
@@ -1017,11 +1028,33 @@ Public Class frmnominasmarinos
                     End If
                     dtgDatos.Rows(x).Cells(34).Value = Math.Round(ValorIncapacidad, 2).ToString("###,##0.00")
                     'ISR
-                    dtgDatos.Rows(x).Cells(35).Value = (baseisrtotal(dtgDatos.Rows(x).Cells(11).Value, 30, dtgDatos.Rows(x).Cells(16).Value, ValorIncapacidad)) / 30 * dtgDatos.Rows(x).Cells(17).Value
+                    dtgDatos.Rows(x).Cells(35).Value = Math.Round(Double.Parse((baseisrtotal(dtgDatos.Rows(x).Cells(11).Value, 30, dtgDatos.Rows(x).Cells(16).Value, ValorIncapacidad)) / 30 * dtgDatos.Rows(x).Cells(17).Value), 2).ToString("###,##0.00")
                     'IMSS
                     dtgDatos.Rows(x).Cells(36).Value = "0.00"
                     'INFONAVIT
-                    dtgDatos.Rows(x).Cells(37).Value = "0.00"
+                    dtgDatos.Rows(x).Cells(37).Value = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(16).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Integer.Parse(dtgDatos.Rows(x).Cells(17).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value)), 2).ToString("###,##0.00")
+                    'INFONAVIT BIMESTRE ANTERIOR
+                    'AJUSTE INFONAVIT
+                    'PENSION
+                    'PRESTAMO
+                    'FONACOT
+                    'NETO
+
+
+                    TotalPercepciones = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(32).Value), 2)
+                    Incapacidad = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(34).Value), 2)
+                    isr = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(35).Value), 2)
+                    imss = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(36).Value), 2)
+                    infonavitvalor = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(37).Value), 2)
+                    infonavitanterior = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(38).Value), 2)
+                    ajusteinfonavit = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(39).Value), 2)
+                    pension = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(40).Value), 2)
+                    prestamo = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(41).Value), 2)
+                    fonacot = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(42).Value), 2)
+
+                    dtgDatos.Rows(x).Cells(43).Value = Math.Round(TotalPercepciones - Incapacidad - isr - imss - infonavitvalor - infonavitanterior - ajusteinfonavit - pension - prestamo - fonacot, 2)
+
+
                 End If
 
 
@@ -1031,8 +1064,263 @@ Public Class frmnominasmarinos
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+    Function Bisiesto(Num As Integer) As Boolean
+        If Num Mod 4 = 0 And (Num Mod 100 Or Num Mod 400 = 0) Then
+            Bisiesto = True
+        Else
+            Bisiesto = False
+        End If
+    End Function
 
 
+    Private Function infonavit(tipo As String, valor As Double, sdi As Double, fechapago As Date, periodo As String, diastrabajados As Integer, idempleado As Integer) As Double
+        Try
+            Dim numbimestre As Integer
+            Dim numbimestre2 As Integer
+            Dim numdias As Integer
+            Dim numdias2 As Integer
+            Dim DiasCadaPeriodo As Integer
+            Dim DiasCadaPeriodo2 As Integer
+            Dim diasfebrero As Integer
+            Dim valorinfonavit As Double
+            Dim sql As String
+            Dim FechaInicioPeriodo1 As Date
+            Dim FechaFinPeriodo1 As Date
+            Dim FechaInicioPeriodo2 As Date
+            Dim FechaFinPeriodo2 As Date
+            Dim Seguro1 As Double
+            Dim Seguro2 As Double
+            Dim ValorInfonavitTabla As Double
+
+            'Validamos si el trabajador tiene o no activo el infonavit
+            sql = "select iPermanente from empleadosC where iIdEmpleadoC=" & idempleado
+            Dim rwCalcularInfonavit As DataRow() = nConsulta(sql)
+            If rwCalcularInfonavit Is Nothing = False Then
+                If rwCalcularInfonavit(0)("iPermanente") = "1" Then
+                    sql = "select * from periodos where iIdPeriodo= " & periodo
+                    Dim rwPeriodo As DataRow() = nConsulta(sql)
+
+                    If rwPeriodo Is Nothing = False Then
+
+                        If diastrabajados = 30 Then
+                            FechaInicioPeriodo1 = Date.Parse(rwPeriodo(0)("dFechaInicio"))
+                            FechaFinPeriodo1 = Date.Parse("01/" & FechaInicioPeriodo1.Month & "/" & FechaInicioPeriodo1.Year).AddMonths(1).AddDays(-1)
+                            FechaFinPeriodo2 = Date.Parse(rwPeriodo(0)("dFechaFin"))
+                            FechaInicioPeriodo2 = Date.Parse("01/" & FechaFinPeriodo2.Month & "/" & FechaFinPeriodo2.Year)
+
+                        Else
+                            'Verificamos si tiene un embarque dentro de periodo
+                            sql = "select * from DatosEmbarque where Between FechaEmbarque=" & Date.Parse(rwPeriodo(0)("dFechaInicio")).ToShortDateString & " and FechaEmbarque=" & Date.Parse(rwPeriodo(0)("dFechaFin")).ToShortDateString
+                            Dim rwDatosEmbarque As DataRow() = nConsulta(sql)
+                            If rwDatosEmbarque Is Nothing = False Then
+                                FechaInicioPeriodo1 = rwDatosEmbarque(0)("FechaEmbarque")
+                                FechaFinPeriodo2 = FechaInicioPeriodo1.AddDays(diastrabajados)
+
+                                If FechaInicioPeriodo1.Month = FechaFinPeriodo2.Month Then
+                                    FechaFinPeriodo1 = FechaInicioPeriodo1.AddDays(diastrabajados)
+                                    FechaInicioPeriodo2 = Date.Parse("01/01/1900")
+                                    FechaFinPeriodo2 = Date.Parse("01/01/1900")
+
+                                Else
+                                    FechaFinPeriodo1 = Date.Parse("01/" & FechaFinPeriodo1.Month & "/" & FechaInicioPeriodo1.Year).AddMonths(1).AddDays(-1)
+                                    FechaFinPeriodo1 = Date.Parse("01/" & FechaFinPeriodo2.Month & "/" & FechaFinPeriodo2.Year)
+                                End If
+
+
+                            Else
+                                'Si no lo tiene sumamos de inicio del periodo hasta el numero de dias
+                                'Verificamos si esta dentro del mismo mes
+                                FechaInicioPeriodo1 = Date.Parse(rwPeriodo(0)("dFechaInicio"))
+                                FechaFinPeriodo2 = FechaInicioPeriodo1.AddDays(diastrabajados)
+
+                                If FechaInicioPeriodo1.Month = FechaFinPeriodo2.Month Then
+                                    FechaFinPeriodo1 = FechaInicioPeriodo1.AddDays(diastrabajados)
+                                    FechaInicioPeriodo2 = Date.Parse("01/01/1900")
+                                    FechaFinPeriodo2 = Date.Parse("01/01/1900")
+
+                                Else
+                                    FechaFinPeriodo1 = Date.Parse("01/" & FechaFinPeriodo1.Month & "/" & FechaInicioPeriodo1.Year).AddMonths(1).AddDays(-1)
+                                    FechaFinPeriodo1 = Date.Parse("01/" & FechaFinPeriodo2.Month & "/" & FechaFinPeriodo2.Year)
+                                End If
+                            End If
+                        End If
+
+
+
+
+
+                        If Month(FechaInicioPeriodo1) Mod 2 = 0 Then
+                            numbimestre = Month(FechaInicioPeriodo1) / 2
+                        Else
+                            numbimestre = (Month(FechaInicioPeriodo1) + 1) / 2
+                        End If
+
+                        If numbimestre = 1 Then
+                            If Bisiesto(Year(fechapago)) = True Then
+                                diasfebrero = 29
+                            Else
+                                diasfebrero = 28
+                            End If
+                            'diasfebrero = Day(DateSerial(Year(fechapago), 3, 0))
+                            numdias = 31 + diasfebrero
+                        End If
+
+                        If numbimestre = 2 Then
+                            numdias = 61
+                        End If
+
+                        If numbimestre = 3 Then
+                            numdias = 61
+                        End If
+
+                        If numbimestre = 4 Then
+                            numdias = 62
+                        End If
+
+                        If numbimestre = 5 Then
+                            numdias = 61
+                        End If
+
+                        If numbimestre = 6 Then
+                            numdias = 61
+                        End If
+
+
+
+                        If Month(FechaInicioPeriodo2) Mod 2 = 0 Then
+                            numbimestre2 = Month(FechaInicioPeriodo2) / 2
+                        Else
+                            numbimestre2 = (Month(FechaInicioPeriodo2) + 1) / 2
+                        End If
+
+                        If numbimestre2 = 1 Then
+                            If Bisiesto(Year(fechapago)) = True Then
+                                diasfebrero = 29
+                            Else
+                                diasfebrero = 28
+                            End If
+                            'diasfebrero = Day(DateSerial(Year(fechapago), 3, 0))
+                            numdias2 = 31 + diasfebrero
+                        End If
+
+                        If numbimestre2 = 2 Then
+                            numdias2 = 61
+                        End If
+
+                        If numbimestre2 = 3 Then
+                            numdias2 = 61
+                        End If
+
+                        If numbimestre2 = 4 Then
+                            numdias2 = 62
+                        End If
+
+                        If numbimestre2 = 5 Then
+                            numdias2 = 61
+                        End If
+
+                        If numbimestre2 = 6 Then
+                            numdias2 = 61
+                        End If
+
+
+
+                        DiasCadaPeriodo = DateDiff(DateInterval.Day, FechaInicioPeriodo1, FechaFinPeriodo1) + 1
+
+                        'Verificamos si ya existe el seguro en ese bimestre
+
+                        sql = "select * from PagoSeguroInfonavit where fkiIdEmpleadoC= " & idempleado
+                        sql &= " And NumBimestre= " & numbimestre & " And Anio=" & FechaInicioPeriodo1.Year.ToString
+                        Dim rwSeguro1 As DataRow() = nConsulta(sql)
+
+                        If rwSeguro1 Is Nothing = False Then
+                            Seguro1 = 0
+                        Else
+                            Seguro1 = 15
+                        End If
+
+                        If FechaInicioPeriodo2 = Date.Parse("01/01/1900") Then
+                            DiasCadaPeriodo2 = 0
+                            Seguro2 = 0
+
+                        Else
+                            DiasCadaPeriodo2 = DateDiff(DateInterval.Day, FechaInicioPeriodo2, FechaFinPeriodo2) + 1
+                            sql = "select * from PagoSeguroInfonavit where fkiIdEmpleadoC= " & idempleado
+                            sql &= " And NumBimestre= " & numbimestre2 & " And Anio=" & FechaInicioPeriodo2.Year.ToString
+                            Dim rwSeguro2 As DataRow() = nConsulta(sql)
+
+                            If rwSeguro2 Is Nothing = False Then
+                                Seguro2 = 0
+                            Else
+                                Seguro2 = 15
+                            End If
+
+                        End If
+
+
+                        'Obtener el valor para VSM segun tabla
+                        If FechaInicioPeriodo2 = Date.Parse("01/01/1900") Then
+
+                        Else
+
+                        End If
+
+                        sql = "select * from Salario "
+                        sql &= " where Anio=" & IIf(FechaFinPeriodo2 = Date.Parse("01/01/1900"), FechaFinPeriodo1.Year.ToString, FechaInicioPeriodo2.Year.ToString)
+                        sql &= " and iEstatus=1"
+                        Dim rwValorInfonavit As DataRow() = nConsulta(sql)
+
+                        If rwValorInfonavit Is Nothing = False Then
+                            ValorInfonavitTabla = rwValorInfonavit(0)("infonavit")
+                        Else
+                            sql = "select * from Salario "
+                            sql &= " where Anio=" & IIf(FechaFinPeriodo2 = Date.Parse("01/01/1900"), FechaFinPeriodo1.Year.ToString, FechaInicioPeriodo2.Year.ToString)
+                            sql &= " and iEstatus=1"
+                            Dim rwValorInfonavitAntes As DataRow() = nConsulta(sql)
+                            If rwValorInfonavitAntes Is Nothing = False Then
+                                ValorInfonavitTabla = rwValorInfonavit(0)("infonavit")
+                            End If
+                        End If
+
+
+
+                        If tipo = "VSM" And valor > 0 Then
+                            valorinfonavit = (((ValorInfonavitTabla * valor * 2) / numdias) * DiasCadaPeriodo) + Seguro1
+                            valorinfonavit = valorinfonavit + ((((ValorInfonavitTabla * valor * 2) / numdias) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
+                        End If
+
+                        If tipo = "CUOTA FIJA" And valor > 0 Then
+
+
+                            valorinfonavit = (((valor * 2) / numdias) * DiasCadaPeriodo) + Seguro1
+                            valorinfonavit = valorinfonavit + ((((valor * 2) / numdias) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
+
+                        End If
+
+                        If tipo = "PORCENTAJE" And valor > 0 Then
+
+                            valorinfonavit = ((sdi * (valor / 100) * numdias) + 15) / numdias
+                        End If
+
+
+                        Return valorinfonavit
+
+                    End If
+
+                End If
+
+            End If
+
+
+            Return 0
+
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return 0
+        End Try
+    End Function
 
     Private Function baseisrtotal(puesto As String, dias As Integer, sdi As Double, incapacidad As Double) As Double
         Dim sueldo As Double
@@ -1565,7 +1853,7 @@ Public Class frmnominasmarinos
 
         End Try
 
-        
+
 
     End Sub
 
@@ -1579,7 +1867,7 @@ Public Class frmnominasmarinos
         Dim columna As Integer
         m_currentControl = Nothing
         columna = CInt(DirectCast(sender, System.Windows.Forms.DataGridView).CurrentCell.ColumnIndex)
-        If columna = 17 Or columna = 9 Or columna = 10 Then
+        If columna = 17 Or columna = 40 Or columna = 10 Then
             AddHandler e.Control.KeyPress, AddressOf TextboxNumeric_KeyPress
             m_currentControl = e.Control
         End If
@@ -1602,7 +1890,7 @@ Public Class frmnominasmarinos
     End Sub
 
     Private Sub cmdlayouts_Click(sender As Object, e As EventArgs) Handles cmdlayouts.Click
-       
+
     End Sub
 
     Function RemoverBasura(nombre As String) As String
