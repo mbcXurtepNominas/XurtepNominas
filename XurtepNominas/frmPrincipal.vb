@@ -160,6 +160,12 @@ Public Class frmPrincipal
 
 
   
+<<<<<<< HEAD
    
+=======
+    Private Sub lsvPanel_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lsvPanel.SelectedIndexChanged
+
+    End Sub
+>>>>>>> Marzo
 End Class
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
 C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
@@ -26,6 +27,12 @@ C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\Xur
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
+=======
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
+>>>>>>> Marzo
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmDocumentos.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmIncapacidad.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmBuscarEmpleado.resources
@@ -41,9 +48,16 @@ D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frm
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmUsuarios.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.Resources.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbproj.GenerateResource.Cache
+<<<<<<< HEAD
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmExcelO.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
+=======
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
+>>>>>>> Marzo
