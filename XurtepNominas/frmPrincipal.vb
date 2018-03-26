@@ -104,7 +104,7 @@ Public Class frmPrincipal
                     End Try
                 Case "Importar Excel"
                     Try
-                        Dim Forma As New frmExcel
+                        Dim Forma As New frmExcelO
                         Forma.ShowDialog()
 
                     Catch ex As Exception
@@ -160,5 +160,8 @@ Public Class frmPrincipal
 
 
   
+    Private Sub lsvPanel_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lsvPanel.SelectedIndexChanged
+
+    End Sub
 End Class
 

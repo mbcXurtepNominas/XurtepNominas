@@ -81,6 +81,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmExcelO.Designer.vb">
+      <DependentUpon>frmExcelO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmExcelO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDocumentos.Designer.vb">
       <DependentUpon>frmDocumentos.vb</DependentUpon>
     </Compile>
@@ -188,6 +194,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmExcelO.resx">
+      <DependentUpon>frmExcelO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentos.resx">
       <DependentUpon>frmDocumentos.vb</DependentUpon>
     </EmbeddedResource>
