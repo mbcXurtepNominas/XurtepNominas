@@ -147,9 +147,8 @@ Partial Class frmExcel
         Me.tsbGuardar2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGuardar2.Name = "tsbGuardar2"
         Me.tsbGuardar2.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar2.Text = "N. Descanso"
+        Me.tsbGuardar2.Text = "N. Marinos "
         Me.tsbGuardar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbGuardar2.Visible = False
         '
         'cmdNN
         '
@@ -161,6 +160,7 @@ Partial Class frmExcel
         Me.cmdNN.Size = New System.Drawing.Size(90, 51)
         Me.cmdNN.Text = "Marinos"
         Me.cmdNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.cmdNN.Visible = False
         '
         'tsbCancelar
         '
