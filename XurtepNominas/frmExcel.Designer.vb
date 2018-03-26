@@ -33,7 +33,6 @@ Partial Class frmExcel
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar2 = New System.Windows.Forms.ToolStripButton()
-        Me.cmdNN = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
@@ -102,7 +101,7 @@ Partial Class frmExcel
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.cmdNN, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
@@ -149,18 +148,6 @@ Partial Class frmExcel
         Me.tsbGuardar2.Size = New System.Drawing.Size(90, 51)
         Me.tsbGuardar2.Text = "N. Marinos "
         Me.tsbGuardar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'cmdNN
-        '
-        Me.cmdNN.AutoSize = False
-        Me.cmdNN.Enabled = False
-        Me.cmdNN.Image = Global.XurtepNominas.My.Resources.Resources.disquete
-        Me.cmdNN.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.cmdNN.Name = "cmdNN"
-        Me.cmdNN.Size = New System.Drawing.Size(90, 51)
-        Me.cmdNN.Text = "Marinos"
-        Me.cmdNN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.cmdNN.Visible = False
         '
         'tsbCancelar
         '
@@ -322,7 +309,6 @@ Partial Class frmExcel
     Friend WithEvents cmdVerificar As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents cboMes As System.Windows.Forms.ComboBox
-    Friend WithEvents cmdNN As System.Windows.Forms.ToolStripButton
     Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class
