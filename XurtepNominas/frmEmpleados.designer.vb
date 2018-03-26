@@ -140,12 +140,10 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
-<<<<<<< HEAD
-=======
+
 
         Me.cmdPension = New System.Windows.Forms.Button()
 
->>>>>>> Marzo
         Me.dtFecPlanta = New System.Windows.Forms.DateTimePicker()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.txtInicio = New System.Windows.Forms.TextBox()
@@ -156,10 +154,7 @@ Partial Class frmEmpleados
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
-<<<<<<< HEAD
-=======
 
->>>>>>> Marzo
         Me.Panel1.SuspendLayout()
         Me.gpb1.SuspendLayout()
         Me.gpb2.SuspendLayout()
@@ -241,18 +236,18 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-<<<<<<< HEAD
+
         Me.Panel1.Controls.Add(Me.cmdPension)
         Me.Panel1.Controls.Add(Me.cmdDocumentos)
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
-=======
+
 
         Me.Panel1.Controls.Add(Me.cmdPension)
 
         Me.Panel1.Controls.Add(Me.cmdDocumentos)
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
 
->>>>>>> Marzo
+
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
         Me.Panel1.Controls.Add(Me.cmdJuridico)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
@@ -1213,8 +1208,7 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
-<<<<<<< HEAD
-=======
+
 
         'cmdPension
         '
@@ -1228,7 +1222,7 @@ Partial Class frmEmpleados
         Me.cmdPension.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdPension.UseVisualStyleBackColor = True
 
->>>>>>> Marzo
+
         'dtFecPlanta
         '
         Me.dtFecPlanta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -1310,10 +1304,9 @@ Partial Class frmEmpleados
         Me.dtpFinContrato.Name = "dtpFinContrato"
         Me.dtpFinContrato.Size = New System.Drawing.Size(154, 26)
         Me.dtpFinContrato.TabIndex = 216
-<<<<<<< HEAD
-=======
 
->>>>>>> Marzo
+
+
         '
         'frmEmpleados
         '

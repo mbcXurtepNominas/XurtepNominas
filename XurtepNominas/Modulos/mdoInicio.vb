@@ -94,8 +94,8 @@ Module mdoInicio
                 Servidor.Nombre = "Equipo1\sqlexpress"
                 Servidor.Base = "XurtepNominas"
                 Servidor.User = "sa"
-                Servidor.PWD = "1123581321"
-                '' Servidor.PWD = "1123581321"
+                ''Servidor.PWD = "1123581321"
+                Servidor.PWD = "123456"
 
             End If
             strConfig.WriteLine(Servidor.IP)
