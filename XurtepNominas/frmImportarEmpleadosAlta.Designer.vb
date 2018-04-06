@@ -128,7 +128,7 @@ Partial Class frmImportarEmpleadosAlta
         Me.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGuardar.Name = "tsbGuardar"
         Me.tsbGuardar.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar.Text = "Importar flujo"
+        Me.tsbGuardar.Text = "Importar"
         Me.tsbGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbCancelar

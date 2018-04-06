@@ -354,9 +354,9 @@ Public Class frmImportarEmpleadosAlta
 
                         Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
 
-                        dFechaNac = Trim(empleadofull.SubItems(13).Text) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM")
-                        dFechaCap = (Trim(empleadofull.SubItems(14).Text))
-                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text)
+                        dFechaNac = Date.Parse(Trim(empleadofull.SubItems(13).Text).ToString) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM"))
+                        dFechaCap = Date.Parse((Trim(empleadofull.SubItems(14).Text)).ToString)
+                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text).ToString
                         'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
@@ -414,18 +414,21 @@ Public Class frmImportarEmpleadosAlta
 
                     MessageBox.Show(t.ToString() & "  Proceso terminado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
+                    tsbCancelar_Click(sender, e)
                     pnlProgreso.Visible = False
-                    MessageBox.Show("No se guardo ninguna dato, revise y vuelva a intentarlo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    ''MessageBox.Show("No se guardo ninguna dato, revise y vuelva a intentarlo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
 
 
             Else
 
+                pnlProgreso.Visible = False
                 MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
             pnlCatalogo.Enabled = True
 
         Catch ex As Exception
+            pnlProgreso.Visible = False
             MessageBox.Show(ex.Message)
         End Try
     End Sub
