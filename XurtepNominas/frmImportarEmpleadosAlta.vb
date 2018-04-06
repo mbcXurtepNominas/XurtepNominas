@@ -308,13 +308,13 @@ Public Class frmImportarEmpleadosAlta
                         Else
                             b = 0
                         End If
-                        Dim p As String = Trim(empleadofull.SubItems(15).Text) ''idPuesto
+                        Dim p As String = Trim(empleadofull.SubItems(15).Text) ''CPuesto
                         Dim cPuesto As String
                         If p <> "" Then
-                            Dim puesto As DataRow() = nConsulta("SELECT * FROM Puestos where iIdPuesto =" & p)
+                            Dim puesto As DataRow() = nConsulta("select * FROM Puestos where cNombre like '" & p & "'")
                             If puesto Is Nothing Then
                                 cPuesto = ""
-                                mensa = "Revise el tipo de banco"
+                                mensa = "Revise el tipo de Puesto"
                                 bandera = False
                             Else
                                 cPuesto = puesto(0).Item("cNombre")
@@ -323,6 +323,22 @@ Public Class frmImportarEmpleadosAlta
                         Else
                             p = 0
                         End If
+                        Dim l As String = Trim(empleadofull.SubItems(19).Text) ''Code
+                        Dim cLugar As String
+                        If l <> "" Then
+                            Dim lugar As DataRow() = nConsulta("SELECT * FROM Cat_Estados WHERE cClave LIKE'" & l & "'")
+                            If lugar Is Nothing Then
+                                cLugar = ""
+                                mensa = "Revise el tipo de Puesto"
+                                bandera = False
+                            Else
+                                cLugar = lugar(0).Item("cEstado")
+                            End If
+
+                        Else
+                            l = 0
+                        End If
+
 
                         Dim factor As Integer
                         Select Case Trim(empleadofull.SubItems(32).Text)
@@ -350,6 +366,7 @@ Public Class frmImportarEmpleadosAlta
                                 number = 10
                         End Select
 
+                       
 
 
                         Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
@@ -372,7 +389,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(12).Text) = "FEMENINO", 0, 1) & ",'" & dFechaNac & "','" & dFechaCap
                         SQL &= "','" & cPuesto & "','" & Trim(empleadofull.SubItems(16).Text)
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
-                        SQL &= ",'" & Trim(empleadofull.SubItems(19).Text) & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
+                        SQL &= ",'" & cLugar & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
                         SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco
                         SQL &= ",'" & Trim(empleadofull.SubItems(25).Text) & "',1,'" & Trim(empleadofull.SubItems(26).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(27).Text) & "'," & Trim(empleadofull.SubItems(28).Text) & ",'" & Trim(empleadofull.SubItems(29).Text)
@@ -391,7 +408,7 @@ Public Class frmImportarEmpleadosAlta
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-
+                            pgbProgreso.Value += 1
                             Exit Sub
                         End If
                         pgbProgreso.Value += 1
