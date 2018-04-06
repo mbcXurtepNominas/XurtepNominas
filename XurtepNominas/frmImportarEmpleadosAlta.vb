@@ -318,6 +318,7 @@ Public Class frmImportarEmpleadosAlta
                                 bandera = False
                             Else
                                 cPuesto = puesto(0).Item("cNombre")
+                                p = puesto(0).Item("iIdPuesto")
                             End If
 
                         Else
@@ -398,7 +399,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & Trim(empleadofull.SubItems(32).Text) ''factor
                         SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''estatus 
-                        SQL &= "," & Trim(empleadofull.SubItems(15).Text) & "," & Trim(empleadofull.SubItems(38).Text)
+                        SQL &= "," & p & "," & Trim(empleadofull.SubItems(38).Text)
                         SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
                         SQL &= "," & 1
                         SQL &= ",'" & " "
