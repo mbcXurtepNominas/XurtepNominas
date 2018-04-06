@@ -366,7 +366,7 @@ Public Class frmImportarEmpleadosAlta
                                 number = 10
                         End Select
 
-                       
+
 
 
                         Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
@@ -408,7 +408,8 @@ Public Class frmImportarEmpleadosAlta
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                            pgbProgreso.Value += 1
+                            tsbCancelar_Click(sender, e)
+                            pnlProgreso.Visible = False
                             Exit Sub
                         End If
                         pgbProgreso.Value += 1
