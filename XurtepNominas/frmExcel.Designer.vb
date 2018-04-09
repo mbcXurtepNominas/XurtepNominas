@@ -43,6 +43,7 @@ Partial Class frmExcel
         Me.cboMes = New System.Windows.Forms.ComboBox()
         Me.cboTipoR = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -101,7 +102,7 @@ Partial Class frmExcel
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbLayout, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
@@ -261,6 +262,17 @@ Partial Class frmExcel
         Me.Label3.TabIndex = 41
         Me.Label3.Text = "Recibo"
         '
+        'tsbLayout
+        '
+        Me.tsbLayout.AutoSize = False
+        Me.tsbLayout.Enabled = False
+        Me.tsbLayout.Image = Global.XurtepNominas.My.Resources.Resources.disquete
+        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbLayout.Name = "tsbLayout"
+        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
+        Me.tsbLayout.Text = "LAYOUT "
+        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
         'frmExcel
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -311,4 +323,5 @@ Partial Class frmExcel
     Friend WithEvents cboMes As System.Windows.Forms.ComboBox
     Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents tsbLayout As System.Windows.Forms.ToolStripButton
 End Class
