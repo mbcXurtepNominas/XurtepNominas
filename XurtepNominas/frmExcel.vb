@@ -814,9 +814,9 @@ Public Class frmExcel
                     Dim Nombre() As String = Nombrecompleto.Split(" ")
 
                     hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
-                    hoja.Cell(filaExcel, 2).Value = Nombre(2).ToString
+                    hoja.Cell(filaExcel, 2).Value = Nombrecompleto ''Nombre(2).ToString
                     hoja.Cell(filaExcel, 3).Value = Nombre(0).ToString
-                    hoja.Cell(filaExcel, 4).Value = Nombre(1).ToString
+                    hoja.Cell(filaExcel, 4).Value = " " ''Nombre(1).ToString
                     hoja.Cell(filaExcel, 5).Value = dato.SubItems(4).Text
                     hoja.Cell(filaExcel, 6).Value = dato.SubItems(5).Text
                     hoja.Cell(filaExcel, 7).Value = dato.SubItems(6).Text
