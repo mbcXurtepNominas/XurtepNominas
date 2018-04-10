@@ -252,6 +252,7 @@ Partial Class frmExcel
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(610, 20)
         Me.Label1.Name = "Label1"
@@ -261,6 +262,7 @@ Partial Class frmExcel
         '
         'cboMes
         '
+        Me.cboMes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboMes.FormattingEnabled = True
         Me.cboMes.Items.AddRange(New Object() {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
         Me.cboMes.Location = New System.Drawing.Point(709, 17)
@@ -270,6 +272,7 @@ Partial Class frmExcel
         '
         'cboTipoR
         '
+        Me.cboTipoR.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cboTipoR.FormattingEnabled = True
         Me.cboTipoR.Items.AddRange(New Object() {"NA", "ND", "NN"})
         Me.cboTipoR.Location = New System.Drawing.Point(916, 17)
@@ -279,6 +282,7 @@ Partial Class frmExcel
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(857, 20)
         Me.Label3.Name = "Label3"
