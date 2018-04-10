@@ -33,6 +33,8 @@ Partial Class frmExcel
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar2 = New System.Windows.Forms.ToolStripButton()
+        Me.tsbProcesos = New System.Windows.Forms.ToolStripButton()
+        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
@@ -43,7 +45,6 @@ Partial Class frmExcel
         Me.cboMes = New System.Windows.Forms.ComboBox()
         Me.cboTipoR = New System.Windows.Forms.ComboBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.pnlProgreso.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
@@ -102,7 +103,7 @@ Partial Class frmExcel
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbLayout, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbProcesos, Me.tsbLayout, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
@@ -136,7 +137,7 @@ Partial Class frmExcel
         Me.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGuardar.Name = "tsbGuardar"
         Me.tsbGuardar.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar.Text = "Nominas"
+        Me.tsbGuardar.Text = "Operadora"
         Me.tsbGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbGuardar2
@@ -147,8 +148,31 @@ Partial Class frmExcel
         Me.tsbGuardar2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbGuardar2.Name = "tsbGuardar2"
         Me.tsbGuardar2.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar2.Text = "N. Marinos "
+        Me.tsbGuardar2.Text = "Marinos "
         Me.tsbGuardar2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbProcesos
+        '
+        Me.tsbProcesos.AutoSize = False
+        Me.tsbProcesos.Enabled = False
+        Me.tsbProcesos.Image = Global.XurtepNominas.My.Resources.Resources.disquete
+        Me.tsbProcesos.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbProcesos.Name = "tsbProcesos"
+        Me.tsbProcesos.Size = New System.Drawing.Size(90, 51)
+        Me.tsbProcesos.Text = "Procesos"
+        Me.tsbProcesos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbLayout
+        '
+        Me.tsbLayout.AutoSize = False
+        Me.tsbLayout.Enabled = False
+        Me.tsbLayout.Image = Global.XurtepNominas.My.Resources.Resources.disquete
+        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbLayout.Name = "tsbLayout"
+        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
+        Me.tsbLayout.Text = "LAYOUT "
+        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbLayout.Visible = False
         '
         'tsbCancelar
         '
@@ -229,7 +253,7 @@ Partial Class frmExcel
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(558, 20)
+        Me.Label1.Location = New System.Drawing.Point(610, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(93, 19)
         Me.Label1.TabIndex = 38
@@ -239,7 +263,7 @@ Partial Class frmExcel
         '
         Me.cboMes.FormattingEnabled = True
         Me.cboMes.Items.AddRange(New Object() {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
-        Me.cboMes.Location = New System.Drawing.Point(657, 17)
+        Me.cboMes.Location = New System.Drawing.Point(709, 17)
         Me.cboMes.Name = "cboMes"
         Me.cboMes.Size = New System.Drawing.Size(142, 27)
         Me.cboMes.TabIndex = 39
@@ -248,7 +272,7 @@ Partial Class frmExcel
         '
         Me.cboTipoR.FormattingEnabled = True
         Me.cboTipoR.Items.AddRange(New Object() {"NA", "ND", "NN"})
-        Me.cboTipoR.Location = New System.Drawing.Point(864, 17)
+        Me.cboTipoR.Location = New System.Drawing.Point(916, 17)
         Me.cboTipoR.Name = "cboTipoR"
         Me.cboTipoR.Size = New System.Drawing.Size(142, 27)
         Me.cboTipoR.TabIndex = 40
@@ -256,22 +280,11 @@ Partial Class frmExcel
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(805, 20)
+        Me.Label3.Location = New System.Drawing.Point(857, 20)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(53, 19)
         Me.Label3.TabIndex = 41
         Me.Label3.Text = "Recibo"
-        '
-        'tsbLayout
-        '
-        Me.tsbLayout.AutoSize = False
-        Me.tsbLayout.Enabled = False
-        Me.tsbLayout.Image = Global.XurtepNominas.My.Resources.Resources.disquete
-        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbLayout.Name = "tsbLayout"
-        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
-        Me.tsbLayout.Text = "LAYOUT "
-        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'frmExcel
         '
@@ -324,4 +337,5 @@ Partial Class frmExcel
     Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents tsbLayout As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbProcesos As System.Windows.Forms.ToolStripButton
 End Class
