@@ -988,23 +988,25 @@ Public Class frmExcel
                     ''Percepciones
                     hoja2.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
                     hoja2.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
-                    hoja2.Cell(filaExcel, 3).Value = dato.SubItems(18).Text
+                    hoja2.Cell(filaExcel, 3).Value = dato.SubItems(25).Text ''VACACIONES PROPORCIONALES
                     hoja2.Cell(filaExcel, 4).Value = ""
-                    hoja2.Cell(filaExcel, 5).Value = dato.SubItems(19).Text
-                    hoja2.Cell(filaExcel, 6).Value = dato.SubItems(20).Text
-                    hoja2.Cell(filaExcel, 7).Value = dato.SubItems(21).Text
-                    hoja2.Cell(filaExcel, 8).Value = ""
-                    hoja2.Cell(filaExcel, 9).Value = dato.SubItems(22).Text
+                    hoja2.Cell(filaExcel, 5).Value = dato.SubItems(18).Text  ''SUELDO BASE
+                    hoja2.Cell(filaExcel, 6).Value = ""
+                    hoja2.Cell(filaExcel, 7).Value = dato.SubItems(19).Text  ''AGINALDO
+                    hoja2.Cell(filaExcel, 8).Value = dato.SubItems(20).Text
+                    hoja2.Cell(filaExcel, 9).Value = dato.SubItems(26).Text  ''BONO DE PUNTUALIDAD
                     hoja2.Cell(filaExcel, 10).Value = ""
-                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(23).Text
+                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(23).Text ''PRIMA VACACIONAL
                     hoja2.Cell(filaExcel, 12).Value = ""
-                    hoja2.Cell(filaExcel, 13).Value = dato.SubItems(24).Text
-                    hoja2.Cell(filaExcel, 14).Value = dato.SubItems(25).Text
-                    hoja2.Cell(filaExcel, 15).Value = dato.SubItems(27).Text
-                    hoja2.Cell(filaExcel, 16).Value = dato.SubItems(28).Text
+                    hoja2.Cell(filaExcel, 13).Value = dato.SubItems(29).Text ''BONO PROCESO
+                    hoja2.Cell(filaExcel, 14).Value = " " ''dato.SubItems(25).Text
+                    hoja2.Cell(filaExcel, 15).Value = dato.SubItems(28).Text ''FOMENTO DEPORTE
+                    hoja2.Cell(filaExcel, 16).Value = " "
+                    hoja2.Cell(filaExcel, 17).Value = dato.SubItems(17).Text ''bono asistencia
+                    hoja2.Cell(filaExcel, 18).Value = " "
 
                     ''Deducciones
-                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(27).Text
                     hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
                     hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text
                     hoja3.Cell(filaExcel, 4).Value = dato.SubItems(33).Text
