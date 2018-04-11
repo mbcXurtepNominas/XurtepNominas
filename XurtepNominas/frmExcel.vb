@@ -898,9 +898,6 @@ Public Class frmExcel
     Private Sub tsbProcesos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbProcesos.Click
 
         Try
-
-
-
             Dim tipo As String
             '' Format(Date.Now, "MMMM yyyy") & " " & cboTipoR.SelectedItem.ToString()
             Select Case cboTipoR.SelectedItem.ToString()
@@ -996,13 +993,13 @@ Public Class frmExcel
                     hoja2.Cell(filaExcel, 8).Value = dato.SubItems(20).Text
                     hoja2.Cell(filaExcel, 9).Value = dato.SubItems(26).Text  ''BONO DE PUNTUALIDAD
                     hoja2.Cell(filaExcel, 10).Value = ""
-                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(23).Text ''PRIMA VACACIONAL
-                    hoja2.Cell(filaExcel, 12).Value = ""
+                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(22).Text ''PRIMA VACACIONAL
+                    hoja2.Cell(filaExcel, 12).Value = dato.SubItems(23).Text
                     hoja2.Cell(filaExcel, 13).Value = dato.SubItems(29).Text ''BONO PROCESO
                     hoja2.Cell(filaExcel, 14).Value = " " ''dato.SubItems(25).Text
                     hoja2.Cell(filaExcel, 15).Value = dato.SubItems(28).Text ''FOMENTO DEPORTE
                     hoja2.Cell(filaExcel, 16).Value = " "
-                    hoja2.Cell(filaExcel, 17).Value = dato.SubItems(17).Text ''bono asistencia
+                    hoja2.Cell(filaExcel, 17).Value = dato.SubItems(27).Text ''bono asistencia
                     hoja2.Cell(filaExcel, 18).Value = " "
 
                     ''Deducciones
