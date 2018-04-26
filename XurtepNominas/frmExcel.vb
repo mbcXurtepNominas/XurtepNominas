@@ -10,6 +10,7 @@ Public Class frmExcel
     Dim SQL As String
     Dim contacolumna As Integer
     Dim ini, fin As String
+    Dim rutita As String
 
     Private Sub frmExcel_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         'MostrarEmpresasC()
@@ -75,6 +76,7 @@ Public Class frmExcel
         Try
             If File.Exists(lblRuta.Text) Then
                 Dim Archivo As String = lblRuta.Text
+                rutita = lblRuta.Text
                 Dim Hoja As String
 
 
@@ -165,7 +167,7 @@ Public Class frmExcel
                     lsvLista.Columns(46).Width = 126
                     lsvLista.Columns(47).Width = 127
                     lsvLista.Columns(48).Width = 128
-                    lsvLista.Columns(49).Width = 129
+                    '' lsvLista.Columns(49).Width = 129
 
                     Dim Filas As Long = sheet.RowsUsed().Count() + 1
                     For f As Integer = 6 To Filas
@@ -428,6 +430,20 @@ Public Class frmExcel
                     filaExcel = filaExcel + 1
 
                 Next
+                'Dim tmp() = rutita.Split("\")
+                'Dim ind As Integer = 0
+                'For index As Integer = 1 To 31
+                '    ''Debug.Write(index.ToString & " ")
+                '    If (tmp(tmp.Length - 1).IndexOf(index.ToString) > -1) Then
+
+                '        ind = tmp(tmp.Length - 1).IndexOf(index.ToString)
+
+                '        Exit For
+                '    End If
+
+                'Next
+                'Dim fectitulo = Mid(tmp(tmp.Length - 1), ind, 12)
+
                 Dim moment As Date = Date.Now()
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
