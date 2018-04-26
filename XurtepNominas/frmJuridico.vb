@@ -91,7 +91,7 @@ Public Class frmJuridico
                 Documento.Bookmarks.Item("fSueldoBase").Range.Text = Trim(fEmpleado.Item("fSueldoBase"))
 
                 Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
-                Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
+                ''Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
                 ''dFechaCap
                 Documento.Bookmarks.Item("cTelefono2").Range.Text = Trim(fEmpleado.Item("cTelefono"))
 
@@ -162,6 +162,10 @@ Public Class frmJuridico
                         If cTipo(0).Item("iIdTipoDocumento") = 3 Then
                             Documento.Bookmarks.Item("cCertificadoM").Range.Text = Trim(Fila.Item("cCodigo"))
                             Documento.Bookmarks.Item("cCertificadoMVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
+                        End If
+                        If cTipo(0).Item("iIdTipoDocumento") = 4 Then
+                            Documento.Bookmarks.Item("cPasaporte").Range.Text = Trim(Fila.Item("cCodigo"))
+                            Documento.Bookmarks.Item("cPasaporteVencimiento").Range.Text = Trim(Fila.Item("dFechaVencimiento"))
                         End If
 
                     Next
