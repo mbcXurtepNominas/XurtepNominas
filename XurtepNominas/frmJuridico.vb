@@ -85,13 +85,17 @@ Public Class frmJuridico
                 fechanac = Trim(fEmpleado.Item("dFechaNac"))
                 Dim edad As Integer = DateDiff(DateInterval.Year, fechanac, Date.Today)
                 Documento.Bookmarks.Item("cEdad").Range.Text = edad
-                Documento.Bookmarks.Item("dFecha").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+
+                Dim Fec As String = DateTime.Now.ToLongDateString()
+                Dim Fe() As String = Fec.Split(",")
+
+                Documento.Bookmarks.Item("dFecha").Range.Text = Fe(1).ToString ''DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("dFechaNac").Range.Text = fechanac
-                Documento.Bookmarks.Item("dFecha2").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                Documento.Bookmarks.Item("dFecha2").Range.Text = Fe(1).ToString ''DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("fSueldoBase").Range.Text = Trim(fEmpleado.Item("fSueldoBase"))
 
                 Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
-                ''Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
+                ''Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = Fe(1).ToString '' DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
                 ''dFechaCap
                 Documento.Bookmarks.Item("cTelefono2").Range.Text = Trim(fEmpleado.Item("cTelefono"))
 
@@ -240,14 +244,16 @@ Public Class frmJuridico
                 fechanac = Trim(fEmpleado.Item("dFechaNac"))
                 Dim edad As Integer = DateDiff(DateInterval.Year, fechanac, Date.Today)
                 Documento.Bookmarks.Item("cEdad").Range.Text = edad
-                Documento.Bookmarks.Item("dFecha").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                Dim Fec As String = DateTime.Now.ToLongDateString()
+                Dim Fe() As String = Fec.Split(",")
+                Documento.Bookmarks.Item("dFecha").Range.Text = Fe(1).ToString '' DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("dFechaNac").Range.Text = fechanac
-                Documento.Bookmarks.Item("dFecha2").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
+                Documento.Bookmarks.Item("dFecha2").Range.Text = Fe(1).ToString ''DateTime.Now.ToString("dd/MM/yyyy")
                 Documento.Bookmarks.Item("fSueldoBase").Range.Text = Trim(fEmpleado.Item("fSueldoBase"))
 
                 Documento.Bookmarks.Item("cNumeroCuenta").Range.Text = Trim(fEmpleado.Item("NumCuenta"))
-                Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
-                ''dFechaCap
+                'Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = Fe(1).ToString '' DateTime.Now.ToString("dd/MM/yyyy") ''Trim(fEmpleado.Item("dFechaCap"))
+                ' ''dFechaCap
                 Documento.Bookmarks.Item("dFechaInicioContrato").Range.Text = DateTime.Now.ToString("dd/MM/yyyy")
                 'dFechaFinContrato
                 Documento.Bookmarks.Item("dFechaFinContrato").Range.Text = Trim(fEmpleado.Item("dFechaFin"))
