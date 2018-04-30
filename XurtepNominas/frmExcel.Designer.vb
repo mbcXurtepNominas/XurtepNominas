@@ -34,7 +34,7 @@ Partial Class frmExcel
         Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tsbGuardar2 = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesos = New System.Windows.Forms.ToolStripButton()
-        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
+        Me.tsbMaecco = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
         Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
@@ -103,7 +103,7 @@ Partial Class frmExcel
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbProcesos, Me.tsbLayout, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbGuardar2, Me.tsbProcesos, Me.tsbMaecco, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1056, 54)
@@ -162,17 +162,16 @@ Partial Class frmExcel
         Me.tsbProcesos.Text = "Procesos"
         Me.tsbProcesos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'tsbLayout
+        'tsbMaecco
         '
-        Me.tsbLayout.AutoSize = False
-        Me.tsbLayout.Enabled = False
-        Me.tsbLayout.Image = Global.XurtepNominas.My.Resources.Resources.disquete
-        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbLayout.Name = "tsbLayout"
-        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
-        Me.tsbLayout.Text = "LAYOUT "
-        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbLayout.Visible = False
+        Me.tsbMaecco.AutoSize = False
+        Me.tsbMaecco.Enabled = False
+        Me.tsbMaecco.Image = Global.XurtepNominas.My.Resources.Resources.disquete
+        Me.tsbMaecco.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbMaecco.Name = "tsbMaecco"
+        Me.tsbMaecco.Size = New System.Drawing.Size(90, 51)
+        Me.tsbMaecco.Text = "Maecco"
+        Me.tsbMaecco.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'tsbCancelar
         '
@@ -340,6 +339,6 @@ Partial Class frmExcel
     Friend WithEvents cboMes As System.Windows.Forms.ComboBox
     Friend WithEvents cboTipoR As System.Windows.Forms.ComboBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents tsbLayout As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbMaecco As System.Windows.Forms.ToolStripButton
     Friend WithEvents tsbProcesos As System.Windows.Forms.ToolStripButton
 End Class

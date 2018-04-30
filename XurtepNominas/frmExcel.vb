@@ -62,7 +62,7 @@ Public Class frmExcel
         pnlCatalogo.Enabled = False
         tsbGuardar.Enabled = False
         tsbGuardar2.Enabled = False
-        tsbLayout.Enabled = False
+        tsbMaecco.Enabled = False
         tsbProcesos.Enabled = False
 
         tsbCancelar.Enabled = False
@@ -114,7 +114,7 @@ Public Class frmExcel
 
                     Next
 
-                    
+
                     lsvLista.Columns(1).Width = 100
 
                     lsvLista.Columns(2).Width = 250
@@ -241,7 +241,7 @@ Public Class frmExcel
                         MessageBox.Show("Se han encontrado " & FormatNumber(lsvLista.Items.Count, 0) & " registros en el archivo.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         tsbGuardar.Enabled = True
                         tsbGuardar2.Enabled = True
-                        tsbLayout.Enabled = True
+                        tsbMaecco.Enabled = True
                         tsbProcesos.Enabled = True
 
                         tsbCancelar.Enabled = True
@@ -334,7 +334,7 @@ Public Class frmExcel
                 Dim hoja3 As IXLWorksheet = libro.Worksheets(2)
                 Dim hoja4 As IXLWorksheet = libro.Worksheets(3)
 
-             
+
 
                 '' filaExcel = 6
                 For Each dato As ListViewItem In lsvLista.CheckedItems
@@ -474,7 +474,7 @@ Public Class frmExcel
 
 
 
-       
+
     End Sub
 
 
@@ -498,13 +498,13 @@ Public Class frmExcel
         tsbProcesos.Enabled = False
         tsbGuardar.Enabled = False
         tsbGuardar2.Enabled = False
-        tsbLayout.Enabled = False
+        tsbMaecco.Enabled = False
 
         tsbCancelar.Enabled = False
         tsbNuevo.Enabled = True
     End Sub
 
-  
+
 
     Private Sub abiriEmpresasC()
         'Declaramos la variable nombre
@@ -519,10 +519,10 @@ Public Class frmExcel
                         MessageBoxIcon.Information)
     End Sub
 
-    
-    
+
+
     Private Sub cmdVerificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdVerificar.Click
-        
+
         recorrerLista()
         ''recorrerLista()
 
@@ -562,20 +562,20 @@ Public Class frmExcel
     Public Sub recorrerLista2()
         Try
 
-       
+
             Dim lsvDate As New ListView
             Dim lsvDate2 As ListViewItem '' = lsvDate.SelectedItems(0)
 
-        If lsvLista.CheckedItems.Count > 0 Then
-            For Each dato As ListViewItem In lsvLista.CheckedItems
+            If lsvLista.CheckedItems.Count > 0 Then
+                For Each dato As ListViewItem In lsvLista.CheckedItems
                     lsvDate.Items.Add(dato.SubItems(1).Text)
                     '' MsgBox(dato.SubItems(1).Text)
-            Next
-        End If
+                Next
+            End If
 
 
             Dim filas, filas2 As Integer
-        Dim contador As Integer = 0
+            Dim contador As Integer = 0
 
             For filas = 1 To lsvDate.Items.Count - 1
                 For filas2 = 1 + filas To lsvDate.Items.Count - 1
@@ -601,24 +601,24 @@ Public Class frmExcel
                 End If
             Next
 
-        MsgBox(contador.ToString & " Datos repetidos")
+            MsgBox(contador.ToString & " Datos repetidos")
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
 
     End Sub
 
-  
-    
 
-    
 
-  
+
+
+
+
     Private Sub tsbGuardar2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbGuardar2.Click
-       
+
 
         Try
-         
+
 
 
             Dim tipo As String
@@ -632,7 +632,7 @@ Public Class frmExcel
                     tipo = "NA"
             End Select
 
-           
+
             Dim filaExcel As Integer = 2
             Dim dialogo As New SaveFileDialog()
 
@@ -775,142 +775,142 @@ Public Class frmExcel
             End If
 
         Catch ex As Exception
-      
+
             MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         End Try
 
     End Sub
 
-   
-    Private Sub tsbLayout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbLayout.Click
 
-        Try
+    'Private Sub tsbLayout_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbLayout.Click
 
-            Dim filaExcel As Integer = 2
-            Dim dialogo As New SaveFileDialog()
+    '    Try
 
-            If lsvLista.CheckedItems.Count > 0 Then
+    '        Dim filaExcel As Integer = 2
+    '        Dim dialogo As New SaveFileDialog()
 
-                Dim ruta As String
-                ruta = My.Application.Info.DirectoryPath() & "\Archivos\xurtep.xlsx"
+    '        If lsvLista.CheckedItems.Count > 0 Then
 
-                Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
+    '            Dim ruta As String
+    '            ruta = My.Application.Info.DirectoryPath() & "\Archivos\xurtep.xlsx"
 
-
-                Dim libro As New ClosedXML.Excel.XLWorkbook
+    '            Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
 
 
-                book.Worksheet(1).CopyTo(libro, "Empleados")
-              
+    '            Dim libro As New ClosedXML.Excel.XLWorkbook
 
 
-                Dim hoja As IXLWorksheet = libro.Worksheets(0)
-              
-                For Each dato As ListViewItem In lsvLista.CheckedItems
-
-                    hoja.Range(2, 1, filaExcel, 1).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 5, filaExcel, 5).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 7, filaExcel, 7).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 25, filaExcel, 25).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 26, filaExcel, 26).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 13, filaExcel, 14).Style.NumberFormat.Format = "@"
-                    hoja.Range(2, 40, filaExcel, 40).Style.NumberFormat.Format = "@"
+    '            book.Worksheet(1).CopyTo(libro, "Empleados")
 
 
 
+    '            Dim hoja As IXLWorksheet = libro.Worksheets(0)
 
-                    ''NUEVO
-                    Dim Nombrecompleto As String = dato.SubItems(2).Text
-                    Dim Nombre() As String = Nombrecompleto.Split(" ")
+    '            For Each dato As ListViewItem In lsvLista.CheckedItems
 
-                    hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
-                    hoja.Cell(filaExcel, 2).Value = Nombrecompleto ''Nombre(2).ToString
-                    hoja.Cell(filaExcel, 3).Value = Nombre(0).ToString
-                    hoja.Cell(filaExcel, 4).Value = " " ''Nombre(1).ToString
-                    hoja.Cell(filaExcel, 5).Value = dato.SubItems(4).Text
-                    hoja.Cell(filaExcel, 6).Value = dato.SubItems(5).Text
-                    hoja.Cell(filaExcel, 7).Value = dato.SubItems(6).Text
-                    hoja.Cell(filaExcel, 8).Value = "(No asignada)"
-                    hoja.Cell(filaExcel, 9).Value = "(No asignada)"
-                    hoja.Cell(filaExcel, 10).Value = 30
-                    hoja.Cell(filaExcel, 11).Value = 91948
-
-                    hoja.Cell(filaExcel, 12).Value = "MASCULINO" ''dato.SubItems(45)Text
-                    hoja.Cell(filaExcel, 13).Value = Date.Parse(dato.SubItems(7).Text.ToString)
-                    hoja.Cell(filaExcel, 14).Value = Date.Parse(dato.SubItems(45).Text.ToString)
-                    hoja.Cell(filaExcel, 15).Value = dato.SubItems(9).Text
-                    hoja.Cell(filaExcel, 16).Value = dato.SubItems(9).Text
-                    hoja.Cell(filaExcel, 17).Value = dato.SubItems(13).Text
-                    hoja.Cell(filaExcel, 18).Value = dato.SubItems(14).Text
-                    hoja.Cell(filaExcel, 19).Value = dato.SubItems(5).Text.Substring(11, 2).ToString
-                    hoja.Cell(filaExcel, 20).Value = "MEXICANA"
-                    hoja.Cell(filaExcel, 21).Value = dato.SubItems(15).Text
-                    hoja.Cell(filaExcel, 22).Value = "(Ninguno)"
-                    hoja.Cell(filaExcel, 23).Value = dato.SubItems(18).Text
-                    hoja.Cell(filaExcel, 24).Value = dato.SubItems(43).Text
-                    hoja.Cell(filaExcel, 25).Value = dato.SubItems(44).Text
-                    hoja.Cell(filaExcel, 26).Value = "Xicotencatl # 444, int: B, Colonia. Faros, C.P. 91709, Veracruz. Ver."
-                    hoja.Cell(filaExcel, 27).Value = "VERCARUZ"
-                    hoja.Cell(filaExcel, 28).Value = 30
-                    hoja.Cell(filaExcel, 29).Value = "91709"
-                    hoja.Cell(filaExcel, 30).Value = 0
-                    hoja.Cell(filaExcel, 31).Value = 0
-                    hoja.Cell(filaExcel, 32).Value = dato.SubItems(11).Text
-                    hoja.Cell(filaExcel, 33).Value = "Mensual"
-                    hoja.Cell(filaExcel, 34).Value = "correo@mail.com"
-                    hoja.Cell(filaExcel, 35).Value = "(No Asignado)"
-                    hoja.Cell(filaExcel, 36).Value = "(No Asignado)"
-                    hoja.Cell(filaExcel, 37).Value = dato.SubItems(15).Text
-                    hoja.Cell(filaExcel, 38).Value = 1
-                    hoja.Cell(filaExcel, 39).Value = "CASADO"
-                    hoja.Cell(filaExcel, 40).Value = dato.SubItems(45).Text
-                    hoja.Cell(filaExcel, 41).Value = ini
-                    hoja.Cell(filaExcel, 42).Value = fin
-                    hoja.Cell(filaExcel, 43).Value = "(No asignado)"
-
-
-                    pgbProgreso.Value += 1
-                    't = t + 1
-                    filaExcel = filaExcel + 1
-                Next
-                pgbProgreso.Value = 0
-
-               
-                Dim moment As Date = Date.Now()
-                Dim month As Integer = moment.Month
-                Dim year As Integer = moment.Year
-                dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = "Layout_Empleados_"
-                dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
-                ''  dialogo.ShowDialog()
-
-                If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    ' OK button pressed
-                    libro.SaveAs(dialogo.FileName)
-                    libro = Nothing
-                    MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Else
-                    MessageBox.Show("No se guardo el archivo", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                End If
-
-            Else
-
-                MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End If
+    '                hoja.Range(2, 1, filaExcel, 1).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 5, filaExcel, 5).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 7, filaExcel, 7).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 25, filaExcel, 25).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 26, filaExcel, 26).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 13, filaExcel, 14).Style.NumberFormat.Format = "@"
+    '                hoja.Range(2, 40, filaExcel, 40).Style.NumberFormat.Format = "@"
 
 
 
-        Catch ex As Exception
+
+    '                ''NUEVO
+    '                Dim Nombrecompleto As String = dato.SubItems(2).Text
+    '                Dim Nombre() As String = Nombrecompleto.Split(" ")
+
+    '                hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
+    '                hoja.Cell(filaExcel, 2).Value = Nombrecompleto ''Nombre(2).ToString
+    '                hoja.Cell(filaExcel, 3).Value = Nombre(0).ToString
+    '                hoja.Cell(filaExcel, 4).Value = " " ''Nombre(1).ToString
+    '                hoja.Cell(filaExcel, 5).Value = dato.SubItems(4).Text
+    '                hoja.Cell(filaExcel, 6).Value = dato.SubItems(5).Text
+    '                hoja.Cell(filaExcel, 7).Value = dato.SubItems(6).Text
+    '                hoja.Cell(filaExcel, 8).Value = "(No asignada)"
+    '                hoja.Cell(filaExcel, 9).Value = "(No asignada)"
+    '                hoja.Cell(filaExcel, 10).Value = 30
+    '                hoja.Cell(filaExcel, 11).Value = 91948
+
+    '                hoja.Cell(filaExcel, 12).Value = "MASCULINO" ''dato.SubItems(45)Text
+    '                hoja.Cell(filaExcel, 13).Value = Date.Parse(dato.SubItems(7).Text.ToString)
+    '                hoja.Cell(filaExcel, 14).Value = Date.Parse(dato.SubItems(45).Text.ToString)
+    '                hoja.Cell(filaExcel, 15).Value = dato.SubItems(9).Text
+    '                hoja.Cell(filaExcel, 16).Value = dato.SubItems(9).Text
+    '                hoja.Cell(filaExcel, 17).Value = dato.SubItems(13).Text
+    '                hoja.Cell(filaExcel, 18).Value = dato.SubItems(14).Text
+    '                hoja.Cell(filaExcel, 19).Value = dato.SubItems(5).Text.Substring(11, 2).ToString
+    '                hoja.Cell(filaExcel, 20).Value = "MEXICANA"
+    '                hoja.Cell(filaExcel, 21).Value = dato.SubItems(15).Text
+    '                hoja.Cell(filaExcel, 22).Value = "(Ninguno)"
+    '                hoja.Cell(filaExcel, 23).Value = dato.SubItems(18).Text
+    '                hoja.Cell(filaExcel, 24).Value = dato.SubItems(43).Text
+    '                hoja.Cell(filaExcel, 25).Value = dato.SubItems(44).Text
+    '                hoja.Cell(filaExcel, 26).Value = "Xicotencatl # 444, int: B, Colonia. Faros, C.P. 91709, Veracruz. Ver."
+    '                hoja.Cell(filaExcel, 27).Value = "VERCARUZ"
+    '                hoja.Cell(filaExcel, 28).Value = 30
+    '                hoja.Cell(filaExcel, 29).Value = "91709"
+    '                hoja.Cell(filaExcel, 30).Value = 0
+    '                hoja.Cell(filaExcel, 31).Value = 0
+    '                hoja.Cell(filaExcel, 32).Value = dato.SubItems(11).Text
+    '                hoja.Cell(filaExcel, 33).Value = "Mensual"
+    '                hoja.Cell(filaExcel, 34).Value = "correo@mail.com"
+    '                hoja.Cell(filaExcel, 35).Value = "(No Asignado)"
+    '                hoja.Cell(filaExcel, 36).Value = "(No Asignado)"
+    '                hoja.Cell(filaExcel, 37).Value = dato.SubItems(15).Text
+    '                hoja.Cell(filaExcel, 38).Value = 1
+    '                hoja.Cell(filaExcel, 39).Value = "CASADO"
+    '                hoja.Cell(filaExcel, 40).Value = dato.SubItems(45).Text
+    '                hoja.Cell(filaExcel, 41).Value = ini
+    '                hoja.Cell(filaExcel, 42).Value = fin
+    '                hoja.Cell(filaExcel, 43).Value = "(No asignado)"
 
 
-        End Try
+    '                pgbProgreso.Value += 1
+    '                't = t + 1
+    '                filaExcel = filaExcel + 1
+    '            Next
+    '            pgbProgreso.Value = 0
 
-    End Sub
 
-    
+    '            Dim moment As Date = Date.Now()
+    '            Dim month As Integer = moment.Month
+    '            Dim year As Integer = moment.Year
+    '            dialogo.DefaultExt = "*.xlsx"
+    '            dialogo.FileName = "Layout_Empleados_"
+    '            dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+    '            ''  dialogo.ShowDialog()
+
+    '            If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+    '                ' OK button pressed
+    '                libro.SaveAs(dialogo.FileName)
+    '                libro = Nothing
+    '                MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '            Else
+    '                MessageBox.Show("No se guardo el archivo", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+    '            End If
+
+    '        Else
+
+    '            MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    '        End If
+
+
+
+    '    Catch ex As Exception
+
+
+    '    End Try
+
+    'End Sub
+
+
     Private Sub tsbProcesos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbProcesos.Click
 
         Try
@@ -1019,7 +1019,7 @@ Public Class frmExcel
                     hoja2.Cell(filaExcel, 18).Value = " "
 
                     ''Deducciones
-                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(27).Text
+                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
                     hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
                     hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text
                     hoja3.Cell(filaExcel, 4).Value = dato.SubItems(33).Text
@@ -1077,6 +1077,178 @@ Public Class frmExcel
 
         End Try
 
+
+    End Sub
+
+  
+    Private Sub tsbMaecco_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbMaecco.Click
+
+        Try
+            Dim tipo As String
+
+            '' Format(Date.Now, "MMMM yyyy") & " " & cboTipoR.SelectedItem.ToString()
+            Select Case cboTipoR.SelectedItem.ToString()
+                Case "NN"
+                    tipo = "ABORDO"
+                Case "ND"
+                    tipo = "DESCANSO"
+                Case Else
+                    tipo = "NOMINA"
+
+            End Select
+
+
+            Dim filaExcel As Integer = 2
+            Dim dialogo As New SaveFileDialog()
+
+            If lsvLista.CheckedItems.Count > 0 Then
+
+                Dim ruta As String
+                ruta = My.Application.Info.DirectoryPath() & "\Archivos\maecco1.xlsx"
+
+                Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
+
+
+                Dim libro As New ClosedXML.Excel.XLWorkbook
+
+
+                book.Worksheet(1).CopyTo(libro, "Generales")
+                book.Worksheet(3).CopyTo(libro, "Deducciones")
+                book.Worksheet(2).CopyTo(libro, "Percepciones")
+
+                book.Worksheet(4).CopyTo(libro, "Otros Pagos")
+
+
+                Dim hoja As IXLWorksheet = libro.Worksheets(0)
+                Dim hoja2 As IXLWorksheet = libro.Worksheets(2)
+                Dim hoja3 As IXLWorksheet = libro.Worksheets(1)
+                Dim hoja4 As IXLWorksheet = libro.Worksheets(3)
+                For Each dato As ListViewItem In lsvLista.CheckedItems
+
+                    hoja.Range(2, 1, filaExcel, 1).Style.NumberFormat.Format = "@"
+                    hoja.Range(2, 5, filaExcel, 5).Style.NumberFormat.Format = "@"
+                    hoja.Range(2, 6, filaExcel, 6).Style.NumberFormat.Format = "@"
+                    hoja.Range(2, 26, filaExcel, 26).Style.NumberFormat.Format = "@"
+                    ''Generales
+                    hoja.Cell(filaExcel, 1).Value = dato.SubItems(1).Text
+                    hoja.Cell(filaExcel, 2).Value = dato.SubItems(4).Text
+                    hoja.Cell(filaExcel, 3).Value = dato.SubItems(2).Text
+                    hoja.Cell(filaExcel, 4).Value = dato.SubItems(5).Text
+                    hoja.Cell(filaExcel, 5).Value = dato.SubItems(6).Text
+                    hoja.Cell(filaExcel, 6).Value = dato.SubItems(46).Text
+                    hoja.Cell(filaExcel, 7).Value = dato.SubItems(14).Text
+                    hoja.Cell(filaExcel, 8).Value = dato.SubItems(13).Text
+                    hoja.Cell(filaExcel, 9).Value = "F2115607102" ''dato.SubItems(8).Text 
+                    hoja.Cell(filaExcel, 10).Value = "VER" ''dato.SubItems(9).Text  
+                    hoja.Cell(filaExcel, 11).Value = dato.SubItems(15).Text
+
+                    Dim fecha() As String = dato.SubItems(47).Text.Split(" ")
+                    hoja.Cell(filaExcel, 12).Value = fecha(0) ''dato.SubItems(45).Text
+                    hoja.Cell(filaExcel, 13).Value = "3" ''dato.SubItems(12).Text 
+                    hoja.Cell(filaExcel, 14).Value = ""  ''dato.SubItems(14).Text
+                    hoja.Cell(filaExcel, 15).Value = ""  ''dato.SubItems(15).Text
+                    hoja.Cell(filaExcel, 16).Value = "1"  ''dato.SubItems(16).Text
+                    hoja.Cell(filaExcel, 17).Value = ""  ''dato.SubItems(17).Text
+                    hoja.Cell(filaExcel, 18).Value = "2"  ''dato.SubItems(18).Text
+                    hoja.Cell(filaExcel, 19).Value = ""  ''dato.SubItems(19).Text
+                    hoja.Cell(filaExcel, 20).Value = ""
+                    hoja.Cell(filaExcel, 21).Value = dato.SubItems(9).Text  '' dato.SubItems(21).Text
+                    hoja.Cell(filaExcel, 22).Value = "4"  ''dato.SubItems(22).Text
+                    hoja.Cell(filaExcel, 23).Value = "Clase IV"  ''dato.SubItems(23).Text
+                    hoja.Cell(filaExcel, 24).Value = "5"  ''dato.SubItems(24).Text
+                    hoja.Cell(filaExcel, 25).Value = "MENSUAL"
+                    hoja.Cell(filaExcel, 26).Value = dato.SubItems(45).Text  ''dato.SubItems(26).Text
+                    hoja.Cell(filaExcel, 27).Value = ""  ''dato.SubItems(27).Text
+                    hoja.Cell(filaExcel, 28).Value = "" ''dato.SubItems(28).Text
+                    hoja.Cell(filaExcel, 29).Value = "NOMINA" '' dato.SubItems(29).Text MES DE PAGO
+                    hoja.Cell(filaExcel, 30).Value = cboMes.SelectedIndex + 1
+                    hoja.Cell(filaExcel, 31).Value = dato.SubItems(10).Text
+                    pgbProgreso.Value += 1
+                    't = t + 1
+                    filaExcel = filaExcel + 1
+                Next
+                pgbProgreso.Value = 0
+
+                filaExcel = 4
+                For Each dato As ListViewItem In lsvLista.CheckedItems
+                    ''Percepciones
+                    hoja2.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                    hoja2.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                    hoja2.Cell(filaExcel, 3).Value = dato.SubItems(22).Text ''VACACIONES PROPORCIONALES
+                    hoja2.Cell(filaExcel, 4).Value = ""
+                    hoja2.Cell(filaExcel, 5).Value = dato.SubItems(21).Text  ''DESC. SEM OBLIGATORIO
+                    hoja2.Cell(filaExcel, 6).Value = ""
+                    hoja2.Cell(filaExcel, 7).Value = dato.SubItems(20).Text  ''TIEMPO EXTRA OCASIONAL
+                    hoja2.Cell(filaExcel, 8).Value = "" 'dato.SubItems(19).Text
+                    hoja2.Cell(filaExcel, 9).Value = dato.SubItems(19).Text  ''TIEMPO EXTRA FIJO
+                    hoja2.Cell(filaExcel, 10).Value = ""
+                    hoja2.Cell(filaExcel, 11).Value = dato.SubItems(18).Text ''SUELDO BASE
+                    hoja2.Cell(filaExcel, 12).Value = "" ' dato.SubItems(23).Text
+                    hoja2.Cell(filaExcel, 13).Value = dato.SubItems(24).Text ''AGUINALDO
+                    hoja2.Cell(filaExcel, 14).Value = dato.SubItems(25).Text  ''dato.SubItems(25).Text
+                    hoja2.Cell(filaExcel, 15).Value = dato.SubItems(27).Text 'PRIMA VACACIONAL
+                    hoja2.Cell(filaExcel, 16).Value = dato.SubItems(28).Text
+                    hoja2.Cell(filaExcel, 17).Value = " " '' dato.SubItems(27).Text ''PRIMA DE ANTIGËDAD
+                    hoja2.Cell(filaExcel, 18).Value = " "
+
+                    ''Deducciones
+                    hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                    hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                    hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text 'IMSS
+                    hoja3.Cell(filaExcel, 4).Value = dato.SubItems(33).Text 'ISR
+                    hoja3.Cell(filaExcel, 5).Value = dato.SubItems(41).Text 'PRESTAMOS
+                    hoja3.Cell(filaExcel, 6).Value = ""
+                    hoja3.Cell(filaExcel, 7).Value = ""
+                    hoja3.Cell(filaExcel, 8).Value = dato.SubItems(32).Text 'INCAPACIDAD *IMPORTE*
+                    hoja3.Cell(filaExcel, 9).Value = dato.SubItems(40).Text  'PENSION ALIMENTICIA
+                    hoja3.Cell(filaExcel, 10).Value = dato.SubItems(35).Text 'INFONAVIT
+                    hoja3.Cell(filaExcel, 11).Value = dato.SubItems(39).Text 'FONACOT
+                    hoja3.Cell(filaExcel, 12).Value = dato.SubItems(38).Text 'CUOTA SINDICAL
+
+
+                    ''Otros Pagos
+                    'hoja4.Columns("A").Width = 20
+                    'hoja4.Columns("B").Width = 20
+                    'hoja4.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
+                    'hoja4.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
+                    'hoja4.Cell(filaExcel, 3).Value = dato.SubItems(37).Text
+                    'hoja4.Cell(filaExcel, 4).Value = dato.SubItems(48).Text
+
+                    filaExcel = filaExcel + 1
+
+
+                Next
+                Dim moment As Date = Date.Now()
+                Dim month As Integer = moment.Month
+                Dim year As Integer = moment.Year
+                dialogo.DefaultExt = "*.xlsx"
+                dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Maecco " & tipo & " "
+                dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+                ''  dialogo.ShowDialog()
+
+                If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                    ' OK button pressed
+                    libro.SaveAs(dialogo.FileName)
+                    libro = Nothing
+                    MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("No se guardo el archivo", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                End If
+
+
+
+
+            Else
+
+                MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
+
+        Catch ex As Exception
+
+            MessageBox.Show(ex.ToString(), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End Try
 
     End Sub
 End Class
