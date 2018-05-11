@@ -11,6 +11,7 @@ Public Class frmExcel
     Dim contacolumna As Integer
     Dim ini, fin As String
     Dim rutita As String
+    Dim fechadepago As String
 
     Private Sub frmExcel_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         'MostrarEmpresasC()
@@ -206,6 +207,7 @@ Public Class frmExcel
 
                                 'If f = 2 And c = 4 Then
                                 Dim fecha As Date = sheet.Cell(2, 4).Value.ToString()
+                                fechadepago = sheet.Cell(2, 2).Value.ToString()
                                 ini = sheet.Cell(2, 3).Value.ToString()
                                 fin = sheet.Cell(2, 4).Value.ToString()
 
@@ -447,8 +449,10 @@ Public Class frmExcel
                 Dim moment As Date = Date.Now()
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
+
                 dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = "Isla-Arca " & Format(moment.Date, "yyyy dd MMMM") & " " & cboTipoR.SelectedItem.ToString()
+                Dim fechita() As String = Date.Parse(fechadepago).ToLongDateString().Split(",")
+                dialogo.FileName = "Isla-Arca " & fechita(1).ToUpper() & " " & cboTipoR.SelectedItem.ToString()
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 
@@ -534,7 +538,7 @@ Public Class frmExcel
         Dim filas, filas2 As Integer
         Dim contador As Integer = 0
 
-        For filas = 1 To lsvLista.Items.Count - 1
+        For filas = 0 To lsvLista.Items.Count - 1
             For filas2 = 1 + filas To lsvLista.Items.Count - 1
                 ''MsgBox(lsvLista.Items.Item(filas).SubItems(1).Text)
 
@@ -754,7 +758,8 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Marinos " & tipo & " "
+                Dim fechita() As String = Date.Parse(fechadepago).ToLongDateString().Split(",")
+                dialogo.FileName = fechita(1).ToUpper & " " & "MARINO " & tipo & " "
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 
@@ -1049,6 +1054,7 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
+
                 dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Procesos " & tipo & " "
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
@@ -1080,7 +1086,7 @@ Public Class frmExcel
 
     End Sub
 
-  
+
     Private Sub tsbMaecco_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbMaecco.Click
 
         Try
@@ -1222,7 +1228,9 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
-                dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Maecco " & tipo & " "
+                Dim fechita() As String = Date.Parse(fechadepago).ToLongDateString().Split(",")
+                '' dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Maecco " & tipo & " "
+                dialogo.FileName = fechita(1).ToUpper & " " & "Maecco " & tipo & " "
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 
