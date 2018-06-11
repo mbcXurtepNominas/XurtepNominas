@@ -4,6 +4,7 @@ Imports System.Text.RegularExpressions
 Imports System.Net.Mime.MediaTypeNames
 Imports Microsoft.Office.Interop
 Imports System.Windows.Forms
+Imports System.Globalization
 
 Public Class frmExcel
     Dim sheetIndex As Integer = -1
@@ -206,12 +207,13 @@ Public Class frmExcel
                                 End If
 
                                 'If f = 2 And c = 4 Then
-                                Dim fecha As Date = sheet.Cell(2, 4).Value.ToString()
+                                Dim fecha As String = sheet.Cell(2, 4).Value.ToString 'Format(DateTime.Parse(sheet.Cell(2, 4).Value), "dd/MM/yyyy hh:mm:ss")
+
                                 fechadepago = sheet.Cell(2, 2).Value.ToString()
                                 ini = sheet.Cell(2, 3).Value.ToString()
                                 fin = sheet.Cell(2, 4).Value.ToString()
 
-                                Dim fec As Date = fecha
+                                Dim fec As DateTime = Convert.ToDateTime(fecha)
                                 cboMes.SelectedIndex = fec.Month - 1
                                 'End If
 
@@ -353,7 +355,7 @@ Public Class frmExcel
                     hoja.Cell(filaExcel, 3).Value = dato.SubItems(2).Text
                     hoja.Cell(filaExcel, 4).Value = dato.SubItems(5).Text
                     hoja.Cell(filaExcel, 5).Value = dato.SubItems(6).Text
-                    hoja.Cell(filaExcel, 6).Value = dato.SubItems(42).Text
+                    hoja.Cell(filaExcel, 6).Value = (dato.SubItems(42).Text.ToString.Replace("'", "")) 'Regex.IsMatch(dato.SubItems(42).Text, "^[0-9]*$")
                     hoja.Cell(filaExcel, 7).Value = dato.SubItems(14).Text
                     hoja.Cell(filaExcel, 8).Value = dato.SubItems(13).Text
                     hoja.Cell(filaExcel, 9).Value = "A1131077105" ''dato.SubItems(8).Text 
