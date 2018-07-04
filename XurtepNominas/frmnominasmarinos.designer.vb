@@ -22,6 +22,7 @@ Partial Class frmnominasmarinos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmnominasmarinos))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbEmpleados = New System.Windows.Forms.ToolStripButton()
@@ -32,6 +33,9 @@ Partial Class frmnominasmarinos
         Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
+        Me.cbodias = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.chkgrupo = New System.Windows.Forms.CheckBox()
         Me.chkinter = New System.Windows.Forms.CheckBox()
         Me.cbobancos = New System.Windows.Forms.ComboBox()
@@ -52,10 +56,15 @@ Partial Class frmnominasmarinos
         Me.pnlProgreso = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
+        Me.cMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EliminarDeLaListaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AgregarTrabajadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlProgreso.SuspendLayout()
+        Me.cMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -65,7 +74,7 @@ Partial Class frmnominasmarinos
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbEmpleados, Me.tsbPeriodos, Me.tsbpuestos, Me.tsbdeptos, Me.tsbImportar, Me.tsbLayout, Me.tsbIEmpleados})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1170, 54)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1357, 54)
         Me.ToolStrip1.TabIndex = 25
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -138,9 +147,12 @@ Partial Class frmnominasmarinos
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlCatalogo.Controls.Add(Me.cbodias)
+        Me.pnlCatalogo.Controls.Add(Me.ComboBox1)
+        Me.pnlCatalogo.Controls.Add(Me.Label3)
         Me.pnlCatalogo.Controls.Add(Me.chkgrupo)
         Me.pnlCatalogo.Controls.Add(Me.chkinter)
         Me.pnlCatalogo.Controls.Add(Me.cbobancos)
@@ -160,8 +172,36 @@ Partial Class frmnominasmarinos
         Me.pnlCatalogo.Controls.Add(Me.cboperiodo)
         Me.pnlCatalogo.Location = New System.Drawing.Point(0, 51)
         Me.pnlCatalogo.Name = "pnlCatalogo"
-        Me.pnlCatalogo.Size = New System.Drawing.Size(1170, 431)
+        Me.pnlCatalogo.Size = New System.Drawing.Size(1357, 431)
         Me.pnlCatalogo.TabIndex = 26
+        '
+        'cbodias
+        '
+        Me.cbodias.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbodias.Location = New System.Drawing.Point(589, 4)
+        Me.cbodias.Name = "cbodias"
+        Me.cbodias.Size = New System.Drawing.Size(127, 27)
+        Me.cbodias.TabIndex = 22
+        Me.cbodias.Text = "Guardar días"
+        Me.cbodias.UseVisualStyleBackColor = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"A", "B", "C", "D", "E"})
+        Me.ComboBox1.Location = New System.Drawing.Point(377, 3)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(59, 27)
+        Me.ComboBox1.TabIndex = 21
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(336, 7)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(45, 19)
+        Me.Label3.TabIndex = 20
+        Me.Label3.Text = "Serie:"
         '
         'chkgrupo
         '
@@ -222,7 +262,7 @@ Partial Class frmnominasmarinos
         'cmdreiniciar
         '
         Me.cmdreiniciar.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdreiniciar.Location = New System.Drawing.Point(986, 3)
+        Me.cmdreiniciar.Location = New System.Drawing.Point(1228, 3)
         Me.cmdreiniciar.Name = "cmdreiniciar"
         Me.cmdreiniciar.Size = New System.Drawing.Size(111, 27)
         Me.cmdreiniciar.TabIndex = 14
@@ -232,7 +272,7 @@ Partial Class frmnominasmarinos
         'cmdincidencias
         '
         Me.cmdincidencias.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdincidencias.Location = New System.Drawing.Point(869, 3)
+        Me.cmdincidencias.Location = New System.Drawing.Point(1111, 3)
         Me.cmdincidencias.Name = "cmdincidencias"
         Me.cmdincidencias.Size = New System.Drawing.Size(111, 27)
         Me.cmdincidencias.TabIndex = 13
@@ -242,7 +282,7 @@ Partial Class frmnominasmarinos
         'cmdexcel
         '
         Me.cmdexcel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexcel.Location = New System.Drawing.Point(770, 3)
+        Me.cmdexcel.Location = New System.Drawing.Point(1012, 3)
         Me.cmdexcel.Name = "cmdexcel"
         Me.cmdexcel.Size = New System.Drawing.Size(93, 27)
         Me.cmdexcel.TabIndex = 12
@@ -262,7 +302,7 @@ Partial Class frmnominasmarinos
         'cmdreciboss
         '
         Me.cmdreciboss.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdreciboss.Location = New System.Drawing.Point(644, 3)
+        Me.cmdreciboss.Location = New System.Drawing.Point(886, 3)
         Me.cmdreciboss.Name = "cmdreciboss"
         Me.cmdreciboss.Size = New System.Drawing.Size(122, 27)
         Me.cmdreciboss.TabIndex = 10
@@ -272,7 +312,7 @@ Partial Class frmnominasmarinos
         'cmdguardarfinal
         '
         Me.cmdguardarfinal.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdguardarfinal.Location = New System.Drawing.Point(547, 3)
+        Me.cmdguardarfinal.Location = New System.Drawing.Point(789, 3)
         Me.cmdguardarfinal.Name = "cmdguardarfinal"
         Me.cmdguardarfinal.Size = New System.Drawing.Size(92, 27)
         Me.cmdguardarfinal.TabIndex = 9
@@ -282,7 +322,7 @@ Partial Class frmnominasmarinos
         'cmdguardarnomina
         '
         Me.cmdguardarnomina.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdguardarnomina.Location = New System.Drawing.Point(480, 3)
+        Me.cmdguardarnomina.Location = New System.Drawing.Point(722, 3)
         Me.cmdguardarnomina.Name = "cmdguardarnomina"
         Me.cmdguardarnomina.Size = New System.Drawing.Size(63, 27)
         Me.cmdguardarnomina.TabIndex = 8
@@ -292,7 +332,7 @@ Partial Class frmnominasmarinos
         'cmdcalcular
         '
         Me.cmdcalcular.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdcalcular.Location = New System.Drawing.Point(413, 3)
+        Me.cmdcalcular.Location = New System.Drawing.Point(520, 3)
         Me.cmdcalcular.Name = "cmdcalcular"
         Me.cmdcalcular.Size = New System.Drawing.Size(63, 27)
         Me.cmdcalcular.TabIndex = 7
@@ -304,18 +344,18 @@ Partial Class frmnominasmarinos
         Me.dtgDatos.AllowUserToAddRows = False
         Me.dtgDatos.AllowUserToDeleteRows = False
         Me.dtgDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgDatos.Location = New System.Drawing.Point(1, 65)
         Me.dtgDatos.Name = "dtgDatos"
-        Me.dtgDatos.Size = New System.Drawing.Size(1162, 359)
+        Me.dtgDatos.Size = New System.Drawing.Size(1349, 359)
         Me.dtgDatos.TabIndex = 6
         '
         'cmdverdatos
         '
         Me.cmdverdatos.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdverdatos.Location = New System.Drawing.Point(338, 3)
+        Me.cmdverdatos.Location = New System.Drawing.Point(444, 3)
         Me.cmdverdatos.Name = "cmdverdatos"
         Me.cmdverdatos.Size = New System.Drawing.Size(71, 27)
         Me.cmdverdatos.TabIndex = 5
@@ -344,7 +384,7 @@ Partial Class frmnominasmarinos
         Me.pnlProgreso.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.pnlProgreso.Controls.Add(Me.Label2)
         Me.pnlProgreso.Controls.Add(Me.pgbProgreso)
-        Me.pnlProgreso.Location = New System.Drawing.Point(361, 224)
+        Me.pnlProgreso.Location = New System.Drawing.Point(454, 224)
         Me.pnlProgreso.Name = "pnlProgreso"
         Me.pnlProgreso.Size = New System.Drawing.Size(449, 84)
         Me.pnlProgreso.TabIndex = 27
@@ -366,17 +406,41 @@ Partial Class frmnominasmarinos
         Me.pgbProgreso.Size = New System.Drawing.Size(413, 30)
         Me.pgbProgreso.TabIndex = 0
         '
+        'cMenu
+        '
+        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem})
+        Me.cMenu.Name = "cMenu"
+        Me.cMenu.Size = New System.Drawing.Size(188, 92)
+        '
+        'EliminarDeLaListaToolStripMenuItem
+        '
+        Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
+        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
+        '
+        'EditarEmpleadoToolStripMenuItem
+        '
+        Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
+        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
+        '
+        'AgregarTrabajadoresToolStripMenuItem
+        '
+        Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
+        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
+        '
         'frmnominasmarinos
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(1170, 533)
+        Me.ClientSize = New System.Drawing.Size(1357, 533)
         Me.Controls.Add(Me.pnlProgreso)
         Me.Controls.Add(Me.pnlCatalogo)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmnominasmarinos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Nomina Contpaq + Sindicato"
+        Me.Text = "Nomina Marinos"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
@@ -385,6 +449,7 @@ Partial Class frmnominasmarinos
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlProgreso.ResumeLayout(False)
         Me.pnlProgreso.PerformLayout()
+        Me.cMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -419,4 +484,11 @@ Partial Class frmnominasmarinos
     Friend WithEvents chkSindicato As CheckBox
     Friend WithEvents chkinter As CheckBox
     Friend WithEvents chkgrupo As CheckBox
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents cbodias As System.Windows.Forms.Button
+    Friend WithEvents cMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents EliminarDeLaListaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditarEmpleadoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AgregarTrabajadoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

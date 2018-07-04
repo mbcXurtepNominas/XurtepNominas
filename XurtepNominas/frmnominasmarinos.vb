@@ -10,6 +10,63 @@ Public Class frmnominasmarinos
     Dim nombre As String
     Dim cargado As Boolean = False
     Dim diasperiodo As Integer
+    Dim aniocostosocial As Integer
+    Dim dgvCombo As DataGridViewComboBoxEditingControl
+
+    Private Sub dvgCombo_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Try
+            '
+            ' se recupera el valor del combo
+            ' a modo de ejemplo se escribe en consola el valor seleccionado
+            '
+
+
+
+            Dim combo As ComboBox = TryCast(sender, ComboBox)
+
+            If dgvCombo IsNot Nothing Then
+                Dim sql As String
+                'Console.WriteLine(combo.SelectedValue)
+                'MessageBox.Show(combo.Text)
+                '
+                ' se accede a la fila actual, para trabajr con otor de sus campos
+                ' en este caso se marca el check si se cambia la seleccion
+                '
+                Dim row As DataGridViewRow = dtgDatos.CurrentRow
+
+                'Dim cell As DataGridViewCheckBoxCell = TryCast(row.Cells("Seleccionado"), DataGridViewCheckBoxCell)
+                'cell.Value = True
+
+                'Poner los datos necesarios para poner el nuevo sueldo diario y el integrado
+
+
+                sql = "Select salariod,sbc,salariodTopado,sbcTopado from costosocial "
+                sql &= " where fkiIdPuesto = " & combo.SelectedValue & " and anio=" & aniocostosocial
+
+                Dim rwDatosSalario As DataRow() = nConsulta(sql)
+
+                If rwDatosSalario Is Nothing = False Then
+                    If row.Cells(10).Value >= 55 Then
+                        row.Cells(15).Value = rwDatosSalario(0)("salariodTopado")
+                        row.Cells(16).Value = rwDatosSalario(0)("sbcTopado")
+                    Else
+                        row.Cells(15).Value = rwDatosSalario(0)("salariod")
+                        row.Cells(16).Value = rwDatosSalario(0)("sbc")
+                    End If
+
+                Else
+                    MessageBox.Show("No se encontraron datos")
+                End If
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        
+
+
+    End Sub
 
     Public Sub New()
         InitializeComponent()
@@ -17,12 +74,20 @@ Public Class frmnominasmarinos
 
     Private Sub frmcontpaqnominas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-
+            Dim sql As String
             cargarperiodos()
+            Me.dtgDatos.ContextMenuStrip = Me.cMenu
 
+            Sql = "select * from periodos where iIdPeriodo= " & cboperiodo.SelectedValue
+            Dim rwPeriodo As DataRow() = nConsulta(Sql)
+            If rwPeriodo Is Nothing = False Then
+
+                aniocostosocial = Date.Parse(rwPeriodo(0)("dFechaInicio").ToString).Year
+
+            End If
             
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
 
@@ -35,7 +100,7 @@ Public Class frmnominasmarinos
             sql = "select * from bancos inner join ( select distinct(fkiidBanco) from DatosBanco where fkiIdEmpresa=" & gIdEmpresa & ") bancos2 on bancos.iIdBanco=bancos2.fkiidBanco order by cBanco"
             nCargaCBO(cbobancos, sql, "cBanco", "iIdBanco")
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
     End Sub
     Private Sub cargarperiodos()
@@ -45,7 +110,7 @@ Public Class frmnominasmarinos
             sql = "Select (CONVERT(nvarchar(12),dFechaInicio,103) + ' - ' + CONVERT(nvarchar(12),dFechaFin,103)) as dFechaInicio,iIdPeriodo  from periodos order by iEjercicio,iNumeroPeriodo"
             nCargaCBO(cboperiodo, sql, "dFechainicio", "iIdPeriodo")
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
     End Sub
@@ -72,7 +137,7 @@ Public Class frmnominasmarinos
 
 
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
     End Sub
@@ -354,7 +419,7 @@ Public Class frmnominasmarinos
             Else
 
                 'Buscamos los datos de sindicato solamente
-                sql = "select  * from empleadosC where iEstatus=1"
+                sql = "select  * from empleadosC where fkiIdClienteInter=-1"
                 'sql = "select iIdEmpleadoC,NumCuenta, (cApellidoP + ' ' + cApellidoM + ' ' + cNombre) as nombre, fkiIdEmpresa,fSueldoOrd,fCosto from empleadosC"
                 'sql &= " where empleadosC.iOrigen=2 and empleadosC.iEstatus=1"
                 'sql &= " and empleadosC.fkiIdEmpresa =" & gIdEmpresa
@@ -386,7 +451,7 @@ Public Class frmnominasmarinos
                         fila.Item("Valor_Infonavit") = rwDatosEmpleados(x)("fFactor").ToString
                         fila.Item("Salario_Diario") = rwDatosEmpleados(x)("fSueldoBase").ToString
                         fila.Item("Salario_Cotización") = rwDatosEmpleados(x)("fSueldoIntegrado").ToString
-                        fila.Item("Dias_Trabajados") = ""
+                        fila.Item("Dias_Trabajados") = "30"
                         fila.Item("Tipo_Incapacidad") = TipoIncapacidad(rwDatosEmpleados(x)("iIdEmpleadoC").ToString, cboperiodo.SelectedValue)
                         fila.Item("Número_días") = NumDiasIncapacidad(rwDatosEmpleados(x)("iIdEmpleadoC").ToString, cboperiodo.SelectedValue)
                         fila.Item("Sueldo_Bruto") = ""
@@ -483,7 +548,32 @@ Public Class frmnominasmarinos
 
                     'Puesto
                     dtgDatos.Columns(11).ReadOnly = True
-                    dtgDatos.Columns(11).Width = 150
+                    dtgDatos.Columns(11).Width = 200
+                    dtgDatos.Columns.Remove("Puesto")
+
+                    Dim combo As New DataGridViewComboBoxColumn
+
+                    sql = "select * from puestos where iTipo=1 order by cNombre"
+
+                    'Dim rwPuestos As DataRow() = nConsulta(sql)
+                    'If rwPuestos Is Nothing = False Then
+                    '    combo.Items.Add("uno")
+                    '    combo.Items.Add("dos")
+                    '    combo.Items.Add("tres")
+                    'End If
+
+                    nCargaCBO(combo, sql, "cNombre", "iIdPuesto")
+
+                    combo.HeaderText = "Puesto"
+                    combo.Width = 150
+                    dtgDatos.Columns.Insert(11, combo)
+
+                    'Dim combo2 As New DataGridViewComboBoxCell
+                    'combo2 = CType(Me.dtgDatos.Rows(2).Cells(11), DataGridViewComboBoxCell)
+                    'combo2.Value = combo.Items(11)
+
+
+
                     'dtgDatos.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
                     'Buque
@@ -674,6 +764,23 @@ Public Class frmnominasmarinos
                     dtgDatos.Columns(53).Width = 150
 
                     'calcular()
+
+                    'Cambiamos index del combo en el grid
+
+                    For x As Integer = 0 To dtgDatos.Rows.Count - 1
+
+                        sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
+                        Dim rwFila As DataRow() = nConsulta(sql)
+
+
+
+                        CType(Me.dtgDatos.Rows(x).Cells(11), DataGridViewComboBoxCell).Value = rwFila(0)("cPuesto").ToString()
+                    Next
+
+
+
+
+
                     MessageBox.Show("Datos cargados", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     MessageBox.Show("No hay datos en este período", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -686,7 +793,7 @@ Public Class frmnominasmarinos
 
             End If
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
     End Sub
@@ -735,7 +842,7 @@ Public Class frmnominasmarinos
             End If
             Return "Ninguno"
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
         
     End Function
@@ -796,24 +903,29 @@ Public Class frmnominasmarinos
             End If
             Return "0"
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
     End Function
 
     Private Function Identificadorincapacidad(identificador As String) As String
-        Dim TipoIncidencia As String = ""
+        Try
+            Dim TipoIncidencia As String = ""
 
-        If identificador = "0" Then
-            TipoIncidencia = "Riesgo de trabajo"
-        ElseIf identificador = "1" Then
-            TipoIncidencia = "Enfermedad general"
-        ElseIf identificador = "2" Then
-            TipoIncidencia = "Maternidad"
-       
-        End If
+            If identificador = "0" Then
+                TipoIncidencia = "Riesgo de trabajo"
+            ElseIf identificador = "1" Then
+                TipoIncidencia = "Enfermedad general"
+            ElseIf identificador = "2" Then
+                TipoIncidencia = "Maternidad"
 
-        Return TipoIncidencia
+            End If
+
+            Return TipoIncidencia
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
     End Function
 
 
@@ -961,7 +1073,7 @@ Public Class frmnominasmarinos
 
             End If
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
 
@@ -971,7 +1083,7 @@ Public Class frmnominasmarinos
         Try
             calcular()
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
 
@@ -979,6 +1091,7 @@ Public Class frmnominasmarinos
 
     Private Sub calcular()
         Dim Sueldo As Double
+        Dim SueldoBase As Double
         Dim ValorIncapacidad As Double
         Dim TotalPercepciones As Double
         Dim Incapacidad As Double
@@ -990,6 +1103,17 @@ Public Class frmnominasmarinos
         Dim pension As Double
         Dim prestamo As Double
         Dim fonacot As Double
+        Dim sql As String
+        Dim ValorUMA As Double
+        Dim primavacacionesgravada As Double
+        Dim primavacacionesexenta As Double
+        Dim diastrabajados As Double
+        Dim Sueldobruto As Double
+        Dim TEFG As Double
+        Dim TEFE As Double
+        Dim TEO As Double
+        Dim DSO As Double
+        Dim VACAPRO As Double
 
         Try
             'verificamos que tenga dias a calcular
@@ -999,6 +1123,19 @@ Public Class frmnominasmarinos
                     Exit Sub
                 End If
             Next
+
+            
+
+            sql = "select * from Salario "
+            sql &= " where Anio=" & aniocostosocial
+            sql &= " and iEstatus=1"
+            Dim rwValorUMA As DataRow() = nConsulta(sql)
+            If rwValorUMA Is Nothing = False Then
+                ValorUMA = Double.Parse(rwValorUMA(0)("uma").ToString)
+            Else
+                ValorUMA = 0
+                MessageBox.Show("No se encontro valor para UMA en el año: " & aniocostosocial)
+            End If
 
 
             For x As Integer = 0 To dtgDatos.Rows.Count - 1
@@ -1041,22 +1178,167 @@ Public Class frmnominasmarinos
                     'NETO
 
 
-                    TotalPercepciones = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(32).Value), 2)
-                    Incapacidad = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(34).Value), 2)
-                    isr = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(35).Value), 2)
-                    imss = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(36).Value), 2)
-                    infonavitvalor = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(37).Value), 2)
-                    infonavitanterior = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(38).Value), 2)
-                    ajusteinfonavit = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(39).Value), 2)
-                    pension = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(40).Value), 2)
-                    prestamo = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(41).Value), 2)
-                    fonacot = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(42).Value), 2)
+                    TotalPercepciones = Double.Parse(IIf(dtgDatos.Rows(x).Cells(32).Value = "", "0", dtgDatos.Rows(x).Cells(32).Value.ToString.Replace(",", "")))
+                    Incapacidad = Double.Parse(IIf(dtgDatos.Rows(x).Cells(34).Value = "", "0", dtgDatos.Rows(x).Cells(34).Value))
+                    isr = Double.Parse(IIf(dtgDatos.Rows(x).Cells(35).Value = "", "0", dtgDatos.Rows(x).Cells(35).Value))
+                    imss = Double.Parse(IIf(dtgDatos.Rows(x).Cells(36).Value = "", "0", dtgDatos.Rows(x).Cells(36).Value))
+                    infonavitvalor = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(37).Value))
+                    infonavitanterior = Double.Parse(IIf(dtgDatos.Rows(x).Cells(38).Value = "", "0", dtgDatos.Rows(x).Cells(38).Value))
+                    ajusteinfonavit = Double.Parse(IIf(dtgDatos.Rows(x).Cells(39).Value = "", "0", dtgDatos.Rows(x).Cells(39).Value))
+                    pension = Double.Parse(IIf(dtgDatos.Rows(x).Cells(40).Value = "", "0", dtgDatos.Rows(x).Cells(40).Value))
+                    prestamo = Double.Parse(IIf(dtgDatos.Rows(x).Cells(41).Value = "", "0", dtgDatos.Rows(x).Cells(41).Value))
+                    fonacot = Double.Parse(IIf(dtgDatos.Rows(x).Cells(42).Value = "", "0", dtgDatos.Rows(x).Cells(42).Value))
+
+                    dtgDatos.Rows(x).Cells(43).Value = Math.Round(TotalPercepciones - Incapacidad - isr - imss - infonavitvalor - infonavitanterior - ajusteinfonavit - pension - prestamo - fonacot, 2)
+
+                    
+
+                Else
+                    diastrabajados = Double.Parse(IIf(dtgDatos.Rows(x).Cells(17).Value = "", "0", dtgDatos.Rows(x).Cells(17).Value))
+
+                    Sueldo = Double.Parse(dtgDatos.Rows(x).Cells(16).Value) * diastrabajados
+                    dtgDatos.Rows(x).Cells(20).Value = Math.Round(Sueldo * (26.19568006 / 100), 2).ToString("###,##0.00")
+                    Sueldobruto = Math.Round(Sueldo * (26.19568006 / 100), 2)
+                    dtgDatos.Rows(x).Cells(21).Value = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2).ToString("###,##0.00")
+                    TEFG = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2)
+                    dtgDatos.Rows(x).Cells(22).Value = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2).ToString("###,##0.00")
+                    TEFE = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2)
+                    dtgDatos.Rows(x).Cells(23).Value = Math.Round(Sueldo * (42.89215164 / 100), 2).ToString("###,##0.00")
+                    TEO = Math.Round(Sueldo * (42.89215164 / 100), 2)
+                    dtgDatos.Rows(x).Cells(24).Value = Math.Round(Sueldo * (9.677848468 / 100), 2).ToString("###,##0.00")
+                    DSO = Math.Round(Sueldo * (9.677848468 / 100), 2)
+                    dtgDatos.Rows(x).Cells(25).Value = Math.Round(Sueldo * (7.272727273 / 100), 2).ToString("###,##0.00")
+                    VACAPRO = Math.Round(Sueldo * (7.272727273 / 100), 2)
+                    SueldoBase = Sueldobruto + TEFG + TEFE + TEO + DSO
+
+
+                    'Aguinaldo 
+
+                    If SueldoBase > 0 Then
+                        'Aguinaldo gravado
+                        dtgDatos.Rows(x).Cells(26).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)) - ((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
+                        'Aguinaldo exento
+                        dtgDatos.Rows(x).Cells(27).Value = Math.Round(((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
+                        'Aguinaldo total
+                        dtgDatos.Rows(x).Cells(28).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)), 2)
+
+                    Else
+                        'Aguinaldo gravado
+                        dtgDatos.Rows(x).Cells(26).Value = "0.00"
+                        'Aguinaldo exento
+                        dtgDatos.Rows(x).Cells(27).Value = "0.00"
+                        'Aguinaldo total
+                        dtgDatos.Rows(x).Cells(28).Value = "0.00"
+                    End If
+
+                    'Prima de vacaciones
+
+                    'Calculos prima
+
+                    primavacacionesgravada = (SueldoBase * 0.25 / 12 * (diastrabajados / 30)) - ((ValorUMA * 15 / 12) * (diastrabajados / 30))
+                    primavacacionesexenta = ((ValorUMA * 15 / 12) * (diastrabajados / 30))
+
+                    If primavacacionesgravada > 0 Then
+                        dtgDatos.Rows(x).Cells(29).Value = Math.Round(primavacacionesgravada, 2)
+                        dtgDatos.Rows(x).Cells(30).Value = Math.Round(primavacacionesexenta, 2)
+                    Else
+                        dtgDatos.Rows(x).Cells(29).Value = "0.00"
+                        dtgDatos.Rows(x).Cells(30).Value = Math.Round(primavacacionesexenta, 2)
+                    End If
+
+                    'Total Prima de vacaciones                    
+                    dtgDatos.Rows(x).Cells(31).Value = Math.Round(IIf(primavacacionesgravada > 0, primavacacionesgravada, 0) + primavacacionesexenta, 2)
+                    'Total percepciones
+                    dtgDatos.Rows(x).Cells(32).Value = Math.Round(SueldoBase + VACAPRO + dtgDatos.Rows(x).Cells(28).Value + dtgDatos.Rows(x).Cells(31).Value, 2)
+                    'Total percepsiones para isr
+                    dtgDatos.Rows(x).Cells(33).Value = Math.Round(SueldoBase - TEFE + VACAPRO + dtgDatos.Rows(x).Cells(26).Value + dtgDatos.Rows(x).Cells(29).Value, 2)
+                    'Incapacidad
+                    ValorIncapacidad = 0.0
+                    If dtgDatos.Rows(x).Cells(18).Value <> "Ninguno" Then
+
+                        ValorIncapacidad = Incapacidades(dtgDatos.Rows(x).Cells(18).Value, dtgDatos.Rows(x).Cells(19).Value, dtgDatos.Rows(x).Cells(15).Value)
+
+                    End If
+                    dtgDatos.Rows(x).Cells(34).Value = Math.Round(ValorIncapacidad, 2).ToString("###,##0.00")
+                    'ISR
+                    dtgDatos.Rows(x).Cells(35).Value = Math.Round(Double.Parse((baseisrtotal(dtgDatos.Rows(x).Cells(11).Value, 30, dtgDatos.Rows(x).Cells(16).Value, ValorIncapacidad)) / 30 * dtgDatos.Rows(x).Cells(17).Value), 2).ToString("###,##0.00")
+                    'IMSS
+                    dtgDatos.Rows(x).Cells(36).Value = "0.00"
+                    'INFONAVIT
+                    dtgDatos.Rows(x).Cells(37).Value = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(16).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Integer.Parse(dtgDatos.Rows(x).Cells(17).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value)), 2).ToString("###,##0.00")
+                    'INFONAVIT BIMESTRE ANTERIOR
+                    'AJUSTE INFONAVIT
+                    'PENSION
+                    'PRESTAMO
+                    'FONACOT
+                    'NETO
+
+
+                    TotalPercepciones = Double.Parse(IIf(dtgDatos.Rows(x).Cells(32).Value = "", "0", dtgDatos.Rows(x).Cells(32).Value.ToString.Replace(",", "")))
+                    Incapacidad = Double.Parse(IIf(dtgDatos.Rows(x).Cells(34).Value = "", "0", dtgDatos.Rows(x).Cells(34).Value))
+                    isr = Double.Parse(IIf(dtgDatos.Rows(x).Cells(35).Value = "", "0", dtgDatos.Rows(x).Cells(35).Value))
+                    imss = Double.Parse(IIf(dtgDatos.Rows(x).Cells(36).Value = "", "0", dtgDatos.Rows(x).Cells(36).Value))
+                    infonavitvalor = Double.Parse(IIf(dtgDatos.Rows(x).Cells(37).Value = "", "0", dtgDatos.Rows(x).Cells(37).Value))
+                    infonavitanterior = Double.Parse(IIf(dtgDatos.Rows(x).Cells(38).Value = "", "0", dtgDatos.Rows(x).Cells(38).Value))
+                    ajusteinfonavit = Double.Parse(IIf(dtgDatos.Rows(x).Cells(39).Value = "", "0", dtgDatos.Rows(x).Cells(39).Value))
+                    pension = Double.Parse(IIf(dtgDatos.Rows(x).Cells(40).Value = "", "0", dtgDatos.Rows(x).Cells(40).Value))
+                    prestamo = Double.Parse(IIf(dtgDatos.Rows(x).Cells(41).Value = "", "0", dtgDatos.Rows(x).Cells(41).Value))
+                    fonacot = Double.Parse(IIf(dtgDatos.Rows(x).Cells(42).Value = "", "0", dtgDatos.Rows(x).Cells(42).Value))
 
                     dtgDatos.Rows(x).Cells(43).Value = Math.Round(TotalPercepciones - Incapacidad - isr - imss - infonavitvalor - infonavitanterior - ajusteinfonavit - pension - prestamo - fonacot, 2)
 
 
+
                 End If
 
+
+                'Calcular el costo social
+
+                'Obtenemos los datos del empleado,id puesto
+                'de acuerdo a la edad y el status
+
+
+                sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
+                Dim rwEmpleado As DataRow() = nConsulta(sql)
+                If rwEmpleado Is Nothing = False Then
+                    sql = "select * from costosocial where fkiIdPuesto=" & rwEmpleado(0)("fkiIdPuesto").ToString & " and anio=" & aniocostosocial
+                    Dim rwCostoSocial As DataRow() = nConsulta(sql)
+                    If rwCostoSocial Is Nothing = False Then
+                        If dtgDatos.Rows(x).Cells(10).Value >= 55 Then
+                            If dtgDatos.Rows(x).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(x).Cells(46).Value = rwCostoSocial(0)("imsstopado")
+                                dtgDatos.Rows(x).Cells(47).Value = rwCostoSocial(0)("RCVtopado")
+                                dtgDatos.Rows(x).Cells(48).Value = rwCostoSocial(0)("infonavittopado")
+                                dtgDatos.Rows(x).Cells(49).Value = rwCostoSocial(0)("ISNtopado")
+
+                            Else
+                                dtgDatos.Rows(x).Cells(46).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(47).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(48).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(49).Value = Math.Round(Double.Parse(rwCostoSocial(0)("ISNtopado")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+
+                            End If
+
+                        Else
+                            If dtgDatos.Rows(x).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(x).Cells(46).Value = rwCostoSocial(0)("imss")
+                                dtgDatos.Rows(x).Cells(47).Value = rwCostoSocial(0)("RCV")
+                                dtgDatos.Rows(x).Cells(48).Value = rwCostoSocial(0)("Infonavit")
+                                dtgDatos.Rows(x).Cells(49).Value = rwCostoSocial(0)("ISN")
+
+                            Else
+                                dtgDatos.Rows(x).Cells(46).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(47).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(48).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+                                dtgDatos.Rows(x).Cells(49).Value = Math.Round(Double.Parse(rwCostoSocial(0)("ISN")) / 30 * dtgDatos.Rows(x).Cells(17).Value, 2)
+
+                            End If
+                        End If
+                    End If
+
+
+
+                End If
 
             Next
             MessageBox.Show("Datos calculados ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1110,7 +1392,7 @@ Public Class frmnominasmarinos
 
                         Else
                             'Verificamos si tiene un embarque dentro de periodo
-                            sql = "select * from DatosEmbarque where Between FechaEmbarque=" & Date.Parse(rwPeriodo(0)("dFechaInicio")).ToShortDateString & " and FechaEmbarque=" & Date.Parse(rwPeriodo(0)("dFechaFin")).ToShortDateString
+                            sql = "select * from DatosEmbarque where FechaEmbarque Between '" & Date.Parse(rwPeriodo(0)("dFechaInicio")).ToShortDateString & "' and '" & Date.Parse(rwPeriodo(0)("dFechaFin")).ToShortDateString & "'"
                             Dim rwDatosEmbarque As DataRow() = nConsulta(sql)
                             If rwDatosEmbarque Is Nothing = False Then
                                 FechaInicioPeriodo1 = rwDatosEmbarque(0)("FechaEmbarque")
@@ -1265,6 +1547,7 @@ Public Class frmnominasmarinos
 
                         End If
 
+
                         sql = "select * from Salario "
                         sql &= " where Anio=" & IIf(FechaFinPeriodo2 = Date.Parse("01/01/1900"), FechaFinPeriodo1.Year.ToString, FechaInicioPeriodo2.Year.ToString)
                         sql &= " and iEstatus=1"
@@ -1286,14 +1569,14 @@ Public Class frmnominasmarinos
 
                         If tipo = "VSM" And valor > 0 Then
                             valorinfonavit = (((ValorInfonavitTabla * valor * 2) / numdias) * DiasCadaPeriodo) + Seguro1
-                            valorinfonavit = valorinfonavit + ((((ValorInfonavitTabla * valor * 2) / numdias) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
+                            valorinfonavit = valorinfonavit + ((((ValorInfonavitTabla * valor * 2) / numdias2) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
                         End If
 
                         If tipo = "CUOTA FIJA" And valor > 0 Then
 
 
                             valorinfonavit = (((valor * 2) / numdias) * DiasCadaPeriodo) + Seguro1
-                            valorinfonavit = valorinfonavit + ((((valor * 2) / numdias) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
+                            valorinfonavit = valorinfonavit + ((((valor * 2) / numdias2) * DiasCadaPeriodo2) + IIf(DiasCadaPeriodo2 = 0, 0, Seguro2))
 
                         End If
 
@@ -1562,6 +1845,20 @@ Public Class frmnominasmarinos
 
     End Sub
 
+    Private Sub dtgDatos_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseDown
+        Try
+            If e.RowIndex > -1 Then
+                dtgDatos.CurrentCell = dtgDatos.Rows(e.RowIndex).Cells(e.ColumnIndex)
+
+
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
     Private Sub dtgDatos_CellMouseUp(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseUp
 
     End Sub
@@ -1806,9 +2103,14 @@ Public Class frmnominasmarinos
     End Sub
 
     Private Sub dtgDatos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgDatos.CellClick
-        If e.ColumnIndex = 0 Then
-            dtgDatos.Rows(e.RowIndex).Cells(0).Value = Not dtgDatos.Rows(e.RowIndex).Cells(0).Value
-        End If
+        Try
+            If e.ColumnIndex = 0 Then
+                dtgDatos.Rows(e.RowIndex).Cells(0).Value = Not dtgDatos.Rows(e.RowIndex).Cells(0).Value
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
 
     End Sub
 
@@ -1850,7 +2152,7 @@ Public Class frmnominasmarinos
                 e.Handled = False
             End If
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
         End Try
 
 
@@ -1858,27 +2160,70 @@ Public Class frmnominasmarinos
     End Sub
 
     Private Sub dtgDatos_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dtgDatos.CellEndEdit
-        If Not m_currentControl Is Nothing Then
-            RemoveHandler m_currentControl.KeyPress, AddressOf TextboxNumeric_KeyPress
-        End If
+        Try
+            If Not m_currentControl Is Nothing Then
+                RemoveHandler m_currentControl.KeyPress, AddressOf TextboxNumeric_KeyPress
+            End If
+            If Not dgvCombo Is Nothing Then
+                RemoveHandler dgvCombo.SelectedIndexChanged, AddressOf dvgCombo_SelectedIndexChanged
+            End If
+            If dgvCombo IsNot Nothing Then
+                RemoveHandler dgvCombo.SelectedIndexChanged, New EventHandler(AddressOf dvgCombo_SelectedIndexChanged)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
     End Sub
 
     Private Sub dtgDatos_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles dtgDatos.EditingControlShowing
-        Dim columna As Integer
-        m_currentControl = Nothing
-        columna = CInt(DirectCast(sender, System.Windows.Forms.DataGridView).CurrentCell.ColumnIndex)
-        If columna = 17 Or columna = 40 Or columna = 10 Then
-            AddHandler e.Control.KeyPress, AddressOf TextboxNumeric_KeyPress
-            m_currentControl = e.Control
-        End If
+        Try
+            Dim columna As Integer
+            m_currentControl = Nothing
+            columna = CInt(DirectCast(sender, System.Windows.Forms.DataGridView).CurrentCell.ColumnIndex)
+            If columna = 17 Or columna = 40 Or columna = 10 Then
+                AddHandler e.Control.KeyPress, AddressOf TextboxNumeric_KeyPress
+                m_currentControl = e.Control
+            End If
+
+
+            dgvCombo = TryCast(e.Control, DataGridViewComboBoxEditingControl)
+
+            If dgvCombo IsNot Nothing Then
+                AddHandler dgvCombo.SelectedIndexChanged, New EventHandler(AddressOf dvgCombo_SelectedIndexChanged)
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
+
+        
+
     End Sub
 
     Private Sub dtgDatos_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dtgDatos.ColumnHeaderMouseClick
-        Dim newColumn As DataGridViewColumn = dtgDatos.Columns(e.ColumnIndex)
+        Try
+            Dim newColumn As DataGridViewColumn = dtgDatos.Columns(e.ColumnIndex)
+            Dim sql As String
+            If e.ColumnIndex = 0 Then
+                dtgDatos.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+            End If
 
-        If e.ColumnIndex = 0 Then
-            dtgDatos.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
-        End If
+            For x As Integer = 0 To dtgDatos.Rows.Count - 1
+
+                Sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
+                Dim rwFila As DataRow() = nConsulta(Sql)
+
+
+
+                CType(Me.dtgDatos.Rows(x).Cells(11), DataGridViewComboBoxCell).Value = rwFila(0)("cPuesto").ToString()
+            Next
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
 
     End Sub
 
@@ -2095,13 +2440,35 @@ Public Class frmnominasmarinos
     End Function
 
     Private Sub dtgDatos_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgDatos.CellContentClick
-        If e.RowIndex = -1 And e.ColumnIndex = 0 Then
-            Return
-        End If
+        Try
+            If e.RowIndex = -1 And e.ColumnIndex = 0 Then
+                Return
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+        
     End Sub
 
     Private Sub tsbEmpleados_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbEmpleados.Click
         Dim frm As New frmImportarEmpleadosAlta
         frm.ShowDialog()
+    End Sub
+
+    Private Sub dtgDatos_DataError(sender As Object, e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles dtgDatos.DataError
+        Try
+            e.Cancel = True
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub EliminarDeLaListaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EliminarDeLaListaToolStripMenuItem.Click
+        Dim resultado As Integer = MessageBox.Show("¿Desea eliminar a este trabajador de la lista?", "Pregunta", MessageBoxButtons.YesNo)
+        If resultado = DialogResult.Yes Then
+            dtgDatos.Rows.Remove(dtgDatos.CurrentRow)
+        End If
+
     End Sub
 End Class
