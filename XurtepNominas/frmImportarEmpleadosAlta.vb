@@ -308,21 +308,38 @@ Public Class frmImportarEmpleadosAlta
                         Else
                             b = 0
                         End If
-                        Dim p As String = Trim(empleadofull.SubItems(15).Text) ''idPuesto
+                        Dim p As String = Trim(empleadofull.SubItems(15).Text) ''CPuesto
                         Dim cPuesto As String
                         If p <> "" Then
-                            Dim puesto As DataRow() = nConsulta("SELECT * FROM Puestos where iIdPuesto =" & p)
+                            Dim puesto As DataRow() = nConsulta("select * FROM Puestos where cNombre like '" & p & "'")
                             If puesto Is Nothing Then
                                 cPuesto = ""
-                                mensa = "Revise el tipo de banco"
+                                mensa = "Revise el tipo de Puesto"
                                 bandera = False
                             Else
                                 cPuesto = puesto(0).Item("cNombre")
+                                p = puesto(0).Item("iIdPuesto")
                             End If
 
                         Else
                             p = 0
                         End If
+                        Dim l As String = Trim(empleadofull.SubItems(19).Text) ''Code
+                        Dim cLugar As String
+                        If l <> "" Then
+                            Dim lugar As DataRow() = nConsulta("SELECT * FROM Cat_Estados WHERE cClave LIKE'" & l & "'")
+                            If lugar Is Nothing Then
+                                cLugar = ""
+                                mensa = "Revise el tipo de Puesto"
+                                bandera = False
+                            Else
+                                cLugar = lugar(0).Item("cEstado")
+                            End If
+
+                        Else
+                            l = 0
+                        End If
+
 
                         Dim factor As Integer
                         Select Case Trim(empleadofull.SubItems(32).Text)
@@ -352,11 +369,12 @@ Public Class frmImportarEmpleadosAlta
 
 
 
+
                         Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
 
-                        dFechaNac = Trim(empleadofull.SubItems(13).Text) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM")
-                        dFechaCap = (Trim(empleadofull.SubItems(14).Text))
-                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text)
+                        dFechaNac = Date.Parse(Trim(empleadofull.SubItems(13).Text).ToString) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM"))
+                        dFechaCap = Date.Parse((Trim(empleadofull.SubItems(14).Text)).ToString)
+                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text).ToString
                         'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
@@ -372,7 +390,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(12).Text) = "FEMENINO", 0, 1) & ",'" & dFechaNac & "','" & dFechaCap
                         SQL &= "','" & cPuesto & "','" & Trim(empleadofull.SubItems(16).Text)
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
-                        SQL &= ",'" & Trim(empleadofull.SubItems(19).Text) & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
+                        SQL &= ",'" & cLugar & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
                         SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco
                         SQL &= ",'" & Trim(empleadofull.SubItems(25).Text) & "',1,'" & Trim(empleadofull.SubItems(26).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(27).Text) & "'," & Trim(empleadofull.SubItems(28).Text) & ",'" & Trim(empleadofull.SubItems(29).Text)
@@ -381,7 +399,7 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & Trim(empleadofull.SubItems(32).Text) ''factor
                         SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''estatus 
-                        SQL &= "," & Trim(empleadofull.SubItems(15).Text) & "," & Trim(empleadofull.SubItems(38).Text)
+                        SQL &= "," & p & "," & Trim(empleadofull.SubItems(38).Text)
                         SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
                         SQL &= "," & 1
                         SQL &= ",'" & " "
@@ -391,7 +409,8 @@ Public Class frmImportarEmpleadosAlta
 
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-
+                            tsbCancelar_Click(sender, e)
+                            pnlProgreso.Visible = False
                             Exit Sub
                         End If
                         pgbProgreso.Value += 1
@@ -414,18 +433,21 @@ Public Class frmImportarEmpleadosAlta
 
                     MessageBox.Show(t.ToString() & "  Proceso terminado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
+                    tsbCancelar_Click(sender, e)
                     pnlProgreso.Visible = False
-                    MessageBox.Show("No se guardo ninguna dato, revise y vuelva a intentarlo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    ''MessageBox.Show("No se guardo ninguna dato, revise y vuelva a intentarlo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
 
 
             Else
 
+                pnlProgreso.Visible = False
                 MessageBox.Show("Por favor seleccione al menos una registro para importar.", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
             pnlCatalogo.Enabled = True
 
         Catch ex As Exception
+            pnlProgreso.Visible = False
             MessageBox.Show(ex.Message)
         End Try
     End Sub

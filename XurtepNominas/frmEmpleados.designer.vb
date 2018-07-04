@@ -140,6 +140,10 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
+
+
+        Me.cmdPension = New System.Windows.Forms.Button()
+
         Me.dtFecPlanta = New System.Windows.Forms.DateTimePicker()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.txtInicio = New System.Windows.Forms.TextBox()
@@ -150,6 +154,7 @@ Partial Class frmEmpleados
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
+
         Me.Panel1.SuspendLayout()
         Me.gpb1.SuspendLayout()
         Me.gpb2.SuspendLayout()
@@ -231,9 +236,18 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+
         Me.Panel1.Controls.Add(Me.cmdPension)
         Me.Panel1.Controls.Add(Me.cmdDocumentos)
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
+
+
+        Me.Panel1.Controls.Add(Me.cmdPension)
+
+        Me.Panel1.Controls.Add(Me.cmdDocumentos)
+        Me.Panel1.Controls.Add(Me.cmdFamiliar)
+
+
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
         Me.Panel1.Controls.Add(Me.cmdJuridico)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
@@ -1194,6 +1208,21 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
+
+
+        'cmdPension
+        '
+        Me.cmdPension.Image = CType(resources.GetObject("cmdPension.Image"), System.Drawing.Image)
+        Me.cmdPension.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdPension.Location = New System.Drawing.Point(4, 466)
+        Me.cmdPension.Name = "cmdPension"
+        Me.cmdPension.Size = New System.Drawing.Size(95, 72)
+        Me.cmdPension.TabIndex = 44
+        Me.cmdPension.Text = "Pensión Ali."
+        Me.cmdPension.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdPension.UseVisualStyleBackColor = True
+
+
         'dtFecPlanta
         '
         Me.dtFecPlanta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -1275,6 +1304,9 @@ Partial Class frmEmpleados
         Me.dtpFinContrato.Name = "dtpFinContrato"
         Me.dtpFinContrato.Size = New System.Drawing.Size(154, 26)
         Me.dtpFinContrato.TabIndex = 216
+
+
+
         '
         'frmEmpleados
         '
