@@ -370,16 +370,42 @@ Public Class frmImportarEmpleadosAlta
 
 
 
-                        Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
+                        Dim dFechaNac, dFechaCap, dFechaPlanta, dFechaPatrona As String ''--, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
 
                         dFechaNac = Date.Parse(Trim(empleadofull.SubItems(13).Text).ToString) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM"))
                         dFechaCap = Date.Parse((Trim(empleadofull.SubItems(14).Text)).ToString)
                         dFechaPlanta = Trim(empleadofull.SubItems(40).Text).ToString
-                        'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
+                        dFechaPatrona = Date.Parse((Trim(empleadofull.SubItems(14).Text).ToString))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaAntiguedad = Trim(empleadofull.SubItems(14).Text)
 
+                        '***********************************'
+                        SQL = "select max(iIdEmpleadoC) as id from empleadosC"
+
+                        Dim salario As String = "0"  '= Trim(empleadofull.SubItems(17).Text)
+                        Dim sdi As String = Trim(empleadofull.SubItems(18).Text)
+                        Dim sd As String = Trim(empleadofull.SubItems(17).Text)
+                        Dim status As String = Trim(empleadofull.SubItems(12).Text)
+
+                        'CUANDO SE AGREGA EL SUELDO ORDINARIO
+                        Dim rwFilas2 As DataRow() = nConsulta(SQL)
+
+                        If rwFilas2 Is Nothing = False Then
+                            Dim Fila As DataRow = rwFilas2(0)
+                            SQL = "EXEC setSueldoAltaInsertar  0," & IIf(salario = "", 0, salario) & ",'" & dFechaPatrona ' Format(dtppatrona.Value.Date, "yyyy/dd/MM")
+                            SQL += "',0,''," & IIf(sd = "", 0, sd) & "," & IIf(sdi = "", 0, sdi) & "," & Fila.Item("id") '"1" 
+                            SQL += ",'01/01/1900',''"
+
+                        End If
+
+                        If SQL <> "" Then
+                            If nExecute(SQL) = False Then
+                                Exit Sub
+                            End If
+                        End If
+
+                        '***********************************'
 
                         SQL = "EXEC setempleadosCInsertar 0,'" & Trim(empleadofull.SubItems(1).Text) & "','" & Trim(empleadofull.SubItems(2).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(3).Text)
@@ -413,6 +439,30 @@ Public Class frmImportarEmpleadosAlta
                             pnlProgreso.Visible = False
                             Exit Sub
                         End If
+
+
+                        '**********************************************
+                        'Agregar alta/baja
+                        'If blnNuevo Then
+                        'Obtener id
+
+                        SQL = "select max(iIdEmpleadoC) as id from empleadosC"
+                        Dim rwFilas3 As DataRow() = nConsulta(SQL)
+
+                        If rwFilas3 Is Nothing = False Then
+                            Dim Fila As DataRow = rwFilas3(0)
+                            SQL = "EXEC setIngresoBajaAltaInsertar  0," & Fila.Item("id") & ",'" & "A" & "','" & dFechaPatrona & "','01/01/1900','',''"
+                            'Enviar correo
+                        End If
+
+                        If SQL <> "" Then
+                            If nExecute(SQL) = False Then
+                                Exit Sub
+                            End If
+                        End If
+                        '**********************************************
+
+
                         pgbProgreso.Value += 1
                         ''Application.DoEvents()
                         t = t + 1

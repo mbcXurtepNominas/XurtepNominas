@@ -166,6 +166,12 @@
     <Compile Include="General\frmUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="imss\frmImss.Designer.vb">
+      <DependentUpon>frmImss.vb</DependentUpon>
+    </Compile>
+    <Compile Include="imss\frmImss.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulos\GenPass.vb" />
     <Compile Include="Modulos\mdoFunciones.vb" />
     <Compile Include="Modulos\mdoInicio.vb" />
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="General\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="imss\frmImss.resx">
+      <DependentUpon>frmImss.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

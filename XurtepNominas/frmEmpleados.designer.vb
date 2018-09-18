@@ -140,10 +140,6 @@ Partial Class frmEmpleados
         Me.Label52 = New System.Windows.Forms.Label()
         Me.txtExtra = New System.Windows.Forms.TextBox()
         Me.chkInfonavit = New System.Windows.Forms.CheckBox()
-
-
-        Me.cmdPension = New System.Windows.Forms.Button()
-
         Me.dtFecPlanta = New System.Windows.Forms.DateTimePicker()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.txtInicio = New System.Windows.Forms.TextBox()
@@ -154,7 +150,7 @@ Partial Class frmEmpleados
         Me.txtTelefono = New System.Windows.Forms.TextBox()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.dtpFinContrato = New System.Windows.Forms.DateTimePicker()
-
+        Me.cmdimss = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.gpb1.SuspendLayout()
         Me.gpb2.SuspendLayout()
@@ -236,18 +232,10 @@ Partial Class frmEmpleados
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-
+        Me.Panel1.Controls.Add(Me.cmdimss)
         Me.Panel1.Controls.Add(Me.cmdPension)
         Me.Panel1.Controls.Add(Me.cmdDocumentos)
         Me.Panel1.Controls.Add(Me.cmdFamiliar)
-
-
-        Me.Panel1.Controls.Add(Me.cmdPension)
-
-        Me.Panel1.Controls.Add(Me.cmdDocumentos)
-        Me.Panel1.Controls.Add(Me.cmdFamiliar)
-
-
         Me.Panel1.Controls.Add(Me.cmdIncapacidad)
         Me.Panel1.Controls.Add(Me.cmdJuridico)
         Me.Panel1.Controls.Add(Me.cmdprestamo)
@@ -265,7 +253,7 @@ Partial Class frmEmpleados
         '
         Me.cmdPension.Image = CType(resources.GetObject("cmdPension.Image"), System.Drawing.Image)
         Me.cmdPension.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdPension.Location = New System.Drawing.Point(4, 458)
+        Me.cmdPension.Location = New System.Drawing.Point(4, 466)
         Me.cmdPension.Name = "cmdPension"
         Me.cmdPension.Size = New System.Drawing.Size(95, 72)
         Me.cmdPension.TabIndex = 44
@@ -1208,21 +1196,6 @@ Partial Class frmEmpleados
         Me.chkInfonavit.Text = "Infonavit Activo"
         Me.chkInfonavit.UseVisualStyleBackColor = True
         '
-
-
-        'cmdPension
-        '
-        Me.cmdPension.Image = CType(resources.GetObject("cmdPension.Image"), System.Drawing.Image)
-        Me.cmdPension.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdPension.Location = New System.Drawing.Point(4, 466)
-        Me.cmdPension.Name = "cmdPension"
-        Me.cmdPension.Size = New System.Drawing.Size(95, 72)
-        Me.cmdPension.TabIndex = 44
-        Me.cmdPension.Text = "Pensión Ali."
-        Me.cmdPension.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdPension.UseVisualStyleBackColor = True
-
-
         'dtFecPlanta
         '
         Me.dtFecPlanta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -1304,9 +1277,18 @@ Partial Class frmEmpleados
         Me.dtpFinContrato.Name = "dtpFinContrato"
         Me.dtpFinContrato.Size = New System.Drawing.Size(154, 26)
         Me.dtpFinContrato.TabIndex = 216
-
-
-
+        '
+        'cmdimss
+        '
+        Me.cmdimss.Image = CType(resources.GetObject("cmdimss.Image"), System.Drawing.Image)
+        Me.cmdimss.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdimss.Location = New System.Drawing.Point(104, 308)
+        Me.cmdimss.Name = "cmdimss"
+        Me.cmdimss.Size = New System.Drawing.Size(87, 72)
+        Me.cmdimss.TabIndex = 48
+        Me.cmdimss.Text = "Imss"
+        Me.cmdimss.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdimss.UseVisualStyleBackColor = True
         '
         'frmEmpleados
         '
@@ -1555,5 +1537,6 @@ Partial Class frmEmpleados
     Friend WithEvents cmdDocumentos As System.Windows.Forms.Button
     Friend WithEvents Label56 As System.Windows.Forms.Label
     Friend WithEvents dtpFinContrato As System.Windows.Forms.DateTimePicker
+    Friend WithEvents cmdimss As System.Windows.Forms.Button
 
 End Class
