@@ -152,6 +152,31 @@ Public Class frmEmpleados
             Else
                 'Actualizar
 
+                'SQL = "EXEC setempleadosCActualizar  " & gIdEmpleado & ",'" & txtcodigo.Text & "','" & txtnombre.Text
+                'SQL &= "','" & txtpaterno.Text
+                'SQL &= "','" & txtmaterno.Text & "','" & txtpaterno.Text & " " & txtmaterno.Text & " " & txtnombre.Text
+                'SQL &= "','" & txtrfc.Text & "','" & txtcurp.Text & "','" & txtimss.Text
+                'SQL &= "','" & txtdireccion.Text
+                'SQL &= "','" & txtciudad.Text & "'," & cboestado.SelectedValue & ",'" & txtcp.Text
+                'SQL &= "'," & cbosexo.SelectedIndex & ",'" & Format(dtpfechanac.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpCaptura.Value.Date, "yyyy/dd/MM")
+                'SQL &= "','" & cbopuesto.Text & "','" & txtfunciones.Text
+                'SQL &= "'," & IIf(txtsd.Text = "", 0, txtsd.Text) & "," & IIf(txtsdi.Text = "", 0, txtsdi.Text)
+                'SQL &= ",'','" & txtnacionalidad.Text & "','','','" & txtduracion.Text & "','" & txtcomentarios.Text
+                'SQL &= "',1," & IIf(txtsalario.Text = "", 0, txtsalario.Text) & ",0" & ",-1" & "," & cbopertenece.SelectedIndex + 1 & "," & cbobanco.SelectedValue
+                'SQL &= ",'" & txtcuenta.Text & "',1,'" & txtdireccionP.Text
+                'SQL &= "','" & txtciudadP.Text & "'," & cboestadoP.SelectedValue & ",'" & txtcp2.Text
+                'SQL &= "','" & Format(dtppatrona.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpsindicato.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpantiguedad.Value.Date, "yyyy/dd/MM")
+                'SQL &= "'," & IIf(chkInfonavit.Checked, 1, 0) & ",'" & txtclabe.Text & "','" & txtintegrar.Text
+                'SQL &= "'," & cbocategoria.SelectedIndex & ",'" & txtcredito.Text & "','" & cbotipofactor.Text
+                'SQL &= "'," & IIf(txtfactor.Text = "", 0, txtfactor.Text) & ",'" & cbojornada.Text & "','" & txtcorreo.Text
+                'SQL &= "','" & txthorario.Text & "','" & txthoras.Text & "','" & txtdescanso.Text & "'," & IIf(cbostatus.SelectedIndex = 0, -1, 1)
+                'SQL &= "," & cbopuesto.SelectedValue & "," & cbodepartamento.SelectedValue
+                'SQL &= "," & cboedocivil.SelectedIndex
+                'SQL &= "," & cbobanco2.SelectedValue
+                'SQL &= ",'" & txtcuenta2.Text
+                'SQL &= "','" & txtclabe2.Text & "'"
+                'SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+                'SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
                 SQL = "EXEC setempleadosCActualizar  " & gIdEmpleado & ",'" & txtcodigo.Text & "','" & txtnombre.Text
                 SQL &= "','" & txtpaterno.Text
                 SQL &= "','" & txtmaterno.Text & "','" & txtpaterno.Text & " " & txtmaterno.Text & " " & txtnombre.Text
@@ -177,7 +202,6 @@ Public Class frmEmpleados
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
                 SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
-
             End If
             If nExecute(SQL) = False Then
                 Exit Sub
@@ -318,11 +342,11 @@ Public Class frmEmpleados
                 'item.SubItems.Add("" & IIf(Fila.Item("iPermanente") = "0", "No", "Si"))
                 txtcredito.Text = Fila.Item("cInfonavit")
                 'item.SubItems.Add("" & Fila.Item("cInfonavit"))
-                If Fila.Item("cInfonavit") <> Nothing Then
-                    chkInfonavit.Checked = True
-                Else
-                    chkInfonavit.Checked = False
-                End If
+                'If Fila.Item("cInfonavit") <> Nothing Then
+                '    chkInfonavit.Checked = True
+                'Else
+                '    chkInfonavit.Checked = False
+                'End If
                 cbotipofactor.Text = Fila.Item("cTipoFactor")
                 'item.SubItems.Add("" & Fila.Item("cTipoFactor"))
                 txtfactor.Text = Fila.Item("fFactor")
@@ -552,10 +576,21 @@ Public Class frmEmpleados
     End Sub
 
     Private Sub MostrarDepartamentos()
+        'If gIdTipoPuesto = 0 Then
+        '    SQL = "Select * from departamentos"
+        'Else
+        '    SQL = "Select * from departamentos where iIdDepartamento=" & gIdTipoPuesto
+        'End If
+
+        'SQL &= " order by cnombre"
+        'nCargaCBO(cbodepartamento, SQL, "cnombre", "iIdDepartamento")
+        'cbodepartamento.SelectedIndex = 0
+        SQL = "Select * from departamentos"
+
         If gIdTipoPuesto = 0 Then
             SQL = "Select * from departamentos"
         Else
-            SQL = "Select * from departamentos where iIdDepartamento=" & gIdTipoPuesto
+            SQL = "Select * from departamentos where iEstatus=1" '' & gIdTipoPuesto
         End If
 
         SQL &= " order by cnombre"
@@ -576,9 +611,9 @@ Public Class frmEmpleados
         '        Dim Fila As DataRow = rwFilas(0)
 
         If gIdTipoPuesto = 0 Then
-            SQL = "Select * from Puestos "
+            SQL = "Select * from Puestos"
         Else
-            SQL = "Select * from Puestos where iTipo=" & gIdTipoPuesto
+            SQL = "Select * from Puestos where iEstatus=1" 'iTipo=" & gIdTipoPuesto
         End If
 
         SQL &= " order by cnombre"
@@ -922,6 +957,7 @@ Public Class frmEmpleados
 
     Private Sub cmdimss_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdimss.Click
         Dim forma As New frmImss
+
         If gIdEmpleado Is Nothing = False Then
 
 

@@ -26,6 +26,9 @@ C:\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\Xur
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmDocumentos.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmExcelO.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmIncapacidad.resources
@@ -43,3 +46,7 @@ D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frm
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmImss.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.Resources.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbproj.GenerateResource.Cache
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache

@@ -13,25 +13,26 @@ Option Explicit On
 
 
 Namespace My
-    
+
     'NOTA: este archivo se genera de forma automática; no lo modifique directamente. Para realizar cambios,
     ' o si detecta errores de compilación en este archivo, vaya al Diseñador de proyectos
     ' (vaya a Propiedades del proyecto o haga doble clic en el nodo My Project en el
     ' Explorador de soluciones) y realice cambios en la ficha Aplicación.
     '
     Partial Friend Class MyApplication
-        
-        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
+
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
         Public Sub New()
             MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
-            Me.IsSingleInstance = false
-            Me.EnableVisualStyles = true
-            Me.SaveMySettingsOnExit = true
+            Me.IsSingleInstance = False
+            Me.EnableVisualStyles = True
+            Me.SaveMySettingsOnExit = True
             Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
+
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
         Protected Overrides Sub OnCreateMainForm()
+            'Me.MainForm = Global.XurtepNominas.frmAcceso
             Me.MainForm = Global.XurtepNominas.frmAcceso
         End Sub
     End Class

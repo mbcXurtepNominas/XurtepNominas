@@ -48,6 +48,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>36 %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
       <HintPath>..\..\..\..\asp\crear recibos\recibos\recibos\bin\Debug\ClosedXML.dll</HintPath>
@@ -298,6 +301,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bloggif_5aac5ea61bc88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="36 %281%29.ico" />
+    <Content Include="ICONO.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
