@@ -109,6 +109,14 @@ Public Class frmPrincipal
 
                     Catch ex As Exception
                     End Try
+
+                Case "Empleados"
+                    Try
+                        Dim Forma As New frmEmpleados
+                        Forma.ShowDialog()
+
+                    Catch ex As Exception
+                    End Try
             End Select
 
         Catch ex As Exception

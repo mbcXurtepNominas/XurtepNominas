@@ -453,31 +453,7 @@ Public Class frmImportarEmpleadosAlta
 
                         '***********************************'
 
-                        'SQL = "EXEC setempleadosCInsertar 0,'" & Trim(empleadofull.SubItems(1).Text) & "','" & Trim(empleadofull.SubItems(2).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(3).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(4).Text) & "','" & Trim(empleadofull.SubItems(3).Text) & " " & Trim(empleadofull.SubItems(4).Text) & " " & Trim(empleadofull.SubItems(2).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(5).Text) & "','" & Trim(empleadofull.SubItems(6).Text) & "','" & Trim(empleadofull.SubItems(7).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(8).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(9).Text) & "'," & Trim(empleadofull.SubItems(10).Text) & ",'" & Trim(empleadofull.SubItems(11).Text)
-                        'SQL &= "'," & IIf(Trim(empleadofull.SubItems(12).Text) = "FEMENINO", 0, 1) & ",'" & dFechaNac & "','" & dFechaCap
-                        'SQL &= "','" & cPuesto & "','" & Trim(empleadofull.SubItems(16).Text)
-                        'SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
-                        'SQL &= ",'" & cLugar & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
-                        'SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco
-                        'SQL &= ",'" & Trim(empleadofull.SubItems(25).Text) & "',1,'" & Trim(empleadofull.SubItems(26).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(27).Text) & "'," & Trim(empleadofull.SubItems(28).Text) & ",'" & Trim(empleadofull.SubItems(29).Text)
-                        'SQL &= "','" & dFechaCap & "','" & dFechaCap & "','" & dFechaCap
-                        'SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(30).Text) & "','" & " "
-                        'SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & Trim(empleadofull.SubItems(32).Text) ''factor
-                        'SQL &= "'," & Trim(empleadofull.SubItems(44).Text) & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
-                        'SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''estatus 
-                        'SQL &= "," & p & "," & Trim(empleadofull.SubItems(38).Text)
-                        'SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
-                        'SQL &= "," & 1
-                        'SQL &= ",'" & " "
-                        'SQL &= "','" & "" & "'"
-                        'SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(41).Text) & "','" & Trim(empleadofull.SubItems(42).Text) & "'"
-                        'SQL &= ",'" & Trim(empleadofull.SubItems(43).Text) & "','" & " " & "'"
+                       
 
                         SQL = "EXEC setempleadosCInsertar 0,'" & Trim(empleadofull.SubItems(1).Text) & "','" & Trim(empleadofull.SubItems(2).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(3).Text)
