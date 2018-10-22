@@ -19,6 +19,10 @@ XurtepNominas
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
+</member><member name="P:XurtepNominas.My.Resources.Resources._1477958538_import">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
 </member><member name="P:XurtepNominas.My.Resources.Resources.bloggif_5a90660e3aaa9">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
@@ -68,6 +72,14 @@ XurtepNominas
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member><member name="P:XurtepNominas.My.Resources.Resources.Fondo_Xurtep3">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:XurtepNominas.My.Resources.Resources.if_magnifier_data_532758">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:XurtepNominas.My.Resources.Resources.if_rotation_job_seeker_employee_unemployee_work_2620504">
 	<summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>

@@ -98,6 +98,7 @@ Public Class frmPrincipal
                 Case "Nomina Marinos"
                     Try
                         Dim Forma As New frmnominasmarinos
+                        Forma.gIdEmpresa = 1
                         Forma.ShowDialog()
 
                     Catch ex As Exception

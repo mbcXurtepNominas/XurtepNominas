@@ -95,7 +95,7 @@ Module mdoInicio
                 Servidor.Base = "XurtepNominas"
                 Servidor.User = "sa"
                 Servidor.PWD = "kiosko2016"
-                '' Servidor.PWD = "1123581321"
+                'Servidor.PWD = "1123581321"
 
             End If
             strConfig.WriteLine(Servidor.IP)
