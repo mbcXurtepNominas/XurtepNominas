@@ -48,6 +48,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logooperadora.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
       <HintPath>..\..\..\..\asp\crear recibos\recibos\recibos\bin\Debug\ClosedXML.dll</HintPath>
@@ -168,6 +171,12 @@
     <Compile Include="General\frmUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="imss\frmImss.Designer.vb">
+      <DependentUpon>frmImss.vb</DependentUpon>
+    </Compile>
+    <Compile Include="imss\frmImss.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Modulos\GenPass.vb" />
     <Compile Include="Modulos\mdoFunciones.vb" />
     <Compile Include="Modulos\mdoInicio.vb" />
@@ -193,6 +202,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="pension\frmPensionA.Designer.vb">
+      <DependentUpon>frmPensionA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pension\frmPensionA.vb">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -238,11 +253,17 @@
     <EmbeddedResource Include="General\frmUsuarios.resx">
       <DependentUpon>frmUsuarios.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="imss\frmImss.resx">
+      <DependentUpon>frmImss.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pension\frmPensionA.resx">
+      <DependentUpon>frmPensionA.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +312,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bloggif_5aac5ea61bc88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="36 %281%29.ico" />
+    <Content Include="ICONO.ico" />
+    <Content Include="logooperadora.ico" />
+    <None Include="Resources\Fondo Xurtep3.png" />
+    <None Include="Resources\Fondo Xurtep2.png" />
+    <None Include="Resources\Fondo Xurtep1.png" />
+    <None Include="Resources\Fondo Xurtep.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

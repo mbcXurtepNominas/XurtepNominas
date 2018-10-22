@@ -324,6 +324,23 @@ Public Class frmImportarEmpleadosAlta
                         Else
                             p = 0
                         End If
+
+                        Dim d As String = Trim(empleadofull.SubItems(38).Text) ''Depto
+                        Dim iIdDpto As String
+                        If d <> "" Then
+                            Dim dpto As DataRow() = nConsulta("SELECT * FROM Departamentos where iIdDepartamento LIKE '" & d & "'")
+                            If dpto Is Nothing Then
+                                iIdDpto = " "
+                                mensa = "Revise el tipo de dapartamento"
+                                'bandera = False
+                            Else
+                                iIdDpto = dpto(0).Item("iIdDepartamento")
+                            End If
+
+                        Else
+                            d = 0
+                        End If
+
                         Dim l As String = Trim(empleadofull.SubItems(19).Text) ''Code
                         Dim cLugar As String
                         If l <> "" Then
@@ -367,19 +384,76 @@ Public Class frmImportarEmpleadosAlta
                                 number = 10
                         End Select
 
+                        'Cuenta o clabe
+
+                        Dim cuenta As String
+                        Dim clabe As String
+
+                        If Len(Trim(empleadofull.SubItems(25).Text)) = 18 Then
+                            cuenta = 0
+
+                            clabe = Trim(empleadofull.SubItems(25).Text)
+
+                        ElseIf Len(Trim(empleadofull.SubItems(25).Text) < 12) Then
+                            'clabe = 0
+                            cuenta = Trim(empleadofull.SubItems(25).Text)
+                        Else
+                            clabe = 0
+                            cuenta = 0
+
+                        End If
+                        If Len(Trim(empleadofull.SubItems(30).Text)) = 18 Then 'clabe
+                            clabe = Trim(empleadofull.SubItems(30).Text)
+                        End If
+
+                        'CHECK INFO
+                        Dim permanente As Integer
+                        If (Trim(empleadofull.SubItems(44).Text) <> 0) Then
+                            permanente = 1
+                        Else
+                            permanente = 0
+                        End If
 
 
 
-                        Dim dFechaNac, dFechaCap, dFechaPlanta As String ''--, dFechaPatrona, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
+                        Dim dFechaNac, dFechaCap, dFechaPlanta As String, dFechaPatrona ''--, dFechaTerminoContrato, dFechaSindicato, dFechaAntiguedad As String
 
                         dFechaNac = Date.Parse(Trim(empleadofull.SubItems(13).Text).ToString) ''Format(Trim(empleadofull.SubItems(18).Text), "yyyy/dd/MM"))
                         dFechaCap = Date.Parse((Trim(empleadofull.SubItems(14).Text)).ToString)
-                        dFechaPlanta = Trim(empleadofull.SubItems(40).Text).ToString
-                        'dFechaPatrona = (Trim(empleadofull.SubItems(14).Text))
+                        dFechaPlanta = Date.Parse(Trim(empleadofull.SubItems(40).Text).ToString)
+                        dFechaPatrona = Date.Parse((Trim(empleadofull.SubItems(14).Text).ToString))
                         'dFechaTerminoContrato = ((Trim(empleadofull.SubItems(44).Text))) ''No asignado
                         'dFechaSindicato = (Trim(empleadofull.SubItems(14).Text))
                         'dFechaAntiguedad = Trim(empleadofull.SubItems(14).Text)
 
+                        '***********************************'
+                        SQL = "select max(iIdEmpleadoC) as id from empleadosC"
+
+                        Dim salario As String = "0"  '= Trim(empleadofull.SubItems(17).Text)
+                        Dim sdi As String = Trim(empleadofull.SubItems(18).Text)
+                        Dim sd As String = Trim(empleadofull.SubItems(17).Text)
+                        Dim status As String = Trim(empleadofull.SubItems(12).Text)
+
+                        'CUANDO SE AGREGA EL SUELDO ORDINARIO
+                        Dim rwFilas2 As DataRow() = nConsulta(SQL)
+
+                        If rwFilas2 Is Nothing = False Then
+                            Dim Fila As DataRow = rwFilas2(0)
+                            SQL = "EXEC setSueldoAltaInsertar  0," & IIf(salario = "", 0, salario) & ",'" & dFechaPatrona ' Format(dtppatrona.Value.Date, "yyyy/dd/MM")
+                            SQL += "',0,''," & IIf(sd = "", 0, sd) & "," & IIf(sdi = "", 0, sdi) & "," & Fila.Item("id") '"1" 
+                            SQL += ",'01/01/1900',''"
+
+                        End If
+
+                        If SQL <> "" Then
+                            If nExecute(SQL) = False Then
+                                Exit Sub
+                            End If
+                        End If
+
+                        '***********************************'
+
+                       
 
                         SQL = "EXEC setempleadosCInsertar 0,'" & Trim(empleadofull.SubItems(1).Text) & "','" & Trim(empleadofull.SubItems(2).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(3).Text)
@@ -388,31 +462,54 @@ Public Class frmImportarEmpleadosAlta
                         SQL &= "','" & Trim(empleadofull.SubItems(8).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(9).Text) & "'," & Trim(empleadofull.SubItems(10).Text) & ",'" & Trim(empleadofull.SubItems(11).Text)
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(12).Text) = "FEMENINO", 0, 1) & ",'" & dFechaNac & "','" & dFechaCap
-                        SQL &= "','" & cPuesto & "','" & Trim(empleadofull.SubItems(16).Text)
+                        SQL &= "','" & cPuesto & "','" & d
                         SQL &= "'," & IIf(Trim(empleadofull.SubItems(17).Text) = "", 0, Trim(empleadofull.SubItems(17).Text)) & "," & IIf(Trim(empleadofull.SubItems(18).Text) = "", 0, Trim(empleadofull.SubItems(18).Text))
                         SQL &= ",'" & cLugar & "','" & Trim(empleadofull.SubItems(20).Text) & "','','','" & Trim(empleadofull.SubItems(21).Text) & "','" & Trim(empleadofull.SubItems(22).Text)
                         SQL &= "',1," & IIf((empleadofull.SubItems(23).Text) = "", 0, (empleadofull.SubItems(23).Text)) & ",0" & ",-1" & "," & 1 & "," & idbanco
-                        SQL &= ",'" & Trim(empleadofull.SubItems(25).Text) & "',1,'" & Trim(empleadofull.SubItems(26).Text)
+                        SQL &= ",'" & cuenta & "',1,'" & Trim(empleadofull.SubItems(26).Text)
                         SQL &= "','" & Trim(empleadofull.SubItems(27).Text) & "'," & Trim(empleadofull.SubItems(28).Text) & ",'" & Trim(empleadofull.SubItems(29).Text)
-                        SQL &= "','" & dFechaCap & "','" & dFechaCap & "','" & dFechaCap
-                        SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(30).Text) & "','" & " "
-                        SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & Trim(empleadofull.SubItems(32).Text) ''factor
-                        SQL &= "'," & 0 & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
-                        SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''estatus 
-                        SQL &= "," & p & "," & Trim(empleadofull.SubItems(38).Text)
-                        SQL &= "," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
-                        SQL &= "," & 1
+                        SQL &= "','" & dFechaPlanta & "','" & dFechaPlanta & "','" & dFechaPlanta
+                        SQL &= "'," & permanente & ",'" & clabe & "','" & " "
+                        SQL &= "'," & 1 & ",'" & Trim(empleadofull.SubItems(31).Text) & "','" & factor ''factor
+                        SQL &= "'," & Trim(empleadofull.SubItems(44).Text) & ",'" & Trim(empleadofull.SubItems(33).Text) & "','" & Trim(empleadofull.SubItems(34).Text)
+                        SQL &= "','" & Trim(empleadofull.SubItems(35).Text) & "','" & Trim(empleadofull.SubItems(36).Text) & "','" & Trim(empleadofull.SubItems(37).Text) & "'," & -1 ''cliente 
+                        SQL &= "," & p & ",'" & iIdDpto
+                        SQL &= "'," & IIf(Trim(empleadofull.SubItems(39).Text) = "SOLTERO", 0, 1)
+                        SQL &= "," & 36 ''BANCO 2
                         SQL &= ",'" & " "
                         SQL &= "','" & "" & "'"
                         SQL &= "," & 0 & ",'" & dFechaPlanta & "','" & Trim(empleadofull.SubItems(41).Text) & "','" & Trim(empleadofull.SubItems(42).Text) & "'"
                         SQL &= ",'" & Trim(empleadofull.SubItems(43).Text) & "','" & " " & "'"
-
                         If nExecute(SQL) = False Then
                             MessageBox.Show("Error en el registro con los siguiente datos:   Empleado:  " & Trim(empleado.SubItems(3).Text), Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                             tsbCancelar_Click(sender, e)
                             pnlProgreso.Visible = False
                             Exit Sub
                         End If
+
+
+                        '**********************************************
+                        'Agregar alta/baja
+                        'If blnNuevo Then
+                        'Obtener id
+
+                        SQL = "select max(iIdEmpleadoC) as id from empleadosC"
+                        Dim rwFilas3 As DataRow() = nConsulta(SQL)
+
+                        If rwFilas3 Is Nothing = False Then
+                            Dim Fila As DataRow = rwFilas3(0)
+                            SQL = "EXEC setIngresoBajaAltaInsertar  0," & Fila.Item("id") & ",'" & "A" & "','" & dFechaPatrona & "','01/01/1900','',''"
+                            'Enviar correo
+                        End If
+
+                        If SQL <> "" Then
+                            If nExecute(SQL) = False Then
+                                Exit Sub
+                            End If
+                        End If
+                        '**********************************************
+
+
                         pgbProgreso.Value += 1
                         ''Application.DoEvents()
                         t = t + 1

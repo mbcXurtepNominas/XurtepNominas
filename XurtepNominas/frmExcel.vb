@@ -648,7 +648,6 @@ Public Class frmExcel
 
                 Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
 
-
                 Dim libro As New ClosedXML.Excel.XLWorkbook
 
 
@@ -939,8 +938,8 @@ Public Class frmExcel
                 Dim month As Integer = moment.Month
                 Dim year As Integer = moment.Year
                 dialogo.DefaultExt = "*.xlsx"
-
-                dialogo.FileName = Format(moment.Date, "MMMM yyyy ").ToUpper & " " & "Procesos " & tipo & " "
+                Dim fechita() As String = Date.Parse(fechadepago).ToLongDateString().Split(",")
+                dialogo.FileName = fechita(1).ToUpper & " " & "Procesos " & tipo & " "
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 
@@ -977,16 +976,6 @@ Public Class frmExcel
         Try
             Dim tipo As String = "NOMINA"
 
-            '' Format(Date.Now, "MMMM yyyy") & " " & cboTipoR.SelectedItem.ToString()
-            'Select Case cboTipoR.SelectedItem.ToString()
-            '    Case "NN"
-            '        tipo = "ABORDO"
-            '    Case "ND"
-            '        tipo = "DESCANSO"
-            '    Case Else
-            '        tipo = "NOMINA"
-
-            'End Select
 
 
             Dim filaExcel As Integer = 2
@@ -1007,6 +996,7 @@ Public Class frmExcel
                 book.Worksheet(2).CopyTo(libro, "Percepciones")
                 book.Worksheet(3).CopyTo(libro, "Deducciones")
                 book.Worksheet(4).CopyTo(libro, "Otros Pagos")
+
 
                 Dim hoja As IXLWorksheet = libro.Worksheets(0)
                 Dim hoja2 As IXLWorksheet = libro.Worksheets(1)
@@ -1061,7 +1051,7 @@ Public Class frmExcel
 
                 filaExcel = 4
                 For Each dato As ListViewItem In lsvLista.CheckedItems
-                    ''percepciones
+                    ''Deducciones
                     hoja2.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
                     hoja2.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
                     hoja2.Cell(filaExcel, 3).Value = dato.SubItems(22).Text ''VACACIONES PROPORCIONALES
@@ -1081,7 +1071,7 @@ Public Class frmExcel
                     hoja2.Cell(filaExcel, 17).Value = " " '' dato.SubItems(27).Text ''PRIMA DE ANTIGËDAD
                     hoja2.Cell(filaExcel, 18).Value = " "
 
-                    ''Deducciones
+                    ''Percepciones
                     hoja3.Cell(filaExcel, 1).Value = dato.SubItems(4).Text
                     hoja3.Cell(filaExcel, 2).Value = dato.SubItems(2).Text
                     hoja3.Cell(filaExcel, 3).Value = dato.SubItems(34).Text 'IMSS
@@ -1156,7 +1146,7 @@ Public Class frmExcel
             ' Return infonavitcalculado.ToString()
         Else
             'Return infonavit.ToString
-            infonavitcalculado = infonavit
+            infonavitcalculado = CDbl(infonavit) + CDbl(diferencia)
         End If
 
         Return infonavitcalculado.ToString()

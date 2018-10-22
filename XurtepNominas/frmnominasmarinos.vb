@@ -10995,4 +10995,8 @@ Public Class frmnominasmarinos
 
         End Try
     End Sub
+
+    Private Sub layoutTimbrado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles layoutTimbrado.Click
+
+    End Sub
 End Class
