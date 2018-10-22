@@ -51,11 +51,11 @@ Public Class frmnominasmarinos
 
                 If rwDatosSalario Is Nothing = False Then
                     If row.Cells(10).Value >= 55 Then
-                        row.Cells(15).Value = rwDatosSalario(0)("salariodTopado")
-                        row.Cells(16).Value = rwDatosSalario(0)("sbcTopado")
+                        row.Cells(16).Value = rwDatosSalario(0)("salariodTopado")
+                        row.Cells(17).Value = rwDatosSalario(0)("sbcTopado")
                     Else
-                        row.Cells(15).Value = rwDatosSalario(0)("salariod")
-                        row.Cells(16).Value = rwDatosSalario(0)("sbc")
+                        row.Cells(16).Value = rwDatosSalario(0)("salariod")
+                        row.Cells(17).Value = rwDatosSalario(0)("sbc")
                     End If
 
                 Else
@@ -10996,7 +10996,5 @@ Public Class frmnominasmarinos
         End Try
     End Sub
 
-    Private Sub layoutTimbrado_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles layoutTimbrado.Click
-
-    End Sub
+    
 End Class

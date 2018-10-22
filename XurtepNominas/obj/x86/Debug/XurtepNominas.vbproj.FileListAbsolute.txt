@@ -48,3 +48,8 @@ C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\Close
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
+C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmImss.resources
+C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmPensionA.resources
+C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmSubirDatos.resources
+C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmAgregarEmpleado.resources
+C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmConcentradoInfonavit.resources

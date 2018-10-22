@@ -86,6 +86,18 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAgregarEmpleado.designer.vb">
+      <DependentUpon>frmAgregarEmpleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgregarEmpleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConcentradoInfonavit.designer.vb">
+      <DependentUpon>frmConcentradoInfonavit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmConcentradoInfonavit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDocumentos.Designer.vb">
       <DependentUpon>frmDocumentos.vb</DependentUpon>
     </Compile>
@@ -159,6 +171,12 @@
     <Compile Include="frmPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmSubirDatos.Designer.vb">
+      <DependentUpon>frmSubirDatos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSubirDatos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="General\frmAcceso.designer.vb">
       <DependentUpon>frmAcceso.vb</DependentUpon>
     </Compile>
@@ -211,6 +229,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAgregarEmpleado.resx">
+      <DependentUpon>frmAgregarEmpleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConcentradoInfonavit.resx">
+      <DependentUpon>frmConcentradoInfonavit.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDocumentos.resx">
       <DependentUpon>frmDocumentos.vb</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSubirDatos.resx">
+      <DependentUpon>frmSubirDatos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="General\frmAcceso.resx">
       <DependentUpon>frmAcceso.vb</DependentUpon>
@@ -317,6 +344,9 @@
     <Content Include="36 %281%29.ico" />
     <Content Include="ICONO.ico" />
     <Content Include="logooperadora.ico" />
+    <None Include="Resources\if_rotation_job_seeker_employee_unemployee_work_2620504.png" />
+    <None Include="Resources\if_magnifier-data_532758.png" />
+    <None Include="Resources\1477958538_import.png" />
     <None Include="Resources\Fondo Xurtep3.png" />
     <None Include="Resources\Fondo Xurtep2.png" />
     <None Include="Resources\Fondo Xurtep1.png" />

@@ -73,6 +73,16 @@ Namespace My.Resources
         '''<summary>
         '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property _1477958538_import() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("1477958538_import", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property bloggif_5a90660e3aaa9() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("bloggif_5a90660e3aaa9", resourceCulture)
@@ -196,6 +206,26 @@ Namespace My.Resources
         Friend ReadOnly Property Fondo_Xurtep3() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Fondo Xurtep3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property if_magnifier_data_532758() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("if_magnifier-data_532758", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property if_rotation_job_seeker_employee_unemployee_work_2620504() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("if_rotation_job_seeker_employee_unemployee_work_2620504", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
