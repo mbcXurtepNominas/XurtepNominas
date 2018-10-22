@@ -53,10 +53,6 @@ C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\X
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmSubirDatos.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmAgregarEmpleado.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmConcentradoInfonavit.resources
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmDocumentos.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmExcelO.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmIncapacidad.resources
@@ -75,3 +71,13 @@ D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frm
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.Resources.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmPensionA.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbproj.GenerateResource.Cache
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.pdb
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmAgregarEmpleado.resources
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmConcentradoInfonavit.resources
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmSubirDatos.resources
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.xml
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.pdb
