@@ -892,4 +892,8 @@ Public Class frmEmpleados
         End If
 
     End Sub
+
+    Private Sub cmdPension_Click(sender As System.Object, e As System.EventArgs) Handles cmdPension.Click
+
+    End Sub
 End Class
