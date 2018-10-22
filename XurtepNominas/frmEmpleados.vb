@@ -122,6 +122,64 @@ Public Class frmEmpleados
 
 
 
+            'If blnNuevo Then
+            '    'Insertar nuevo
+            '    SQL = "EXEC setempleadosCInsertar 0,'" & txtcodigo.Text & "','" & txtnombre.Text
+            '    SQL &= "','" & txtpaterno.Text
+            '    SQL &= "','" & txtmaterno.Text & "','" & txtpaterno.Text & " " & txtmaterno.Text & " " & txtnombre.Text
+            '    SQL &= "','" & txtrfc.Text & "','" & txtcurp.Text & "','" & txtimss.Text
+            '    SQL &= "','" & txtdireccion.Text
+            '    SQL &= "','" & txtciudad.Text & "'," & cboestado.SelectedValue & ",'" & txtcp.Text
+            '    SQL &= "'," & cbosexo.SelectedIndex & ",'" & Format(dtpfechanac.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpCaptura.Value.Date, "yyyy/dd/MM")
+            '    SQL &= "','" & cbopuesto.Text & "','" & txtfunciones.Text
+            '    SQL &= "'," & IIf(txtsd.Text = "", 0, txtsd.Text) & "," & IIf(txtsdi.Text = "", 0, txtsdi.Text)
+            '    SQL &= ",'','" & txtnacionalidad.Text & "','','','" & txtduracion.Text & "','" & txtcomentarios.Text
+            '    SQL &= "',1," & IIf(txtsalario.Text = "", 0, txtsalario.Text) & ",0" & ",-1" & "," & cbopertenece.SelectedIndex + 1 & "," & cbobanco.SelectedValue
+            '    SQL &= ",'" & txtcuenta.Text & "',1,'" & txtdireccionP.Text
+            '    SQL &= "','" & txtciudadP.Text & "'," & cboestadoP.SelectedValue & ",'" & txtcp2.Text
+            '    SQL &= "','" & Format(dtppatrona.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpsindicato.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpantiguedad.Value.Date, "yyyy/dd/MM")
+            '    SQL &= "'," & IIf(chkInfonavit.Checked, 1, 0) & ",'" & txtclabe.Text & "','" & txtintegrar.Text
+            '    SQL &= "'," & cbocategoria.SelectedIndex & ",'" & txtcredito.Text & "','" & cbotipofactor.Text
+            '    SQL &= "'," & IIf(txtfactor.Text = "", 0, txtfactor.Text) & ",'" & cbojornada.Text & "','" & txtcorreo.Text
+            '    SQL &= "','" & txthorario.Text & "','" & txthoras.Text & "','" & txtdescanso.Text & "'," & IIf(cbostatus.SelectedIndex = 0, -1, 1)
+            '    SQL &= "," & cbopuesto.SelectedValue & "," & cbodepartamento.SelectedValue
+            '    SQL &= "," & cboedocivil.SelectedIndex
+            '    SQL &= "," & cbobanco2.SelectedValue
+            '    SQL &= ",'" & txtcuenta2.Text
+            '    SQL &= "','" & txtclabe2.Text & "'"
+            '    SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+            '    SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
+            'Else
+            '    'Actualizar
+
+
+            '    SQL = "EXEC setempleadosCActualizar  " & gIdEmpleado & ",'" & txtcodigo.Text & "','" & txtnombre.Text
+            '    SQL &= "','" & txtpaterno.Text
+            '    SQL &= "','" & txtmaterno.Text & "','" & txtpaterno.Text & " " & txtmaterno.Text & " " & txtnombre.Text
+            '    SQL &= "','" & txtrfc.Text & "','" & txtcurp.Text & "','" & txtimss.Text
+            '    SQL &= "','" & txtdireccion.Text
+            '    SQL &= "','" & txtciudad.Text & "'," & cboestado.SelectedValue & ",'" & txtcp.Text
+            '    SQL &= "'," & cbosexo.SelectedIndex & ",'" & Format(dtpfechanac.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpCaptura.Value.Date, "yyyy/dd/MM")
+            '    SQL &= "','" & cbopuesto.Text & "','" & txtfunciones.Text
+            '    SQL &= "'," & IIf(txtsd.Text = "", 0, txtsd.Text) & "," & IIf(txtsdi.Text = "", 0, txtsdi.Text)
+            '    SQL &= ",'','" & txtnacionalidad.Text & "','','','" & txtduracion.Text & "','" & txtcomentarios.Text
+            '    SQL &= "',1," & IIf(txtsalario.Text = "", 0, txtsalario.Text) & ",0" & ",-1" & "," & cbopertenece.SelectedIndex + 1 & "," & cbobanco.SelectedValue
+            '    SQL &= ",'" & txtcuenta.Text & "',1,'" & txtdireccionP.Text
+            '    SQL &= "','" & txtciudadP.Text & "'," & cboestadoP.SelectedValue & ",'" & txtcp2.Text
+            '    SQL &= "','" & Format(dtppatrona.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpsindicato.Value.Date, "yyyy/dd/MM") & "','" & Format(dtpantiguedad.Value.Date, "yyyy/dd/MM")
+            '    SQL &= "'," & IIf(chkInfonavit.Checked, 1, 0) & ",'" & txtclabe.Text & "','" & txtintegrar.Text
+            '    SQL &= "'," & cbocategoria.SelectedIndex & ",'" & txtcredito.Text & "','" & cbotipofactor.Text
+            '    SQL &= "'," & IIf(txtfactor.Text = "", 0, txtfactor.Text) & ",'" & cbojornada.Text & "','" & txtcorreo.Text
+            '    SQL &= "','" & txthorario.Text & "','" & txthoras.Text & "','" & txtdescanso.Text & "'," & IIf(cbostatus.SelectedIndex = 0, -1, 1)
+            '    SQL &= "," & cbopuesto.SelectedValue & "," & cbodepartamento.SelectedValue
+            '    SQL &= "," & cboedocivil.SelectedIndex
+            '    SQL &= "," & cbobanco2.SelectedValue
+            '    SQL &= ",'" & txtcuenta2.Text
+            '    SQL &= "','" & txtclabe2.Text & "'"
+            '    SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
+            '    SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
+            'End If
+
             If blnNuevo Then
                 'Insertar nuevo
                 SQL = "EXEC setempleadosCInsertar 0,'" & txtcodigo.Text & "','" & txtnombre.Text
@@ -152,7 +210,6 @@ Public Class frmEmpleados
             Else
                 'Actualizar
 
-                
                 SQL = "EXEC setempleadosCActualizar  " & gIdEmpleado & ",'" & txtcodigo.Text & "','" & txtnombre.Text
                 SQL &= "','" & txtpaterno.Text
                 SQL &= "','" & txtmaterno.Text & "','" & txtpaterno.Text & " " & txtmaterno.Text & " " & txtnombre.Text
@@ -178,7 +235,9 @@ Public Class frmEmpleados
                 SQL &= "','" & txtclabe2.Text & "'"
                 SQL &= "," & IIf(txtExtra.Text = "", 0, txtExtra.Text) & ",'" & Format(dtFecPlanta.Value.Date, "yyyy/dd/MM") & "','" & txtInicio.Text & "','" & txtFin.Text & "'"
                 SQL &= ", '" & txtTelefono.Text & "','" & Format(dtpFinContrato.Value.Date, "yyyy/dd/MM") & "'"
+
             End If
+
             If nExecute(SQL) = False Then
                 Exit Sub
             End If
