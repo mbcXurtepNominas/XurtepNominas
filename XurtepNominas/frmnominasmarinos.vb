@@ -10985,7 +10985,8 @@ Public Class frmnominasmarinos
         End Try
     End Sub
 
-    Private Sub ActicarCalculoInfonavitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ActicarCalculoInfonavitToolStripMenuItem.Click
+    
+    Private Sub ActivarCalculoInfonavitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ActivarCalculoInfonavitToolStripMenuItem.Click
         Try
             Dim iFila As DataGridViewRow = Me.dtgDatos.CurrentRow()
             iFila.Tag = ""
@@ -10994,5 +10995,4 @@ Public Class frmnominasmarinos
 
         End Try
     End Sub
-
 End Class

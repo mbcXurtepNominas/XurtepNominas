@@ -33,6 +33,11 @@ Partial Class frmnominasmarinos
         Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
+        Me.cmdResumenInfo = New System.Windows.Forms.Button()
+        Me.cmdSubirDatos = New System.Windows.Forms.Button()
+        Me.btnReporte = New System.Windows.Forms.Button()
+        Me.cmdexcel = New System.Windows.Forms.Button()
+        Me.cmdrecibosA = New System.Windows.Forms.Button()
         Me.cboTipoNomina = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cboserie = New System.Windows.Forms.ComboBox()
@@ -61,11 +66,6 @@ Partial Class frmnominasmarinos
         Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NoCalcularInofnavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cmdexcel = New System.Windows.Forms.Button()
-        Me.cmdrecibosA = New System.Windows.Forms.Button()
-        Me.cmdResumenInfo = New System.Windows.Forms.Button()
-        Me.cmdSubirDatos = New System.Windows.Forms.Button()
-        Me.btnReporte = New System.Windows.Forms.Button()
         Me.cmdComision = New System.Windows.Forms.Button()
         Me.cmdReporteInfonavit = New System.Windows.Forms.Button()
         Me.cmdInfonavit = New System.Windows.Forms.Button()
@@ -188,6 +188,56 @@ Partial Class frmnominasmarinos
         Me.pnlCatalogo.Name = "pnlCatalogo"
         Me.pnlCatalogo.Size = New System.Drawing.Size(1357, 451)
         Me.pnlCatalogo.TabIndex = 26
+        '
+        'cmdResumenInfo
+        '
+        Me.cmdResumenInfo.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdResumenInfo.Location = New System.Drawing.Point(1171, 33)
+        Me.cmdResumenInfo.Name = "cmdResumenInfo"
+        Me.cmdResumenInfo.Size = New System.Drawing.Size(147, 28)
+        Me.cmdResumenInfo.TabIndex = 30
+        Me.cmdResumenInfo.Text = "Concentrado Infonavit"
+        Me.cmdResumenInfo.UseVisualStyleBackColor = True
+        '
+        'cmdSubirDatos
+        '
+        Me.cmdSubirDatos.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdSubirDatos.Location = New System.Drawing.Point(1051, 33)
+        Me.cmdSubirDatos.Name = "cmdSubirDatos"
+        Me.cmdSubirDatos.Size = New System.Drawing.Size(103, 28)
+        Me.cmdSubirDatos.TabIndex = 29
+        Me.cmdSubirDatos.Text = "Subir datos"
+        Me.cmdSubirDatos.UseVisualStyleBackColor = True
+        '
+        'btnReporte
+        '
+        Me.btnReporte.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReporte.Location = New System.Drawing.Point(942, 33)
+        Me.btnReporte.Name = "btnReporte"
+        Me.btnReporte.Size = New System.Drawing.Size(103, 28)
+        Me.btnReporte.TabIndex = 28
+        Me.btnReporte.Text = "Reporte a Excel"
+        Me.btnReporte.UseVisualStyleBackColor = True
+        '
+        'cmdexcel
+        '
+        Me.cmdexcel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdexcel.Location = New System.Drawing.Point(1003, 3)
+        Me.cmdexcel.Name = "cmdexcel"
+        Me.cmdexcel.Size = New System.Drawing.Size(93, 27)
+        Me.cmdexcel.TabIndex = 27
+        Me.cmdexcel.Text = "Enviar a Excel"
+        Me.cmdexcel.UseVisualStyleBackColor = True
+        '
+        'cmdrecibosA
+        '
+        Me.cmdrecibosA.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdrecibosA.Location = New System.Drawing.Point(877, 3)
+        Me.cmdrecibosA.Name = "cmdrecibosA"
+        Me.cmdrecibosA.Size = New System.Drawing.Size(122, 27)
+        Me.cmdrecibosA.TabIndex = 26
+        Me.cmdrecibosA.Text = "Asimilado Simple"
+        Me.cmdrecibosA.UseVisualStyleBackColor = True
         '
         'cboTipoNomina
         '
@@ -412,7 +462,7 @@ Partial Class frmnominasmarinos
         '
         Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
         Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(205, 114)
+        Me.cMenu.Size = New System.Drawing.Size(205, 136)
         '
         'EliminarDeLaListaToolStripMenuItem
         '
@@ -443,56 +493,6 @@ Partial Class frmnominasmarinos
         Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
         Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
         Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
-        '
-        'cmdexcel
-        '
-        Me.cmdexcel.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdexcel.Location = New System.Drawing.Point(1003, 3)
-        Me.cmdexcel.Name = "cmdexcel"
-        Me.cmdexcel.Size = New System.Drawing.Size(93, 27)
-        Me.cmdexcel.TabIndex = 27
-        Me.cmdexcel.Text = "Enviar a Excel"
-        Me.cmdexcel.UseVisualStyleBackColor = True
-        '
-        'cmdrecibosA
-        '
-        Me.cmdrecibosA.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdrecibosA.Location = New System.Drawing.Point(877, 3)
-        Me.cmdrecibosA.Name = "cmdrecibosA"
-        Me.cmdrecibosA.Size = New System.Drawing.Size(122, 27)
-        Me.cmdrecibosA.TabIndex = 26
-        Me.cmdrecibosA.Text = "Asimilado Simple"
-        Me.cmdrecibosA.UseVisualStyleBackColor = True
-        '
-        'cmdResumenInfo
-        '
-        Me.cmdResumenInfo.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdResumenInfo.Location = New System.Drawing.Point(1171, 33)
-        Me.cmdResumenInfo.Name = "cmdResumenInfo"
-        Me.cmdResumenInfo.Size = New System.Drawing.Size(147, 28)
-        Me.cmdResumenInfo.TabIndex = 30
-        Me.cmdResumenInfo.Text = "Concentrado Infonavit"
-        Me.cmdResumenInfo.UseVisualStyleBackColor = True
-        '
-        'cmdSubirDatos
-        '
-        Me.cmdSubirDatos.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdSubirDatos.Location = New System.Drawing.Point(1051, 33)
-        Me.cmdSubirDatos.Name = "cmdSubirDatos"
-        Me.cmdSubirDatos.Size = New System.Drawing.Size(103, 28)
-        Me.cmdSubirDatos.TabIndex = 29
-        Me.cmdSubirDatos.Text = "Subir datos"
-        Me.cmdSubirDatos.UseVisualStyleBackColor = True
-        '
-        'btnReporte
-        '
-        Me.btnReporte.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReporte.Location = New System.Drawing.Point(942, 33)
-        Me.btnReporte.Name = "btnReporte"
-        Me.btnReporte.Size = New System.Drawing.Size(103, 28)
-        Me.btnReporte.TabIndex = 28
-        Me.btnReporte.Text = "Reporte a Excel"
-        Me.btnReporte.UseVisualStyleBackColor = True
         '
         'cmdComision
         '
