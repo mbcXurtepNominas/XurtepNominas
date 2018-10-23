@@ -189,7 +189,8 @@ Public Class frmSubirDatos
             End If
 
         Catch ex As Exception
-
+            MessageBox.Show(ex.Message)
+            tsbCancelar.Enabled = True
         End Try
     End Sub
 
@@ -262,7 +263,7 @@ Public Class frmSubirDatos
 
 
                 For Each producto As ListViewItem In lsvLista.CheckedItems
-                    SQL = "select * from empleadosC where cCodigoEmpleado = " & Trim(producto.SubItems(1).Text).Substring(2, 4)
+                    SQL = "select * from empleadosC where cCodigoEmpleado = " & Trim(producto.SubItems(1).Text)
                     Dim rwFilas As DataRow() = nConsulta(SQL)
 
                     If rwFilas Is Nothing = False Then
@@ -337,7 +338,7 @@ Public Class frmSubirDatos
                     pgbProgreso.Maximum = lsvLista.CheckedItems.Count
 
                     For Each producto As ListViewItem In lsvLista.CheckedItems
-                        SQL = "select * from empleadosC where cCodigoEmpleado = " & Trim(producto.SubItems(1).Text).Substring(2, 4)
+                        SQL = "select * from empleadosC where cCodigoEmpleado = " & Trim(producto.SubItems(1).Text)
                         Dim rwFilas As DataRow() = nConsulta(SQL)
 
                         If rwFilas Is Nothing = False Then
@@ -346,14 +347,14 @@ Public Class frmSubirDatos
                                 Dim fila As DataRow = dsReporte.Tables("Tabla").NewRow
 
                                 fila.Item("Id_empleado") = rwFilas(0)("iIdEmpleadoC")
-                                fila.Item("CodigoEmpleado") = Trim(producto.SubItems(1).Text).Substring(2, 4)
-                                fila.Item("dias") = Trim(producto.SubItems(9).Text)
-                                fila.Item("Salario") = Trim(producto.SubItems(12).Text)
-                                fila.Item("Bono") = Trim(producto.SubItems(13).Text)
+                                fila.Item("CodigoEmpleado") = Trim(producto.SubItems(1).Text)
+                                fila.Item("dias") = Trim(producto.SubItems(10).Text)
+                                fila.Item("Salario") = Trim(producto.SubItems(13).Text)
+                                fila.Item("Bono") = Trim(producto.SubItems(14).Text)
                                 fila.Item("Refrendo") = Trim(producto.SubItems(14).Text)
-                                fila.Item("SalarioTMM") = Trim(producto.SubItems(17).Text)
-                                fila.Item("CodigoPuesto") = Trim(producto.SubItems(4).Text)
-                                fila.Item("CodigoBuque") = Trim(producto.SubItems(10).Text)
+                                fila.Item("SalarioTMM") = Trim(producto.SubItems(16).Text)
+                                fila.Item("CodigoPuesto") = Trim(producto.SubItems(5).Text)
+                                fila.Item("CodigoBuque") = Trim(producto.SubItems(7).Text)
                                 dsReporte.Tables("Tabla").Rows.Add(fila)
 
                             End If

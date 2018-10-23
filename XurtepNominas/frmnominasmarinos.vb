@@ -1505,7 +1505,6 @@ Public Class frmnominasmarinos
 
 
     Private Sub cmdguardarnomina_Click(sender As Object, e As EventArgs) Handles cmdguardarnomina.Click
-
         Try
             Dim sql As String
             Dim sql2 As String
@@ -1524,6 +1523,8 @@ Public Class frmnominasmarinos
             If rwNominaGuardadaFinal Is Nothing = False Then
                 MessageBox.Show("La nomina ya esta marcada como final, no  se pueden guardar cambios", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
+
+
                 sql = "delete from Nomina"
                 sql &= " where fkiIdEmpresa=1 and fkiIdPeriodo=" & cboperiodo.SelectedValue
                 sql &= " and iEstatusNomina=0 and iEstatus=1 and iEstatusEmpleado=" & cboserie.SelectedIndex
@@ -1534,11 +1535,22 @@ Public Class frmnominasmarinos
                     Exit Sub
                 End If
 
+                sql = "delete from DetalleDescInfonavit"
+                sql &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
+                sql &= " and iSerie=" & cboserie.SelectedIndex
+                'sql &= " and iSerie=" & cboserie.SelectedIndex
+                sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+
+                If nExecute(sql) = False Then
+                    MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    'pnlProgreso.Visible = False
+                    Exit Sub
+                End If
 
                 pnlProgreso.Visible = True
 
                 Application.DoEvents()
-                pnlCatalogo.Enabled = False
+                'pnlCatalogo.Enabled = False
                 pgbProgreso.Minimum = 0
                 pgbProgreso.Value = 0
                 pgbProgreso.Maximum = dtgDatos.Rows.Count
@@ -1569,7 +1581,7 @@ Public Class frmnominasmarinos
 
                     Dim rwDepto As DataRow() = nConsulta(sql2)
 
-                    sql &= ",1" '& rwDepto(0)("iIdDepartamento")
+                    sql &= "," & rwDepto(0)("iIdDepartamento")
 
                     'estatus empleado
                     sql &= "," & cboserie.SelectedIndex
@@ -1639,34 +1651,44 @@ Public Class frmnominasmarinos
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(42).Value = "", "0", dtgDatos.Rows(x).Cells(42).Value.ToString.Replace(",", ""))
                     'Fonacot
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(43).Value = "", "0", dtgDatos.Rows(x).Cells(43).Value.ToString.Replace(",", ""))
-                    'neto a pagar
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(44).Value = "", "0", dtgDatos.Rows(x).Cells(46).Value.ToString.Replace(",", ""))
-                    'excedente
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(45).Value = "", "0", dtgDatos.Rows(x).Cells(47).Value.ToString.Replace(",", ""))
-                    'total
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(46).Value = "", "0", dtgDatos.Rows(x).Cells(48).Value.ToString.Replace(",", ""))
-                    'imssCS
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(47).Value = "", "0", dtgDatos.Rows(x).Cells(49).Value.ToString.Replace(",", ""))
-                    'RCV SC
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(48).Value = "", "0", dtgDatos.Rows(x).Cells(50).Value.ToString.Replace(",", ""))
-                    'infonavit CS
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(49).Value = "", "0", dtgDatos.Rows(x).Cells(51).Value.ToString.Replace(",", ""))
-                    'ISN CS
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(50).Value = "", "0", dtgDatos.Rows(x).Cells(52).Value.ToString.Replace(",", ""))
-                    'Importe 1
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(51).Value = "", "0", dtgDatos.Rows(x).Cells(53).Value.ToString.Replace(",", ""))
-                    'Importe 2
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(52).Value = "", "0", dtgDatos.Rows(x).Cells(54).Value.ToString.Replace(",", ""))
-                    'Importe 3
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(53).Value = "", "0", dtgDatos.Rows(x).Cells(55).Value.ToString.Replace(",", ""))
-                    'Importe 4
-                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(54).Value = "", "0", dtgDatos.Rows(x).Cells(56).Value.ToString.Replace(",", ""))
-                    'Importe 5
+                    'Subsidio Generado
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(44).Value = "", "0", dtgDatos.Rows(x).Cells(44).Value.ToString.Replace(",", ""))
-                    'Importe 6
+                    'Subsidio Aplicado
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(45).Value = "", "0", dtgDatos.Rows(x).Cells(45).Value.ToString.Replace(",", ""))
-                    'Importe 7
-                    sql &= ",0"
+                    'Operadora
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(46).Value = "", "0", dtgDatos.Rows(x).Cells(46).Value.ToString.Replace(",", ""))
+                    'Prestamo Personal Asimilado
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(47).Value = "", "0", dtgDatos.Rows(x).Cells(47).Value.ToString.Replace(",", ""))
+                    'Adeudo_Infonavit_Asimilado
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(48).Value = "", "0", dtgDatos.Rows(x).Cells(48).Value.ToString.Replace(",", ""))
+                    'Difencia infonavit Asimilado
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(49).Value = "", "0", dtgDatos.Rows(x).Cells(49).Value.ToString.Replace(",", ""))
+                    'Complemento Asimilado
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(50).Value = "", "0", dtgDatos.Rows(x).Cells(50).Value.ToString.Replace(",", ""))
+                    'Retenciones_Operadora
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(51).Value = "", "0", dtgDatos.Rows(x).Cells(51).Value.ToString.Replace(",", ""))
+                    '% Comision
+                    sql &= ",0.02" '& IIf(dtgDatos.Rows(x).Cells(52).Value = "", "0", dtgDatos.Rows(x).Cells(52).Value.ToString.Replace(",", ""))
+                    'Comision_Operadora
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(53).Value = "", "0", dtgDatos.Rows(x).Cells(53).Value.ToString.Replace(",", ""))
+                    'Comision asimilados
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(54).Value = "", "0", dtgDatos.Rows(x).Cells(54).Value.ToString.Replace(",", ""))
+                    'IMSS_CS
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(55).Value = "", "0", dtgDatos.Rows(x).Cells(55).Value.ToString.Replace(",", ""))
+                    'RCV_CS
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(56).Value = "", "0", dtgDatos.Rows(x).Cells(56).Value.ToString.Replace(",", ""))
+                    'Infonavit_CS
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(57).Value = "", "0", dtgDatos.Rows(x).Cells(57).Value.ToString.Replace(",", ""))
+                    'ISN_CS
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(58).Value = "", "0", dtgDatos.Rows(x).Cells(58).Value.ToString.Replace(",", ""))
+                    'Total Costo Social
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(59).Value = "", "0", dtgDatos.Rows(x).Cells(59).Value.ToString.Replace(",", ""))
+                    'Subtotal
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(60).Value = "", "0", dtgDatos.Rows(x).Cells(60).Value.ToString.Replace(",", ""))
+                    'IVA
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(61).Value = "", "0", dtgDatos.Rows(x).Cells(61).Value.ToString.Replace(",", ""))
+                    'TOTAL DEPOSITO
+                    sql &= "," & IIf(dtgDatos.Rows(x).Cells(62).Value = "", "0", dtgDatos.Rows(x).Cells(62).Value.ToString.Replace(",", ""))
                     'Estatus
                     sql &= ",1"
                     'Estatus Nomina
@@ -1685,6 +1707,90 @@ Public Class frmnominasmarinos
                         Exit Sub
                     End If
 
+                    '########GUARDAR INFONAVIT
+
+                    Dim numbimestre As Integer
+                    If Month(FechaInicioPeriodoGlobal) Mod 2 = 0 Then
+                        numbimestre = Month(FechaInicioPeriodoGlobal) / 2
+                    Else
+                        numbimestre = (Month(FechaInicioPeriodoGlobal) + 1) / 2
+                    End If
+
+
+                    If Double.Parse(IIf(dtgDatos.Rows(x).Cells(38).Value = "", "0", dtgDatos.Rows(x).Cells(38).Value)) Then
+
+                        Dim MontoInfonavit As Double = MontoInfonavitF(cboperiodo.SelectedValue, Integer.Parse(dtgDatos.Rows(x).Cells(2).Value))
+
+                        sql = "EXEC setDetalleDescInfonavitInsertar  0"
+                        'fk Calculo infonavit
+                        sql &= "," & IIf(MontoInfonavit > 0, IDCalculoInfonavit, 0)
+                        'Cantidad
+                        sql &= "," & dtgDatos.Rows(x).Cells(38).Value
+                        ' fk Empleado
+                        sql &= "," & dtgDatos.Rows(x).Cells(2).Value
+                        'Numbimestre
+                        sql &= "," & numbimestre
+                        'Anio
+                        sql &= "," & FechaInicioPeriodoGlobal.Year
+                        'fk Periodo
+                        sql &= "," & cboperiodo.SelectedValue
+                        'Serie
+                        sql &= "," & cboserie.SelectedIndex
+                        'Tipo Nomina
+                        sql &= "," & cboTipoNomina.SelectedIndex
+                        'iEstatu
+                        sql &= ",1"
+
+                        If nExecute(sql) = False Then
+                            MessageBox.Show("Ocurrio un error insertar pago prestamo ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                            'pnlProgreso.Visible = False
+                            Exit Sub
+                        End If
+                    End If
+
+
+                    '########GUARDAR SEGURO INFONAVIT
+                    'sql = "select * from periodos where iIdPeriodo= " & cboperiodo.SelectedValue
+                    'Dim rwPeriodo As DataRow() = nConsulta(sql)
+
+                    'Dim FechaInicioPeriodo1 As Date
+
+
+                    'Dim numbimestre As Integer
+                    'If rwPeriodo Is Nothing = False Then
+                    '    FechaInicioPeriodo1 = Date.Parse(rwPeriodo(0)("dFechaInicio"))
+
+                    '    If Month(FechaInicioPeriodo1) Mod 2 = 0 Then
+                    '        numbimestre = Month(FechaInicioPeriodo1) / 2
+                    '    Else
+                    '        numbimestre = (Month(FechaInicioPeriodo1) + 1) / 2
+                    '    End If
+
+                    'End If
+
+
+                    'sql = "select * from PagoSeguroInfonavit where fkiIdEmpleadoC= " & dtgDatos.Rows(x).Cells(2).Value
+                    'sql &= " And NumBimestre= " & numbimestre & " And Anio=" & FechaInicioPeriodo1.Year.ToString
+                    'Dim rwSeguro1 As DataRow() = nConsulta(sql)
+
+                    'If rwSeguro1 Is Nothing = True Then
+                    '    'Insertar seguro
+                    '    sql = "EXEC setPagoSeguroInfonavitInsertar  0"
+                    '    ' fk Empleado
+                    '    sql &= "," & dtgDatos.Rows(x).Cells(2).Value
+                    '    'bimestre
+                    '    sql &= "," & numbimestre
+                    '    ' anio
+                    '    sql &= ",'" & FechaInicioPeriodo1.Year.ToString
+
+
+                    'End If
+
+
+
+
+
+
                     'sql = "update empleadosC set fSueldoOrd=" & dtgDatos.Rows(x).Cells(6).Value & ", fCosto =" & dtgDatos.Rows(x).Cells(18).Value
                     'sql &= " where iIdEmpleadoC = " & dtgDatos.Rows(x).Cells(2).Value
 
@@ -1699,13 +1805,21 @@ Public Class frmnominasmarinos
                 Next
                 pnlProgreso.Visible = False
                 pnlCatalogo.Enabled = True
-                MessageBox.Show("Datos guardados correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                If cboTipoNomina.SelectedIndex = 0 Then
+                    MessageBox.Show("Datos guardados correctamente, se generara la nomina descanso", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    NominaB()
+                    MessageBox.Show("Nomina Descanso generado, si no hay cambios proceda a guardar", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("Datos guardados correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+
 
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-
+        
 
     End Sub
 
@@ -3709,7 +3823,6 @@ Public Class frmnominasmarinos
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-
 
 
     End Sub
@@ -7448,7 +7561,8 @@ Public Class frmnominasmarinos
                         CType(Me.dtgDatos.Rows(x).Cells(11), DataGridViewComboBoxCell).Value = rwPuesto(0)("cNombre").ToString()
 
 
-                        'buscar el nombre del buque
+                        'buscar el nombre del buque de acuerdo a lo guardado
+
                         sql = "select * from departamentos where iIdDepartamento=" & Forma.dsReporte.Tables(0).Rows(x)("CodigoBuque")
                         Dim rwBuque As DataRow() = nConsulta(sql)
 
