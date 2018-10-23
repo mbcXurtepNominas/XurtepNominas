@@ -371,14 +371,14 @@ Public Class frmnominasmarinos
                     fila.Item("Fonacot") = rwNominaGuardada(x)("fFonacot").ToString
                     fila.Item("Subsidio_Generado") = rwNominaGuardada(x)("fSubsidioGenerado").ToString
                     fila.Item("Subsidio_Aplicado") = rwNominaGuardada(x)("fSubsidioAplicado").ToString
-                    fila.Item("Operadora") = rwNominaGuardada(x)("fOperadora").ToString
+                    fila.Item("Operadora") = rwNominaGuardada(x)("fXurtep").ToString
                     fila.Item("Prestamo_Personal_A") = rwNominaGuardada(x)("fPrestamoPerA").ToString
                     fila.Item("Adeudo_Infonavit_A") = rwNominaGuardada(x)("fAdeudoInfonavitA").ToString
                     fila.Item("Diferencia_Infonavit_A") = rwNominaGuardada(x)("fDiferenciaInfonavitA").ToString
                     fila.Item("Asimilados") = rwNominaGuardada(x)("fAsimilados").ToString
                     fila.Item("Retenciones_Operadora") = rwNominaGuardada(x)("fRetencionOperadora").ToString
                     fila.Item("%_Comisión") = rwNominaGuardada(x)("fPorComision").ToString
-                    fila.Item("Comisión_Operadora") = rwNominaGuardada(x)("fComisionOperadora").ToString
+                    fila.Item("Comisión_Operadora") = rwNominaGuardada(x)("fComisionXurtep").ToString
                     fila.Item("Comisión_Asimilados") = rwNominaGuardada(x)("fComisionAsimilados").ToString
                     fila.Item("IMSS_CS") = rwNominaGuardada(x)("fImssCS").ToString
                     fila.Item("RCV_CS") = rwNominaGuardada(x)("fRcvCS").ToString
@@ -11111,4 +11111,10 @@ Public Class frmnominasmarinos
     End Sub
 
     
+    Private Sub pnlCatalogo_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles pnlCatalogo.Paint
+
+    End Sub
+    Private Sub ToolStrip1_ItemClicked(sender As System.Object, e As System.Windows.Forms.ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+    End Sub
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmnominasmarinos
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class frmnominasproceso
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -14,17 +14,23 @@ Partial Class frmnominasmarinos
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
+    'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmnominasmarinos))
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmnominasproceso))
+        Me.cmdComision = New System.Windows.Forms.Button()
+        Me.cmdReporteInfonavit = New System.Windows.Forms.Button()
+        Me.cmdInfonavit = New System.Windows.Forms.Button()
+        Me.layoutTimbrado = New System.Windows.Forms.Button()
+        Me.pnlProgreso = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.cmdResumenInfo = New System.Windows.Forms.Button()
         Me.cmdSubirDatos = New System.Windows.Forms.Button()
@@ -50,19 +56,7 @@ Partial Class frmnominasmarinos
         Me.cmdverdatos = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cboperiodo = New System.Windows.Forms.ComboBox()
-        Me.pnlProgreso = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
-        Me.cMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EliminarDeLaListaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AgregarTrabajadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NoCalcularInofnavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cmdComision = New System.Windows.Forms.Button()
-        Me.cmdReporteInfonavit = New System.Windows.Forms.Button()
-        Me.cmdInfonavit = New System.Windows.Forms.Button()
-        Me.layoutTimbrado = New System.Windows.Forms.Button()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.tsbEmpleados = New System.Windows.Forms.ToolStripButton()
         Me.tsbPeriodos = New System.Windows.Forms.ToolStripButton()
         Me.tsbpuestos = New System.Windows.Forms.ToolStripButton()
@@ -70,23 +64,91 @@ Partial Class frmnominasmarinos
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStrip1.SuspendLayout()
+        Me.cMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EliminarDeLaListaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AgregarTrabajadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NoCalcularInofnavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.pnlProgreso.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.pnlProgreso.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout()
         Me.cMenu.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ToolStrip1
+        'cmdComision
         '
-        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbEmpleados, Me.tsbPeriodos, Me.tsbpuestos, Me.tsbdeptos, Me.tsbImportar, Me.tsbLayout, Me.tsbIEmpleados})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1357, 54)
-        Me.ToolStrip1.TabIndex = 25
-        Me.ToolStrip1.Text = "ToolStrip1"
+        Me.cmdComision.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmdComision.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdComision.Location = New System.Drawing.Point(344, 520)
+        Me.cmdComision.Name = "cmdComision"
+        Me.cmdComision.Size = New System.Drawing.Size(99, 27)
+        Me.cmdComision.TabIndex = 42
+        Me.cmdComision.Text = "Comisión"
+        Me.cmdComision.UseVisualStyleBackColor = True
+        '
+        'cmdReporteInfonavit
+        '
+        Me.cmdReporteInfonavit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmdReporteInfonavit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdReporteInfonavit.Location = New System.Drawing.Point(239, 520)
+        Me.cmdReporteInfonavit.Name = "cmdReporteInfonavit"
+        Me.cmdReporteInfonavit.Size = New System.Drawing.Size(99, 27)
+        Me.cmdReporteInfonavit.TabIndex = 41
+        Me.cmdReporteInfonavit.Text = "Saldo Infonavit"
+        Me.cmdReporteInfonavit.UseVisualStyleBackColor = True
+        '
+        'cmdInfonavit
+        '
+        Me.cmdInfonavit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmdInfonavit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdInfonavit.Location = New System.Drawing.Point(121, 520)
+        Me.cmdInfonavit.Name = "cmdInfonavit"
+        Me.cmdInfonavit.Size = New System.Drawing.Size(112, 27)
+        Me.cmdInfonavit.TabIndex = 40
+        Me.cmdInfonavit.Text = "Reporte Infonavit"
+        Me.cmdInfonavit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdInfonavit.UseVisualStyleBackColor = True
+        '
+        'layoutTimbrado
+        '
+        Me.layoutTimbrado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.layoutTimbrado.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.layoutTimbrado.Location = New System.Drawing.Point(3, 520)
+        Me.layoutTimbrado.Name = "layoutTimbrado"
+        Me.layoutTimbrado.Size = New System.Drawing.Size(112, 27)
+        Me.layoutTimbrado.TabIndex = 39
+        Me.layoutTimbrado.Text = "Layout Timbrado"
+        Me.layoutTimbrado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.layoutTimbrado.UseVisualStyleBackColor = True
+        '
+        'pnlProgreso
+        '
+        Me.pnlProgreso.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.pnlProgreso.Controls.Add(Me.Label2)
+        Me.pnlProgreso.Controls.Add(Me.pgbProgreso)
+        Me.pnlProgreso.Location = New System.Drawing.Point(454, 240)
+        Me.pnlProgreso.Name = "pnlProgreso"
+        Me.pnlProgreso.Size = New System.Drawing.Size(449, 84)
+        Me.pnlProgreso.TabIndex = 38
+        Me.pnlProgreso.Visible = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(154, 55)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(135, 19)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Procesando recibos"
+        '
+        'pgbProgreso
+        '
+        Me.pgbProgreso.Location = New System.Drawing.Point(17, 12)
+        Me.pgbProgreso.Name = "pgbProgreso"
+        Me.pgbProgreso.Size = New System.Drawing.Size(413, 30)
+        Me.pgbProgreso.TabIndex = 0
         '
         'pnlCatalogo
         '
@@ -118,10 +180,10 @@ Partial Class frmnominasmarinos
         Me.pnlCatalogo.Controls.Add(Me.cmdverdatos)
         Me.pnlCatalogo.Controls.Add(Me.Label1)
         Me.pnlCatalogo.Controls.Add(Me.cboperiodo)
-        Me.pnlCatalogo.Location = New System.Drawing.Point(0, 51)
+        Me.pnlCatalogo.Location = New System.Drawing.Point(0, 57)
         Me.pnlCatalogo.Name = "pnlCatalogo"
         Me.pnlCatalogo.Size = New System.Drawing.Size(1357, 451)
-        Me.pnlCatalogo.TabIndex = 26
+        Me.pnlCatalogo.TabIndex = 37
         '
         'cmdResumenInfo
         '
@@ -365,114 +427,16 @@ Partial Class frmnominasmarinos
         Me.cboperiodo.Size = New System.Drawing.Size(191, 27)
         Me.cboperiodo.TabIndex = 3
         '
-        'pnlProgreso
+        'ToolStrip1
         '
-        Me.pnlProgreso.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.pnlProgreso.Controls.Add(Me.Label2)
-        Me.pnlProgreso.Controls.Add(Me.pgbProgreso)
-        Me.pnlProgreso.Location = New System.Drawing.Point(454, 234)
-        Me.pnlProgreso.Name = "pnlProgreso"
-        Me.pnlProgreso.Size = New System.Drawing.Size(449, 84)
-        Me.pnlProgreso.TabIndex = 27
-        Me.pnlProgreso.Visible = False
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(154, 55)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(135, 19)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Procesando recibos"
-        '
-        'pgbProgreso
-        '
-        Me.pgbProgreso.Location = New System.Drawing.Point(17, 12)
-        Me.pgbProgreso.Name = "pgbProgreso"
-        Me.pgbProgreso.Size = New System.Drawing.Size(413, 30)
-        Me.pgbProgreso.TabIndex = 0
-        '
-        'cMenu
-        '
-        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
-        Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(205, 114)
-        '
-        'EliminarDeLaListaToolStripMenuItem
-        '
-        Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
-        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
-        '
-        'AgregarTrabajadoresToolStripMenuItem
-        '
-        Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
-        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
-        '
-        'EditarEmpleadoToolStripMenuItem
-        '
-        Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
-        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
-        '
-        'NoCalcularInofnavitToolStripMenuItem
-        '
-        Me.NoCalcularInofnavitToolStripMenuItem.Name = "NoCalcularInofnavitToolStripMenuItem"
-        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.NoCalcularInofnavitToolStripMenuItem.Text = "No Calcular inofnavit"
-        '
-        'ActivarCalculoInfonavitToolStripMenuItem
-        '
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
-        '
-        'cmdComision
-        '
-        Me.cmdComision.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdComision.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdComision.Location = New System.Drawing.Point(344, 514)
-        Me.cmdComision.Name = "cmdComision"
-        Me.cmdComision.Size = New System.Drawing.Size(99, 27)
-        Me.cmdComision.TabIndex = 35
-        Me.cmdComision.Text = "Comisión"
-        Me.cmdComision.UseVisualStyleBackColor = True
-        '
-        'cmdReporteInfonavit
-        '
-        Me.cmdReporteInfonavit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdReporteInfonavit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdReporteInfonavit.Location = New System.Drawing.Point(239, 514)
-        Me.cmdReporteInfonavit.Name = "cmdReporteInfonavit"
-        Me.cmdReporteInfonavit.Size = New System.Drawing.Size(99, 27)
-        Me.cmdReporteInfonavit.TabIndex = 34
-        Me.cmdReporteInfonavit.Text = "Saldo Infonavit"
-        Me.cmdReporteInfonavit.UseVisualStyleBackColor = True
-        '
-        'cmdInfonavit
-        '
-        Me.cmdInfonavit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdInfonavit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdInfonavit.Location = New System.Drawing.Point(121, 514)
-        Me.cmdInfonavit.Name = "cmdInfonavit"
-        Me.cmdInfonavit.Size = New System.Drawing.Size(112, 27)
-        Me.cmdInfonavit.TabIndex = 33
-        Me.cmdInfonavit.Text = "Reporte Infonavit"
-        Me.cmdInfonavit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdInfonavit.UseVisualStyleBackColor = True
-        '
-        'layoutTimbrado
-        '
-        Me.layoutTimbrado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.layoutTimbrado.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.layoutTimbrado.Location = New System.Drawing.Point(3, 514)
-        Me.layoutTimbrado.Name = "layoutTimbrado"
-        Me.layoutTimbrado.Size = New System.Drawing.Size(112, 27)
-        Me.layoutTimbrado.TabIndex = 32
-        Me.layoutTimbrado.Text = "Layout Timbrado"
-        Me.layoutTimbrado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.layoutTimbrado.UseVisualStyleBackColor = True
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbEmpleados, Me.tsbPeriodos, Me.tsbpuestos, Me.tsbdeptos, Me.tsbImportar, Me.tsbLayout, Me.tsbIEmpleados})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1357, 54)
+        Me.ToolStrip1.TabIndex = 36
+        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'tsbEmpleados
         '
@@ -540,7 +504,43 @@ Partial Class frmnominasmarinos
         Me.tsbIEmpleados.Text = "Empleados"
         Me.tsbIEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
-        'frmnominasmarinos
+        'cMenu
+        '
+        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
+        Me.cMenu.Name = "cMenu"
+        Me.cMenu.Size = New System.Drawing.Size(205, 114)
+        '
+        'EliminarDeLaListaToolStripMenuItem
+        '
+        Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
+        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
+        '
+        'AgregarTrabajadoresToolStripMenuItem
+        '
+        Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
+        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
+        '
+        'EditarEmpleadoToolStripMenuItem
+        '
+        Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
+        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
+        '
+        'NoCalcularInofnavitToolStripMenuItem
+        '
+        Me.NoCalcularInofnavitToolStripMenuItem.Name = "NoCalcularInofnavitToolStripMenuItem"
+        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.NoCalcularInofnavitToolStripMenuItem.Text = "No Calcular inofnavit"
+        '
+        'ActivarCalculoInfonavitToolStripMenuItem
+        '
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
+        '
+        'frmnominasproceso
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1357, 553)
@@ -551,68 +551,67 @@ Partial Class frmnominasmarinos
         Me.Controls.Add(Me.pnlProgreso)
         Me.Controls.Add(Me.pnlCatalogo)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Font = New System.Drawing.Font("Calibri", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Name = "frmnominasmarinos"
+        Me.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Name = "frmnominasproceso"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Nomina Marinos"
+        Me.Text = "Nominas Proceso"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.ToolStrip1.ResumeLayout(false)
-        Me.ToolStrip1.PerformLayout
-        Me.pnlCatalogo.ResumeLayout(false)
-        Me.pnlCatalogo.PerformLayout
-        CType(Me.dtgDatos,System.ComponentModel.ISupportInitialize).EndInit
-        Me.pnlProgreso.ResumeLayout(false)
-        Me.pnlProgreso.PerformLayout
-        Me.cMenu.ResumeLayout(false)
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.pnlProgreso.ResumeLayout(False)
+        Me.pnlProgreso.PerformLayout()
+        Me.pnlCatalogo.ResumeLayout(False)
+        Me.pnlCatalogo.PerformLayout()
+        CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
+        Me.cMenu.ResumeLayout(False)
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
-
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents tsbEmpleados As ToolStripButton
-    Friend WithEvents tsbPeriodos As ToolStripButton
-    Friend WithEvents tsbImportar As ToolStripButton
-    Friend WithEvents tsbLayout As ToolStripButton
-    Friend WithEvents pnlCatalogo As Panel
-    Friend WithEvents Label1 As Label
-    Friend WithEvents cboperiodo As ComboBox
-    Friend WithEvents tsbpuestos As ToolStripButton
-    Friend WithEvents tsbdeptos As ToolStripButton
-    Friend WithEvents dtgDatos As DataGridView
-    Friend WithEvents cmdverdatos As Button
-    Friend WithEvents cmdguardarfinal As Button
-    Friend WithEvents cmdguardarnomina As Button
-    Friend WithEvents cmdcalcular As Button
-    Friend WithEvents cmdlayouts As Button
-    Friend WithEvents pnlProgreso As Panel
-    Friend WithEvents Label2 As Label
-    Friend WithEvents pgbProgreso As ProgressBar
-    Friend WithEvents cmdincidencias As Button
-    Friend WithEvents cmdreiniciar As Button
-    Friend WithEvents tsbIEmpleados As ToolStripButton
-    Friend WithEvents chkAll As CheckBox
-    Friend WithEvents cbobancos As ComboBox
-    Friend WithEvents chkSindicato As CheckBox
-    Friend WithEvents chkinter As CheckBox
-    Friend WithEvents chkgrupo As CheckBox
-    Friend WithEvents cboserie As System.Windows.Forms.ComboBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents cMenu As System.Windows.Forms.ContextMenuStrip
-    Friend WithEvents EliminarDeLaListaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents EditarEmpleadoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AgregarTrabajadoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents cboTipoNomina As System.Windows.Forms.ComboBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents NoCalcularInofnavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ActivarCalculoInfonavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    End Sub
+    Friend WithEvents cmdComision As System.Windows.Forms.Button
+    Friend WithEvents cmdReporteInfonavit As System.Windows.Forms.Button
+    Friend WithEvents cmdInfonavit As System.Windows.Forms.Button
+    Friend WithEvents layoutTimbrado As System.Windows.Forms.Button
+    Friend WithEvents pnlProgreso As System.Windows.Forms.Panel
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents pgbProgreso As System.Windows.Forms.ProgressBar
+    Friend WithEvents pnlCatalogo As System.Windows.Forms.Panel
     Friend WithEvents cmdResumenInfo As System.Windows.Forms.Button
     Friend WithEvents cmdSubirDatos As System.Windows.Forms.Button
     Friend WithEvents btnReporte As System.Windows.Forms.Button
     Friend WithEvents cmdexcel As System.Windows.Forms.Button
     Friend WithEvents cmdrecibosA As System.Windows.Forms.Button
-    Friend WithEvents cmdComision As System.Windows.Forms.Button
-    Friend WithEvents cmdReporteInfonavit As System.Windows.Forms.Button
-    Friend WithEvents cmdInfonavit As System.Windows.Forms.Button
-    Friend WithEvents layoutTimbrado As System.Windows.Forms.Button
+    Friend WithEvents cboTipoNomina As System.Windows.Forms.ComboBox
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents cboserie As System.Windows.Forms.ComboBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents chkgrupo As System.Windows.Forms.CheckBox
+    Friend WithEvents chkinter As System.Windows.Forms.CheckBox
+    Friend WithEvents cbobancos As System.Windows.Forms.ComboBox
+    Friend WithEvents chkSindicato As System.Windows.Forms.CheckBox
+    Friend WithEvents chkAll As System.Windows.Forms.CheckBox
+    Friend WithEvents cmdreiniciar As System.Windows.Forms.Button
+    Friend WithEvents cmdincidencias As System.Windows.Forms.Button
+    Friend WithEvents cmdlayouts As System.Windows.Forms.Button
+    Friend WithEvents cmdguardarfinal As System.Windows.Forms.Button
+    Friend WithEvents cmdguardarnomina As System.Windows.Forms.Button
+    Friend WithEvents cmdcalcular As System.Windows.Forms.Button
+    Friend WithEvents dtgDatos As System.Windows.Forms.DataGridView
+    Friend WithEvents cmdverdatos As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents cboperiodo As System.Windows.Forms.ComboBox
+    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents tsbEmpleados As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbPeriodos As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbpuestos As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbdeptos As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbImportar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbLayout As System.Windows.Forms.ToolStripButton
+    Friend WithEvents tsbIEmpleados As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents EliminarDeLaListaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AgregarTrabajadoresToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents EditarEmpleadoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NoCalcularInofnavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ActivarCalculoInfonavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

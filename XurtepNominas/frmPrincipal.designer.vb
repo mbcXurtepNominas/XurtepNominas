@@ -23,12 +23,15 @@ Partial Class frmPrincipal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Nomina Marinos"}, 11, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
         Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Importar Excel"}, 19, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
         Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Empleados"}, 9, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPrincipal))
+        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Nomina Proceso"}, 4, System.Drawing.Color.Black, System.Drawing.Color.Empty, Nothing)
         Me.pnlBar = New System.Windows.Forms.Panel()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.chkCBB = New System.Windows.Forms.CheckBox()
+        Me.chkCFDI = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblUsuario = New System.Windows.Forms.Label()
         Me.lsvPanel = New System.Windows.Forms.ListView()
@@ -36,10 +39,8 @@ Partial Class frmPrincipal
         Me.MenuInicio = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CatalogosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClientesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.chkCBB = New System.Windows.Forms.CheckBox()
-        Me.chkCFDI = New System.Windows.Forms.CheckBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.mnuSalir = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.pnlBar.SuspendLayout()
         Me.MenuInicio.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +72,36 @@ Partial Class frmPrincipal
         Me.CheckBox1.Text = "Menú"
         Me.CheckBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.CheckBox1.UseVisualStyleBackColor = False
+        '
+        'chkCBB
+        '
+        Me.chkCBB.Appearance = System.Windows.Forms.Appearance.Button
+        Me.chkCBB.BackColor = System.Drawing.SystemColors.Control
+        Me.chkCBB.Image = CType(resources.GetObject("chkCBB.Image"), System.Drawing.Image)
+        Me.chkCBB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.chkCBB.Location = New System.Drawing.Point(418, 1)
+        Me.chkCBB.Name = "chkCBB"
+        Me.chkCBB.Size = New System.Drawing.Size(153, 39)
+        Me.chkCBB.TabIndex = 4
+        Me.chkCBB.Text = "Facturación CBB"
+        Me.chkCBB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkCBB.UseVisualStyleBackColor = True
+        Me.chkCBB.Visible = False
+        '
+        'chkCFDI
+        '
+        Me.chkCFDI.Appearance = System.Windows.Forms.Appearance.Button
+        Me.chkCFDI.BackColor = System.Drawing.SystemColors.Control
+        Me.chkCFDI.Image = CType(resources.GetObject("chkCFDI.Image"), System.Drawing.Image)
+        Me.chkCFDI.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.chkCFDI.Location = New System.Drawing.Point(264, 1)
+        Me.chkCFDI.Name = "chkCFDI"
+        Me.chkCFDI.Size = New System.Drawing.Size(153, 39)
+        Me.chkCFDI.TabIndex = 3
+        Me.chkCFDI.Text = "Facturación CFDI"
+        Me.chkCFDI.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.chkCFDI.UseVisualStyleBackColor = True
+        Me.chkCFDI.Visible = False
         '
         'Label1
         '
@@ -109,7 +140,8 @@ Partial Class frmPrincipal
         ListViewItem1.ToolTipText = "Calculo de nomina Marinos"
         ListViewItem2.ToolTipText = "Exportar Excel  Nominas"
         ListViewItem3.ToolTipText = "Empleados"
-        Me.lsvPanel.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3})
+        ListViewItem4.ToolTipText = "Nomina Proceso"
+        Me.lsvPanel.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1, ListViewItem2, ListViewItem3, ListViewItem4})
         Me.lsvPanel.LargeImageList = Me.ImageList1
         Me.lsvPanel.Location = New System.Drawing.Point(0, 0)
         Me.lsvPanel.Name = "lsvPanel"
@@ -168,35 +200,13 @@ Partial Class frmPrincipal
         Me.ClientesToolStripMenuItem.Size = New System.Drawing.Size(152, 24)
         Me.ClientesToolStripMenuItem.Text = "Empleados"
         '
-        'chkCBB
+        'mnuSalir
         '
-        Me.chkCBB.Appearance = System.Windows.Forms.Appearance.Button
-        Me.chkCBB.BackColor = System.Drawing.SystemColors.Control
-        Me.chkCBB.Image = CType(resources.GetObject("chkCBB.Image"), System.Drawing.Image)
-        Me.chkCBB.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.chkCBB.Location = New System.Drawing.Point(418, 1)
-        Me.chkCBB.Name = "chkCBB"
-        Me.chkCBB.Size = New System.Drawing.Size(153, 39)
-        Me.chkCBB.TabIndex = 4
-        Me.chkCBB.Text = "Facturación CBB"
-        Me.chkCBB.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkCBB.UseVisualStyleBackColor = True
-        Me.chkCBB.Visible = False
-        '
-        'chkCFDI
-        '
-        Me.chkCFDI.Appearance = System.Windows.Forms.Appearance.Button
-        Me.chkCFDI.BackColor = System.Drawing.SystemColors.Control
-        Me.chkCFDI.Image = CType(resources.GetObject("chkCFDI.Image"), System.Drawing.Image)
-        Me.chkCFDI.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.chkCFDI.Location = New System.Drawing.Point(264, 1)
-        Me.chkCFDI.Name = "chkCFDI"
-        Me.chkCFDI.Size = New System.Drawing.Size(153, 39)
-        Me.chkCFDI.TabIndex = 3
-        Me.chkCFDI.Text = "Facturación CFDI"
-        Me.chkCFDI.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.chkCFDI.UseVisualStyleBackColor = True
-        Me.chkCFDI.Visible = False
+        Me.mnuSalir.Image = CType(resources.GetObject("mnuSalir.Image"), System.Drawing.Image)
+        Me.mnuSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.mnuSalir.Name = "mnuSalir"
+        Me.mnuSalir.Size = New System.Drawing.Size(202, 38)
+        Me.mnuSalir.Text = "Salir del sistema"
         '
         'PictureBox1
         '
@@ -209,14 +219,6 @@ Partial Class frmPrincipal
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Visible = False
-        '
-        'mnuSalir
-        '
-        Me.mnuSalir.Image = CType(resources.GetObject("mnuSalir.Image"), System.Drawing.Image)
-        Me.mnuSalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.mnuSalir.Name = "mnuSalir"
-        Me.mnuSalir.Size = New System.Drawing.Size(202, 38)
-        Me.mnuSalir.Text = "Salir del sistema"
         '
         'frmPrincipal
         '
