@@ -58,10 +58,8 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\..\Intel\Microsoft.Office.Interop.Word.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,10 +102,10 @@
     <Compile Include="frmDocumentos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcelO.Designer.vb">
+    <Compile Include="Excel\frmExcelO.Designer.vb">
       <DependentUpon>frmExcelO.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmExcelO.vb">
+    <Compile Include="Excel\frmExcelO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmIncapacidad.Designer.vb">
@@ -116,10 +114,10 @@
     <Compile Include="frmIncapacidad.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmExcel.Designer.vb">
+    <Compile Include="Excel\frmExcel.Designer.vb">
       <DependentUpon>frmExcel.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmExcel.vb">
+    <Compile Include="Excel\frmExcel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmHojasNomina.designer.vb">
@@ -244,7 +242,7 @@
     <EmbeddedResource Include="frmDocumentos.resx">
       <DependentUpon>frmDocumentos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcelO.resx">
+    <EmbeddedResource Include="Excel\frmExcelO.resx">
       <DependentUpon>frmExcelO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmIncapacidad.resx">
@@ -253,7 +251,7 @@
     <EmbeddedResource Include="frmBuscarEmpleado.resx">
       <DependentUpon>frmBuscarEmpleado.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmExcel.resx">
+    <EmbeddedResource Include="Excel\frmExcel.resx">
       <DependentUpon>frmExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHojasNomina.resx">
@@ -353,9 +351,6 @@
     <Content Include="36 %281%29.ico" />
     <Content Include="ICONO.ico" />
     <Content Include="logooperadora.ico" />
-    <None Include="Resources\if_rotation_job_seeker_employee_unemployee_work_2620504.png" />
-    <None Include="Resources\if_magnifier-data_532758.png" />
-    <None Include="Resources\1477958538_import.png" />
     <None Include="Resources\Fondo Xurtep3.png" />
     <None Include="Resources\Fondo Xurtep2.png" />
     <None Include="Resources\Fondo Xurtep1.png" />
