@@ -2713,6 +2713,7 @@ Public Class frmnominasmarinos
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+
     Function Bisiesto(Num As Integer) As Boolean
         If Num Mod 4 = 0 And (Num Mod 100 Or Num Mod 400 = 0) Then
             Bisiesto = True
@@ -11115,6 +11116,10 @@ Public Class frmnominasmarinos
 
     End Sub
     Private Sub ToolStrip1_ItemClicked(sender As System.Object, e As System.Windows.Forms.ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+    End Sub
+
+    Private Sub EditarEmpleadoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EditarEmpleadoToolStripMenuItem.Click
 
     End Sub
 End Class

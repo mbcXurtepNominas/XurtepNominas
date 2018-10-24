@@ -121,7 +121,7 @@ Public Class frmPrincipal
 
                 Case "Nomina Proceso"
                     Try
-                        Dim Forma As New frmEmpleados
+                        Dim Forma As New frmnominasproceso
                         Forma.ShowDialog()
 
                     Catch ex As Exception
