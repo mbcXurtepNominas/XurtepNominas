@@ -6819,7 +6819,7 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 5).Value = "ECO III"
                     hoja.Cell(filaExcel + x, 6).Value = dtgDatos.Rows(x).Cells(11).FormattedValue 'PUESTO dtgDatos.Rows(x).Cells(11).Value ' CATEGORIA
                     hoja.Cell(filaExcel + x, 7).Value = dtgDatos.Rows(x).Cells(18).Value ' DIAS ABORDO
-                    hoja.Cell(filaExcel + x, 8).Value = dtgDatos.Rows(x).Cells(18).Value ' DIAS DESCANSO
+                    hoja.Cell(filaExcel + x, 8).Value = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, dtgDatos.Rows(x).Cells(18).Value) ' DIAS DESCANSO
                     hoja.Cell(filaExcel + x, 9).FormulaA1 = "=K" & filaExcel + x & "/2"  'NOMINA ABORDO
                     hoja.Cell(filaExcel + x, 10).FormulaA1 = "=K" & filaExcel + x & "/2" 'NOMINA DESCANSO
                     hoja.Cell(filaExcel + x, 11).Value = dtgDatos.Rows(x).Cells(15).Value ' SUELDO ORDINARIO
