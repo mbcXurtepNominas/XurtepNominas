@@ -1586,7 +1586,7 @@ Public Class frmnominasproceso
                     hoja.Cell(filaExcel + x, 5).Value = "ECO III"
                     hoja.Cell(filaExcel + x, 6).Value = dtgDatos.Rows(x).Cells(11).FormattedValue 'PUESTO 
                     hoja.Cell(filaExcel + x, 7).Value = dtgDatos.Rows(x).Cells(18).Value ' DIAS ABORDO
-                    hoja.Cell(filaExcel + x, 8).Value = dtgDatos.Rows(x).Cells(18).Value ' DIAS DESCANSO
+                    hoja.Cell(filaExcel + x, 8).Value = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, dtgDatos.Rows(x).Cells(18).Value)
                     hoja.Cell(filaExcel + x, 9).FormulaA1 = "=K" & filaExcel + x & "/2"  'NOMINA ABORDO
                     hoja.Cell(filaExcel + x, 10).FormulaA1 = "=K" & filaExcel + x & "/2" 'NOMINA DESCANSO
                     hoja.Cell(filaExcel + x, 11).Value = dtgDatos.Rows(x).Cells(15).Value ' SUELDO ORDINARIO
@@ -1714,7 +1714,7 @@ Public Class frmnominasproceso
                     hoja4.Cell(filaExcel, 1).Value = app ' Apellido Paterno
                     hoja4.Cell(filaExcel, 2).Value = apm ' Apellido Materno
                     hoja4.Cell(filaExcel, 3).Value = nom ' Nombre
-                    hoja4.Cell(filaExcel, 4).FormulaA1 = "='PLANTA PROCESO OK'!TT11" 'Asimilado
+                    hoja4.Cell(filaExcel, 4).FormulaA1 = "='PLANTA PROCESO OK'!T" & filatmp 'Asimilado
                     hoja4.Cell(filaExcel, 5).Value = dtgDatos.Rows(x).Cells(8).Value '# Afiliacion IMSS
                     hoja4.Cell(filaExcel, 6).Value = dtgDatos.Rows(x).Cells(18).Value 'Dias Trabajandos
                     hoja4.Cell(filaExcel, 7).Value = banco
@@ -1725,6 +1725,7 @@ Public Class frmnominasproceso
                     hoja4.Cell(filaExcel, 12).Value = dtgDatos.Rows(x).Cells(7).Value ' CURP
 
                     filaExcel = filaExcel + 1
+                    filatmp = filatmp + 1
                 Next x
 
 
@@ -1732,6 +1733,7 @@ Public Class frmnominasproceso
                 recorrerFilasColumnas(hoja5, 1, 5, 10, "clear")
                 recorrerFilasColumnas(hoja5, 8, dtgDatos.Rows.Count + 30, 10, "clear")
                 filaExcel = 8
+                filatmp = 11
                 hoja5.Cell(4, 3).Style.Font.SetBold(True)
                 hoja5.Cell(4, 3).Style.NumberFormat.Format = "@"
                 ' hoja5.Cell(4, 3).Value = periodo
@@ -1768,11 +1770,11 @@ Public Class frmnominasproceso
                     hoja5.Cell(filaExcel, 6).Value = cuenta
                     hoja5.Cell(filaExcel, 7).Value = clabe
                     hoja5.Cell(filaExcel, 8).Value = dtgDatos.Rows(x).Cells(46).Value ' XURTEP
-                    hoja5.Cell(filaExcel, 9).Value = dtgDatos.Rows(x).Cells(50).Value ' ASIMILADOS
-
+                    hoja5.Cell(filaExcel, 9).Value = "='PLANTA PROCESO OK'!T" & filatmp ' ASIMILADOS
+                   
 
                     filaExcel = filaExcel + 1
-
+                    filatmp = filatmp + 1
                     pgbProgreso.Value += 1
                     Application.DoEvents()
 
@@ -4132,6 +4134,108 @@ Public Class frmnominasproceso
     End Function
 
     Private Sub btnReporte_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReporte.Click
+        Try
+
+
+            Dim filaExcel As Integer = 0
+            Dim dialogo As New SaveFileDialog()
+            Dim periodo, fechadepago As String
+            Dim mes, anio As String
+            Dim fechapagoletra() As String
+
+            Dim sueldobase, tef, teo, desc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial As Double
+            Dim IMSS, SAR, INFONAVIT, ISN As Double
+
+            If dtgDatos.Rows.Count > 0 Then
+
+                'Clonar el XLSX
+                Dim ruta As String
+                ruta = My.Application.Info.DirectoryPath() & "\Archivos\contadorprocesos.xlsx"
+
+                Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
+                Dim libro As New ClosedXML.Excel.XLWorkbook
+
+                book.Worksheet(1).CopyTo(libro, "PLANTA PROCESO")
+                Dim hoja As IXLWorksheet = libro.Worksheets(0)
+
+                '<<<<<<<<<<<ECO III>>>>>>>>>>>
+                Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
+                If rwPeriodo0 Is Nothing = False Then
+                    periodo = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " " & (rwPeriodo0(0).Item("iEjercicio"))
+                    'fecha = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper
+                    'hoja.Cell(10, 2).Style.Font.SetBold(True)
+                    'hoja.Cell(10, 2).Style.NumberFormat.Format = "@"
+                    'hoja.Cell(10, 2).Value = periodo
+
+                End If
+
+                For x As Integer = 0 To dtgDatos.Rows.Count - 1
+                    sueldobase += dtgDatos.Rows(x).Cells(21).Value
+                    tef += (CDbl(dtgDatos.Rows(x).Cells(22).Value) + CDbl(dtgDatos.Rows(x).Cells(23).Value))
+                    teo += dtgDatos.Rows(x).Cells(24).Value
+                    desc += dtgDatos.Rows(x).Cells(25).Value
+                    vacpro += dtgDatos.Rows(x).Cells(26).Value
+                    taginaldo += dtgDatos.Rows(x).Cells(29).Value
+                    tpvac += dtgDatos.Rows(x).Cells(32).Value
+                    tpercepciones += dtgDatos.Rows(x).Cells(33).Value
+                    comAsim += dtgDatos.Rows(x).Cells(54).Value
+                    prestamo += dtgDatos.Rows(x).Cells(47).Value
+                    comXurtep += (dtgDatos.Rows(x).Cells(53).Value * 2%)
+                    comComple += (dtgDatos.Rows(x).Cells(54).Value * 2%)
+                    costoSocial += dtgDatos.Rows(x).Cells(59).Value
+
+                    IMSS += dtgDatos.Rows(x).Cells(55).Value
+                    SAR += dtgDatos.Rows(x).Cells(56).Value
+                    INFONAVIT += dtgDatos.Rows(x).Cells(57).Value
+                    ISN += dtgDatos.Rows(x).Cells(58).Value
+
+                Next x
+
+                hoja.Cell("B5").Value = sueldobase
+                hoja.Cell("C5").Value = tef
+                hoja.Cell("D5").Value = teo
+                hoja.Cell("E5").Value = desc
+                hoja.Cell("F5").Value = vacpro
+                hoja.Cell("G5").Value = taginaldo
+                hoja.Cell("H5").Value = tpvac
+                hoja.Cell("I5").Value = tpercepciones
+                hoja.Cell("J5").Value = comAsim
+                hoja.Cell("K5").Value = "0.0" 'prestamo
+                hoja.Cell("L5").Value = comXurtep
+                hoja.Cell("M5").Value = comComple
+                hoja.Cell("N5").Value = costoSocial
+
+                hoja.Cell("E19").Value = IMSS
+                hoja.Cell("E20").Value = SAR
+                hoja.Cell("E21").Value = INFONAVIT
+                hoja.Cell("E22").Value = ISN
+
+                'Titulo
+                Dim moment As Date = Date.Now()
+                Dim month As Integer = moment.Month
+                Dim year As Integer = moment.Year
+
+
+                dialogo.FileName = "Reporte Contador Marinos " & periodo
+                dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+                ''  dialogo.ShowDialog()
+
+                If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+                    ' OK button pressed
+                    libro.SaveAs(dialogo.FileName)
+                    libro = Nothing
+
+                    MessageBox.Show("Archivo generado correctamente", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Else
+                    MessageBox.Show("No se guardo el archivo", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                End If
+            End If
+        Catch ex As Exception
+
+            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End Try
 
 
 
@@ -5349,84 +5453,6 @@ Public Class frmnominasproceso
                 Application.DoEvents()
 
             Next
-
-            'verificar costo social
-
-            Dim contador, Posicion2, Posicion3, Posicion4 As Integer
-
-
-            For x As Integer = 0 To dtgDatos.Rows.Count - 1
-                contador = 0
-
-                For y As Integer = 0 To dtgDatos.Rows.Count - 1
-                    If dtgDatos.Rows(x).Cells(2).Value = dtgDatos.Rows(y).Cells(2).Value Then
-                        contador = contador + 1
-                        If contador = 2 Then
-                            Posicion2 = y
-                        End If
-                        If contador = 3 Then
-                            Posicion3 = y
-                        End If
-                        If contador = 4 Then
-                            Posicion4 = y
-                        End If
-                    End If
-
-
-
-                Next
-                If contador = 2 Then
-                    If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                    End If
-
-                End If
-                If contador = 3 Then
-                    If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                    End If
-                    If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion3).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
-                    End If
-                End If
-                If contador = 4 Then
-                    If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                    End If
-                    If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion3).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
-                    End If
-                    If dtgDatos.Rows(Posicion4).Cells(5).Value = "PLANTA" Then
-                        dtgDatos.Rows(Posicion4).Cells(55).Value = "0.00"
-                        dtgDatos.Rows(Posicion4).Cells(56).Value = "0.00"
-                        dtgDatos.Rows(Posicion4).Cells(57).Value = "0.00"
-                        dtgDatos.Rows(Posicion4).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
-                    End If
-                End If
-
-            Next
-
             pnlProgreso.Visible = False
             pnlCatalogo.Enabled = True
             MessageBox.Show("Datos calculados ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
