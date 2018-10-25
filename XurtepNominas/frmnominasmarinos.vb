@@ -2647,7 +2647,7 @@ Public Class frmnominasmarinos
                 sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
                 Dim rwEmpleado As DataRow() = nConsulta(sql)
                 If rwEmpleado Is Nothing = False Then
-                    sql = "select * from costosocial where fkiIdPuesto=" & rwEmpleado(0)("fkiIdPuesto").ToString & " and anio=" & aniocostosocial
+                    sql = "select * from puestos inner join costosocial on puestos.iidPuesto= costosocial.fkiIdPuesto where puestos.cnombre='" & dtgDatos.Rows(x).Cells(11).FormattedValue & "' and anio=" & aniocostosocial
                     Dim rwCostoSocial As DataRow() = nConsulta(sql)
                     If rwCostoSocial Is Nothing = False Then
                         If dtgDatos.Rows(x).Cells(10).Value >= 55 Then
