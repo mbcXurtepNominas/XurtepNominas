@@ -3880,11 +3880,15 @@ Public Class frmnominasmarinos
     End Sub
 
     Private Sub btnReporte_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnReporte.Click
+        Try
+
+       
         Dim filaExcel As Integer = 0
         Dim dialogo As New SaveFileDialog()
         Dim periodo, fechadepago As String
-        Dim mes As String
+            Dim mes, anio As String
         Dim fechapagoletra() As String
+
         Dim sueldobase, tef, teo, desc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial As Double
         Dim IMSS, SAR, INFONAVIT, ISN As Double
 
@@ -3901,9 +3905,18 @@ Public Class frmnominasmarinos
             Dim hoja As IXLWorksheet = libro.Worksheets(0)
 
             '<<<<<<<<<<<ECO III>>>>>>>>>>>
-           
+                Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
+                If rwPeriodo0 Is Nothing = False Then
+                    periodo = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " " & (rwPeriodo0(0).Item("iEjercicio"))
+                    'fecha = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper
+                    'hoja.Cell(10, 2).Style.Font.SetBold(True)
+                    'hoja.Cell(10, 2).Style.NumberFormat.Format = "@"
+                    'hoja.Cell(10, 2).Value = periodo
+
+                End If
+
                 For x As Integer = 0 To dtgDatos.Rows.Count - 1
-                sueldobase += dtgDatos.Rows(x).Cells(15).Value
+                    sueldobase += dtgDatos.Rows(x).Cells(21).Value
                 tef += (CDbl(dtgDatos.Rows(x).Cells(22).Value) + CDbl(dtgDatos.Rows(x).Cells(23).Value))
                 teo += dtgDatos.Rows(x).Cells(24).Value
                 desc += dtgDatos.Rows(x).Cells(25).Value
@@ -3911,10 +3924,10 @@ Public Class frmnominasmarinos
                 taginaldo += dtgDatos.Rows(x).Cells(29).Value
                 tpvac += dtgDatos.Rows(x).Cells(32).Value
                 tpercepciones += dtgDatos.Rows(x).Cells(33).Value
-                comAsim += dtgDatos.Rows(x).Cells(50).Value
-                prestamo += dtgDatos.Rows(x).Cells(47).Value
-                comXurtep += dtgDatos.Rows(x).Cells(53).Value
-                comComple += dtgDatos.Rows(x).Cells(54).Value
+                comAsim += dtgDatos.Rows(x).Cells(54).Value
+                    prestamo += dtgDatos.Rows(x).Cells(47).Value
+                    comXurtep += (dtgDatos.Rows(x).Cells(53).Value * 2%)
+                    comComple += (dtgDatos.Rows(x).Cells(54).Value * 2%)
                 costoSocial += dtgDatos.Rows(x).Cells(59).Value
 
                 IMSS += dtgDatos.Rows(x).Cells(55).Value
@@ -3932,8 +3945,8 @@ Public Class frmnominasmarinos
             hoja.Cell("G5").Value = taginaldo
             hoja.Cell("H5").Value = tpvac
             hoja.Cell("I5").Value = tpercepciones
-            hoja.Cell("J5").Value = comAsim
-            hoja.Cell("K5").Value = prestamo
+                hoja.Cell("J5").Value = comAsim
+                hoja.Cell("K5").Value = "0.0" 'prestamo
             hoja.Cell("L5").Value = comXurtep
             hoja.Cell("M5").Value = comComple
             hoja.Cell("N5").Value = costoSocial
@@ -3949,7 +3962,7 @@ Public Class frmnominasmarinos
             Dim year As Integer = moment.Year
 
 
-            dialogo.FileName = "Reporte Contador" + periodo.ToUpper
+                dialogo.FileName = "Reporte Contador Marinos " & periodo
             dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
             ''  dialogo.ShowDialog()
 
@@ -3964,8 +3977,12 @@ Public Class frmnominasmarinos
 
             End If
         End If
+        Catch ex As Exception
 
-       
+            MessageBox.Show(ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        End Try
+
 
     End Sub
 
@@ -6867,6 +6884,34 @@ Public Class frmnominasmarinos
 
                 hoja.Range(filaExcel + total, 9, filaExcel + total, 35).Style.Fill.BackgroundColor = XLColor.PowderBlue
                 hoja.Range(filaExcel + total, 9, filaExcel + total, 35).Style.Font.SetBold(True)
+
+                'Tabla de facturas
+                Dim sep As Integer = filaExcel + total + 5
+                'Style
+                hoja.Cell("C" & sep).Style.Font.SetBold(True)
+                hoja.Range("C" & sep + 4, "D" & sep + 4).Style.Font.SetBold(True)
+                hoja.Range("C" & sep + 8, "D" & sep + 8).Style.Font.SetBold(True)
+                hoja.Range("C" & sep + 4, "D" & sep + 4).Style.Fill.BackgroundColor = XLColor.PowderBlue
+                hoja.Range("C" & sep + 8, "D" & sep + 8).Style.Fill.BackgroundColor = XLColor.PowderBlue
+
+
+                hoja.Cell("C" & sep).Value = "ECO III MARINOS"
+                hoja.Cell("C" & sep + 2).Value = "DEPOSITO ULAM"
+                hoja.Cell("C" & sep + 3).Value = "IVA"
+                hoja.Cell("C" & sep + 4).Value = "TOTAL DEPOSITO ULAM"
+
+                hoja.Cell("C" & sep + 6).Value = "DEPOSITO SNEIDER"
+                hoja.Cell("C" & sep + 7).Value = "IVA"
+                hoja.Cell("C" & sep + 8).Value = "TOTAL DEPOSITO SNEIDER"
+
+                hoja.Cell("D" & sep + 2).FormulaA1 = "=T" & filaExcel + total & "+V" & filaExcel + total & "+Y" & filaExcel + total & "+AF" & filaExcel + total
+                hoja.Cell("D" & sep + 3).FormulaA1 = "=D" & sep + 2 & "*16%"
+                hoja.Cell("D" & sep + 4).FormulaA1 = "=D" & sep + 2 & "+D" & sep + 3
+
+                hoja.Cell("D" & sep + 6).FormulaA1 = "=P" & filaExcel + total & "+Q" & filaExcel + total & "+U" & filaExcel + total & "+Z" & filaExcel + total
+                hoja.Cell("D" & sep + 7).FormulaA1 = "=D" & sep + 6 & "*16%"
+                hoja.Cell("D" & sep + 8).FormulaA1 = "=D" & sep + 6 & "+D" & sep + 7
+
 
 
                 Dim cuenta, banco, clabe As String
