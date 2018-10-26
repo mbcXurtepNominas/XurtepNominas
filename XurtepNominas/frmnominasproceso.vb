@@ -1550,7 +1550,7 @@ Public Class frmnominasproceso
                 Dim contadorexcelbuqueinicial As Integer = 0
                 Dim contadorexcelbuquefinal As Integer = 0
                 Dim total As Integer = dtgDatos.Rows.Count - 1
-                'Dim filatmp As Integer = 13 - 4
+                Dim xurteptotal As Double
                 'Dim filatmp2 As Integer = filaExcel
                 Dim fecha As String
 
@@ -1562,7 +1562,7 @@ Public Class frmnominasproceso
 
                 '<<<<<<<<<<<<<<<<<<<<<<<<<<PLANTA PROCESO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 recorrerFilasColumnas(hoja, 11, dtgDatos.Rows.Count + 100, 40, "clear")
-                recorrerFilasColumnas(hoja, 1, dtgDatos.Rows.Count + 100, 80, "clear", 37)
+                recorrerFilasColumnas(hoja, 1, dtgDatos.Rows.Count + 100, 80, "clear", 38)
 
                 Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
                 If rwPeriodo0 Is Nothing = False Then
@@ -1729,6 +1729,7 @@ Public Class frmnominasproceso
                 Next x
 
 
+
                 '<<<<<<<<<<<<<<<RESUMEN>>>>>>>>>>>>>>>>>>
                 recorrerFilasColumnas(hoja5, 1, 5, 10, "clear")
                 recorrerFilasColumnas(hoja5, 8, dtgDatos.Rows.Count + 30, 10, "clear")
@@ -1769,9 +1770,9 @@ Public Class frmnominasproceso
                     hoja5.Cell(filaExcel, 5).Value = banco
                     hoja5.Cell(filaExcel, 6).Value = cuenta
                     hoja5.Cell(filaExcel, 7).Value = clabe
-                    hoja5.Cell(filaExcel, 8).Value = dtgDatos.Rows(x).Cells(46).Value ' XURTEP
-                    hoja5.Cell(filaExcel, 9).Value = "='PLANTA PROCESO OK'!T" & filatmp ' ASIMILADOS
-                   
+                    hoja5.Cell(filaExcel, 8).FormulaA1 = "='PLANTA PROCESO OK'!S" & filatmp  ' XURTEP 
+                    hoja5.Cell(filaExcel, 9).FormulaA1 = "='PLANTA PROCESO OK'!T" & filatmp ' ASIMILADOS
+
 
                     filaExcel = filaExcel + 1
                     filatmp = filatmp + 1
@@ -4216,7 +4217,7 @@ Public Class frmnominasproceso
                 Dim year As Integer = moment.Year
 
 
-                dialogo.FileName = "Reporte Contador Marinos " & periodo
+                dialogo.FileName = "Reporte Contador Procesos " & periodo
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 

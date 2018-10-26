@@ -7002,8 +7002,8 @@ Public Class frmnominasmarinos
                     hoja5.Cell(filaExcel, 7).Value = banco
                     hoja5.Cell(filaExcel, 8).Value = cuenta ' IIf(cuenta = 0, "", cuenta)
                     hoja5.Cell(filaExcel, 9).Value = clabe
-                    hoja5.Cell(filaExcel, 10).Value = dtgDatos.Rows(x).Cells(46).Value ' XURTEP
-                    hoja5.Cell(filaExcel, 11).Value = "=MARINOS!U" & filatmp ' ASIMILADOS
+                    hoja5.Cell(filaExcel, 10).FormulaA1 = "=MARINOS!U" & filatmp ' XURTEP
+                    hoja5.Cell(filaExcel, 11).FormulaA1 = "=MARINOS!U" & filatmp ' ASIMILADOS
 
 
                     filaExcel = filaExcel + 1
