@@ -6898,8 +6898,8 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 6).Value = dtgDatos.Rows(x).Cells(11).FormattedValue 'PUESTO dtgDatos.Rows(x).Cells(11).Value ' CATEGORIA
                     hoja.Cell(filaExcel + x, 7).Value = dtgDatos.Rows(x).Cells(18).Value ' DIAS ABORDO
                     hoja.Cell(filaExcel + x, 8).Value = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, dtgDatos.Rows(x).Cells(18).Value) ' DIAS DESCANSO
-                    hoja.Cell(filaExcel + x, 9).FormulaA1 = "=K" & filaExcel + x & "/2"  'NOMINA ABORDO
-                    hoja.Cell(filaExcel + x, 10).FormulaA1 = "=K" & filaExcel + x & "/2" 'NOMINA DESCANSO
+                    hoja.Cell(filaExcel + x, 9).FormulaA1 = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", "=K" & filaExcel + x, "=K" & filaExcel + x & "/2")  'NOMINA ABORDO
+                    hoja.Cell(filaExcel + x, 10).FormulaA1 = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, "=K" & filaExcel + x & "/2") 'NOMINA DESCANSO
                     hoja.Cell(filaExcel + x, 11).Value = dtgDatos.Rows(x).Cells(15).Value ' SUELDO ORDINARIO
                     hoja.Cell(filaExcel + x, 12).FormulaA1 = "='XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 ' INFONAVIT
                     hoja.Cell(filaExcel + x, 13).FormulaA1 = "='XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 'FONACOT
