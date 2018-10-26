@@ -1550,7 +1550,7 @@ Public Class frmnominasproceso
                 Dim contadorexcelbuqueinicial As Integer = 0
                 Dim contadorexcelbuquefinal As Integer = 0
                 Dim total As Integer = dtgDatos.Rows.Count - 1
-                Dim xurteptotal As Double
+                'Dim filatmp As Integer = 13 - 4
                 'Dim filatmp2 As Integer = filaExcel
                 Dim fecha As String
 
@@ -1562,7 +1562,7 @@ Public Class frmnominasproceso
 
                 '<<<<<<<<<<<<<<<<<<<<<<<<<<PLANTA PROCESO>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 recorrerFilasColumnas(hoja, 11, dtgDatos.Rows.Count + 100, 40, "clear")
-                recorrerFilasColumnas(hoja, 1, dtgDatos.Rows.Count + 100, 80, "clear", 38)
+                recorrerFilasColumnas(hoja, 1, dtgDatos.Rows.Count + 100, 80, "clear", 37)
 
                 Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
                 If rwPeriodo0 Is Nothing = False Then
@@ -1729,7 +1729,6 @@ Public Class frmnominasproceso
                 Next x
 
 
-
                 '<<<<<<<<<<<<<<<RESUMEN>>>>>>>>>>>>>>>>>>
                 recorrerFilasColumnas(hoja5, 1, 5, 10, "clear")
                 recorrerFilasColumnas(hoja5, 8, dtgDatos.Rows.Count + 30, 10, "clear")
@@ -1770,13 +1769,10 @@ Public Class frmnominasproceso
                     hoja5.Cell(filaExcel, 5).Value = banco
                     hoja5.Cell(filaExcel, 6).Value = cuenta
                     hoja5.Cell(filaExcel, 7).Value = clabe
-<<<<<<< HEAD
-                    hoja5.Cell(filaExcel, 8).FormulaA1 = "='PLANTA PROCESO OK'!S" & filatmp  ' XURTEP 
-                    hoja5.Cell(filaExcel, 9).FormulaA1 = "='PLANTA PROCESO OK'!T" & filatmp ' ASIMILADOS
-=======
                     hoja5.Cell(filaExcel, 8).Value = dtgDatos.Rows(x).Cells(46).Value ' XURTEP
+
                     hoja5.Cell(filaExcel, 9).Value = "='PLANTA PROCESO OK'!T" & filatmp ' ASIMILADOS
->>>>>>> origin/master
+                   
 
 
                     filaExcel = filaExcel + 1
@@ -2091,7 +2087,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-
+    
     Private Sub cboperiodo_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboperiodo.SelectedIndexChanged
         Try
             dtgDatos.DataSource = ""
@@ -2655,8 +2651,8 @@ Public Class frmnominasproceso
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(31).Value = "", "0", dtgDatos.Rows(x).Cells(31).Value.ToString.Replace(",", ""))
                     'Bono proceso
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(32).Value = "", "0", dtgDatos.Rows(x).Cells(32).Value.ToString.Replace(",", ""))
-
-
+                    
+                    
 
                     'totalpercepciones
                     sql &= "," & IIf(dtgDatos.Rows(x).Cells(33).Value = "", "0", dtgDatos.Rows(x).Cells(33).Value.ToString.Replace(",", ""))
@@ -3081,7 +3077,7 @@ Public Class frmnominasproceso
                         fila.Item("Fomento_Deporte") = IIf(dtgDatos.Rows(y).Cells(31).Value = "", "0", dtgDatos.Rows(y).Cells(31).Value.ToString.Replace(",", ""))
                         fila.Item("Bono_Proceso") = IIf(dtgDatos.Rows(y).Cells(32).Value = "", "0", dtgDatos.Rows(y).Cells(32).Value.ToString.Replace(",", ""))
 
-
+                        
 
 
                         fila.Item("Total_percepciones") = IIf(dtgDatos.Rows(y).Cells(33).Value = "", "0", dtgDatos.Rows(y).Cells(33).Value.ToString.Replace(",", ""))
@@ -3115,7 +3111,7 @@ Public Class frmnominasproceso
                         fila.Item("IVA") = IIf(dtgDatos.Rows(y).Cells(61).Value = "", "0", dtgDatos.Rows(y).Cells(61).Value.ToString.Replace(",", ""))
                         fila.Item("TOTAL_DEPOSITO") = IIf(dtgDatos.Rows(y).Cells(62).Value = "", "0", dtgDatos.Rows(y).Cells(62).Value.ToString.Replace(",", ""))
 
-
+                        
 
 
                         dsPeriodo.Tables("Tabla").Rows.Add(fila)
@@ -4222,7 +4218,7 @@ Public Class frmnominasproceso
                 Dim year As Integer = moment.Year
 
 
-                dialogo.FileName = "Reporte Contador Procesos " & periodo
+                dialogo.FileName = "Reporte Contador Marinos " & periodo
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                 ''  dialogo.ShowDialog()
 
@@ -5012,7 +5008,7 @@ Public Class frmnominasproceso
 
 
                 'Dim cadena As String = dgvCombo.Text
-
+                
 
                 diastrabajados = Double.Parse(IIf(dtgDatos.Rows(x).Cells(18).Value = "", "0", dtgDatos.Rows(x).Cells(18).Value))
 
@@ -5097,7 +5093,7 @@ Public Class frmnominasproceso
                     primavacacionesexenta = Math.Round(primaexenta(dtgDatos.Rows(x).Cells(11).FormattedValue, 30, dtgDatos.Rows(x).Cells(17).Value) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
                     dtgDatos.Rows(x).Cells(26).Value = primavacacionesexenta
 
-
+                                 
                     dtgDatos.Rows(x).Cells(27).Value = primavacacionesgravada + primavacacionesexenta
 
                     dtgDatos.Rows(x).Cells(28).Value = Math.Round(Sueldo * (3.304692664 / 100), 2).ToString("###,##0.00")
@@ -5115,11 +5111,11 @@ Public Class frmnominasproceso
 
                     dtgDatos.Rows(x).Cells(32).Value = Math.Round(Sueldo * (3.098149372 / 100), 2).ToString("###,##0.00")
                     BONOPROCESO = Math.Round(Sueldo * (3.098149372 / 100), 2)
-
+                    
                     SueldoBase = Sueldobruto + AGUINALDOG + AGUINALDOE + primavacacionesgravada + primavacacionesexenta + VACAPRO + BONOPUNTUALIDAD + BONOASISTENCIA + FOMENTODEPORTE + BONOPROCESO
 
 
-
+                    
                     'Total percepciones
                     dtgDatos.Rows(x).Cells(33).Value = SueldoBase
                     'Total percepsiones para isr
@@ -5487,56 +5483,55 @@ Public Class frmnominasproceso
                 Next
                 If contador = 2 Then
                     If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
                     End If
 
                 End If
                 If contador = 3 Then
                     If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
                     End If
                     If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion3).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
                     End If
                 End If
                 If contador = 4 Then
                     If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion2).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
                         dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
                     End If
                     If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion3).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
                         dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
                     End If
                     If dtgDatos.Rows(Posicion4).Cells(5).Value = "PLANTA" Then
+                        dtgDatos.Rows(Posicion4).Cells(55).Value = "0.00"
                         dtgDatos.Rows(Posicion4).Cells(56).Value = "0.00"
                         dtgDatos.Rows(Posicion4).Cells(57).Value = "0.00"
                         dtgDatos.Rows(Posicion4).Cells(58).Value = "0.00"
-                        dtgDatos.Rows(Posicion4).Cells(59).Value = "0.00"
-                        dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
+                        dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
                     End If
                 End If
 
             Next
-
 
             pnlProgreso.Visible = False
             pnlCatalogo.Enabled = True
