@@ -3970,6 +3970,9 @@ Public Class frmnominasmarinos
             Dim sueldobase, tef, teo, desc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial As Double
             Dim IMSS, SAR, INFONAVIT, ISN As Double
 
+            Dim sueldobaseD, tefD, teoD, descD, vacproD, taginaldoD, tpvacD, tpercepcionesD, comAsimD, prestamoD, comXurtepD, comCompleD, costoSocialD As Double
+            Dim IMSSD, SARD, INFONAVITD, ISND As Double
+
             If dtgDatos.Rows.Count > 0 Then
 
                 'Clonar el XLSX
@@ -3993,6 +3996,12 @@ Public Class frmnominasmarinos
 
                 End If
 
+                'Se valida si es Abordo
+                If cboTipoNomina.SelectedIndex = 1 Then
+                    llenargridD("0")
+                End If
+
+                'Sumar Abordo
                 For x As Integer = 0 To dtgDatos.Rows.Count - 1
                     sueldobase += dtgDatos.Rows(x).Cells(21).Value
                     tef += (CDbl(dtgDatos.Rows(x).Cells(22).Value) + CDbl(dtgDatos.Rows(x).Cells(23).Value))
@@ -4002,10 +4011,10 @@ Public Class frmnominasmarinos
                     taginaldo += dtgDatos.Rows(x).Cells(29).Value
                     tpvac += dtgDatos.Rows(x).Cells(32).Value
                     tpercepciones += dtgDatos.Rows(x).Cells(33).Value
-                    comAsim += dtgDatos.Rows(x).Cells(54).Value
+                    comAsim += IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, CDbl(dtgDatos.Rows(x).Cells(50).Value) * 2)
                     prestamo += dtgDatos.Rows(x).Cells(47).Value
-                    comXurtep += (dtgDatos.Rows(x).Cells(53).Value * 2%)
-                    comComple += (dtgDatos.Rows(x).Cells(54).Value * 2%)
+                    comXurtep += IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", CDbl(dtgDatos.Rows(x).Cells(53).Value), CDbl(dtgDatos.Rows(x).Cells(53).Value) * 2)
+                    comComple += IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, CDbl(dtgDatos.Rows(x).Cells(54).Value) * 2)
                     costoSocial += dtgDatos.Rows(x).Cells(59).Value
 
                     IMSS += dtgDatos.Rows(x).Cells(55).Value
@@ -4015,25 +4024,55 @@ Public Class frmnominasmarinos
 
                 Next x
 
-                hoja.Cell("B5").Value = sueldobase
-                hoja.Cell("C5").Value = tef
-                hoja.Cell("D5").Value = teo
-                hoja.Cell("E5").Value = desc
-                hoja.Cell("F5").Value = vacpro
-                hoja.Cell("G5").Value = taginaldo
-                hoja.Cell("H5").Value = tpvac
-                hoja.Cell("I5").Value = tpercepciones
-                hoja.Cell("J5").Value = comAsim
+                'Sumar Descanso
+                llenargridD("1")
+
+                For x As Integer = 0 To dtgDatos.Rows.Count - 1
+                    sueldobaseD += dtgDatos.Rows(x).Cells(21).Value
+                    tefD += (CDbl(dtgDatos.Rows(x).Cells(22).Value) + CDbl(dtgDatos.Rows(x).Cells(23).Value))
+                    teoD += dtgDatos.Rows(x).Cells(24).Value
+                    descD += dtgDatos.Rows(x).Cells(25).Value
+                    vacproD += dtgDatos.Rows(x).Cells(26).Value
+                    taginaldoD += dtgDatos.Rows(x).Cells(29).Value
+                    tpvacD += dtgDatos.Rows(x).Cells(32).Value
+                    tpercepcionesD += dtgDatos.Rows(x).Cells(33).Value
+                    comAsimD += dtgDatos.Rows(x).Cells(50).Value
+                    prestamoD += dtgDatos.Rows(x).Cells(47).Value
+                    comXurtepD += (dtgDatos.Rows(x).Cells(53).Value) ' * 2%)
+                    comCompleD += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
+                    costoSocialD += dtgDatos.Rows(x).Cells(59).Value
+
+                    IMSSD += dtgDatos.Rows(x).Cells(55).Value
+                    SARD += dtgDatos.Rows(x).Cells(56).Value
+                    INFONAVITD += dtgDatos.Rows(x).Cells(57).Value
+                    ISND += dtgDatos.Rows(x).Cells(58).Value
+
+                Next x
+
+                'Agregar los valores
+                hoja.Cell("B5").Value = sueldobase + sueldobaseD
+                hoja.Cell("C5").Value = tef + tefD
+                hoja.Cell("D5").Value = teo + teoD
+                hoja.Cell("E5").Value = desc + descD
+                hoja.Cell("F5").Value = vacpro + vacproD
+                hoja.Cell("G5").Value = taginaldo + taginaldoD
+                hoja.Cell("H5").Value = tpvac + tpvacD
+                hoja.Cell("I5").Value = tpercepciones + tpercepcionesD
+                hoja.Cell("J5").Value = comAsim  '+ comXurtepD
                 hoja.Cell("K5").Value = "0.0" 'prestamo
-                hoja.Cell("L5").Value = comXurtep
-                hoja.Cell("M5").Value = comComple
-                hoja.Cell("N5").Value = costoSocial
+                hoja.Cell("L5").Value = (comXurtep) '* 2%
+                hoja.Cell("M5").Value = (comComple) '+ comCompleD) * 2%
+                hoja.Cell("N5").Value = costoSocial '+ costoSocialD
 
-                hoja.Cell("E19").Value = IMSS
-                hoja.Cell("E20").Value = SAR
-                hoja.Cell("E21").Value = INFONAVIT
-                hoja.Cell("E22").Value = ISN
+                hoja.Cell("E19").Value = IMSS ' + IMSSD
+                hoja.Cell("E20").Value = SAR '+ SARD
+                hoja.Cell("E21").Value = INFONAVIT ' + INFONAVITD
+                hoja.Cell("E22").Value = ISN '+ ISND
 
+                'Regresa a Abordo
+                llenargridD("0")
+
+                'Guardar Excel
                 'Titulo
                 Dim moment As Date = Date.Now()
                 Dim month As Integer = moment.Month
@@ -4042,10 +4081,9 @@ Public Class frmnominasmarinos
 
                 dialogo.FileName = "Reporte Contador Marinos " & periodo
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
-                ''  dialogo.ShowDialog()
-
+               
                 If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-                    ' OK button pressed
+
                     libro.SaveAs(dialogo.FileName)
                     libro = Nothing
 
@@ -6885,7 +6923,7 @@ Public Class frmnominasmarinos
                     hoja.Cell(8, 1).Style.Font.FontSize = 12
 
                 End If
-
+                Dim formula1 As String
                 For x As Integer = 0 To dtgDatos.Rows.Count - 1
 
                     ' hoja.Cell(filaExcel + x, 4).Style.NumberFormat.Format = "@"
@@ -6901,17 +6939,19 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 9).FormulaA1 = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", "=K" & filaExcel + x, "=K" & filaExcel + x & "/2")  'NOMINA ABORDO
                     hoja.Cell(filaExcel + x, 10).FormulaA1 = IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, "=K" & filaExcel + x & "/2") 'NOMINA DESCANSO
                     hoja.Cell(filaExcel + x, 11).Value = dtgDatos.Rows(x).Cells(15).Value ' SUELDO ORDINARIO
-                    hoja.Cell(filaExcel + x, 12).FormulaA1 = "='XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 ' INFONAVIT
-                    hoja.Cell(filaExcel + x, 13).FormulaA1 = "='XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 'FONACOT
-                    hoja.Cell(filaExcel + x, 14).FormulaA1 = "='XURTEP ABORDO'!AG" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AG" & filaExcel + x + 1 ' PENSION ALIMENTICIA
-                    hoja.Cell(filaExcel + x, 15).FormulaA1 = "='XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 'Anticipo SA
+                    hoja.Cell(filaExcel + x, 12).FormulaA1 = "='XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AG" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AG" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 ' INFONAVIT
+                    hoja.Cell(filaExcel + x, 13).FormulaA1 = "='XURTEP ABORDO'!AJ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AJ" & filaExcel + x + 1 'FONACOT
+                    hoja.Cell(filaExcel + x, 14).FormulaA1 = "='XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 ' PENSION ALIMENTICIA
+                    hoja.Cell(filaExcel + x, 15).FormulaA1 = "='XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 'Anticipo SA
                     hoja.Cell(filaExcel + x, 16).FormulaA1 = "0.0"
                     hoja.Cell(filaExcel + x, 17).FormulaA1 = "0.0"
                     hoja.Cell(filaExcel + x, 18).FormulaA1 = "=K" & filaExcel + x & "-L" & filaExcel + x & "-M" & filaExcel + x & "-N" & filaExcel + x & "-O" & filaExcel + x & "-P" & filaExcel + x & "-Q" & filaExcel + x  'SUELDO ORDINARIO
                     hoja.Cell(filaExcel + x, 19).FormulaA1 = "" '
-                    hoja.Cell(filaExcel + x, 20).FormulaA1 = "='XURTEP ABORDO'!AK" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AK" & filaExcel + x + 1  ' XURTEP
+                    hoja.Cell(filaExcel + x, 20).FormulaA1 = "='XURTEP ABORDO'!AL" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AL" & filaExcel + x + 1  ' XURTEP
                     hoja.Cell(filaExcel + x, 21).FormulaA1 = "=R" & filaExcel + x & "-T" & filaExcel + x 'COMPLEMENTO (ASIM NETOS)
-                    hoja.Cell(filaExcel + x, 22).FormulaA1 = "='XURTEP ABORDO'!AB" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AC" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AD" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AG" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AB" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AC" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AD" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AG" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1
+                    formula1 = "='XURTEP ABORDO'!AB" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AC" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AD" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AG" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AJ" & filaExcel + x + 1
+                    formula1 &= "+'XURTEP DESCANSO'!AB" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AC" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AD" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AG" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AJ" & filaExcel + x + 1
+                    hoja.Cell(filaExcel + x, 22).FormulaA1 = formula1
                     hoja.Cell(filaExcel + x, 23).FormulaA1 = ""
                     hoja.Cell(filaExcel + x, 24).FormulaA1 = "2%" '%COMISION
                     hoja.Cell(filaExcel + x, 25).FormulaA1 = "=+((T" & filaExcel + x & "+V" & filaExcel + x & ")*X" & filaExcel + x & ")" 'COMISION XURTEP
@@ -6924,7 +6964,7 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 32).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
                     hoja.Cell(filaExcel + x, 33).FormulaA1 = "=+P" & filaExcel + x & "+Q" & filaExcel + x & "+T" & filaExcel + x & "+U" & filaExcel + x & "+V" & filaExcel + x & "+Y" & filaExcel + x & "+AF" & filaExcel + x & "+Z" & filaExcel + x
                     hoja.Cell(filaExcel + x, 34).FormulaA1 = "=+AG" & filaExcel + x & "*0.16" 'IVA 16%
-                    hoja.Cell(filaExcel + x, 35).FormulaA1 = ("=+AG" & filaExcel + x & "+AH" & filaExcel + x)
+                    hoja.Cell(filaExcel + x, 35).FormulaA1 = ("=+AG" & filaExcel + x & "+AH" & filaExcel + x) 'tOTAL DEPOSUTO
 
                     hoja.Cell(filaExcel + x, 37).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value
                     hoja.Cell(filaExcel + x, 38).FormulaA1 = "30"
@@ -7040,7 +7080,7 @@ Public Class frmnominasmarinos
 
 
                 '<<<<<<<<<<<<<<<RESUMEN>>>>>>>>>>>>>>>>>>
-
+                recorrerFilasColumnas(hoja5, 5, dtgDatos.Rows.Count + 30, 10, "clear")
                 filaExcel = 5
                 filatmp = 11
                 hoja5.Cell(4, 3).Style.Font.SetBold(True)
@@ -7080,7 +7120,7 @@ Public Class frmnominasmarinos
                     hoja5.Cell(filaExcel, 7).Value = banco
                     hoja5.Cell(filaExcel, 8).Value = cuenta ' IIf(cuenta = 0, "", cuenta)
                     hoja5.Cell(filaExcel, 9).Value = clabe
-                    hoja5.Cell(filaExcel, 10).FormulaA1 = "=MARINOS!U" & filatmp ' XURTEP
+                    hoja5.Cell(filaExcel, 10).FormulaA1 = "=MARINOS!T" & filatmp ' XURTEP
                     hoja5.Cell(filaExcel, 11).FormulaA1 = "=MARINOS!U" & filatmp ' ASIMILADOS
 
 
@@ -7168,12 +7208,13 @@ Public Class frmnominasmarinos
                     hoja2.Cell(filaExcel, 29).Value = dtgDatos.Rows(x).Cells(36).Value ' ISR
                     hoja2.Cell(filaExcel, 30).Value = dtgDatos.Rows(x).Cells(37).Value ' IMSS
                     hoja2.Cell(filaExcel, 31).Value = dtgDatos.Rows(x).Cells(38).Value ' INFONAVIT
-                    hoja2.Cell(filaExcel, 32).Value = dtgDatos.Rows(x).Cells(39).Value ' INFONAVIT
-                    hoja2.Cell(filaExcel, 33).Value = dtgDatos.Rows(x).Cells(41).Value ' PENSION ALIMENTICIA
-                    hoja2.Cell(filaExcel, 34).Value = dtgDatos.Rows(x).Cells(42).Value ' PRESTAMOS/ANTICIPO NOMINA?
-                    hoja2.Cell(filaExcel, 35).Value = dtgDatos.Rows(x).Cells(43).Value ' FONACOT
-                    hoja2.Cell(filaExcel, 36).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel
-                    hoja2.Cell(filaExcel, 37).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
+                    hoja2.Cell(filaExcel, 32).Value = dtgDatos.Rows(x).Cells(39).Value ' DIF INFONAVIT
+                    hoja2.Cell(filaExcel, 33).Value = dtgDatos.Rows(x).Cells(40).Value ' AJUST INFONAVIT
+                    hoja2.Cell(filaExcel, 34).Value = dtgDatos.Rows(x).Cells(41).Value ' PENSION ALIMENTICIA
+                    hoja2.Cell(filaExcel, 35).Value = dtgDatos.Rows(x).Cells(42).Value ' PRESTAMOS/ANTICIPO NOMINA?
+                    hoja2.Cell(filaExcel, 36).Value = dtgDatos.Rows(x).Cells(43).Value ' FONACOT
+                    hoja2.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
+                    hoja2.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
                     'hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
@@ -7189,11 +7230,11 @@ Public Class frmnominasmarinos
                 Next x
 
                 'STYLE
-                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Font.SetFontColor(XLColor.Black)
-                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.NumberFormat.NumberFormatId = 4
-                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Font.SetBold(True)
-                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 37).Style.Border.BottomBorder = XLBorderStyleValues.Double
-                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 37).Style.Border.TopBorder = XLBorderStyleValues.Double
+                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 40).Style.Font.SetFontColor(XLColor.Black)
+                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 40).Style.NumberFormat.NumberFormatId = 4
+                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 40).Style.Font.SetBold(True)
+                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Border.BottomBorder = XLBorderStyleValues.Double
+                hoja2.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Border.TopBorder = XLBorderStyleValues.Double
 
                 'Xurtep Abordo       
 
@@ -7222,7 +7263,7 @@ Public Class frmnominasmarinos
                 hoja2.Cell(filaExcel + 2, 35).FormulaA1 = "=SUM(AI12:AI" & filaExcel & ")"
                 hoja2.Cell(filaExcel + 2, 36).FormulaA1 = "=SUM(AJ12:AJ" & filaExcel & ")"
                 hoja2.Cell(filaExcel + 2, 37).FormulaA1 = "=SUM(AK12:AK" & filaExcel & ")"
-                'hoja2.Cell(filaExcel + 2, 38).FormulaA1 = "=SUM(AL12:AL" & filaExcel & ")"
+                hoja2.Cell(filaExcel + 2, 38).FormulaA1 = "=SUM(AL12:AL" & filaExcel & ")"
                 'hoja2.Cell(filaExcel + 2, 39).FormulaA1 = "=SUM(AM12:AM" & filaExcel & ")"
 
 
@@ -7289,12 +7330,13 @@ Public Class frmnominasmarinos
                     hoja3.Cell(filaExcel, 29).Value = dtgDatos.Rows(x).Cells(36).Value ' ISR
                     hoja3.Cell(filaExcel, 30).Value = dtgDatos.Rows(x).Cells(37).Value ' IMSS
                     hoja3.Cell(filaExcel, 31).Value = dtgDatos.Rows(x).Cells(38).Value ' INFONAVIT
-                    hoja3.Cell(filaExcel, 32).Value = dtgDatos.Rows(x).Cells(39).Value ' INFONAVIT
-                    hoja3.Cell(filaExcel, 33).Value = dtgDatos.Rows(x).Cells(41).Value ' PENSION ALIMENTICIA
-                    hoja3.Cell(filaExcel, 34).Value = dtgDatos.Rows(x).Cells(42).Value ' PRESTAMOS/ANTICIPO NOMINA?
-                    hoja3.Cell(filaExcel, 35).Value = dtgDatos.Rows(x).Cells(43).Value ' FONACOT
-                    hoja3.Cell(filaExcel, 36).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel
-                    hoja3.Cell(filaExcel, 37).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
+                    hoja3.Cell(filaExcel, 32).Value = dtgDatos.Rows(x).Cells(39).Value ' DIF INFONAVIT
+                    hoja3.Cell(filaExcel, 33).Value = dtgDatos.Rows(x).Cells(40).Value ' DIF INFONAVIT
+                    hoja3.Cell(filaExcel, 34).Value = dtgDatos.Rows(x).Cells(41).Value ' PENSION ALIMENTICIA
+                    hoja3.Cell(filaExcel, 35).Value = dtgDatos.Rows(x).Cells(42).Value ' PRESTAMOS/ANTICIPO NOMINA?
+                    hoja3.Cell(filaExcel, 36).Value = dtgDatos.Rows(x).Cells(43).Value ' FONACOT
+                    hoja3.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
+                    hoja3.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
                     filaExcel = filaExcel + 1
@@ -7305,11 +7347,11 @@ Public Class frmnominasmarinos
 
 
                 'STYLE
-                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 39).Style.Font.SetFontColor(XLColor.Black)
-                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 39).Style.NumberFormat.NumberFormatId = 4
-                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 39).Style.Font.SetBold(True)
-                hoja3.Range(filaExcel + 2, 13, filaExcel + 2, 37).Style.Border.BottomBorder = XLBorderStyleValues.Double
-                hoja3.Range(filaExcel + 2, 13, filaExcel + 2, 37).Style.Border.TopBorder = XLBorderStyleValues.Double
+                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 40).Style.Font.SetFontColor(XLColor.Black)
+                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 40).Style.NumberFormat.NumberFormatId = 4
+                hoja3.Range(filaExcel + 4, 18, filaExcel + 4, 40).Style.Font.SetBold(True)
+                hoja3.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Border.BottomBorder = XLBorderStyleValues.Double
+                hoja3.Range(filaExcel + 2, 13, filaExcel + 2, 39).Style.Border.TopBorder = XLBorderStyleValues.Double
                 'Xurtep Descanso
                 hoja3.Cell(filaExcel + 2, 13).FormulaA1 = "=SUM(M12:M" & filaExcel & ")"
                 hoja3.Cell(filaExcel + 2, 14).FormulaA1 = "=SUM(N12:N" & filaExcel & ")"
@@ -7336,7 +7378,7 @@ Public Class frmnominasmarinos
                 hoja3.Cell(filaExcel + 2, 35).FormulaA1 = "=SUM(AI12:AI" & filaExcel & ")"
                 hoja3.Cell(filaExcel + 2, 36).FormulaA1 = "=SUM(AJ12:AJ" & filaExcel & ")"
                 hoja3.Cell(filaExcel + 2, 37).FormulaA1 = "=SUM(AK12:AK" & filaExcel & ")"
-                'hoja3.Cell(filaExcel + 2, 38).FormulaA1 = "=SUM(AL12:AL" & filaExcel & ")"
+                hoja3.Cell(filaExcel + 2, 38).FormulaA1 = "=SUM(AL12:AL" & filaExcel & ")"
                 'hoja3.Cell(filaExcel + 2, 39).FormulaA1 = "=SUM(AM12:AM" & filaExcel & ")"
 
 
@@ -7450,7 +7492,7 @@ Public Class frmnominasmarinos
         End If
         dialogo.DefaultExt = "*.xlsx"
         Dim fechita() As String = fechapagoletra.Split(",")
-        dialogo.FileName = "Isla-Arca " & fechita(1).ToUpper() & " " & IIf(cboTipoNomina.SelectedIndex = 0, "NA", "ND")
+        dialogo.FileName = fechita(1).ToUpper() & " MARINOS " & IIf(cboTipoNomina.SelectedIndex = 0, "ABORDO", "DESCANSO")
         dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
 
         If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
@@ -7497,7 +7539,7 @@ Public Class frmnominasmarinos
             Else
 
                 'Nomina A
-                generarLayout2(dtgDatos, path.Replace(".xlsx", " A .xlsx"))
+                generarLayout2(dtgDatos, path.Replace(".xlsx", " A.xlsx"))
                 'Verfica si en el nuevo datagrid
                 If ExisteEnLista2(dtgDupl, path) = False Then
                     generarLayout2(dtgDupl, path.Replace(".xlsx", " B.xlsx"))
@@ -7709,7 +7751,7 @@ Public Class frmnominasmarinos
 
                 'Abrimos el machote
                 Dim ruta As String
-                ruta = My.Application.Info.DirectoryPath() & "\Archivos\nominas1.xlsx"
+                ruta = My.Application.Info.DirectoryPath() & "\Archivos\marinos1.xlsx"
 
                 Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
                 Dim libro As New ClosedXML.Excel.XLWorkbook
@@ -7762,10 +7804,10 @@ Public Class frmnominasmarinos
                         hoja.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(7).Value 'CURP
                         hoja.Cell(filaExcel, 5).Value = dtgD.Rows(x).Cells(8).Value 'SSA
                         hoja.Cell(filaExcel, 6).Value = cuenta ' Cuenta Bancaria
-                        hoja.Cell(filaExcel, 7).Value = dtgD.Rows(x).Cells(15).Value 'SBC //O 17 SALARIO_COTIZACION
+                        hoja.Cell(filaExcel, 7).Value = dtgD.Rows(x).Cells(17).Value 'SBC //O 17 SALARIO_COTIZACION
                         hoja.Cell(filaExcel, 8).Value = dtgD.Rows(x).Cells(16).Value 'SDI
-                        hoja.Cell(filaExcel, 9).Value = "A1131077105" 'Reg. Patronal 
-                        hoja.Cell(filaExcel, 10).Value = "CAM" 'Ent. Federativa  
+                        hoja.Cell(filaExcel, 9).Value = "G0666980109" 'Reg. Patronal 
+                        hoja.Cell(filaExcel, 10).Value = "VER" 'Ent. Federativa  
                         hoja.Cell(filaExcel, 11).Value = dtgD.Rows(x).Cells(18).Value 'Días Pagados
                         hoja.Cell(filaExcel, 12).Value = fechainiciorelaboral 'FechaInicioRelaboral
                         hoja.Cell(filaExcel, 13).Value = "3" 'Tipo Contrato 
@@ -7800,16 +7842,16 @@ Public Class frmnominasmarinos
                     'Percepciones
                     hoja2.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value 'RFC
                     hoja2.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'Nombre
-                    hoja2.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(25).Value 'Vac Proporcionales Gravado
-                    hoja2.Cell(filaExcel, 4).Value = "" 'Vac Proporcionales Exento
-                    hoja2.Cell(filaExcel, 5).Value = dtgD.Rows(x).Cells(24).Value ' Desc. Sem. Obligatorio Gravado
-                    hoja2.Cell(filaExcel, 6).Value = "" ' Desc. Sem. Obligatorio Gravado
-                    hoja2.Cell(filaExcel, 7).Value = dtgD.Rows(x).Cells(23).Value 'Tiempo Extra Ocasional Gravado 
+                    hoja2.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(21).Value ' Sueldo Base Gravado 
+                    hoja2.Cell(filaExcel, 4).Value = "" ' Sueldo Base Exento 
+                    hoja2.Cell(filaExcel, 5).Value = dtgD.Rows(x).Cells(22).Value ' Tiempo Extra Fijo Gravado  
+                    hoja2.Cell(filaExcel, 6).Value = dtgD.Rows(x).Cells(23).Value ' Tiempo Extra Fijo Exento  
+                    hoja2.Cell(filaExcel, 7).Value = dtgD.Rows(x).Cells(24).Value 'Tiempo Extra Ocasional Gravado 
                     hoja2.Cell(filaExcel, 8).Value = "" ' Tiempo Extra Ocasional Exento
-                    hoja2.Cell(filaExcel, 9).Value = dtgD.Rows(x).Cells(22).Value ' Tiempo Extra Fijo Gravado
-                    hoja2.Cell(filaExcel, 10).Value = dtgD.Rows(x).Cells(23).Value ' Tiempo Extra Fijo Exento
-                    hoja2.Cell(filaExcel, 11).Value = dtgD.Rows(x).Cells(21).Value ' Sueldo Base Gravado
-                    hoja2.Cell(filaExcel, 12).Value = "" ' Sueldo Base Exento
+                    hoja2.Cell(filaExcel, 9).Value = dtgD.Rows(x).Cells(25).Value ' Desc. Sem. Obligatorio Gravado
+                    hoja2.Cell(filaExcel, 10).Value = "" ' Desc. Sem. Obligatorio Gravado
+                    hoja2.Cell(filaExcel, 11).Value = dtgD.Rows(x).Cells(26).Value 'Vac Proporcionales Gravado
+                    hoja2.Cell(filaExcel, 12).Value = "" 'Vac Proporcionales Exento
                     hoja2.Cell(filaExcel, 13).Value = dtgD.Rows(x).Cells(27).Value ' Aguinaldo Gravado
                     hoja2.Cell(filaExcel, 14).Value = dtgD.Rows(x).Cells(28).Value ' Aguinaldo Exento
                     hoja2.Cell(filaExcel, 15).Value = dtgD.Rows(x).Cells(30).Value ' Prima Vacional Gravado
@@ -7825,26 +7867,27 @@ Public Class frmnominasmarinos
                     ''Deducciones
                     hoja3.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value 'RFC
                     hoja3.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'Nombre
-                    hoja3.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(37).Value ' IMSS
+                    hoja3.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(37).Value 'IMSS
                     hoja3.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(36).Value 'ISR
-                    hoja3.Cell(filaExcel, 5).Value = "" 'INCAPACIDAD, DIAS
-                    hoja3.Cell(filaExcel, 6).Value = "" ' TIPO
-                    hoja3.Cell(filaExcel, 7).Value = dtgD.Rows(x).Cells(35).Value 'IMPORTE
-                    hoja3.Cell(filaExcel, 8).Value = dtgD.Rows(x).Cells(42).Value 'PENSION ALIMENTICIA IMPORTE
+                    hoja3.Cell(filaExcel, 5).Value = dtgD.Rows(x).Cells(42).Value 'Prestamo
+                    hoja3.Cell(filaExcel, 6).Value = "" 'INCAPACIDAD, DIAS
+                    hoja3.Cell(filaExcel, 7).Value = "" ' TIPO
+                    hoja3.Cell(filaExcel, 8).Value = dtgD.Rows(x).Cells(35).Value 'IMPORTE
+                    hoja3.Cell(filaExcel, 9).Value = dtgD.Rows(x).Cells(41).Value 'PENSION ALIMENTICIA IMPORTE
                     If (dtgD.Rows(x).Cells(38).Value = "") Then
-                        hoja3.Cell(filaExcel, 9).Value = dtgD.Rows(x).Cells(38).Value ' INFONAVIT IMPORTE
+                        hoja3.Cell(filaExcel, 10).Value = dtgD.Rows(x).Cells(38).Value ' INFONAVIT IMPORTE
                     Else
-                        hoja3.Cell(filaExcel, 9).Value = validateInfonavit(dtgD.Rows(x).Cells(39).Value, dtgD.Rows(x).Cells(38).Value)
+                        hoja3.Cell(filaExcel, 10).Value = validateInfonavit(dtgD.Rows(x).Cells(39).Value, dtgD.Rows(x).Cells(38).Value)
                     End If
 
 
-                    ''Otros Pagos
-                    hoja4.Columns("A").Width = 20
-                    hoja4.Columns("B").Width = 20
-                    hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
-                    hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
-                    hoja4.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
-                    hoja4.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
+                    ' ''Otros Pagos
+                    'hoja4.Columns("A").Width = 20
+                    'hoja4.Columns("B").Width = 20
+                    'hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
+                    'hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
+                    'hoja4.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
+                    'hoja4.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
 
                     filaExcel = filaExcel + 1
 
