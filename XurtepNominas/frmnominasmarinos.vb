@@ -7030,7 +7030,7 @@ Public Class frmnominasmarinos
                 hoja.Cell("D" & sep + 7).FormulaA1 = "=D" & sep + 6 & "*16%"
                 hoja.Cell("D" & sep + 8).FormulaA1 = "=D" & sep + 6 & "+D" & sep + 7
 
-
+                hoja.Cell("D" & sep + 10).FormulaA1 = "=D" & sep + 4 & "+D" & sep + 8
 
                 Dim cuenta, banco, clabe As String
 

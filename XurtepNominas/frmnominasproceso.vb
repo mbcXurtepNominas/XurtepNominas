@@ -1681,6 +1681,7 @@ Public Class frmnominasproceso
                 hoja.Cell("D" & sep + 7).FormulaA1 = "=D" & sep + 6 & "*16%"
                 hoja.Cell("D" & sep + 8).FormulaA1 = "=D" & sep + 6 & "+D" & sep + 7
 
+                hoja.Cell("D" & sep + 10).FormulaA1 = "=D" & sep + 4 & "+D" & sep + 8
 
 
                 '<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>
@@ -1796,8 +1797,8 @@ Public Class frmnominasproceso
                 '<<<<<<<<<<<<<<<<<Xurtep Abordo>>>>>>>>>>>>>>>>>>>>>>>>
 
                 'Limpiar encabezado y relleno
-                recorrerFilasColumnas(hoja2, 1, 10, 50, "clear", 13)
-                recorrerFilasColumnas(hoja2, 12, dtgDatos.Rows.Count + 30, 50, "clear", 1)
+                recorrerFilasColumnas(hoja2, 1, 10, 55, "clear", 13)
+                recorrerFilasColumnas(hoja2, 12, dtgDatos.Rows.Count + 30, 55, "clear", 1)
 
                 hoja2.Range("A4", "A6").Clear()
                 hoja2.Range("D8", "D10").Clear()
