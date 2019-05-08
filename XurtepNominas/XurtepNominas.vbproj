@@ -224,10 +224,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="pension\frmDeudaInfonavit.Designer.vb">
+      <DependentUpon>frmDeudaInfonavit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pension\frmDeudaInfonavit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pension\frmFonacot.Designer.vb">
+      <DependentUpon>frmFonacot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pension\frmFonacot.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="pension\frmPensionA.Designer.vb">
       <DependentUpon>frmPensionA.vb</DependentUpon>
     </Compile>
     <Compile Include="pension\frmPensionA.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pension\frmPrestamo.Designer.vb">
+      <DependentUpon>frmPrestamo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pension\frmPrestamo.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -295,8 +313,17 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="pension\frmDeudaInfonavit.resx">
+      <DependentUpon>frmDeudaInfonavit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pension\frmFonacot.resx">
+      <DependentUpon>frmFonacot.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="pension\frmPensionA.resx">
       <DependentUpon>frmPensionA.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pension\frmPrestamo.resx">
+      <DependentUpon>frmPrestamo.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

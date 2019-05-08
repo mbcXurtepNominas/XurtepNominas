@@ -98,7 +98,6 @@ Partial Class frmBuscarEmpleado
         'cmdCerrar
         '
         Me.cmdCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-
         Me.cmdCerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.cmdCerrar.Location = New System.Drawing.Point(678, 363)
         Me.cmdCerrar.Name = "cmdCerrar"

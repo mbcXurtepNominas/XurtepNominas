@@ -254,7 +254,7 @@ Partial Class frmPensionA
         Me.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Name = "frmPensionA"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Imss"
+        Me.Text = "Pensión Alimenticia"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.nudPorcentaje, System.ComponentModel.ISupportInitialize).EndInit()
