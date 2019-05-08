@@ -67,4 +67,8 @@
             cmdBuscar_Click(Nothing, Nothing)
         End If
     End Sub
+
+    Private Sub frmBuscarEmpleado_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        txtbuscar.TabIndex = 1
+    End Sub
 End Class
