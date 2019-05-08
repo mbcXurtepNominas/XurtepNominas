@@ -25,6 +25,13 @@ Partial Class frmnominasmarinos
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmnominasmarinos))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.tsbEmpleados = New System.Windows.Forms.ToolStripButton()
+        Me.tsbPeriodos = New System.Windows.Forms.ToolStripButton()
+        Me.tsbpuestos = New System.Windows.Forms.ToolStripButton()
+        Me.tsbdeptos = New System.Windows.Forms.ToolStripButton()
+        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
+        Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.cmdResumenInfo = New System.Windows.Forms.Button()
         Me.cmdSubirDatos = New System.Windows.Forms.Button()
@@ -59,17 +66,13 @@ Partial Class frmnominasmarinos
         Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NoCalcularInofnavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NoCalcularCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActivarCalculoCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmdComision = New System.Windows.Forms.Button()
         Me.cmdReporteInfonavit = New System.Windows.Forms.Button()
         Me.cmdInfonavit = New System.Windows.Forms.Button()
         Me.layoutTimbrado = New System.Windows.Forms.Button()
-        Me.tsbEmpleados = New System.Windows.Forms.ToolStripButton()
-        Me.tsbPeriodos = New System.Windows.Forms.ToolStripButton()
-        Me.tsbpuestos = New System.Windows.Forms.ToolStripButton()
-        Me.tsbdeptos = New System.Windows.Forms.ToolStripButton()
-        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
-        Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
-        Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
+        Me.chkNoinfonavit = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,12 +91,79 @@ Partial Class frmnominasmarinos
         Me.ToolStrip1.TabIndex = 25
         Me.ToolStrip1.Text = "ToolStrip1"
         '
+        'tsbEmpleados
+        '
+        Me.tsbEmpleados.Image = CType(resources.GetObject("tsbEmpleados.Image"), System.Drawing.Image)
+        Me.tsbEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbEmpleados.Name = "tsbEmpleados"
+        Me.tsbEmpleados.Size = New System.Drawing.Size(118, 51)
+        Me.tsbEmpleados.Text = "Importar Empleados"
+        Me.tsbEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbPeriodos
+        '
+        Me.tsbPeriodos.Image = CType(resources.GetObject("tsbPeriodos.Image"), System.Drawing.Image)
+        Me.tsbPeriodos.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbPeriodos.Name = "tsbPeriodos"
+        Me.tsbPeriodos.Size = New System.Drawing.Size(106, 51)
+        Me.tsbPeriodos.Text = "Importar Períodos"
+        Me.tsbPeriodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbpuestos
+        '
+        Me.tsbpuestos.Image = CType(resources.GetObject("tsbpuestos.Image"), System.Drawing.Image)
+        Me.tsbpuestos.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbpuestos.Name = "tsbpuestos"
+        Me.tsbpuestos.Size = New System.Drawing.Size(101, 51)
+        Me.tsbpuestos.Text = "Importar Puestos"
+        Me.tsbpuestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbdeptos
+        '
+        Me.tsbdeptos.Image = CType(resources.GetObject("tsbdeptos.Image"), System.Drawing.Image)
+        Me.tsbdeptos.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbdeptos.Name = "tsbdeptos"
+        Me.tsbdeptos.Size = New System.Drawing.Size(96, 51)
+        Me.tsbdeptos.Text = "Importar deptos"
+        Me.tsbdeptos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbImportar
+        '
+        Me.tsbImportar.Image = CType(resources.GetObject("tsbImportar.Image"), System.Drawing.Image)
+        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbImportar.Name = "tsbImportar"
+        Me.tsbImportar.Size = New System.Drawing.Size(70, 51)
+        Me.tsbImportar.Text = "Incidencias"
+        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbImportar.ToolTipText = "Importar incidencias"
+        '
+        'tsbLayout
+        '
+        Me.tsbLayout.AutoSize = False
+        Me.tsbLayout.Image = CType(resources.GetObject("tsbLayout.Image"), System.Drawing.Image)
+        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbLayout.Name = "tsbLayout"
+        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
+        Me.tsbLayout.Text = "Layouts"
+        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbLayout.Visible = False
+        '
+        'tsbIEmpleados
+        '
+        Me.tsbIEmpleados.Image = CType(resources.GetObject("tsbIEmpleados.Image"), System.Drawing.Image)
+        Me.tsbIEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbIEmpleados.Name = "tsbIEmpleados"
+        Me.tsbIEmpleados.Size = New System.Drawing.Size(69, 51)
+        Me.tsbIEmpleados.Text = "Empleados"
+        Me.tsbIEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlCatalogo.Controls.Add(Me.chkNoinfonavit)
         Me.pnlCatalogo.Controls.Add(Me.cmdResumenInfo)
         Me.pnlCatalogo.Controls.Add(Me.cmdSubirDatos)
         Me.pnlCatalogo.Controls.Add(Me.btnReporte)
@@ -394,39 +464,51 @@ Partial Class frmnominasmarinos
         '
         'cMenu
         '
-        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
+        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem, Me.NoCalcularCostoSocialToolStripMenuItem, Me.ActivarCalculoCostoSocialToolStripMenuItem})
         Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(205, 136)
+        Me.cMenu.Size = New System.Drawing.Size(223, 158)
         '
         'EliminarDeLaListaToolStripMenuItem
         '
         Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
-        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
         '
         'AgregarTrabajadoresToolStripMenuItem
         '
         Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
-        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
         '
         'EditarEmpleadoToolStripMenuItem
         '
         Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
-        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
         '
         'NoCalcularInofnavitToolStripMenuItem
         '
         Me.NoCalcularInofnavitToolStripMenuItem.Name = "NoCalcularInofnavitToolStripMenuItem"
-        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.NoCalcularInofnavitToolStripMenuItem.Text = "No Calcular inofnavit"
         '
         'ActivarCalculoInfonavitToolStripMenuItem
         '
         Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
+        '
+        'NoCalcularCostoSocialToolStripMenuItem
+        '
+        Me.NoCalcularCostoSocialToolStripMenuItem.Name = "NoCalcularCostoSocialToolStripMenuItem"
+        Me.NoCalcularCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.NoCalcularCostoSocialToolStripMenuItem.Text = "No Calcular Costo Social"
+        '
+        'ActivarCalculoCostoSocialToolStripMenuItem
+        '
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Name = "ActivarCalculoCostoSocialToolStripMenuItem"
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Text = "Activar Calculo Costo Social"
         '
         'cmdComision
         '
@@ -474,71 +556,17 @@ Partial Class frmnominasmarinos
         Me.layoutTimbrado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.layoutTimbrado.UseVisualStyleBackColor = True
         '
-        'tsbEmpleados
+        'chkNoinfonavit
         '
-        Me.tsbEmpleados.Image = CType(resources.GetObject("tsbEmpleados.Image"), System.Drawing.Image)
-        Me.tsbEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbEmpleados.Name = "tsbEmpleados"
-        Me.tsbEmpleados.Size = New System.Drawing.Size(118, 51)
-        Me.tsbEmpleados.Text = "Importar Empleados"
-        Me.tsbEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbPeriodos
-        '
-        Me.tsbPeriodos.Image = CType(resources.GetObject("tsbPeriodos.Image"), System.Drawing.Image)
-        Me.tsbPeriodos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbPeriodos.Name = "tsbPeriodos"
-        Me.tsbPeriodos.Size = New System.Drawing.Size(106, 51)
-        Me.tsbPeriodos.Text = "Importar Períodos"
-        Me.tsbPeriodos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbpuestos
-        '
-        Me.tsbpuestos.Image = CType(resources.GetObject("tsbpuestos.Image"), System.Drawing.Image)
-        Me.tsbpuestos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbpuestos.Name = "tsbpuestos"
-        Me.tsbpuestos.Size = New System.Drawing.Size(101, 51)
-        Me.tsbpuestos.Text = "Importar Puestos"
-        Me.tsbpuestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbdeptos
-        '
-        Me.tsbdeptos.Image = CType(resources.GetObject("tsbdeptos.Image"), System.Drawing.Image)
-        Me.tsbdeptos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbdeptos.Name = "tsbdeptos"
-        Me.tsbdeptos.Size = New System.Drawing.Size(96, 51)
-        Me.tsbdeptos.Text = "Importar deptos"
-        Me.tsbdeptos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbImportar
-        '
-        Me.tsbImportar.Image = CType(resources.GetObject("tsbImportar.Image"), System.Drawing.Image)
-        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbImportar.Name = "tsbImportar"
-        Me.tsbImportar.Size = New System.Drawing.Size(70, 51)
-        Me.tsbImportar.Text = "Incidencias"
-        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbImportar.ToolTipText = "Importar incidencias"
-        '
-        'tsbLayout
-        '
-        Me.tsbLayout.AutoSize = False
-        Me.tsbLayout.Image = CType(resources.GetObject("tsbLayout.Image"), System.Drawing.Image)
-        Me.tsbLayout.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbLayout.Name = "tsbLayout"
-        Me.tsbLayout.Size = New System.Drawing.Size(90, 51)
-        Me.tsbLayout.Text = "Layouts"
-        Me.tsbLayout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbLayout.Visible = False
-        '
-        'tsbIEmpleados
-        '
-        Me.tsbIEmpleados.Image = CType(resources.GetObject("tsbIEmpleados.Image"), System.Drawing.Image)
-        Me.tsbIEmpleados.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbIEmpleados.Name = "tsbIEmpleados"
-        Me.tsbIEmpleados.Size = New System.Drawing.Size(69, 51)
-        Me.tsbIEmpleados.Text = "Empleados"
-        Me.tsbIEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.chkNoinfonavit.AutoSize = True
+        Me.chkNoinfonavit.BackColor = System.Drawing.Color.Transparent
+        Me.chkNoinfonavit.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNoinfonavit.Location = New System.Drawing.Point(175, 37)
+        Me.chkNoinfonavit.Name = "chkNoinfonavit"
+        Me.chkNoinfonavit.Size = New System.Drawing.Size(154, 22)
+        Me.chkNoinfonavit.TabIndex = 31
+        Me.chkNoinfonavit.Text = "No calcular infonavit"
+        Me.chkNoinfonavit.UseVisualStyleBackColor = False
         '
         'frmnominasmarinos
         '
@@ -615,4 +643,7 @@ End Sub
     Friend WithEvents cmdReporteInfonavit As System.Windows.Forms.Button
     Friend WithEvents cmdInfonavit As System.Windows.Forms.Button
     Friend WithEvents layoutTimbrado As System.Windows.Forms.Button
+    Friend WithEvents NoCalcularCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ActivarCalculoCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents chkNoinfonavit As System.Windows.Forms.CheckBox
 End Class

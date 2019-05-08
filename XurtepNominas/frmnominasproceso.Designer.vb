@@ -70,6 +70,8 @@ Partial Class frmnominasproceso
         Me.EditarEmpleadoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NoCalcularInofnavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NoCalcularCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActivarCalculoCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlProgreso.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,8 +155,8 @@ Partial Class frmnominasproceso
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pnlCatalogo.Controls.Add(Me.cmdResumenInfo)
         Me.pnlCatalogo.Controls.Add(Me.cmdSubirDatos)
@@ -392,8 +394,8 @@ Partial Class frmnominasproceso
         Me.dtgDatos.AllowUserToAddRows = False
         Me.dtgDatos.AllowUserToDeleteRows = False
         Me.dtgDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgDatos.Location = New System.Drawing.Point(1, 65)
         Me.dtgDatos.Name = "dtgDatos"
@@ -506,39 +508,51 @@ Partial Class frmnominasproceso
         '
         'cMenu
         '
-        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
+        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem, Me.NoCalcularCostoSocialToolStripMenuItem, Me.ActivarCalculoCostoSocialToolStripMenuItem})
         Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(205, 114)
+        Me.cMenu.Size = New System.Drawing.Size(223, 158)
         '
         'EliminarDeLaListaToolStripMenuItem
         '
         Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
-        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
         '
         'AgregarTrabajadoresToolStripMenuItem
         '
         Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
-        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
         '
         'EditarEmpleadoToolStripMenuItem
         '
         Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
-        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
         '
         'NoCalcularInofnavitToolStripMenuItem
         '
         Me.NoCalcularInofnavitToolStripMenuItem.Name = "NoCalcularInofnavitToolStripMenuItem"
-        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.NoCalcularInofnavitToolStripMenuItem.Text = "No Calcular inofnavit"
         '
         'ActivarCalculoInfonavitToolStripMenuItem
         '
         Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
+        '
+        'NoCalcularCostoSocialToolStripMenuItem
+        '
+        Me.NoCalcularCostoSocialToolStripMenuItem.Name = "NoCalcularCostoSocialToolStripMenuItem"
+        Me.NoCalcularCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.NoCalcularCostoSocialToolStripMenuItem.Text = "No Calcular Costo Social"
+        '
+        'ActivarCalculoCostoSocialToolStripMenuItem
+        '
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Name = "ActivarCalculoCostoSocialToolStripMenuItem"
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Text = "Activar Calculo Costo Social"
         '
         'frmnominasproceso
         '
@@ -614,4 +628,6 @@ Partial Class frmnominasproceso
     Friend WithEvents EditarEmpleadoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NoCalcularInofnavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ActivarCalculoInfonavitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NoCalcularCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ActivarCalculoCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
