@@ -72,6 +72,9 @@ Partial Class frmnominasmarinos
         Me.layoutTimbrado = New System.Windows.Forms.Button()
         Me.cmdReporteMensual = New System.Windows.Forms.Button()
         Me.btnAsimilados = New System.Windows.Forms.Button()
+        Me.chkNoinfonavit = New System.Windows.Forms.CheckBox()
+        Me.NoCalcularCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActivarCalculoCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,9 +162,10 @@ Partial Class frmnominasmarinos
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlCatalogo.Controls.Add(Me.chkNoinfonavit)
         Me.pnlCatalogo.Controls.Add(Me.cmdResumenInfo)
         Me.pnlCatalogo.Controls.Add(Me.cmdSubirDatos)
         Me.pnlCatalogo.Controls.Add(Me.btnReporte)
@@ -398,8 +402,8 @@ Partial Class frmnominasmarinos
         Me.dtgDatos.AllowUserToAddRows = False
         Me.dtgDatos.AllowUserToDeleteRows = False
         Me.dtgDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgDatos.Location = New System.Drawing.Point(1, 65)
         Me.dtgDatos.Name = "dtgDatos"
@@ -462,9 +466,9 @@ Partial Class frmnominasmarinos
         '
         'cMenu
         '
-        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem})
+        Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem, Me.NoCalcularCostoSocialToolStripMenuItem, Me.ActivarCalculoCostoSocialToolStripMenuItem})
         Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(205, 114)
+        Me.cMenu.Size = New System.Drawing.Size(214, 180)
         '
         'EliminarDeLaListaToolStripMenuItem
         '
@@ -566,6 +570,30 @@ Partial Class frmnominasmarinos
         Me.btnAsimilados.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.btnAsimilados.UseVisualStyleBackColor = True
         '
+        'chkNoinfonavit
+        '
+        Me.chkNoinfonavit.AutoSize = True
+        Me.chkNoinfonavit.BackColor = System.Drawing.Color.Transparent
+        Me.chkNoinfonavit.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNoinfonavit.Location = New System.Drawing.Point(172, 36)
+        Me.chkNoinfonavit.Name = "chkNoinfonavit"
+        Me.chkNoinfonavit.Size = New System.Drawing.Size(154, 22)
+        Me.chkNoinfonavit.TabIndex = 31
+        Me.chkNoinfonavit.Text = "No calcular infonavit"
+        Me.chkNoinfonavit.UseVisualStyleBackColor = False
+        '
+        'NoCalcularCostoSocialToolStripMenuItem
+        '
+        Me.NoCalcularCostoSocialToolStripMenuItem.Name = "NoCalcularCostoSocialToolStripMenuItem"
+        Me.NoCalcularCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.NoCalcularCostoSocialToolStripMenuItem.Text = "NoCalcularCostoSocial"
+        '
+        'ActivarCalculoCostoSocialToolStripMenuItem
+        '
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Name = "ActivarCalculoCostoSocialToolStripMenuItem"
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Text = "ActivarCalculoCostoSocial"
+        '
         'frmnominasmarinos
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -645,4 +673,7 @@ Partial Class frmnominasmarinos
     Friend WithEvents layoutTimbrado As System.Windows.Forms.Button
     Friend WithEvents cmdReporteMensual As System.Windows.Forms.Button
     Friend WithEvents btnAsimilados As System.Windows.Forms.Button
+    Friend WithEvents chkNoinfonavit As System.Windows.Forms.CheckBox
+    Friend WithEvents NoCalcularCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ActivarCalculoCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
