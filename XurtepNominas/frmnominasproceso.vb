@@ -9155,4 +9155,38 @@ Public Class frmnominasproceso
     Private Sub cmdreiniciar_Click(sender As System.Object, e As System.EventArgs) Handles cmdreiniciar.Click
 
     End Sub
+
+    Private Sub tsbbuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbbuscar.Click
+
+        Try
+            Dim dialogo As New SaveFileDialog()
+            Dim sql As String
+            Dim Forma As New frmBuscar
+            Dim temp As Integer = 0
+            Dim encontro As Boolean = False
+            If Forma.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                For Each fila As DataGridViewRow In dtgDatos.Rows
+
+                    fila.DefaultCellStyle.BackColor = Color.White
+
+                    If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                        fila.DefaultCellStyle.BackColor = Color.Yellow
+                        encontro = True
+                        temp = temp + 1
+
+                    End If
+                Next
+
+            End If
+
+            If encontro = False Then
+                MsgBox("No se encontro nada")
+            Else
+                MsgBox("Se encontrarón " & temp & " Registro")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class
