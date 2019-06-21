@@ -1983,6 +1983,11 @@ Public Class frmnominasmarinos
     Private Sub cmdcalcular_Click(sender As Object, e As EventArgs) Handles cmdcalcular.Click
         Try
             Dim sql As String
+            Dim sql2 As String
+            Dim sql3 As String
+            Dim sql4 As String
+            Dim sql5 As String
+
             sql = "select * from Nomina where fkiIdEmpresa=1 and fkiIdPeriodo=" & cboperiodo.SelectedValue
             sql &= " and iEstatusNomina=1 and iEstatus=1 and iEstatusEmpleado=" & cboserie.SelectedIndex
             sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
@@ -2002,6 +2007,13 @@ Public Class frmnominasmarinos
                     sql = "delete from DetalleDescInfonavit"
                     sql &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
                     sql &= " and iSerie=" & cboserie.SelectedIndex
+
+
+
+                    sql2 = " delete from DetallePensionAlimenticia"
+                    sql2 &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
+                    sql2 &= " and iSerie=" & cboserie.SelectedIndex
+
                     'sql &= " and iSerie=" & cboserie.SelectedIndex
                     'sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
 
@@ -2032,6 +2044,12 @@ Public Class frmnominasmarinos
                     sql &= " and iSerie=" & cboserie.SelectedIndex
                     'sql &= " and iSerie=" & cboserie.SelectedIndex
                     sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+
+
+                    sql2 = " delete from DetallePensionAlimenticia"
+                    sql2 &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
+                    sql2 &= " and iSerie=" & cboserie.SelectedIndex
+                    sql2 &= " and iTipo=" & cboTipoNomina.SelectedIndex
                 End If
 
 
@@ -2040,6 +2058,13 @@ Public Class frmnominasmarinos
                     'pnlProgreso.Visible = False
                     Exit Sub
                 End If
+
+                If nExecute(sql2) = False Then
+                    MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    'pnlProgreso.Visible = False
+                    Exit Sub
+                End If
+
                 calcular()
             End If
 
@@ -2701,11 +2726,49 @@ Public Class frmnominasmarinos
 
                         sql = "select * from PensionAlimenticia where fkiIdEmpleadoC=" & Integer.Parse(dtgDatos.Rows(x).Cells(2).Value)
 
-                        Dim rwPensionEmpleado As DataRow() = nConsulta(sql)
-                        If rwPensionEmpleado Is Nothing = False Then
-                            dtgDatos.Rows(x).Cells(41).Value = PensionAlimenticia * (Double.Parse(rwPensionEmpleado(0)("fPorcentaje")) / 100)
-                        Else
 
+                        Dim rwPensionEmpleado As DataRow() = nConsulta(sql)
+
+                        pension = 0
+
+                        If rwPensionEmpleado Is Nothing = False Then
+                            For y As Integer = 0 To rwPensionEmpleado.Length - 1
+                                pension = pension + Math.Round(PensionAlimenticia * (Double.Parse(rwPensionEmpleado(y)("fPorcentaje")) / 100), 2)
+
+
+                                'dtgDatos.Rows(x).Cells(41).Value = PensionAlimenticia * (Double.Parse(rwPensionEmpleado(y)("fPorcentaje")) / 100)
+
+                                'Insertar la pension
+                                'Insertamos los datos
+
+                                sql = "EXEC [setDetallePensionAlimenticiaInsertar] 0"
+                                'Id Empleado
+                                sql &= "," & Integer.Parse(dtgDatos.Rows(x).Cells(2).Value)
+                                'id Pension
+                                sql &= "," & Integer.Parse(rwPensionEmpleado(y)("iIdPensionAlimenticia"))
+                                'id Periodo
+                                sql &= ",'" & cboperiodo.SelectedValue
+                                'serie
+                                sql &= "'," & cboserie.SelectedIndex
+                                'tipo
+                                sql &= "," & cboTipoNomina.SelectedIndex
+                                'Monto
+                                sql &= "," & Math.Round(PensionAlimenticia * (Double.Parse(rwPensionEmpleado(y)("fPorcentaje")) / 100), 2)
+                                'Estatus
+                                sql &= ",1"
+
+
+                                If nExecute(sql) = False Then
+                                    MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+
+                                End If
+
+                            Next
+                            dtgDatos.Rows(x).Cells(41).Value = pension
+                            'dtgDatos.Rows(x).Cells(41).Value = PensionAlimenticia * (Double.Parse(rwPensionEmpleado(0)("fPorcentaje")) / 100)
+                        Else
+                            pension = 0
                             dtgDatos.Rows(x).Cells(41).Value = "0"
                         End If
 
