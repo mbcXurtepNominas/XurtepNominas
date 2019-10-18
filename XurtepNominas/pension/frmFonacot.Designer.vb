@@ -24,7 +24,6 @@ Partial Class frmFonacot
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFonacot))
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.nudImporte = New System.Windows.Forms.NumericUpDown()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.cboEstatus = New System.Windows.Forms.ComboBox()
         Me.txtCredito = New System.Windows.Forms.TextBox()
@@ -37,13 +36,13 @@ Partial Class frmFonacot
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.cmdDeleted = New System.Windows.Forms.Button()
         Me.cmdcancelar = New System.Windows.Forms.Button()
         Me.cmdnuevo = New System.Windows.Forms.Button()
         Me.cmdsalir = New System.Windows.Forms.Button()
         Me.cmdguardar = New System.Windows.Forms.Button()
-        Me.cmdDeleted = New System.Windows.Forms.Button()
+        Me.nudImporte = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
-        CType(Me.nudImporte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -61,13 +60,6 @@ Partial Class frmFonacot
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(538, 186)
         Me.Panel1.TabIndex = 7
-        '
-        'nudImporte
-        '
-        Me.nudImporte.Location = New System.Drawing.Point(123, 54)
-        Me.nudImporte.Name = "nudImporte"
-        Me.nudImporte.Size = New System.Drawing.Size(120, 26)
-        Me.nudImporte.TabIndex = 190
         '
         'Label8
         '
@@ -173,6 +165,18 @@ Partial Class frmFonacot
         Me.Panel4.Size = New System.Drawing.Size(105, 449)
         Me.Panel4.TabIndex = 68
         '
+        'cmdDeleted
+        '
+        Me.cmdDeleted.Image = CType(resources.GetObject("cmdDeleted.Image"), System.Drawing.Image)
+        Me.cmdDeleted.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.cmdDeleted.Location = New System.Drawing.Point(8, 225)
+        Me.cmdDeleted.Name = "cmdDeleted"
+        Me.cmdDeleted.Size = New System.Drawing.Size(87, 72)
+        Me.cmdDeleted.TabIndex = 40
+        Me.cmdDeleted.Text = "Eliminar"
+        Me.cmdDeleted.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.cmdDeleted.UseVisualStyleBackColor = True
+        '
         'cmdcancelar
         '
         Me.cmdcancelar.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -222,17 +226,12 @@ Partial Class frmFonacot
         Me.cmdguardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.cmdguardar.UseVisualStyleBackColor = True
         '
-        'cmdDeleted
+        'nudImporte
         '
-        Me.cmdDeleted.Image = CType(resources.GetObject("cmdDeleted.Image"), System.Drawing.Image)
-        Me.cmdDeleted.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.cmdDeleted.Location = New System.Drawing.Point(8, 225)
-        Me.cmdDeleted.Name = "cmdDeleted"
-        Me.cmdDeleted.Size = New System.Drawing.Size(87, 72)
-        Me.cmdDeleted.TabIndex = 40
-        Me.cmdDeleted.Text = "Eliminar"
-        Me.cmdDeleted.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.cmdDeleted.UseVisualStyleBackColor = True
+        Me.nudImporte.Location = New System.Drawing.Point(120, 58)
+        Me.nudImporte.Name = "nudImporte"
+        Me.nudImporte.Size = New System.Drawing.Size(161, 26)
+        Me.nudImporte.TabIndex = 192
         '
         'frmFonacot
         '
@@ -246,7 +245,6 @@ Partial Class frmFonacot
         Me.Text = "FONACOT"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.nudImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel3.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
@@ -262,7 +260,6 @@ Partial Class frmFonacot
     Friend WithEvents ColumnHeader1 As System.Windows.Forms.ColumnHeader
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents cboEstatus As System.Windows.Forms.ComboBox
-    Friend WithEvents nudImporte As System.Windows.Forms.NumericUpDown
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents cmdcancelar As System.Windows.Forms.Button
@@ -272,4 +269,5 @@ Partial Class frmFonacot
     Friend WithEvents ColumnHeader2 As System.Windows.Forms.ColumnHeader
     Friend WithEvents ColumnHeader3 As System.Windows.Forms.ColumnHeader
     Friend WithEvents cmdDeleted As System.Windows.Forms.Button
+    Friend WithEvents nudImporte As System.Windows.Forms.TextBox
 End Class

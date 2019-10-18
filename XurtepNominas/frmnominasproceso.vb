@@ -1603,12 +1603,12 @@ Public Class frmnominasproceso
                     hoja.Cell(filaExcel + x, 23).FormulaA1 = "2%" '%COMISION
                     hoja.Cell(filaExcel + x, 24).FormulaA1 = "=+((S" & filaExcel + x & "+U" & filaExcel + x & ")*W" & filaExcel + x & ")" 'COMISION XURTEP
                     hoja.Cell(filaExcel + x, 25).FormulaA1 = "=T" & filaExcel + x & "*W" & filaExcel + x ' COMPLEMENTO COMISION
-                    hoja.Cell(filaExcel + x, 26).FormulaA1 = dtgDatos.Rows(x).Cells(55).Value 'IMSS
-                    hoja.Cell(filaExcel + x, 27).FormulaA1 = dtgDatos.Rows(x).Cells(56).Value 'RCV
-                    hoja.Cell(filaExcel + x, 28).FormulaA1 = dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
-                    hoja.Cell(filaExcel + x, 29).FormulaA1 = dtgDatos.Rows(x).Cells(58).Value
+                    hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+'XURTEP ABORDO'!AN" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(55).Value 'IMSS
+                    hoja.Cell(filaExcel + x, 27).FormulaA1 = "=+'XURTEP ABORDO'!AO" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(56).Value 'RCV
+                    hoja.Cell(filaExcel + x, 28).FormulaA1 = "=+'XURTEP ABORDO'!AP" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
+                    hoja.Cell(filaExcel + x, 29).FormulaA1 = "=+'XURTEP ABORDO'!AQ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AQ" & filaExcel + x + 1   'dtgDatos.Rows(x).Cells(58).Value
                     hoja.Cell(filaExcel + x, 30).FormulaA1 = "=Z" & filaExcel + x & "+AA" & filaExcel + x & "+AB" & filaExcel + x & "+AC" & filaExcel + x 'COMPROB CS
-                    hoja.Cell(filaExcel + x, 31).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
+                    hoja.Cell(filaExcel + x, 31).FormulaA1 = "=AD" & filaExcel + x ' dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
                     hoja.Cell(filaExcel + x, 32).FormulaA1 = "=+P" & filaExcel + x & "+S" & filaExcel + x & "+T" & filaExcel + x & "+U" & filaExcel + x & "+X" & filaExcel + x & "+AE" & filaExcel + x & "+Y" & filaExcel + x
                     hoja.Cell(filaExcel + x, 33).FormulaA1 = "=+AF" & filaExcel + x & "*0.16" 'IVA 16%
                     hoja.Cell(filaExcel + x, 34).FormulaA1 = ("=+AF" & filaExcel + x & "+AG" & filaExcel + x)
@@ -1872,11 +1872,11 @@ Public Class frmnominasproceso
                     hoja2.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
-                    'hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
-                    'hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
-                    'hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
-                    'hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
-                    'hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
+                    hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
+                    hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
+                    hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
                     'hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
@@ -1992,6 +1992,13 @@ Public Class frmnominasproceso
                     hoja3.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
                     hoja3.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
+
+                    hoja3.Cell(filaExcel, 40).Value = "0.0" 'dtgDatos.Rows(x).Cells(55).Value
+                    hoja3.Cell(filaExcel, 41).Value = "0.0" 'dtgDatos.Rows(x).Cells(56).Value
+                    hoja3.Cell(filaExcel, 42).Value = "0.0" 'dtgDatos.Rows(x).Cells(57).Value
+                    hoja3.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja3.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    'hoja3.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -4257,12 +4264,31 @@ Public Class frmnominasproceso
                     bonoA += dtgDatos.Rows(x).Cells(30).Value
                     deporte += dtgDatos.Rows(x).Cells(31).Value
                     bonoproc += dtgDatos.Rows(x).Cells(32).Value
-
                     tpercepciones += dtgDatos.Rows(x).Cells(33).Value
-                    comAsim += dtgDatos.Rows(x).Cells(50).Value
+
                     prestamo += dtgDatos.Rows(x).Cells(42).Value
 
-                    comXurtep += (dtgDatos.Rows(x).Cells(53).Value) '* 2%)
+                    If dtgDatos.Rows(x).Cells(11).Value = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE" Or dtgDatos.Rows(x).Cells(11).Value = "SUBALTERNO EN FORMACIÓN" Then
+                        Dim sueldo_base As Double = dtgDatos.Rows(x).Cells(15).Value
+                        Dim ret_infonavit As Double = CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value)
+                        Dim fonacot As Double = dtgDatos.Rows(x).Cells(43).Value
+                        Dim pensionalimenticia As Double = dtgDatos.Rows(x).Cells(41).Value
+                        Dim anticipoxurtep As Double = dtgDatos.Rows(x).Cells(42).Value
+                        Dim anticipoasim As Double = dtgDatos.Rows(x).Cells(47).Value
+                        Dim xurtep As Double = dtgDatos.Rows(x).Cells(46).Value
+                        comAsim += (sueldo_base - ret_infonavit - fonacot - pensionalimenticia - anticipoxurtep - anticipoasim) - xurtep
+                        comAsimD += 0
+                        comXurtep += (dtgDatos.Rows(x).Cells(53).Value)
+                        comXurtepD += 0
+                    Else
+                        comAsim += dtgDatos.Rows(x).Cells(50).Value
+                        comAsimD += dtgDatos.Rows(x).Cells(50).Value
+                        comXurtep += (dtgDatos.Rows(x).Cells(53).Value)
+                        comXurtepD += (dtgDatos.Rows(x).Cells(53).Value)
+                    End If
+
+
+                    '* 2%)
                     comComple += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
                     costoSocial = dtgDatos.Rows(x).Cells(59).Value
 
@@ -4273,7 +4299,7 @@ Public Class frmnominasproceso
                     INFONAVIT += dtgDatos.Rows(x).Cells(57).Value
                     ISN += dtgDatos.Rows(x).Cells(58).Value
 
-                   
+                    
                 Next x
                 'Sumar Descanso
                 llenargridD("1")
@@ -4284,8 +4310,9 @@ Public Class frmnominasproceso
                     tpvacD += dtgDatos.Rows(x).Cells(27).Value
                     vacproD += dtgDatos.Rows(x).Cells(28).Value
                     tpercepcionesD += dtgDatos.Rows(x).Cells(33).Value
-                    comAsimD += dtgDatos.Rows(x).Cells(50).Value
+                    ' comAsimD += dtgDatos.Rows(x).Cells(50).Value
                     prestamoD += dtgDatos.Rows(x).Cells(42).Value
+
                     'comXurtepD += (dtgDatos.Rows(x).Cells(53).Value) ' * 2%)
                     ' comCompleD += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
                     costoSocialD += dtgDatos.Rows(x).Cells(59).Value
@@ -4300,6 +4327,7 @@ Public Class frmnominasproceso
                     INFONAVITD += dtgDatos.Rows(x).Cells(57).Value
                     ISND += dtgDatos.Rows(x).Cells(58).Value
 
+
                 Next x
 
                 hoja.Cell("B5").Value = sueldobase + sueldobaseD
@@ -4311,10 +4339,10 @@ Public Class frmnominasproceso
                 hoja.Cell("H5").Value = deporte + deporteD 'Fomento al deporte
                 hoja.Cell("I5").Value = bonoproc + bonoprocD 'Bono proceso
                 hoja.Cell("J5").Value = tpercepciones + tpercepcionesD
-                hoja.Cell("K5").Value = comAsim * 2
-                hoja.Cell("L5").Value = (comXurtep * 2) '* 2%
-                hoja.Cell("M5").Value = (comComple * 2) '* 2%
-                hoja.Cell("N5").Value = costoSocialD
+                hoja.Cell("K5").Value = comAsim + comAsimD '* 2
+                hoja.Cell("L5").Value = comXurtep + comXurtepD
+                hoja.Cell("M5").FormulaA1 = "=K5*2%" '(comComple * 2) '* 2%
+                hoja.Cell("N5").Value = IMSS + SAR + INFONAVIT + ISN 'costoSocialD
 
                 hoja.Cell("E18").Value = IMSS '+ IMSSD
                 hoja.Cell("E19").Value = SAR '+ SARD

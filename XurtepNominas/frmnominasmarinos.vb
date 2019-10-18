@@ -7138,12 +7138,12 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 24).FormulaA1 = "2%" '%COMISION
                     hoja.Cell(filaExcel + x, 25).FormulaA1 = "=+((T" & filaExcel + x & "+V" & filaExcel + x & ")*X" & filaExcel + x & ")" 'COMISION XURTEP
                     hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+(P" & filaExcel + x & "+Q" & filaExcel + x & "+U" & filaExcel + x & ")*X" & filaExcel + x  ' COMPLEMENTO COMISION
-                    hoja.Cell(filaExcel + x, 27).FormulaA1 = dtgDatos.Rows(x).Cells(55).Value 'IMSS
-                    hoja.Cell(filaExcel + x, 28).FormulaA1 = dtgDatos.Rows(x).Cells(56).Value 'RCV
-                    hoja.Cell(filaExcel + x, 29).FormulaA1 = dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
-                    hoja.Cell(filaExcel + x, 30).FormulaA1 = dtgDatos.Rows(x).Cells(58).Value 'isn
+                    hoja.Cell(filaExcel + x, 27).FormulaA1 = "=+'XURTEP ABORDO'!AN" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(55).Value 'IMSS
+                    hoja.Cell(filaExcel + x, 28).FormulaA1 = "=+'XURTEP ABORDO'!AO" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(56).Value 'RCV
+                    hoja.Cell(filaExcel + x, 29).FormulaA1 = "=+'XURTEP ABORDO'!AP" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
+                    hoja.Cell(filaExcel + x, 30).FormulaA1 = "=+'XURTEP ABORDO'!AQ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AQ" & filaExcel + x + 1   ' dtgDatos.Rows(x).Cells(58).Value 'isn
                     hoja.Cell(filaExcel + x, 31).FormulaA1 = "=AA" & filaExcel + x & "+AB" & filaExcel + x & "+AC" & filaExcel + x & "+AD" & filaExcel + x
-                    hoja.Cell(filaExcel + x, 32).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
+                    hoja.Cell(filaExcel + x, 32).FormulaA1 = "=AE" & filaExcel + x 'COSTO SOCIAL 
                     hoja.Cell(filaExcel + x, 33).FormulaA1 = "=+P" & filaExcel + x & "+Q" & filaExcel + x & "+T" & filaExcel + x & "+U" & filaExcel + x & "+V" & filaExcel + x & "+Y" & filaExcel + x & "+AF" & filaExcel + x & "+Z" & filaExcel + x
                     hoja.Cell(filaExcel + x, 34).FormulaA1 = "=+AG" & filaExcel + x & "*0.16" 'IVA 16%
                     hoja.Cell(filaExcel + x, 35).FormulaA1 = ("=+AG" & filaExcel + x & "+AH" & filaExcel + x) 'tOTAL DEPOSUTO
@@ -7502,12 +7502,12 @@ Public Class frmnominasmarinos
                     hoja2.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
-                    'hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
-                    'hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
-                    'hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
-                    'hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
-                    'hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
-                    'hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
+                    hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
+                    hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
+                    hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
+                    hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -7623,6 +7623,13 @@ Public Class frmnominasmarinos
                     hoja3.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
                     hoja3.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
+
+                    hoja3.Cell(filaExcel, 40).Value = "0.0" 'dtgDatos.Rows(x).Cells(55).Value
+                    hoja3.Cell(filaExcel, 41).Value = "0.0" 'dtgDatos.Rows(x).Cells(56).Value
+                    hoja3.Cell(filaExcel, 42).Value = "0.0" 'dtgDatos.Rows(x).Cells(57).Value
+                    hoja3.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja3.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja3.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
