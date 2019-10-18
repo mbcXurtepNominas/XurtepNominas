@@ -2822,7 +2822,7 @@ Public Class frmnominasmarinos
                 'Obtenemos los datos del empleado,id puesto
                 'de acuerdo a la edad y el status
 
-                If dtgDatos.Rows(x).Cells(2).Tag = "" Then
+                If dtgDatos.Rows(x).Cells(2).Tag = "" And diastrabajados <> 0 Then
                     sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
                     Dim rwEmpleado As DataRow() = nConsulta(sql)
                     If rwEmpleado Is Nothing = False Then
