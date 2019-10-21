@@ -300,6 +300,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmnominasproceso.resx">
       <DependentUpon>frmnominasproceso.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.vb</DependentUpon>

@@ -32,6 +32,7 @@ Partial Class frmnominasmarinos
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
+        Me.tsbbuscar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.chkNoinfonavit = New System.Windows.Forms.CheckBox()
         Me.cmdResumenInfo = New System.Windows.Forms.Button()
@@ -75,7 +76,7 @@ Partial Class frmnominasmarinos
         Me.layoutTimbrado = New System.Windows.Forms.Button()
         Me.cmdReporteMensual = New System.Windows.Forms.Button()
         Me.btnAsimilados = New System.Windows.Forms.Button()
-        Me.tsbbuscar = New System.Windows.Forms.ToolStripButton()
+        Me.cmdAcumuladoMary = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +160,15 @@ Partial Class frmnominasmarinos
         Me.tsbIEmpleados.Size = New System.Drawing.Size(69, 51)
         Me.tsbIEmpleados.Text = "Empleados"
         Me.tsbIEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbbuscar
+        '
+        Me.tsbbuscar.Image = CType(resources.GetObject("tsbbuscar.Image"), System.Drawing.Image)
+        Me.tsbbuscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbbuscar.Name = "tsbbuscar"
+        Me.tsbbuscar.Size = New System.Drawing.Size(46, 51)
+        Me.tsbbuscar.Text = "Buscar"
+        Me.tsbbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
         'pnlCatalogo
         '
@@ -575,7 +585,7 @@ Partial Class frmnominasmarinos
         '
         Me.cmdReporteMensual.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmdReporteMensual.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdReporteMensual.Location = New System.Drawing.Point(635, 514)
+        Me.cmdReporteMensual.Location = New System.Drawing.Point(1240, 515)
         Me.cmdReporteMensual.Name = "cmdReporteMensual"
         Me.cmdReporteMensual.Size = New System.Drawing.Size(112, 27)
         Me.cmdReporteMensual.TabIndex = 36
@@ -595,19 +605,22 @@ Partial Class frmnominasmarinos
         Me.btnAsimilados.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         Me.btnAsimilados.UseVisualStyleBackColor = True
         '
-        'tsbbuscar
+        'cmdAcumuladoMary
         '
-        Me.tsbbuscar.Image = CType(resources.GetObject("tsbbuscar.Image"), System.Drawing.Image)
-        Me.tsbbuscar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbbuscar.Name = "tsbbuscar"
-        Me.tsbbuscar.Size = New System.Drawing.Size(46, 51)
-        Me.tsbbuscar.Text = "Buscar"
-        Me.tsbbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.cmdAcumuladoMary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAcumuladoMary.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAcumuladoMary.Location = New System.Drawing.Point(631, 515)
+        Me.cmdAcumuladoMary.Name = "cmdAcumuladoMary"
+        Me.cmdAcumuladoMary.Size = New System.Drawing.Size(123, 27)
+        Me.cmdAcumuladoMary.TabIndex = 38
+        Me.cmdAcumuladoMary.Text = "Acumulados Mary"
+        Me.cmdAcumuladoMary.UseVisualStyleBackColor = True
         '
         'frmnominasmarinos
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1357, 553)
+        Me.Controls.Add(Me.cmdAcumuladoMary)
         Me.Controls.Add(Me.btnAsimilados)
         Me.Controls.Add(Me.cmdReporteMensual)
         Me.Controls.Add(Me.cmdComision)
@@ -687,4 +700,5 @@ Partial Class frmnominasmarinos
     Friend WithEvents NoCalcularCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ActivarCalculoCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsbbuscar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents cmdAcumuladoMary As System.Windows.Forms.Button
 End Class
