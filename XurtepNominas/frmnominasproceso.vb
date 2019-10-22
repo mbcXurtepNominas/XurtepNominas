@@ -1603,12 +1603,12 @@ Public Class frmnominasproceso
                     hoja.Cell(filaExcel + x, 23).FormulaA1 = "2%" '%COMISION
                     hoja.Cell(filaExcel + x, 24).FormulaA1 = "=+((S" & filaExcel + x & "+U" & filaExcel + x & ")*W" & filaExcel + x & ")" 'COMISION XURTEP
                     hoja.Cell(filaExcel + x, 25).FormulaA1 = "=T" & filaExcel + x & "*W" & filaExcel + x ' COMPLEMENTO COMISION
-                    hoja.Cell(filaExcel + x, 26).FormulaA1 = dtgDatos.Rows(x).Cells(55).Value 'IMSS
-                    hoja.Cell(filaExcel + x, 27).FormulaA1 = dtgDatos.Rows(x).Cells(56).Value 'RCV
-                    hoja.Cell(filaExcel + x, 28).FormulaA1 = dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
-                    hoja.Cell(filaExcel + x, 29).FormulaA1 = dtgDatos.Rows(x).Cells(58).Value
+                    hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+'XURTEP ABORDO'!AN" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(55).Value 'IMSS
+                    hoja.Cell(filaExcel + x, 27).FormulaA1 = "=+'XURTEP ABORDO'!AO" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(56).Value 'RCV
+                    hoja.Cell(filaExcel + x, 28).FormulaA1 = "=+'XURTEP ABORDO'!AP" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
+                    hoja.Cell(filaExcel + x, 29).FormulaA1 = "=+'XURTEP ABORDO'!AQ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AQ" & filaExcel + x + 1   'dtgDatos.Rows(x).Cells(58).Value
                     hoja.Cell(filaExcel + x, 30).FormulaA1 = "=Z" & filaExcel + x & "+AA" & filaExcel + x & "+AB" & filaExcel + x & "+AC" & filaExcel + x 'COMPROB CS
-                    hoja.Cell(filaExcel + x, 31).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
+                    hoja.Cell(filaExcel + x, 31).FormulaA1 = "=AD" & filaExcel + x ' dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
                     hoja.Cell(filaExcel + x, 32).FormulaA1 = "=+P" & filaExcel + x & "+S" & filaExcel + x & "+T" & filaExcel + x & "+U" & filaExcel + x & "+X" & filaExcel + x & "+AE" & filaExcel + x & "+Y" & filaExcel + x
                     hoja.Cell(filaExcel + x, 33).FormulaA1 = "=+AF" & filaExcel + x & "*0.16" 'IVA 16%
                     hoja.Cell(filaExcel + x, 34).FormulaA1 = ("=+AF" & filaExcel + x & "+AG" & filaExcel + x)
@@ -1872,11 +1872,11 @@ Public Class frmnominasproceso
                     hoja2.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
-                    'hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
-                    'hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
-                    'hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
-                    'hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
-                    'hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
+                    hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
+                    hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
+                    hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
                     'hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
@@ -1992,6 +1992,13 @@ Public Class frmnominasproceso
                     hoja3.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
                     hoja3.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
+
+                    hoja3.Cell(filaExcel, 40).Value = "0.0" 'dtgDatos.Rows(x).Cells(55).Value
+                    hoja3.Cell(filaExcel, 41).Value = "0.0" 'dtgDatos.Rows(x).Cells(56).Value
+                    hoja3.Cell(filaExcel, 42).Value = "0.0" 'dtgDatos.Rows(x).Cells(57).Value
+                    hoja3.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja3.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    'hoja3.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -4257,12 +4264,31 @@ Public Class frmnominasproceso
                     bonoA += dtgDatos.Rows(x).Cells(30).Value
                     deporte += dtgDatos.Rows(x).Cells(31).Value
                     bonoproc += dtgDatos.Rows(x).Cells(32).Value
-
                     tpercepciones += dtgDatos.Rows(x).Cells(33).Value
-                    comAsim += dtgDatos.Rows(x).Cells(50).Value
+
                     prestamo += dtgDatos.Rows(x).Cells(42).Value
 
-                    comXurtep += (dtgDatos.Rows(x).Cells(53).Value) '* 2%)
+                    If dtgDatos.Rows(x).Cells(11).Value = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE" Or dtgDatos.Rows(x).Cells(11).Value = "SUBALTERNO EN FORMACIÓN" Then
+                        Dim sueldo_base As Double = dtgDatos.Rows(x).Cells(15).Value
+                        Dim ret_infonavit As Double = CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value)
+                        Dim fonacot As Double = dtgDatos.Rows(x).Cells(43).Value
+                        Dim pensionalimenticia As Double = dtgDatos.Rows(x).Cells(41).Value
+                        Dim anticipoxurtep As Double = dtgDatos.Rows(x).Cells(42).Value
+                        Dim anticipoasim As Double = dtgDatos.Rows(x).Cells(47).Value
+                        Dim xurtep As Double = dtgDatos.Rows(x).Cells(46).Value
+                        comAsim += (sueldo_base - ret_infonavit - fonacot - pensionalimenticia - anticipoxurtep - anticipoasim) - xurtep
+                        comAsimD += 0
+                        comXurtep += (dtgDatos.Rows(x).Cells(53).Value)
+                        comXurtepD += 0
+                    Else
+                        comAsim += dtgDatos.Rows(x).Cells(50).Value
+                        comAsimD += dtgDatos.Rows(x).Cells(50).Value
+                        comXurtep += (dtgDatos.Rows(x).Cells(53).Value)
+                        comXurtepD += (dtgDatos.Rows(x).Cells(53).Value)
+                    End If
+
+
+                    '* 2%)
                     comComple += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
                     costoSocial = dtgDatos.Rows(x).Cells(59).Value
 
@@ -4273,7 +4299,7 @@ Public Class frmnominasproceso
                     INFONAVIT += dtgDatos.Rows(x).Cells(57).Value
                     ISN += dtgDatos.Rows(x).Cells(58).Value
 
-                   
+                    
                 Next x
                 'Sumar Descanso
                 llenargridD("1")
@@ -4284,8 +4310,9 @@ Public Class frmnominasproceso
                     tpvacD += dtgDatos.Rows(x).Cells(27).Value
                     vacproD += dtgDatos.Rows(x).Cells(28).Value
                     tpercepcionesD += dtgDatos.Rows(x).Cells(33).Value
-                    comAsimD += dtgDatos.Rows(x).Cells(50).Value
+                    ' comAsimD += dtgDatos.Rows(x).Cells(50).Value
                     prestamoD += dtgDatos.Rows(x).Cells(42).Value
+
                     'comXurtepD += (dtgDatos.Rows(x).Cells(53).Value) ' * 2%)
                     ' comCompleD += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
                     costoSocialD += dtgDatos.Rows(x).Cells(59).Value
@@ -4300,6 +4327,7 @@ Public Class frmnominasproceso
                     INFONAVITD += dtgDatos.Rows(x).Cells(57).Value
                     ISND += dtgDatos.Rows(x).Cells(58).Value
 
+
                 Next x
 
                 hoja.Cell("B5").Value = sueldobase + sueldobaseD
@@ -4311,10 +4339,10 @@ Public Class frmnominasproceso
                 hoja.Cell("H5").Value = deporte + deporteD 'Fomento al deporte
                 hoja.Cell("I5").Value = bonoproc + bonoprocD 'Bono proceso
                 hoja.Cell("J5").Value = tpercepciones + tpercepcionesD
-                hoja.Cell("K5").Value = comAsim * 2
-                hoja.Cell("L5").Value = (comXurtep * 2) '* 2%
-                hoja.Cell("M5").Value = (comComple * 2) '* 2%
-                hoja.Cell("N5").Value = costoSocialD
+                hoja.Cell("K5").Value = comAsim + comAsimD '* 2
+                hoja.Cell("L5").Value = comXurtep + comXurtepD
+                hoja.Cell("M5").FormulaA1 = "=K5*2%" '(comComple * 2) '* 2%
+                hoja.Cell("N5").Value = IMSS + SAR + INFONAVIT + ISN 'costoSocialD
 
                 hoja.Cell("E18").Value = IMSS '+ IMSSD
                 hoja.Cell("E19").Value = SAR '+ SARD
@@ -9286,6 +9314,40 @@ Public Class frmnominasproceso
 
     End Sub
 
+
+    Private Sub tsbbuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbbuscar.Click
+
+        Try
+            Dim dialogo As New SaveFileDialog()
+            Dim sql As String
+            Dim Forma As New frmBuscar
+            Dim temp As Integer = 0
+            Dim encontro As Boolean = False
+            If Forma.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                For Each fila As DataGridViewRow In dtgDatos.Rows
+
+                    fila.DefaultCellStyle.BackColor = Color.White
+
+                    If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                        fila.DefaultCellStyle.BackColor = Color.Yellow
+                        encontro = True
+                        temp = temp + 1
+
+                    End If
+                Next
+
+            End If
+
+            If encontro = False Then
+                MsgBox("No se encontro nada")
+            Else
+                MsgBox("Se encontrarón " & temp & " Registro")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
     Private Sub SoloRegistroACalcularToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SoloRegistroACalcularToolStripMenuItem.Click
         Try
             Dim iFila As DataGridViewRow = Me.dtgDatos.CurrentRow()
@@ -9370,5 +9432,113 @@ Public Class frmnominasproceso
         Dim iFila As DataGridViewRow = Me.dtgDatos.CurrentRow()
         iFila.Cells(5).Tag = ""
         iFila.Cells(5).Style.BackColor = Color.White
+
+    End Sub
+
+    Private Sub cmdAcumuladoMary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAcumuladoMary.Click
+        Try
+            Dim SQL As String
+            Dim filaExcel As Integer = 0
+            Dim filatmp As Integer = 0
+            Dim dialogo As New SaveFileDialog()
+            Dim periodo, iejercicio, iMes As String
+
+            Dim ruta As String
+
+            Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
+            If rwPeriodo0 Is Nothing = False Then
+                Dim Fechafin As Date = rwPeriodo0(0).Item("dFechaFin")
+                periodo = "1 " & MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " AL " & Fechafin.Day & " " & MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " " & rwPeriodo0(0).Item("iEjercicio")
+                iejercicio = (rwPeriodo0(0).Item("iEjercicio"))
+                iMes = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper
+            End If
+
+            ruta = My.Application.Info.DirectoryPath() & "\Archivos\acumuladoprocesos19.xlsx"
+
+            Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
+            Dim libro As New ClosedXML.Excel.XLWorkbook
+
+            book.Worksheet(1).CopyTo(libro, iMes)
+
+            Dim hoja As IXLWorksheet = libro.Worksheets(0)
+
+
+            filaExcel = 2
+            Dim nombrebuque As String
+            Dim inicio As Integer = 0
+            Dim contadorexcelbuqueinicial As Integer = 0
+            Dim contadorexcelbuquefinal As Integer = 0
+            Dim total As Integer = dtgDatos.Rows.Count - 1
+
+            Dim fecha As String
+
+            '<<<<<<<<<<<<<<<<<<<<<<<<<<Marinos>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            recorrerFilasColumnas(hoja, 2, dtgDatos.Rows.Count + 10, 40, "clear")
+
+            ' hoja.Range(1, 1, 2, 33).Style.Font.FontSize = 10
+           
+            
+
+            SQL = "EXEC acumuladosProcesos " & cboperiodo.SelectedValue
+            Dim rwFilas As DataRow() = nConsulta(SQL)
+
+            If rwFilas.Length > 0 Then
+
+                For x As Integer = 0 To rwFilas.Length - 1
+                    hoja.Range(1, 5, filaExcel + x, 33).Style.NumberFormat.NumberFormatId = 4
+                    hoja.Range(1, 1, filaExcel + x, 4).Style.NumberFormat.Format = "@"
+
+                    hoja.Cell(filaExcel + x, 1).Value = rwFilas(x)("cCodigoEmpleado")
+                    hoja.Cell(filaExcel + x, 2).Value = rwFilas(x)("cNombreLargo")
+                    hoja.Cell(filaExcel + x, 3).Value = rwFilas(x)("cRFC")
+                    hoja.Cell(filaExcel + x, 4).Value = rwFilas(x)("ccurp")
+                    hoja.Cell(filaExcel + x, 5).Value = rwFilas(x)("fSalarioBase")
+                    hoja.Cell(filaExcel + x, 6).Value = rwFilas(x)("fSueldoBruto")
+                    hoja.Cell(filaExcel + x, 7).Value = rwFilas(x)("fAguinaldoGravado")
+                    hoja.Cell(filaExcel + x, 8).Value = rwFilas(x)("fAguinaldoExento")
+                    hoja.Cell(filaExcel + x, 9).Value = rwFilas(x)("fPrimaVacacionalGravado")
+                    hoja.Cell(filaExcel + x, 10).Value = rwFilas(x)("fPrimaVacacionalExento")
+                    hoja.Cell(filaExcel + x, 11).Value = rwFilas(x)("fVacacionesProporcionales")
+                    hoja.Cell(filaExcel + x, 12).Value = rwFilas(x)("fBonoPuntualidad")
+                    hoja.Cell(filaExcel + x, 13).Value = rwFilas(x)("fBonoAsistencia")
+                    hoja.Cell(filaExcel + x, 14).Value = rwFilas(x)("fFomentoDeporte")
+                    hoja.Cell(filaExcel + x, 15).Value = rwFilas(x)("fBonoProceso")
+                    hoja.Cell(filaExcel + x, 16).Value = rwFilas(x)("fTotalPercepciones")
+                    hoja.Cell(filaExcel + x, 17).Value = rwFilas(x)("fTotalPercepcionesISR")
+                    hoja.Cell(filaExcel + x, 18).Value = rwFilas(x)("fIncapacidad")
+                    hoja.Cell(filaExcel + x, 19).Value = rwFilas(x)("fIsr")
+                    hoja.Cell(filaExcel + x, 20).Value = rwFilas(x)("fImss")
+                    hoja.Cell(filaExcel + x, 21).Value = rwFilas(x)("fInfonavit")
+                    hoja.Cell(filaExcel + x, 22).Value = rwFilas(x)("fInfonavitBanterior")
+                    hoja.Cell(filaExcel + x, 23).Value = rwFilas(x)("fAjusteInfonavit")
+                    hoja.Cell(filaExcel + x, 24).Value = rwFilas(x)("fPensionAlimenticia")
+                    hoja.Cell(filaExcel + x, 25).Value = rwFilas(x)("fPrestamo")
+                    hoja.Cell(filaExcel + x, 26).Value = rwFilas(x)("fFonacot")
+                    hoja.Cell(filaExcel + x, 27).Value = rwFilas(x)("fSubsidioGenerado")
+                    hoja.Cell(filaExcel + x, 28).Value = rwFilas(x)("fSubsidioAplicado")
+                    hoja.Cell(filaExcel + x, 29).Value = rwFilas(x)("fXurtep")
+                    hoja.Cell(filaExcel + x, 30).Value = rwFilas(x)("fPrestamoPerA")
+                    hoja.Cell(filaExcel + x, 31).Value = rwFilas(x)("fAdeudoInfonavitA")
+                    hoja.Cell(filaExcel + x, 32).Value = rwFilas(x)("fDiferenciaInfonavitA")
+                    hoja.Cell(filaExcel + x, 33).FormulaA1 = "=E" & filaExcel + x & "-(U" & filaExcel + x & "+V" & filaExcel + x & "+W" & filaExcel + x & "+X" & filaExcel + x & "+Y" & filaExcel + x & "+Z" & filaExcel + x & ")-AC" & filaExcel + x & "-AD" & filaExcel + x & "-AE" & filaExcel + x & "-AF" & filaExcel + x & ""
+
+                Next
+            End If
+
+            dialogo.DefaultExt = "*.xlsx"
+            dialogo.FileName = "Reporte Acumulados Procesos "
+            dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+            dialogo.ShowDialog()
+            libro.SaveAs(dialogo.FileName)
+            'libro.SaveAs("c:\temp\control.xlsx")
+            'libro.SaveAs(dialogo.FileName)
+            'apExcel.Quit()
+            libro = Nothing
+
+            MessageBox.Show("Archivo generado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message.ToString())
+        End Try
     End Sub
 End Class

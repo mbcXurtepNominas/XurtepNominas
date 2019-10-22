@@ -89,6 +89,12 @@
     <Compile Include="frmAgregarEmpleado.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmBuscar.Designer.vb">
+      <DependentUpon>frmBuscar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmConcentradoInfonavit.designer.vb">
       <DependentUpon>frmConcentradoInfonavit.vb</DependentUpon>
     </Compile>
@@ -253,6 +259,9 @@
     <EmbeddedResource Include="frmAgregarEmpleado.resx">
       <DependentUpon>frmAgregarEmpleado.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscar.resx">
+      <DependentUpon>frmBuscar.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmConcentradoInfonavit.resx">
       <DependentUpon>frmConcentradoInfonavit.vb</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +300,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmnominasproceso.resx">
       <DependentUpon>frmnominasproceso.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.vb</DependentUpon>

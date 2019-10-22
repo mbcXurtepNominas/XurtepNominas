@@ -32,6 +32,10 @@ Partial Class frmnominasproceso
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
+        Me.chkSoloCostoSocial = New System.Windows.Forms.CheckBox()
+        Me.chkNofonacot = New System.Windows.Forms.CheckBox()
+        Me.chkNoinfonavit = New System.Windows.Forms.CheckBox()
+        Me.chkCalSoloMarcados = New System.Windows.Forms.CheckBox()
         Me.cmdResumenInfo = New System.Windows.Forms.Button()
         Me.cmdSubirDatos = New System.Windows.Forms.Button()
         Me.btnReporte = New System.Windows.Forms.Button()
@@ -64,6 +68,7 @@ Partial Class frmnominasproceso
         Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
         Me.tsbLayout = New System.Windows.Forms.ToolStripButton()
         Me.tsbIEmpleados = New System.Windows.Forms.ToolStripButton()
+        Me.tsbbuscar = New System.Windows.Forms.ToolStripButton()
         Me.cMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.EliminarDeLaListaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarTrabajadoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -72,18 +77,15 @@ Partial Class frmnominasproceso
         Me.ActivarCalculoInfonavitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NoCalcularCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ActivarCalculoCostoSocialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.cmdReporteMensual = New System.Windows.Forms.Button()
-        Me.btnAsimilados = New System.Windows.Forms.Button()
-        Me.chkCalSoloMarcados = New System.Windows.Forms.CheckBox()
-        Me.chkNoinfonavit = New System.Windows.Forms.CheckBox()
-        Me.chkNofonacot = New System.Windows.Forms.CheckBox()
-        Me.chkSoloCostoSocial = New System.Windows.Forms.CheckBox()
         Me.SoloRegistroACalcularToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesactivarSoloRegistroACalcularToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CostoCeroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesactivarCostoCeroToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistroTotalDiasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DesactivarRegistroTotalDiasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.cmdReporteMensual = New System.Windows.Forms.Button()
+        Me.btnAsimilados = New System.Windows.Forms.Button()
+        Me.cmdAcumuladoMary = New System.Windows.Forms.Button()
         Me.pnlProgreso.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         CType(Me.dtgDatos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,8 +169,8 @@ Partial Class frmnominasproceso
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pnlCatalogo.Controls.Add(Me.chkSoloCostoSocial)
         Me.pnlCatalogo.Controls.Add(Me.chkNofonacot)
@@ -202,6 +204,54 @@ Partial Class frmnominasproceso
         Me.pnlCatalogo.Name = "pnlCatalogo"
         Me.pnlCatalogo.Size = New System.Drawing.Size(1357, 501)
         Me.pnlCatalogo.TabIndex = 37
+        '
+        'chkSoloCostoSocial
+        '
+        Me.chkSoloCostoSocial.AutoSize = True
+        Me.chkSoloCostoSocial.BackColor = System.Drawing.Color.Transparent
+        Me.chkSoloCostoSocial.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSoloCostoSocial.Location = New System.Drawing.Point(500, 80)
+        Me.chkSoloCostoSocial.Name = "chkSoloCostoSocial"
+        Me.chkSoloCostoSocial.Size = New System.Drawing.Size(128, 22)
+        Me.chkSoloCostoSocial.TabIndex = 34
+        Me.chkSoloCostoSocial.Text = "Solo costo social"
+        Me.chkSoloCostoSocial.UseVisualStyleBackColor = False
+        '
+        'chkNofonacot
+        '
+        Me.chkNofonacot.AutoSize = True
+        Me.chkNofonacot.BackColor = System.Drawing.Color.Transparent
+        Me.chkNofonacot.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNofonacot.Location = New System.Drawing.Point(399, 80)
+        Me.chkNofonacot.Name = "chkNofonacot"
+        Me.chkNofonacot.Size = New System.Drawing.Size(95, 22)
+        Me.chkNofonacot.TabIndex = 33
+        Me.chkNofonacot.Text = "No fonacot"
+        Me.chkNofonacot.UseVisualStyleBackColor = False
+        '
+        'chkNoinfonavit
+        '
+        Me.chkNoinfonavit.AutoSize = True
+        Me.chkNoinfonavit.BackColor = System.Drawing.Color.Transparent
+        Me.chkNoinfonavit.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkNoinfonavit.Location = New System.Drawing.Point(241, 80)
+        Me.chkNoinfonavit.Name = "chkNoinfonavit"
+        Me.chkNoinfonavit.Size = New System.Drawing.Size(154, 22)
+        Me.chkNoinfonavit.TabIndex = 32
+        Me.chkNoinfonavit.Text = "No calcular infonavit"
+        Me.chkNoinfonavit.UseVisualStyleBackColor = False
+        '
+        'chkCalSoloMarcados
+        '
+        Me.chkCalSoloMarcados.AutoSize = True
+        Me.chkCalSoloMarcados.BackColor = System.Drawing.Color.Transparent
+        Me.chkCalSoloMarcados.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkCalSoloMarcados.Location = New System.Drawing.Point(119, 80)
+        Me.chkCalSoloMarcados.Name = "chkCalSoloMarcados"
+        Me.chkCalSoloMarcados.Size = New System.Drawing.Size(116, 22)
+        Me.chkCalSoloMarcados.TabIndex = 31
+        Me.chkCalSoloMarcados.Text = "Solo marcados"
+        Me.chkCalSoloMarcados.UseVisualStyleBackColor = False
         '
         'cmdResumenInfo
         '
@@ -410,8 +460,8 @@ Partial Class frmnominasproceso
         Me.dtgDatos.AllowUserToAddRows = False
         Me.dtgDatos.AllowUserToDeleteRows = False
         Me.dtgDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtgDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dtgDatos.Location = New System.Drawing.Point(1, 108)
         Me.dtgDatos.Name = "dtgDatos"
@@ -449,7 +499,7 @@ Partial Class frmnominasproceso
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbEmpleados, Me.tsbPeriodos, Me.tsbpuestos, Me.tsbdeptos, Me.tsbImportar, Me.tsbLayout, Me.tsbIEmpleados})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbEmpleados, Me.tsbPeriodos, Me.tsbpuestos, Me.tsbdeptos, Me.tsbImportar, Me.tsbLayout, Me.tsbIEmpleados, Me.tsbbuscar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1357, 54)
@@ -522,125 +572,62 @@ Partial Class frmnominasproceso
         Me.tsbIEmpleados.Text = "Empleados"
         Me.tsbIEmpleados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
+        'tsbbuscar
+        '
+        Me.tsbbuscar.Image = CType(resources.GetObject("tsbbuscar.Image"), System.Drawing.Image)
+        Me.tsbbuscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbbuscar.Name = "tsbbuscar"
+        Me.tsbbuscar.Size = New System.Drawing.Size(46, 51)
+        Me.tsbbuscar.Text = "Buscar"
+        Me.tsbbuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
         'cMenu
         '
         Me.cMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarDeLaListaToolStripMenuItem, Me.AgregarTrabajadoresToolStripMenuItem, Me.EditarEmpleadoToolStripMenuItem, Me.NoCalcularInofnavitToolStripMenuItem, Me.ActivarCalculoInfonavitToolStripMenuItem, Me.NoCalcularCostoSocialToolStripMenuItem, Me.ActivarCalculoCostoSocialToolStripMenuItem, Me.SoloRegistroACalcularToolStripMenuItem, Me.DesactivarSoloRegistroACalcularToolStripMenuItem, Me.CostoCeroToolStripMenuItem, Me.DesactivarCostoCeroToolStripMenuItem, Me.RegistroTotalDiasToolStripMenuItem, Me.DesactivarRegistroTotalDiasToolStripMenuItem})
         Me.cMenu.Name = "cMenu"
-        Me.cMenu.Size = New System.Drawing.Size(250, 312)
+        Me.cMenu.Size = New System.Drawing.Size(250, 290)
         '
         'EliminarDeLaListaToolStripMenuItem
         '
         Me.EliminarDeLaListaToolStripMenuItem.Name = "EliminarDeLaListaToolStripMenuItem"
-        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.EliminarDeLaListaToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.EliminarDeLaListaToolStripMenuItem.Text = "Eliminar de la Lista"
         '
         'AgregarTrabajadoresToolStripMenuItem
         '
         Me.AgregarTrabajadoresToolStripMenuItem.Name = "AgregarTrabajadoresToolStripMenuItem"
-        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.AgregarTrabajadoresToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.AgregarTrabajadoresToolStripMenuItem.Text = "Agregar Trabajadores"
         '
         'EditarEmpleadoToolStripMenuItem
         '
         Me.EditarEmpleadoToolStripMenuItem.Name = "EditarEmpleadoToolStripMenuItem"
-        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.EditarEmpleadoToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.EditarEmpleadoToolStripMenuItem.Text = "Editar Empleado"
         '
         'NoCalcularInofnavitToolStripMenuItem
         '
         Me.NoCalcularInofnavitToolStripMenuItem.Name = "NoCalcularInofnavitToolStripMenuItem"
-        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.NoCalcularInofnavitToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.NoCalcularInofnavitToolStripMenuItem.Text = "No Calcular inofnavit"
         '
         'ActivarCalculoInfonavitToolStripMenuItem
         '
         Me.ActivarCalculoInfonavitToolStripMenuItem.Name = "ActivarCalculoInfonavitToolStripMenuItem"
-        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ActivarCalculoInfonavitToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ActivarCalculoInfonavitToolStripMenuItem.Text = "Activar Calculo Infonavit"
         '
         'NoCalcularCostoSocialToolStripMenuItem
         '
         Me.NoCalcularCostoSocialToolStripMenuItem.Name = "NoCalcularCostoSocialToolStripMenuItem"
-        Me.NoCalcularCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.NoCalcularCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.NoCalcularCostoSocialToolStripMenuItem.Text = "NoCalcularCostoSocial"
         '
         'ActivarCalculoCostoSocialToolStripMenuItem
         '
         Me.ActivarCalculoCostoSocialToolStripMenuItem.Name = "ActivarCalculoCostoSocialToolStripMenuItem"
-        Me.ActivarCalculoCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.ActivarCalculoCostoSocialToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.ActivarCalculoCostoSocialToolStripMenuItem.Text = "ActivarCalculoCostoSocial"
-        '
-        'cmdReporteMensual
-        '
-        Me.cmdReporteMensual.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdReporteMensual.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmdReporteMensual.Location = New System.Drawing.Point(634, 570)
-        Me.cmdReporteMensual.Name = "cmdReporteMensual"
-        Me.cmdReporteMensual.Size = New System.Drawing.Size(112, 27)
-        Me.cmdReporteMensual.TabIndex = 43
-        Me.cmdReporteMensual.Text = "Reporte Mensual"
-        Me.cmdReporteMensual.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cmdReporteMensual.UseVisualStyleBackColor = True
-        '
-        'btnAsimilados
-        '
-        Me.btnAsimilados.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.btnAsimilados.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAsimilados.Location = New System.Drawing.Point(121, 570)
-        Me.btnAsimilados.Name = "btnAsimilados"
-        Me.btnAsimilados.Size = New System.Drawing.Size(176, 27)
-        Me.btnAsimilados.TabIndex = 44
-        Me.btnAsimilados.Text = "Layout Timbrado Asimilados"
-        Me.btnAsimilados.TextAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.btnAsimilados.UseVisualStyleBackColor = True
-        '
-        'chkCalSoloMarcados
-        '
-        Me.chkCalSoloMarcados.AutoSize = True
-        Me.chkCalSoloMarcados.BackColor = System.Drawing.Color.Transparent
-        Me.chkCalSoloMarcados.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkCalSoloMarcados.Location = New System.Drawing.Point(119, 80)
-        Me.chkCalSoloMarcados.Name = "chkCalSoloMarcados"
-        Me.chkCalSoloMarcados.Size = New System.Drawing.Size(116, 22)
-        Me.chkCalSoloMarcados.TabIndex = 31
-        Me.chkCalSoloMarcados.Text = "Solo marcados"
-        Me.chkCalSoloMarcados.UseVisualStyleBackColor = False
-        '
-        'chkNoinfonavit
-        '
-        Me.chkNoinfonavit.AutoSize = True
-        Me.chkNoinfonavit.BackColor = System.Drawing.Color.Transparent
-        Me.chkNoinfonavit.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkNoinfonavit.Location = New System.Drawing.Point(241, 80)
-        Me.chkNoinfonavit.Name = "chkNoinfonavit"
-        Me.chkNoinfonavit.Size = New System.Drawing.Size(154, 22)
-        Me.chkNoinfonavit.TabIndex = 32
-        Me.chkNoinfonavit.Text = "No calcular infonavit"
-        Me.chkNoinfonavit.UseVisualStyleBackColor = False
-        '
-        'chkNofonacot
-        '
-        Me.chkNofonacot.AutoSize = True
-        Me.chkNofonacot.BackColor = System.Drawing.Color.Transparent
-        Me.chkNofonacot.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkNofonacot.Location = New System.Drawing.Point(399, 80)
-        Me.chkNofonacot.Name = "chkNofonacot"
-        Me.chkNofonacot.Size = New System.Drawing.Size(95, 22)
-        Me.chkNofonacot.TabIndex = 33
-        Me.chkNofonacot.Text = "No fonacot"
-        Me.chkNofonacot.UseVisualStyleBackColor = False
-        '
-        'chkSoloCostoSocial
-        '
-        Me.chkSoloCostoSocial.AutoSize = True
-        Me.chkSoloCostoSocial.BackColor = System.Drawing.Color.Transparent
-        Me.chkSoloCostoSocial.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSoloCostoSocial.Location = New System.Drawing.Point(500, 80)
-        Me.chkSoloCostoSocial.Name = "chkSoloCostoSocial"
-        Me.chkSoloCostoSocial.Size = New System.Drawing.Size(128, 22)
-        Me.chkSoloCostoSocial.TabIndex = 34
-        Me.chkSoloCostoSocial.Text = "Solo costo social"
-        Me.chkSoloCostoSocial.UseVisualStyleBackColor = False
         '
         'SoloRegistroACalcularToolStripMenuItem
         '
@@ -678,10 +665,46 @@ Partial Class frmnominasproceso
         Me.DesactivarRegistroTotalDiasToolStripMenuItem.Size = New System.Drawing.Size(249, 22)
         Me.DesactivarRegistroTotalDiasToolStripMenuItem.Text = "Desactivar registro total dias"
         '
+        'cmdReporteMensual
+        '
+        Me.cmdReporteMensual.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmdReporteMensual.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdReporteMensual.Location = New System.Drawing.Point(634, 570)
+        Me.cmdReporteMensual.Name = "cmdReporteMensual"
+        Me.cmdReporteMensual.Size = New System.Drawing.Size(112, 27)
+        Me.cmdReporteMensual.TabIndex = 43
+        Me.cmdReporteMensual.Text = "Reporte Mensual"
+        Me.cmdReporteMensual.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.cmdReporteMensual.UseVisualStyleBackColor = True
+        '
+        'btnAsimilados
+        '
+        Me.btnAsimilados.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.btnAsimilados.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAsimilados.Location = New System.Drawing.Point(121, 570)
+        Me.btnAsimilados.Name = "btnAsimilados"
+        Me.btnAsimilados.Size = New System.Drawing.Size(176, 27)
+        Me.btnAsimilados.TabIndex = 44
+        Me.btnAsimilados.Text = "Layout Timbrado Asimilados"
+        Me.btnAsimilados.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.btnAsimilados.UseVisualStyleBackColor = True
+        '
+        'cmdAcumuladoMary
+        '
+        Me.cmdAcumuladoMary.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAcumuladoMary.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmdAcumuladoMary.Location = New System.Drawing.Point(753, 570)
+        Me.cmdAcumuladoMary.Name = "cmdAcumuladoMary"
+        Me.cmdAcumuladoMary.Size = New System.Drawing.Size(123, 27)
+        Me.cmdAcumuladoMary.TabIndex = 45
+        Me.cmdAcumuladoMary.Text = "Acumulados Mary"
+        Me.cmdAcumuladoMary.UseVisualStyleBackColor = True
+        '
         'frmnominasproceso
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(1357, 603)
+        Me.Controls.Add(Me.cmdAcumuladoMary)
         Me.Controls.Add(Me.btnAsimilados)
         Me.Controls.Add(Me.cmdReporteMensual)
         Me.Controls.Add(Me.cmdComision)
@@ -758,6 +781,8 @@ Partial Class frmnominasproceso
     Friend WithEvents btnAsimilados As System.Windows.Forms.Button
     Friend WithEvents NoCalcularCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ActivarCalculoCostoSocialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsbbuscar As System.Windows.Forms.ToolStripButton
+
     Friend WithEvents chkSoloCostoSocial As System.Windows.Forms.CheckBox
     Friend WithEvents chkNofonacot As System.Windows.Forms.CheckBox
     Friend WithEvents chkNoinfonavit As System.Windows.Forms.CheckBox
@@ -768,4 +793,6 @@ Partial Class frmnominasproceso
     Friend WithEvents DesactivarCostoCeroToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RegistroTotalDiasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DesactivarRegistroTotalDiasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents cmdAcumuladoMary As System.Windows.Forms.Button
+
 End Class

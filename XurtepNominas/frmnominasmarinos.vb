@@ -7138,12 +7138,12 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 24).FormulaA1 = "2%" '%COMISION
                     hoja.Cell(filaExcel + x, 25).FormulaA1 = "=+((T" & filaExcel + x & "+V" & filaExcel + x & ")*X" & filaExcel + x & ")" 'COMISION XURTEP
                     hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+(P" & filaExcel + x & "+Q" & filaExcel + x & "+U" & filaExcel + x & ")*X" & filaExcel + x  ' COMPLEMENTO COMISION
-                    hoja.Cell(filaExcel + x, 27).FormulaA1 = dtgDatos.Rows(x).Cells(55).Value 'IMSS
-                    hoja.Cell(filaExcel + x, 28).FormulaA1 = dtgDatos.Rows(x).Cells(56).Value 'RCV
-                    hoja.Cell(filaExcel + x, 29).FormulaA1 = dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
-                    hoja.Cell(filaExcel + x, 30).FormulaA1 = dtgDatos.Rows(x).Cells(58).Value 'isn
+                    hoja.Cell(filaExcel + x, 27).FormulaA1 = "=+'XURTEP ABORDO'!AN" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(55).Value 'IMSS
+                    hoja.Cell(filaExcel + x, 28).FormulaA1 = "=+'XURTEP ABORDO'!AO" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(56).Value 'RCV
+                    hoja.Cell(filaExcel + x, 29).FormulaA1 = "=+'XURTEP ABORDO'!AP" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
+                    hoja.Cell(filaExcel + x, 30).FormulaA1 = "=+'XURTEP ABORDO'!AQ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AQ" & filaExcel + x + 1   ' dtgDatos.Rows(x).Cells(58).Value 'isn
                     hoja.Cell(filaExcel + x, 31).FormulaA1 = "=AA" & filaExcel + x & "+AB" & filaExcel + x & "+AC" & filaExcel + x & "+AD" & filaExcel + x
-                    hoja.Cell(filaExcel + x, 32).FormulaA1 = dtgDatos.Rows(x).Cells(59).Value 'COSTO SOCIAL 
+                    hoja.Cell(filaExcel + x, 32).FormulaA1 = "=AE" & filaExcel + x 'COSTO SOCIAL 
                     hoja.Cell(filaExcel + x, 33).FormulaA1 = "=+P" & filaExcel + x & "+Q" & filaExcel + x & "+T" & filaExcel + x & "+U" & filaExcel + x & "+V" & filaExcel + x & "+Y" & filaExcel + x & "+AF" & filaExcel + x & "+Z" & filaExcel + x
                     hoja.Cell(filaExcel + x, 34).FormulaA1 = "=+AG" & filaExcel + x & "*0.16" 'IVA 16%
                     hoja.Cell(filaExcel + x, 35).FormulaA1 = ("=+AG" & filaExcel + x & "+AH" & filaExcel + x) 'tOTAL DEPOSUTO
@@ -7322,7 +7322,7 @@ Public Class frmnominasmarinos
 
                 '<<<<<<<<<<<<<<<Pension Alimenticia>>>>>>>>>>>>>>>>
                 filaExcel = 2
-                filatmp = 9
+                filatmp = 12
                 inicio = 0
                 Dim contador As Integer = 0
                 Dim contadorpensionado As Integer
@@ -7502,12 +7502,12 @@ Public Class frmnominasmarinos
                     hoja2.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
 
-                    'hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
-                    'hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
-                    'hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
-                    'hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
-                    'hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
-                    'hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
+                    hoja2.Cell(filaExcel, 40).Value = dtgDatos.Rows(x).Cells(55).Value
+                    hoja2.Cell(filaExcel, 41).Value = dtgDatos.Rows(x).Cells(56).Value
+                    hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
+                    hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -7623,6 +7623,13 @@ Public Class frmnominasmarinos
                     hoja3.Cell(filaExcel, 37).FormulaA1 = "=AB" & filaExcel & "+AC" & filaExcel & "+AD" & filaExcel & "+AE" & filaExcel & "+AF" & filaExcel & "+AG" & filaExcel & "+AH" & filaExcel & "+AI" & filaExcel & "+AJ" & filaExcel
                     hoja3.Cell(filaExcel, 38).Value = dtgDatos.Rows(x).Cells(46).Value ' NETO A PAGAR
 
+
+                    hoja3.Cell(filaExcel, 40).Value = "0.0" 'dtgDatos.Rows(x).Cells(55).Value
+                    hoja3.Cell(filaExcel, 41).Value = "0.0" 'dtgDatos.Rows(x).Cells(56).Value
+                    hoja3.Cell(filaExcel, 42).Value = "0.0" 'dtgDatos.Rows(x).Cells(57).Value
+                    hoja3.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
+                    hoja3.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
+                    hoja3.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -9703,8 +9710,6 @@ Public Class frmnominasmarinos
 
 
 
-
-
                     'Barco
                     hoja.Cell(filaExcel + x, 2).Value = rwFilas(x)("cNombre")
                     'Dispersion
@@ -10300,4 +10305,149 @@ Public Class frmnominasmarinos
         iFila.Cells(2).Tag = ""
         iFila.Cells(2).Style.BackColor = Color.White
     End Sub
+
+    Private Sub tsbbuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbbuscar.Click
+
+        Try
+            Dim dialogo As New SaveFileDialog()
+            Dim sql As String
+            Dim Forma As New frmBuscar
+            Dim temp As Integer = 0
+            Dim encontro As Boolean = False
+            If Forma.ShowDialog = Windows.Forms.DialogResult.OK Then
+
+                For Each fila As DataGridViewRow In dtgDatos.Rows
+
+                    fila.DefaultCellStyle.BackColor = Color.White
+
+                    If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                        fila.DefaultCellStyle.BackColor = Color.Yellow
+                        encontro = True
+                        temp = temp + 1
+
+                    End If
+                Next
+
+            End If
+
+            If encontro = False Then
+                MsgBox("No se encontro nada")
+            Else
+                MsgBox("Se encontrarón " & temp & " Registro")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
+    Private Sub cmdAcumuladoMary_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdAcumuladoMary.Click
+        Try
+        Dim SQL As String
+        Dim filaExcel As Integer = 0
+        Dim filatmp As Integer = 0
+        Dim dialogo As New SaveFileDialog()
+        Dim periodo, iejercicio, iMes As String
+
+        Dim ruta As String
+
+        Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
+        If rwPeriodo0 Is Nothing = False Then
+            Dim Fechafin As Date = rwPeriodo0(0).Item("dFechaFin")
+            periodo = "1 " & MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " AL " & Fechafin.Day & " " & MonthString(rwPeriodo0(0).Item("iMes")).ToUpper & " " & rwPeriodo0(0).Item("iEjercicio")
+            iejercicio = (rwPeriodo0(0).Item("iEjercicio"))
+            iMes = MonthString(rwPeriodo0(0).Item("iMes")).ToUpper
+        End If
+
+        ruta = My.Application.Info.DirectoryPath() & "\Archivos\acumuladosmarinos19.xlsx"
+
+        Dim book As New ClosedXML.Excel.XLWorkbook(ruta)
+        Dim libro As New ClosedXML.Excel.XLWorkbook
+
+        book.Worksheet(1).CopyTo(libro, iMes)
+
+        Dim hoja As IXLWorksheet = libro.Worksheets(0)
+
+
+        filaExcel = 2
+        Dim nombrebuque As String
+        Dim inicio As Integer = 0
+        Dim contadorexcelbuqueinicial As Integer = 0
+        Dim contadorexcelbuquefinal As Integer = 0
+        Dim total As Integer = dtgDatos.Rows.Count - 1
+
+        Dim fecha As String
+
+        '<<<<<<<<<<<<<<<<<<<<<<<<<<Marinos>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            recorrerFilasColumnas(hoja, 2, dtgDatos.Rows.Count + 10, 40, "clear")
+
+          
+        SQL = "EXEC acumuladosMarinos " & cboperiodo.SelectedValue
+        Dim rwFilas As DataRow() = nConsulta(SQL)
+
+        If rwFilas.Length > 0 Then
+
+                For x As Integer = 0 To rwFilas.Length - 1
+                    hoja.Range(1, 5, filaExcel + x, 33).Style.NumberFormat.NumberFormatId = 4
+                    hoja.Range(1, 1, filaExcel + x, 4).Style.NumberFormat.Format = "@"
+
+
+                    hoja.Cell(filaExcel + x, 1).Value = rwFilas(x)("cCodigoEmpleado")
+                    hoja.Cell(filaExcel + x, 2).Value = rwFilas(x)("cNombreLargo")
+                    hoja.Cell(filaExcel + x, 3).Value = rwFilas(x)("cRFC")
+                    hoja.Cell(filaExcel + x, 4).Value = rwFilas(x)("ccurp")
+                    hoja.Cell(filaExcel + x, 5).Value = rwFilas(x)("fSalarioBase")
+                    hoja.Cell(filaExcel + x, 6).Value = rwFilas(x)("fSueldoBruto")
+                    hoja.Cell(filaExcel + x, 7).Value = rwFilas(x)("fTExtraFijoGravado")
+                    hoja.Cell(filaExcel + x, 8).Value = rwFilas(x)("fTExtraFijoExento")
+                    hoja.Cell(filaExcel + x, 9).Value = rwFilas(x)("fTExtraOcasional")
+                    hoja.Cell(filaExcel + x, 10).Value = rwFilas(x)("fDescSemObligatorio")
+                    hoja.Cell(filaExcel + x, 11).Value = rwFilas(x)("fVacacionesProporcionales")
+                    hoja.Cell(filaExcel + x, 12).Value = rwFilas(x)("fAguinaldoGravado")
+                    hoja.Cell(filaExcel + x, 13).Value = rwFilas(x)("fAguinaldoExento")
+                    hoja.Cell(filaExcel + x, 14).Value = rwFilas(x)("fPrimaVacacionalGravado")
+                    hoja.Cell(filaExcel + x, 15).Value = rwFilas(x)("fPrimaVacacionalExento")
+                    hoja.Cell(filaExcel + x, 16).Value = rwFilas(x)("fTotalPercepciones")
+                    hoja.Cell(filaExcel + x, 17).Value = rwFilas(x)("fTotalPercepcionesISR")
+                    hoja.Cell(filaExcel + x, 18).Value = rwFilas(x)("fIncapacidad")
+                    hoja.Cell(filaExcel + x, 19).Value = rwFilas(x)("fIsr")
+                    hoja.Cell(filaExcel + x, 20).Value = rwFilas(x)("fImss")
+                    hoja.Cell(filaExcel + x, 21).Value = rwFilas(x)("fInfonavit")
+                    hoja.Cell(filaExcel + x, 22).Value = rwFilas(x)("fInfonavitBanterior")
+                    hoja.Cell(filaExcel + x, 23).Value = rwFilas(x)("fAjusteInfonavit")
+                    hoja.Cell(filaExcel + x, 24).Value = rwFilas(x)("fPensionAlimenticia")
+                    hoja.Cell(filaExcel + x, 25).Value = rwFilas(x)("fPrestamo")
+                    hoja.Cell(filaExcel + x, 26).Value = rwFilas(x)("fFonacot")
+                    hoja.Cell(filaExcel + x, 27).Value = rwFilas(x)("fSubsidioGenerado")
+                    hoja.Cell(filaExcel + x, 28).Value = rwFilas(x)("fSubsidioAplicado")
+                    hoja.Cell(filaExcel + x, 29).Value = rwFilas(x)("fXurtep")
+                    hoja.Cell(filaExcel + x, 30).Value = rwFilas(x)("fPrestamoPerA")
+                    hoja.Cell(filaExcel + x, 31).Value = rwFilas(x)("fAdeudoInfonavitA")
+                    hoja.Cell(filaExcel + x, 32).Value = rwFilas(x)("fDiferenciaInfonavitA")
+                    hoja.Cell(filaExcel + x, 33).FormulaA1 = "=E" & filaExcel + x & "-(U" & filaExcel + x & "+V" & filaExcel + x & "+W" & filaExcel + x & "+X" & filaExcel + x & "+Y" & filaExcel + x & "+Z" & filaExcel + x & ")-AC" & filaExcel + x & "-AD" & filaExcel + x & "-AE" & filaExcel + x & "-AF" & filaExcel + x & ""
+
+                Next
+        End If
+
+        dialogo.DefaultExt = "*.xlsx"
+            dialogo.FileName = "Reporte Acumulados  Marinos"
+        dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
+        dialogo.ShowDialog()
+        libro.SaveAs(dialogo.FileName)
+        'libro.SaveAs("c:\temp\control.xlsx")
+        'libro.SaveAs(dialogo.FileName)
+        'apExcel.Quit()
+        libro = Nothing
+
+            MessageBox.Show("Archivo generado", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message.ToString())
+        End Try
+
+    End Sub
+
+   
+
+
 End Class
