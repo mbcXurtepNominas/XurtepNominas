@@ -4998,7 +4998,7 @@ Public Class frmnominasproceso
 
 
 
-                        sql2 = " delete from DetallePensionAlimenticia"
+                        sql2 = " delete from DetallePensionAlimenticiaProceso"
                         sql2 &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
                         sql2 &= " and iSerie=" & cboserie.SelectedIndex
                         'sql &= " and iSerie=" & cboserie.SelectedIndex
@@ -5034,7 +5034,7 @@ Public Class frmnominasproceso
 
 
 
-                        sql2 = " delete from DetallePensionAlimenticia"
+                        sql2 = " delete from DetallePensionAlimenticiaProceso"
                         sql2 &= " where fkiIdPeriodo=" & cboperiodo.SelectedValue
                         sql2 &= " and iSerie=" & cboserie.SelectedIndex
                         sql2 &= " and iTipo=" & cboTipoNomina.SelectedIndex
@@ -5725,57 +5725,136 @@ Public Class frmnominasproceso
 
 
             For x As Integer = 0 To dtgDatos.Rows.Count - 1
+                'calcular ISN
+
+                Dim TotalParaISN As Double = Double.Parse(dtgDatos.Rows(x).Cells(33).Value) - Double.Parse(dtgDatos.Rows(x).Cells(29).Value) - Double.Parse(dtgDatos.Rows(x).Cells(30).Value)
+
 
                 If chkSoloCostoSocial.Checked = True Then
-                    If dtgDatos.Rows(x).Cells(4).Tag = "1" Then
-                        dtgDatos.Rows(x).Cells(56).Value = Math.Round(0, 2)
-                        dtgDatos.Rows(x).Cells(57).Value = Math.Round(0, 2)
-                        dtgDatos.Rows(x).Cells(58).Value = Math.Round(0, 2)
-                        dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(33).Value) * 0.03 + (Double.Parse(dtgDatos.Rows(x).Cells(33).Value) * 0.03 * 0.15), 2)
-                        dtgDatos.Rows(x).Cells(60).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value) + Double.Parse(dtgDatos.Rows(x).Cells(59).Value), 2)
-                    Else
-                        sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
+                    If dtgDatos.Rows(x).Cells(2).Tag = "" Then
+                        If dtgDatos.Rows(x).Cells(4).Tag = "1" Then
+                            dtgDatos.Rows(x).Cells(56).Value = Math.Round(0, 2)
+                            dtgDatos.Rows(x).Cells(57).Value = Math.Round(0, 2)
+                            dtgDatos.Rows(x).Cells(58).Value = Math.Round(0, 2)
+                            dtgDatos.Rows(x).Cells(59).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                            dtgDatos.Rows(x).Cells(60).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value) + Double.Parse(dtgDatos.Rows(x).Cells(59).Value), 2)
+                        Else
+                            sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
+                            Dim rwEmpleado As DataRow() = nConsulta(sql)
+                            If rwEmpleado Is Nothing = False Then
+                                sql = "select * from puestos inner join costosocial on puestos.iidPuesto= costosocial.fkiIdPuesto where puestos.cnombre='" & dtgDatos.Rows(x).Cells(11).FormattedValue & "' and anio=" & aniocostosocial
+                                Dim rwCostoSocial As DataRow() = nConsulta(sql)
+                                If rwCostoSocial Is Nothing = False Then
+                                    If dtgDatos.Rows(x).Cells(10).Value >= 55 Then
 
-                        Dim rwEmpleado As DataRow() = nConsulta(sql)
-                        If rwEmpleado Is Nothing = False Then
-
-                            'sql = "select * from costosocial where fkiIdPuesto=" & rwEmpleado(0)("fkiIdPuesto").ToString & " and anio=" & aniocostosocial
-                            sql = "select * from puestos inner join costosocial on puestos.iidPuesto= costosocial.fkiIdPuesto where puestos.cnombre='" & dtgDatos.Rows(x).Cells(11).FormattedValue & "' and anio=" & aniocostosocial
-                            Dim rwCostoSocial As DataRow() = nConsulta(sql)
-                            If rwCostoSocial Is Nothing = False Then
-                                If dtgDatos.Rows(x).Cells(10).Value >= 55 Then
-                                    If dtgDatos.Rows(x).Cells(5).Value = "PLANTA" Then
-                                        dtgDatos.Rows(x).Cells(55).Value = rwCostoSocial(0)("imsstopado")
-                                        dtgDatos.Rows(x).Cells(56).Value = rwCostoSocial(0)("RCVtopado")
-                                        dtgDatos.Rows(x).Cells(57).Value = rwCostoSocial(0)("infonavittopado")
-                                        dtgDatos.Rows(x).Cells(58).Value = rwCostoSocial(0)("ISNtopado")
-                                        dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        If dtgDatos.Rows(x).Cells(5).Tag = "" Then
+                                            'verificar los dias del mes
+                                            dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                                            dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        Else
+                                            dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                                            dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        End If
                                     Else
-                                        dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(58).Value = Math.Round(Double.Parse(rwCostoSocial(0)("ISNtopado")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
-                                    End If
-
-                                Else
-                                    If dtgDatos.Rows(x).Cells(5).Value = "PLANTA" Then
-                                        dtgDatos.Rows(x).Cells(55).Value = rwCostoSocial(0)("imss")
-                                        dtgDatos.Rows(x).Cells(56).Value = rwCostoSocial(0)("RCV")
-                                        dtgDatos.Rows(x).Cells(57).Value = rwCostoSocial(0)("Infonavit")
-                                        dtgDatos.Rows(x).Cells(58).Value = rwCostoSocial(0)("ISN")
-                                        dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
-                                    Else
-                                        dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(58).Value = Math.Round(Double.Parse(rwCostoSocial(0)("ISN")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
-                                        dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        If dtgDatos.Rows(x).Cells(5).Tag = "" Then
+                                            dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * DiasMes(cboperiodo.SelectedValue), 2)
+                                            dtgDatos.Rows(x).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                                            dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        Else
+                                            dtgDatos.Rows(x).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dtgDatos.Rows(x).Cells(18).Value, 2)
+                                            dtgDatos.Rows(x).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                                            dtgDatos.Rows(x).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(55).Value) + Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value), 2)
+                                        End If
                                     End If
                                 End If
+
+
+
+                            End If
+                        End If
+
+                        contador = 0
+
+                        For y As Integer = 0 To dtgDatos.Rows.Count - 1
+                            If dtgDatos.Rows(x).Cells(2).Value = dtgDatos.Rows(y).Cells(2).Value Then
+                                contador = contador + 1
+                                If contador = 2 Then
+                                    Posicion2 = y
+                                End If
+                                If contador = 3 Then
+                                    Posicion3 = y
+                                End If
+                                If contador = 4 Then
+                                    Posicion4 = y
+                                End If
+                            End If
+
+
+
+                        Next
+                        If contador = 2 Then
+                            If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
+                            End If
+
+                        End If
+                        If contador = 3 Then
+                            If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
+                            End If
+                            If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
+                            End If
+                        End If
+                        If contador = 4 Then
+                            If dtgDatos.Rows(Posicion2).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion2).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion2).Cells(60).Value = "0.00"
+                            End If
+                            If dtgDatos.Rows(Posicion3).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion3).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
+                            End If
+                            If dtgDatos.Rows(Posicion4).Cells(5).Value = "PLANTA" Then
+                                dtgDatos.Rows(Posicion4).Cells(56).Value = "0.00"
+                                dtgDatos.Rows(Posicion4).Cells(57).Value = "0.00"
+                                dtgDatos.Rows(Posicion4).Cells(58).Value = "0.00"
+                                dtgDatos.Rows(Posicion4).Cells(59).Value = "0.00"
+                                dtgDatos.Rows(Posicion3).Cells(60).Value = "0.00"
                             End If
                         End If
                     End If
+
+                    
+
                 Else
                     contador = 0
 
