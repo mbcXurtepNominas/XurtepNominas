@@ -322,6 +322,8 @@ Public Class frmSubirDatos
                     dsReporte.Tables("Tabla").Columns.Add("SalarioTMM")
                     dsReporte.Tables("Tabla").Columns.Add("CodigoPuesto")
                     dsReporte.Tables("Tabla").Columns.Add("CodigoBuque")
+                    dsReporte.Tables("Tabla").Columns.Add("Fechainicio")
+                    dsReporte.Tables("Tabla").Columns.Add("Fechafin")
 
                     Dim mensaje As String
 
@@ -355,6 +357,8 @@ Public Class frmSubirDatos
                                 fila.Item("SalarioTMM") = Trim(producto.SubItems(16).Text)
                                 fila.Item("CodigoPuesto") = Trim(producto.SubItems(5).Text)
                                 fila.Item("CodigoBuque") = Trim(producto.SubItems(7).Text)
+                                fila.Item("Fechainicio") = (Date.Parse(Trim(producto.SubItems(8).Text))).ToShortDateString
+                                fila.Item("Fechafin") = (Date.Parse(Trim(producto.SubItems(9).Text))).ToShortDateString
                                 dsReporte.Tables("Tabla").Rows.Add(fila)
 
                             End If
