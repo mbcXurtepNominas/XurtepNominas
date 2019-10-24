@@ -37,7 +37,6 @@ C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\Xurte
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\XurtepNominas.xml
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.dll
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
-C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmAgregarEmpleado.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmBuscar.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmConcentradoInfonavit.resources
