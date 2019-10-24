@@ -2963,6 +2963,9 @@ Public Class frmnominasmarinos
 
 
                                 Next
+
+                                
+
                                 If contador > 1 Then
                                     If contador = 2 Then
 
@@ -3275,6 +3278,16 @@ Public Class frmnominasmarinos
                                             'dsarreglo.Tables(0).Rows
                                         Next
                                     End If
+                                Else
+                                    Dim iniciomes As Date = "01/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(63).Value).Month & "/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(63).Value).Year
+                                    'aqui a la fecha inicial del segundo le restamos uno para saber asegurar cobrar correctamente
+                                    Dim final1 As Date = Date.Parse(dtgDatos.Rows(Posicion2).Cells(63).Value).AddDays(-1)
+                                    Dim dias As Integer = (DateDiff("y", iniciomes, final1)) + 1
+                                    iniciomes = "01/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(63).Value).Month & "/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(63).Value).Year
+                                    'aqui a la fecha inicial del segundo le restamos uno para saber asegurar cobrar correctamente
+                                    final1 = Date.Parse(DiasMes(cboperiodo.SelectedValue) & "/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(64).Value).Month & "/" & Date.Parse(dtgDatos.Rows(Posicion1).Cells(64).Value).Year)
+                                    dias = (DateDiff("y", iniciomes, final1)) + 1
+                                    calcularcostosocial(Posicion1, dias)
                                 End If
                                 '#### ordenamiento de los repetidos interno
 
@@ -7503,7 +7516,7 @@ Public Class frmnominasmarinos
                 End If
 
                 '<<<<<<<<<<<<<<<<<<<<<<<<<<Marinos>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                recorrerFilasColumnas(hoja, 11, dtgDatos.Rows.Count + 10, 40, "clear")
+                recorrerFilasColumnas(hoja, 11, dtgDatos.Rows.Count + 10, 50, "clear")
 
                 Dim rwPeriodo0 As DataRow() = nConsulta("Select * from periodos where iIdPeriodo=" & cboperiodo.SelectedValue)
                 If rwPeriodo0 Is Nothing = False Then
@@ -7840,8 +7853,8 @@ Public Class frmnominasmarinos
                 '<<<<<<<<<<<<<<<<<Xurtep Abordo>>>>>>>>>>>>>>>>>>>>>>>>
 
                 'Limpiar encabezado y relleno
-                recorrerFilasColumnas(hoja2, 1, 10, 50, "clear", 13)
-                recorrerFilasColumnas(hoja2, 12, dtgDatos.Rows.Count + 30, 50, "clear", 1)
+                recorrerFilasColumnas(hoja2, 1, 10, 56, "clear", 13)
+                recorrerFilasColumnas(hoja2, 12, dtgDatos.Rows.Count + 30, 56, "clear", 1)
 
 
                 'Validamos en que nomina esta
@@ -7919,7 +7932,7 @@ Public Class frmnominasmarinos
                     hoja2.Cell(filaExcel, 42).Value = dtgDatos.Rows(x).Cells(57).Value
                     hoja2.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
                     hoja2.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
-                    hoja2.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
+                    hoja2.Cell(filaExcel, 45).FormulaA1 = "=AR" & filaExcel 'dtgDatos.Rows(x).Cells(59).Value
 
                     filaExcel = filaExcel + 1
 
@@ -7964,14 +7977,14 @@ Public Class frmnominasmarinos
                 'hoja2.Cell(filaExcel + 2, 39).FormulaA1 = "=SUM(AM12:AM" & filaExcel & ")"
 
 
-                limpiarCell(hoja2, 46)
+                limpiarCell(hoja2, 50)
 
 
                 '<<<<<<<<<<<<<<<xurtep Descanso>>>>>>>>>>>>>>>>>>
 
                 'Limpiar encabezado y relleno
-                recorrerFilasColumnas(hoja3, 1, 10, 50, "clear", 13)
-                recorrerFilasColumnas(hoja3, 12, dtgDatos.Rows.Count + 30, 50, "clear", 1)
+                recorrerFilasColumnas(hoja3, 1, 10, 56, "clear", 13)
+                recorrerFilasColumnas(hoja3, 12, dtgDatos.Rows.Count + 30, 56, "clear", 1)
 
                 llenargridD("1")
 
@@ -8041,7 +8054,7 @@ Public Class frmnominasmarinos
                     hoja3.Cell(filaExcel, 42).Value = "0.0" 'dtgDatos.Rows(x).Cells(57).Value
                     hoja3.Cell(filaExcel, 43).Value = dtgDatos.Rows(x).Cells(58).Value
                     hoja3.Cell(filaExcel, 44).FormulaA1 = "=SUM(AN" & filaExcel & ":AQ" & filaExcel & ")"
-                    hoja3.Cell(filaExcel, 45).Value = dtgDatos.Rows(x).Cells(59).Value
+                    hoja3.Cell(filaExcel, 45).FormulaA1 = "=AR" & filaExcel
 
                     filaExcel = filaExcel + 1
 
