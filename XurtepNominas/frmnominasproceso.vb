@@ -5421,7 +5421,7 @@ Public Class frmnominasproceso
                                             If rwMontoInfonavit Is Nothing = False Then
                                                 'Verificamos el monto del infonavit a calcular
 
-                                                InfonavitNormal = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(17).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Double.Parse(dtgDatos.Rows(x).Cells(18).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value), Integer.Parse(dtgDatos.Rows(x).Cells(1).Value)) - 1, 2).ToString("###,##0.00")
+                                                InfonavitNormal = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(17).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Double.Parse(dtgDatos.Rows(x).Cells(18).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value), Integer.Parse(dtgDatos.Rows(x).Cells(1).Value) - 1), 2).ToString("###,##0.00")
 
                                                 '########
                                                 If Double.Parse(rwMontoInfonavit(0)("monto").ToString) < MontoInfonavit Then
@@ -6759,7 +6759,18 @@ Public Class frmnominasproceso
                         sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
                         Dim rwCalculoInfonavit As DataRow() = nConsulta(sql)
                         If rwCalculoInfonavit Is Nothing = False Then
-                            Return 1
+                            sql = "delete from CalculoinfonavitProceso where iBimestre=" & numbimestre
+                            sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
+
+                            If nExecute(sql) = False Then
+                                MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                Return False
+
+                            End If
+
+
+                            'Return 1
+                            Return 2
                         Else
                             Return 2
                         End If

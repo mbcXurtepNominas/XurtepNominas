@@ -2913,7 +2913,8 @@ Public Class frmnominasmarinos
                 'TOTAL DEPOSITO
                 dtgDatos.Rows(x).Cells(62).Value = subtotal + iva
 
-
+                dtgDatos.Rows(x).Cells(59).Style.BackColor = Color.White
+                dtgDatos.Rows(x).Cells(59).Tag = ""
 
 
                 pgbProgreso.Value += 1
@@ -2940,7 +2941,7 @@ Public Class frmnominasmarinos
                                 dtgDatos.Rows(x).Cells(56).Value = Math.Round(0, 2)
                                 dtgDatos.Rows(x).Cells(57).Value = Math.Round(0, 2)
                                 dtgDatos.Rows(x).Cells(58).Value = Math.Round(0, 2)
-                                dtgDatos.Rows(x).Cells(59).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                                dtgDatos.Rows(x).Cells(59).Value = Math.Round((TotalParaISN * 0.03) + (TotalParaISN * 0.03 * 0.15), 2)
                                 dtgDatos.Rows(x).Cells(60).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(56).Value) + Double.Parse(dtgDatos.Rows(x).Cells(57).Value) + Double.Parse(dtgDatos.Rows(x).Cells(58).Value) + Double.Parse(dtgDatos.Rows(x).Cells(59).Value), 2)
                             Else
                                 contador = 0
@@ -3899,7 +3900,18 @@ Public Class frmnominasmarinos
                         sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
                         Dim rwCalculoInfonavit As DataRow() = nConsulta(sql)
                         If rwCalculoInfonavit Is Nothing = False Then
-                            Return 1
+                            sql = "delete from Calculoinfonavit where iBimestre=" & numbimestre
+                            sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
+
+                            If nExecute(sql) = False Then
+                                MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                Return False
+
+                            End If
+
+
+                            'Return 1
+                            Return 2
                         Else
                             Return 2
                         End If
@@ -10971,39 +10983,41 @@ Public Class frmnominasmarinos
         Dim Sql = "select * from puestos inner join costosocial on puestos.iidPuesto= costosocial.fkiIdPuesto where puestos.cnombre='" & dtgDatos.Rows(posicion1).Cells(11).FormattedValue & "' and anio=" & aniocostosocial
         Dim rwCostoSocial As DataRow() = nConsulta(Sql)
         If rwCostoSocial Is Nothing = False Then
-            If dtgDatos.Rows(Posicion1).Cells(10).Value >= 55 Then
+            Dim TotalParaISN As Double = Double.Parse(dtgDatos.Rows(posicion1).Cells(33).Value) - Double.Parse(dtgDatos.Rows(posicion1).Cells(22).Value) - Double.Parse(dtgDatos.Rows(posicion1).Cells(23).Value)
 
-                If dtgDatos.Rows(Posicion1).Cells(5).Tag = "" Then
+            If dtgDatos.Rows(posicion1).Cells(10).Value >= 55 Then
+
+                If dtgDatos.Rows(posicion1).Cells(5).Tag = "" Then
                     'verificar los dias del mes
-                    dtgDatos.Rows(Posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(58).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 + (Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 * 0.33), 2)
-                    dtgDatos.Rows(Posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(58).Value), 2)
+                    dtgDatos.Rows(posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                    dtgDatos.Rows(posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(58).Value), 2)
                 Else
-                    dtgDatos.Rows(Posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(58).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 + (Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 * 0.33), 2)
-                    dtgDatos.Rows(Posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(58).Value), 2)
+                    dtgDatos.Rows(posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imsstopado")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCVtopado")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("infonavittopado")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                    dtgDatos.Rows(posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(58).Value), 2)
                 End If
             Else
-                If dtgDatos.Rows(Posicion1).Cells(5).Tag = "" Then
-                    dtgDatos.Rows(Posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dias, 2)
-                    dtgDatos.Rows(Posicion1).Cells(58).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 + (Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 * 0.33), 2)
-                    dtgDatos.Rows(Posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(58).Value), 2)
+                If dtgDatos.Rows(posicion1).Cells(5).Tag = "" Then
+                    dtgDatos.Rows(posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dias, 2)
+                    dtgDatos.Rows(posicion1).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                    dtgDatos.Rows(posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(58).Value), 2)
                 Else
-                    dtgDatos.Rows(Posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dtgDatos.Rows(Posicion1).Cells(18).Value, 2)
-                    dtgDatos.Rows(Posicion1).Cells(58).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 + (Double.Parse(dtgDatos.Rows(Posicion1).Cells(33).Value) * 0.03 * 0.33), 2)
-                    dtgDatos.Rows(Posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(Posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(Posicion1).Cells(58).Value), 2)
+                    dtgDatos.Rows(posicion1).Cells(55).Value = Math.Round(Double.Parse(rwCostoSocial(0)("imss")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(56).Value = Math.Round(Double.Parse(rwCostoSocial(0)("RCV")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(57).Value = Math.Round(Double.Parse(rwCostoSocial(0)("Infonavit")) / 30 * dtgDatos.Rows(posicion1).Cells(18).Value, 2)
+                    dtgDatos.Rows(posicion1).Cells(58).Value = Math.Round(TotalParaISN * 0.03 + (TotalParaISN * 0.03 * 0.15), 2)
+                    dtgDatos.Rows(posicion1).Cells(59).Value = Math.Round(Double.Parse(dtgDatos.Rows(posicion1).Cells(55).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(56).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(57).Value) + Double.Parse(dtgDatos.Rows(posicion1).Cells(58).Value), 2)
                 End If
             End If
-            dtgDatos.Rows(Posicion1).Cells(59).Style.BackColor = Color.Chocolate
-            dtgDatos.Rows(Posicion1).Cells(59).Tag = "1"
+            dtgDatos.Rows(posicion1).Cells(59).Style.BackColor = Color.Chocolate
+            dtgDatos.Rows(posicion1).Cells(59).Tag = "1"
         End If
     End Sub
 End Class
