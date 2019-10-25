@@ -164,7 +164,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub llenargrid()
+    Private Sub llenargrid(Optional ByRef tiponom As String = "")
         'Cargar grid
         Try
             Dim sql As String
@@ -301,7 +301,7 @@ Public Class frmnominasproceso
             sql = "select * from NominaProceso inner join EmpleadosC on fkiIdEmpleadoC=iIdEmpleadoC"
             sql &= " where NominaProceso.fkiIdEmpresa = 1 And fkiIdPeriodo = " & cboperiodo.SelectedValue
             sql &= " and NominaProceso.iEstatus=1 and iEstatusEmpleado=" & cboserie.SelectedIndex
-            sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+            sql &= " and iTipoNomina=" & IIf(tiponom = "", cboTipoNomina.SelectedIndex, tiponom)
             sql &= " order by " & campoordenamiento 'cNombreLargo"
             'sql = "EXEC getNominaXEmpresaXPeriodo " & gIdEmpresa & "," & cboperiodo.SelectedValue & ",1"
 
@@ -1931,7 +1931,7 @@ Public Class frmnominasproceso
                 hoja2.Range("C8", "L10").Clear()
                 hoja2.Range("G1", "L10").Clear()
 
-                llenargridD("1")
+                llenargrid("1")
                 ''XURTEP Descanso
                 filaExcel = 12
                 For x As Integer = 0 To dtgDatos.Rows.Count - 1
@@ -5421,7 +5421,7 @@ Public Class frmnominasproceso
                                             If rwMontoInfonavit Is Nothing = False Then
                                                 'Verificamos el monto del infonavit a calcular
 
-                                                InfonavitNormal = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(17).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Double.Parse(dtgDatos.Rows(x).Cells(18).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value), Integer.Parse(dtgDatos.Rows(x).Cells(1).Value)) - 1, 2).ToString("###,##0.00")
+                                                InfonavitNormal = Math.Round(infonavit(dtgDatos.Rows(x).Cells(13).Value, Double.Parse(dtgDatos.Rows(x).Cells(14).Value), Double.Parse(dtgDatos.Rows(x).Cells(17).Value), Date.Parse("01/01/1900"), cboperiodo.SelectedValue, Double.Parse(dtgDatos.Rows(x).Cells(18).Value), Integer.Parse(dtgDatos.Rows(x).Cells(2).Value), Integer.Parse(dtgDatos.Rows(x).Cells(1).Value) - 1), 2).ToString("###,##0.00")
 
                                                 '########
                                                 If Double.Parse(rwMontoInfonavit(0)("monto").ToString) < MontoInfonavit Then
@@ -6759,7 +6759,18 @@ Public Class frmnominasproceso
                         sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
                         Dim rwCalculoInfonavit As DataRow() = nConsulta(sql)
                         If rwCalculoInfonavit Is Nothing = False Then
-                            Return 1
+                            sql = "delete from CalculoinfonavitProceso where iBimestre=" & numbimestre
+                            sql &= " And iAnio= " & Year(FechaInicioPeriodo1) & " And fkiIdEmpleadoC=" & idempleado
+
+                            If nExecute(sql) = False Then
+                                MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                Return False
+
+                            End If
+
+
+                            'Return 1
+                            Return 2
                         Else
                             Return 2
                         End If
