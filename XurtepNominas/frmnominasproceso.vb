@@ -164,7 +164,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub llenargrid()
+    Private Sub llenargrid(Optional ByRef tiponom As String = "")
         'Cargar grid
         Try
             Dim sql As String
@@ -301,7 +301,7 @@ Public Class frmnominasproceso
             sql = "select * from NominaProceso inner join EmpleadosC on fkiIdEmpleadoC=iIdEmpleadoC"
             sql &= " where NominaProceso.fkiIdEmpresa = 1 And fkiIdPeriodo = " & cboperiodo.SelectedValue
             sql &= " and NominaProceso.iEstatus=1 and iEstatusEmpleado=" & cboserie.SelectedIndex
-            sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+            sql &= " and iTipoNomina=" & IIf(tiponom = "", cboTipoNomina.SelectedIndex, tiponom)
             sql &= " order by " & campoordenamiento 'cNombreLargo"
             'sql = "EXEC getNominaXEmpresaXPeriodo " & gIdEmpresa & "," & cboperiodo.SelectedValue & ",1"
 
@@ -778,7 +778,7 @@ Public Class frmnominasproceso
                     'sql = "select * from nomina inner join EmpleadosC on nomin where fkiIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
                     sql &= " and fkiIdPeriodo=" & cboperiodo.SelectedValue
                     sql &= " and iEstatusEmpleado=" & cboserie.SelectedIndex
-                    sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+                    sql &= " and iTipoNomina=" & IIf(tiponom = "", cboTipoNomina.SelectedIndex, tiponom)
                     sql &= " order by " & campoordenamiento
 
                     Dim rwFila As DataRow() = nConsulta(sql)
@@ -1931,7 +1931,7 @@ Public Class frmnominasproceso
                 hoja2.Range("C8", "L10").Clear()
                 hoja2.Range("G1", "L10").Clear()
 
-                llenargridD("1")
+                llenargrid("1")
                 ''XURTEP Descanso
                 filaExcel = 12
                 For x As Integer = 0 To dtgDatos.Rows.Count - 1

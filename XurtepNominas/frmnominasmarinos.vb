@@ -162,7 +162,7 @@ Public Class frmnominasmarinos
 
     End Sub
 
-    Private Sub llenargrid()
+    Private Sub llenargrid(Optional ByRef tiponom As String = "")
         'Cargar grid
         Try
             Dim sql As String
@@ -300,7 +300,7 @@ Public Class frmnominasmarinos
             sql = "select * from Nomina inner join EmpleadosC on fkiIdEmpleadoC=iIdEmpleadoC"
             sql &= " where Nomina.fkiIdEmpresa = 1 And fkiIdPeriodo = " & cboperiodo.SelectedValue
             sql &= " and Nomina.iEstatus=1 and iEstatusEmpleado=" & cboserie.SelectedIndex
-            sql &= " and iTipoNomina=" & cboTipoNomina.SelectedIndex
+            sql &= " and iTipoNomina=" & IIf(tiponom = "", cboTipoNomina.SelectedIndex, tiponom)
             sql &= " order by " & campoordenamiento 'cNombreLargo"
             'sql = "EXEC getNominaXEmpresaXPeriodo " & gIdEmpresa & "," & cboperiodo.SelectedValue & ",1"
 
@@ -2849,6 +2849,8 @@ Public Class frmnominasmarinos
 
                 'Obtenemos los datos del empleado,id puesto
                 'de acuerdo a la edad y el status
+
+              
 
                 If dtgDatos.Rows(x).Cells(2).Tag = "" And diastrabajados <> 0 Then
                     sql = "select * from empleadosC where iIdEmpleadoC=" & dtgDatos.Rows(x).Cells(2).Value
@@ -7986,7 +7988,7 @@ Public Class frmnominasmarinos
                 recorrerFilasColumnas(hoja3, 1, 10, 56, "clear", 13)
                 recorrerFilasColumnas(hoja3, 12, dtgDatos.Rows.Count + 30, 56, "clear", 1)
 
-                llenargridD("1")
+                llenargrid("1")
 
                 ''XURTEP Descanso
                 filaExcel = 12
@@ -10965,7 +10967,7 @@ Public Class frmnominasmarinos
         End Try
     End Sub
 
-    Private Sub calcularcostosocial(posicion1 As Integer, dias As Integer)
+    Private Sub calcularcostosocial(ByVal posicion1 As Integer, ByVal dias As Integer)
         Dim Sql = "select * from puestos inner join costosocial on puestos.iidPuesto= costosocial.fkiIdPuesto where puestos.cnombre='" & dtgDatos.Rows(posicion1).Cells(11).FormattedValue & "' and anio=" & aniocostosocial
         Dim rwCostoSocial As DataRow() = nConsulta(Sql)
         If rwCostoSocial Is Nothing = False Then
@@ -11004,4 +11006,5 @@ Public Class frmnominasmarinos
             dtgDatos.Rows(Posicion1).Cells(59).Tag = "1"
         End If
     End Sub
+End Class
 End Class
