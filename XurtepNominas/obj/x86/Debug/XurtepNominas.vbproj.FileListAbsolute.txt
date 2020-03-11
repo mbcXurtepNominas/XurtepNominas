@@ -64,6 +64,5 @@ C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\X
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmPrestamo.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbproj.GenerateResource.Cache
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\bin\Debug\ClosedXML.xml
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
+D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
