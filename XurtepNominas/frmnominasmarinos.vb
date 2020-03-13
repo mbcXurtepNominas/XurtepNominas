@@ -4571,10 +4571,10 @@ Public Class frmnominasmarinos
             Dim mes, anio As String
             Dim fechapagoletra() As String
 
-            Dim sueldobase, tef, teo, desc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial As Double
+            Dim sueldobase, tef, teo, desc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial, xurtep, retenciones As Double
             Dim IMSS, SAR, INFONAVIT, ISN As Double
 
-            Dim sueldobaseD, tefD, teoD, descD, vacproD, taginaldoD, tpvacD, tpercepcionesD, comAsimD, prestamoD, comXurtepD, comCompleD, costoSocialD As Double
+            Dim sueldobaseD, tefD, teoD, descD, vacproD, taginaldoD, tpvacD, tpercepcionesD, comAsimD, prestamoD, comXurtepD, comCompleD, costoSocialD, xurtepD, retencionesD As Double
             Dim IMSSD, SARD, INFONAVITD, ISND As Double
 
             If dtgDatos.Rows.Count > 0 Then
@@ -4620,6 +4620,8 @@ Public Class frmnominasmarinos
                     comXurtep += IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", CDbl(dtgDatos.Rows(x).Cells(53).Value), CDbl(dtgDatos.Rows(x).Cells(53).Value) * 2)
                     comComple += IIf(dtgDatos.Rows(x).Cells(11).FormattedValue = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE", 0, CDbl(dtgDatos.Rows(x).Cells(54).Value) * 2)
                     costoSocial += dtgDatos.Rows(x).Cells(59).Value
+                    xurtep += dtgDatos.Rows(x).Cells(46).Value
+                    retenciones += (CDbl(dtgDatos.Rows(x).Cells(35).Value) + CDbl(dtgDatos.Rows(x).Cells(36).Value) + CDbl(dtgDatos.Rows(x).Cells(37).Value) + CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value) + CDbl(dtgDatos.Rows(x).Cells(41).Value) + CDbl(dtgDatos.Rows(x).Cells(42).Value) + CDbl(dtgDatos.Rows(x).Cells(43).Value))
 
                     IMSS += dtgDatos.Rows(x).Cells(55).Value
                     SAR += dtgDatos.Rows(x).Cells(56).Value
@@ -4645,6 +4647,9 @@ Public Class frmnominasmarinos
                     comXurtepD += (dtgDatos.Rows(x).Cells(53).Value) ' * 2%)
                     comCompleD += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
                     costoSocialD += dtgDatos.Rows(x).Cells(59).Value
+                    xurtepD += dtgDatos.Rows(x).Cells(46).Value
+                    retencionesD += (CDbl(dtgDatos.Rows(x).Cells(35).Value) + CDbl(dtgDatos.Rows(x).Cells(36).Value) + CDbl(dtgDatos.Rows(x).Cells(37).Value) + CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value) + CDbl(dtgDatos.Rows(x).Cells(41).Value) + CDbl(dtgDatos.Rows(x).Cells(42).Value) + CDbl(dtgDatos.Rows(x).Cells(43).Value))
+
 
                     IMSSD += dtgDatos.Rows(x).Cells(55).Value
                     SARD += dtgDatos.Rows(x).Cells(56).Value
@@ -4663,15 +4668,17 @@ Public Class frmnominasmarinos
                 hoja.Cell("H5").Value = tpvac + tpvacD
                 hoja.Cell("I5").Value = tpercepciones + tpercepcionesD
                 hoja.Cell("J5").Value = comAsim  '+ comXurtepD
-                hoja.Cell("K5").Value = "0.0" 'prestamo
-                hoja.Cell("L5").Value = (comXurtep) '* 2%
-                hoja.Cell("M5").Value = (comComple) '+ comCompleD) * 2%
-                hoja.Cell("N5").Value = costoSocial '+ costoSocialD
+                hoja.Cell("K5").Value = prestamo + prestamoD '  "0.0" 'prestamo
+                hoja.Cell("L5").Value = xurtep + xurtepD
+                hoja.Cell("M5").Value = (comXurtep) '* 2%
+                hoja.Cell("N5").Value = (comComple) '+ comCompleD) * 2%
+                hoja.Cell("O5").Value = retenciones + retencionesD
+                hoja.Cell("P5").Value = costoSocial + ISND
 
                 hoja.Cell("E19").Value = IMSS ' + IMSSD
                 hoja.Cell("E20").Value = SAR '+ SARD
                 hoja.Cell("E21").Value = INFONAVIT ' + INFONAVITD
-                hoja.Cell("E22").Value = ISN '+ ISND
+                hoja.Cell("E22").Value = ISN + ISND
 
                 'Regresa a Abordo
                 llenargrid("0")
@@ -4683,7 +4690,7 @@ Public Class frmnominasmarinos
                 Dim year As Integer = moment.Year
 
 
-                dialogo.FileName = "REPORTE XURTEP MARINOS" & periodo & " SERIE " & cboserie.SelectedItem
+                dialogo.FileName = "REPORTE XURTEP MARINOS " & periodo & " SERIE " & cboserie.SelectedItem
                 dialogo.Filter = "Archivos de Excel (*.xlsx)|*.xlsx"
                
                 If dialogo.ShowDialog() = System.Windows.Forms.DialogResult.OK Then

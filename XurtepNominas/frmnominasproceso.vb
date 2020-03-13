@@ -4228,9 +4228,9 @@ Public Class frmnominasproceso
             Dim mes, anio As String
             Dim fechapagoletra() As String
 
-            Dim sueldobase, bonoP, bonoA, deporte, bonoproc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, comXurtep, comComple, costoSocial As Double
+            Dim sueldobase, bonoP, bonoA, deporte, bonoproc, vacpro, taginaldo, tpvac, tpercepciones, comAsim, prestamo, prestamoAsim, comXurtep, comComple, costoSocial, xurtep, retenciones As Double
             Dim IMSS, SAR, INFONAVIT, ISN As Double
-            Dim sueldobaseD, bonoPD, bonoAD, deporteD, bonoprocD, vacproD, taginaldoD, tpvacD, tpercepcionesD, comAsimD, prestamoD, comXurtepD, comCompleD, costoSocialD As Double
+            Dim sueldobaseD, bonoPD, bonoAD, deporteD, bonoprocD, vacproD, taginaldoD, tpvacD, tpercepcionesD, comAsimD, prestamoD, prestamoAsimD, comXurtepD, comCompleD, costoSocialD, xurtepD, retencionesD As Double
             Dim IMSSD, SARD, INFONAVITD, ISND As Double
 
             If dtgDatos.Rows.Count > 0 Then
@@ -4263,6 +4263,9 @@ Public Class frmnominasproceso
                     taginaldo += dtgDatos.Rows(x).Cells(24).Value
                     tpvac += dtgDatos.Rows(x).Cells(27).Value
                     vacpro += dtgDatos.Rows(x).Cells(28).Value
+                    xurtep += dtgDatos.Rows(x).Cells(46).Value
+                    retenciones += (CDbl(dtgDatos.Rows(x).Cells(35).Value) + CDbl(dtgDatos.Rows(x).Cells(36).Value) + CDbl(dtgDatos.Rows(x).Cells(37).Value) + CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value) + CDbl(dtgDatos.Rows(x).Cells(41).Value) + CDbl(dtgDatos.Rows(x).Cells(42).Value) + CDbl(dtgDatos.Rows(x).Cells(43).Value))
+
 
                     bonoP += dtgDatos.Rows(x).Cells(29).Value
                     bonoA += dtgDatos.Rows(x).Cells(30).Value
@@ -4271,6 +4274,7 @@ Public Class frmnominasproceso
                     tpercepciones += dtgDatos.Rows(x).Cells(33).Value
 
                     prestamo += dtgDatos.Rows(x).Cells(42).Value
+                    prestamoAsim += dtgDatos.Rows(x).Cells(47).Value
 
                     If dtgDatos.Rows(x).Cells(11).Value = "OFICIALES EN PRACTICAS: PILOTIN / ASPIRANTE" Or dtgDatos.Rows(x).Cells(11).Value = "SUBALTERNO EN FORMACIÓN" Then
                         Dim sueldo_base As Double = dtgDatos.Rows(x).Cells(15).Value
@@ -4279,8 +4283,8 @@ Public Class frmnominasproceso
                         Dim pensionalimenticia As Double = dtgDatos.Rows(x).Cells(41).Value
                         Dim anticipoxurtep As Double = dtgDatos.Rows(x).Cells(42).Value
                         Dim anticipoasim As Double = dtgDatos.Rows(x).Cells(47).Value
-                        Dim xurtep As Double = dtgDatos.Rows(x).Cells(46).Value
-                        comAsim += (sueldo_base - ret_infonavit - fonacot - pensionalimenticia - anticipoxurtep - anticipoasim) - xurtep
+                        Dim xurteptmp As Double = dtgDatos.Rows(x).Cells(46).Value
+                        comAsim += (sueldo_base - ret_infonavit - fonacot - pensionalimenticia - anticipoxurtep - anticipoasim) - xurteptmp
                         comAsimD += 0
                         comXurtep += (dtgDatos.Rows(x).Cells(53).Value)
                         comXurtepD += 0
@@ -4316,6 +4320,11 @@ Public Class frmnominasproceso
                     tpercepcionesD += dtgDatos.Rows(x).Cells(33).Value
                     ' comAsimD += dtgDatos.Rows(x).Cells(50).Value
                     prestamoD += dtgDatos.Rows(x).Cells(42).Value
+                    prestamoAsimD += dtgDatos.Rows(x).Cells(47).Value
+
+                    xurtepD += dtgDatos.Rows(x).Cells(46).Value
+                    retencionesD += (CDbl(dtgDatos.Rows(x).Cells(35).Value) + CDbl(dtgDatos.Rows(x).Cells(36).Value) + CDbl(dtgDatos.Rows(x).Cells(37).Value) + CDbl(dtgDatos.Rows(x).Cells(38).Value) + CDbl(dtgDatos.Rows(x).Cells(39).Value) + CDbl(dtgDatos.Rows(x).Cells(40).Value) + CDbl(dtgDatos.Rows(x).Cells(41).Value) + CDbl(dtgDatos.Rows(x).Cells(42).Value) + CDbl(dtgDatos.Rows(x).Cells(43).Value))
+
 
                     'comXurtepD += (dtgDatos.Rows(x).Cells(53).Value) ' * 2%)
                     ' comCompleD += (dtgDatos.Rows(x).Cells(54).Value) '* 2%)
@@ -4344,14 +4353,19 @@ Public Class frmnominasproceso
                 hoja.Cell("I5").Value = bonoproc + bonoprocD 'Bono proceso
                 hoja.Cell("J5").Value = tpercepciones + tpercepcionesD
                 hoja.Cell("K5").Value = comAsim + comAsimD '* 2
-                hoja.Cell("L5").Value = comXurtep + comXurtepD
-                hoja.Cell("M5").FormulaA1 = "=K5*2%" '(comComple * 2) '* 2%
-                hoja.Cell("N5").Value = IMSS + SAR + INFONAVIT + ISN 'costoSocialD
+                hoja.Cell("L5").Value = prestamoAsim + prestamoAsimD
+                hoja.Cell("M5").Value = comXurtep + comXurtepD
+                hoja.Cell("N5").Value = xurtep + xurtepD
+                hoja.Cell("O5").FormulaA1 = "=K5*2%" '(comComple * 2) '* 2%
+                hoja.Cell("P5").Value = retenciones + retencionesD
+                hoja.Cell("Q5").Value = IMSS + SAR + INFONAVIT + ISN + ISND 'costoSocialD
+
+
 
                 hoja.Cell("E18").Value = IMSS '+ IMSSD
                 hoja.Cell("E19").Value = SAR '+ SARD
                 hoja.Cell("E20").Value = INFONAVIT '+ INFONAVITD
-                hoja.Cell("E21").Value = ISN ' + ISND
+                hoja.Cell("E21").Value = ISN + ISND
 
                 llenargrid("0")
                 'Titulo
