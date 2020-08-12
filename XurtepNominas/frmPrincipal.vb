@@ -126,6 +126,21 @@ Public Class frmPrincipal
 
                     Catch ex As Exception
                     End Try
+
+                Case "Subir Nom Marinos"
+                    Try
+                        Dim Forma As New frmNominaFinalE
+                        Forma.ShowDialog()
+
+                    Catch ex As Exception
+                    End Try
+                Case "Subir Nom Procesos"
+                    Try
+                        Dim Forma As New frmNominaFinalP
+                        Forma.ShowDialog()
+
+                    Catch ex As Exception
+                    End Try
             End Select
 
         Catch ex As Exception

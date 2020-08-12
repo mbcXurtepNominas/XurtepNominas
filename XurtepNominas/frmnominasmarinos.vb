@@ -7570,7 +7570,7 @@ Public Class frmnominasmarinos
                     hoja.Cell(filaExcel + x, 13).FormulaA1 = "='XURTEP ABORDO'!AJ" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AJ" & filaExcel + x + 1 'FONACOT
                     hoja.Cell(filaExcel + x, 14).FormulaA1 = "='XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 ' PENSION ALIMENTICIA
                     hoja.Cell(filaExcel + x, 15).FormulaA1 = "='XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 'Anticipo SA
-                    hoja.Cell(filaExcel + x, 16).FormulaA1 = dtgDatos.Rows(x).Cells(47).Value + CDbl(getDatosNomina(0, dtgDatos.Rows(x).Cells(3).Value, dtgDatos.Rows(x).Cells(18).Value, "prestamoA")) 'Anticipo Asimiliados
+                    hoja.Cell(filaExcel + x, 16).FormulaA1 = dtgDatos.Rows(x).Cells(47).Value + CDbl(getDatosNomina(0, dtgDatos.Rows(x).Cells(3).Value, dtgDatos.Rows(x).Cells(18).Value, "prestamoA", dtgDatos.Rows(x).Cells(47).Value)) 'Anticipo Asimiliados
                     hoja.Cell(filaExcel + x, 17).Value = dtgDatos.Rows(x).Cells(48).Value + CDbl(getDatosNomina(0, dtgDatos.Rows(x).Cells(3).Value, dtgDatos.Rows(x).Cells(18).Value, "descuentoInfoA")) 'Desc Infona
                     hoja.Cell(filaExcel + x, 18).FormulaA1 = "=K" & filaExcel + x & "-L" & filaExcel + x & "-M" & filaExcel + x & "-N" & filaExcel + x & "-O" & filaExcel + x & "-P" & filaExcel + x & "-Q" & filaExcel + x  'SUELDO ORDINARIO
                     hoja.Cell(filaExcel + x, 19).FormulaA1 = "" '
@@ -10558,7 +10558,7 @@ Public Class frmnominasmarinos
     End Sub
 
 
-    Function getDatosNomina(ByRef tipodato As String, ByRef trabjador As String, ByRef dias As String, ByRef tipe As String) As String
+    Function getDatosNomina(ByRef tipodato As String, ByRef trabjador As String, ByRef dias As String, ByRef tipe As String, Optional ByRef fPrestamoPerA As String = "") As String
 
         Dim valorretorno As String
         Dim sql As String
@@ -10572,7 +10572,15 @@ Public Class frmnominasmarinos
             sql &= " and iTipoNomina=1"
             sql &= " and EmpleadosC.cCodigoEmpleado=" & trabjador
             sql &= " and Nomina.iDiasTrabajados=" & dias
-            sql &= " order by " & "Nomina.Buque, cNombreLargo"
+
+            If fPrestamoPerA = "" Then
+                sql &= " order by " & "Nomina.Buque, cNombreLargo"
+            Else
+                sql &= " and Nomina.fPrestamoPerA=" & fPrestamoPerA
+                sql &= " order by " & "NOMINA.fPrestamoPerA, Nomina.Buque, cNombreLargo"
+            End If
+
+
 
             Dim rwNominaGuardada As DataRow() = nConsulta(sql)
 
