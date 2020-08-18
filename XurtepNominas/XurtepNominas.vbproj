@@ -83,6 +83,18 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Excel\frmNominaFinalP.Designer.vb">
+      <DependentUpon>frmNominaFinalP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Excel\frmNominaFinalP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Excel\frmNominaFinalE.Designer.vb">
+      <DependentUpon>frmNominaFinalE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Excel\frmNominaFinalE.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAgregarEmpleado.designer.vb">
       <DependentUpon>frmAgregarEmpleado.vb</DependentUpon>
     </Compile>
@@ -256,6 +268,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Excel\frmNominaFinalP.resx">
+      <DependentUpon>frmNominaFinalP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Excel\frmNominaFinalE.resx">
+      <DependentUpon>frmNominaFinalE.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAgregarEmpleado.resx">
       <DependentUpon>frmAgregarEmpleado.vb</DependentUpon>
     </EmbeddedResource>
