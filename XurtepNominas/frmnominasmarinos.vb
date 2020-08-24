@@ -2150,7 +2150,8 @@ Public Class frmnominasmarinos
         Dim DSO As Double
         Dim VACAPRO As Double
         Dim numbimestre As Integer
-
+        Dim AGUINALDO As Double
+        Dim PRIMA As Double
         Try
             'verificamos que tenga dias a calcular
             'For x As Integer = 0 To dtgDatos.Rows.Count - 1
@@ -2434,39 +2435,56 @@ Public Class frmnominasmarinos
                         dtgDatos.Rows(x).Cells(46).Value = Operadora
 
                     Else
+
+
+
+
                         Sueldo = Double.Parse(dtgDatos.Rows(x).Cells(17).Value) * diastrabajados
-                        dtgDatos.Rows(x).Cells(21).Value = Math.Round(Sueldo * (26.19568006 / 100), 2).ToString("###,##0.00")
-                        Sueldobruto = Math.Round(Sueldo * (26.19568006 / 100), 2)
-                        dtgDatos.Rows(x).Cells(22).Value = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2).ToString("###,##0.00")
-                        TEFG = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2)
-                        dtgDatos.Rows(x).Cells(23).Value = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2).ToString("###,##0.00")
-                        TEFE = Math.Round((Sueldo * (8.5070471 / 100)) / 2, 2)
-                        dtgDatos.Rows(x).Cells(24).Value = Math.Round(Sueldo * (42.89215164 / 100), 2).ToString("###,##0.00")
-                        TEO = Math.Round(Sueldo * (42.89215164 / 100), 2)
-                        dtgDatos.Rows(x).Cells(25).Value = Math.Round(Sueldo * (9.677848468 / 100), 2).ToString("###,##0.00")
-                        DSO = Math.Round(Sueldo * (9.677848468 / 100), 2)
-                        dtgDatos.Rows(x).Cells(26).Value = Math.Round(Sueldo * (7.272727273 / 100), 2).ToString("###,##0.00")
-                        VACAPRO = Math.Round(Sueldo * (7.272727273 / 100), 2)
+                        dtgDatos.Rows(x).Cells(21).Value = Math.Round(Sueldo * (26.1956767 / 100), 2).ToString("###,##0.00")
+                        Sueldobruto = Math.Round(Sueldo * (26.1956767 / 100), 2)
+                        dtgDatos.Rows(x).Cells(22).Value = Math.Round((Sueldo * (8.507046 / 100)) / 2, 2).ToString("###,##0.00")
+                        TEFG = Math.Round((Sueldo * (8.507046 / 100)) / 2, 2)
+                        dtgDatos.Rows(x).Cells(23).Value = Math.Round((Sueldo * (8.507046 / 100)) / 2, 2).ToString("###,##0.00")
+                        TEFE = Math.Round((Sueldo * (8.507046 / 100)) / 2, 2)
+                        dtgDatos.Rows(x).Cells(24).Value = Math.Round(Sueldo * (42.8921463 / 100), 2).ToString("###,##0.00")
+                        TEO = Math.Round(Sueldo * (42.8921463 / 100), 2)
+                        dtgDatos.Rows(x).Cells(25).Value = Math.Round(Sueldo * (9.6778473 / 100), 2).ToString("###,##0.00")
+                        DSO = Math.Round(Sueldo * (9.6778473 / 100), 2)
+                        dtgDatos.Rows(x).Cells(26).Value = Math.Round(Sueldo * (7.272739 / 100), 2).ToString("###,##0.00")
+                        VACAPRO = Math.Round(Sueldo * (7.272739 / 100), 2)
                         SueldoBase = Sueldobruto + TEFG + TEFE + TEO + DSO
+
+                        AGUINALDO = Sueldo * (3.6363632 / 100)
+
+                        If AGUINALDO > (201.5 / 30 * diastrabajados) Then
+                            'Aguinaldo gravado
+                            dtgDatos.Rows(x).Cells(27).Value = Math.Round(AGUINALDO - (201.5 / 30 * diastrabajados), 2)
+                            'Aguinaldo exento
+                            dtgDatos.Rows(x).Cells(28).Value = Math.Round((201.5 / 30 * diastrabajados), 2)
+                        Else
+                            dtgDatos.Rows(x).Cells(27).Value = "0.00"
+                            'Aguinaldo exento
+                            dtgDatos.Rows(x).Cells(28).Value = Math.Round((201.5 / 30 * diastrabajados), 2)
+                        End If
 
 
                         'Aguinaldo gravado 
 
-                        If ((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)) > ((ValorUMA * 30 / 12) * (diastrabajados / 30)) Then
-                            'Aguinaldo gravado
-                            dtgDatos.Rows(x).Cells(27).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)) - ((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
-                            'Aguinaldo exento
-                            dtgDatos.Rows(x).Cells(28).Value = Math.Round(((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
+                        'If ((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)) > ((ValorUMA * 30 / 12) * (diastrabajados / 30)) Then
+                        '    'Aguinaldo gravado
+                        '    dtgDatos.Rows(x).Cells(27).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)) - ((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
+                        '    'Aguinaldo exento
+                        '    dtgDatos.Rows(x).Cells(28).Value = Math.Round(((ValorUMA * 30 / 12) * (diastrabajados / 30)), 2)
 
 
-                        Else
-                            'Aguinaldo gravado
+                        'Else
+                        '    'Aguinaldo gravado
 
-                            dtgDatos.Rows(x).Cells(27).Value = "0.00"
-                            'Aguinaldo exento
-                            dtgDatos.Rows(x).Cells(28).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)), 2)
+                        '    dtgDatos.Rows(x).Cells(27).Value = "0.00"
+                        '    'Aguinaldo exento
+                        '    dtgDatos.Rows(x).Cells(28).Value = Math.Round(((SueldoBase / diastrabajados) * 15 / 12 * (diastrabajados / 30)), 2)
 
-                        End If
+                        'End If
 
 
                         'Aguinaldo total
@@ -2476,20 +2494,30 @@ Public Class frmnominasmarinos
 
                         'Calculos prima
 
-                        primavacacionesgravada = (SueldoBase * 0.25 / 12 * (diastrabajados / 30)) - ((ValorUMA * 15 / 12) * (diastrabajados / 30))
-                        primavacacionesexenta = ((ValorUMA * 15 / 12) * (diastrabajados / 30))
-
-                        If primavacacionesgravada > 0 Then
-                            dtgDatos.Rows(x).Cells(30).Value = Math.Round(primavacacionesgravada, 2)
-                            dtgDatos.Rows(x).Cells(31).Value = Math.Round(primavacacionesexenta, 2)
+                        PRIMA = Sueldo * (1.81818157 / 100)
+                        If PRIMA > (100.75 / 30 * diastrabajados) Then
+                            dtgDatos.Rows(x).Cells(30).Value = Math.Round(PRIMA - (100.75 / 30 * diastrabajados), 2)
+                            dtgDatos.Rows(x).Cells(31).Value = Math.Round((100.75 / 30 * diastrabajados), 2)
                         Else
-                            primavacacionesexenta = (SueldoBase * 0.25 / 12 * (diastrabajados / 30))
+                            
                             dtgDatos.Rows(x).Cells(30).Value = "0.00"
-                            dtgDatos.Rows(x).Cells(31).Value = Math.Round(primavacacionesexenta, 2)
+                            dtgDatos.Rows(x).Cells(31).Value = Math.Round((100.75 / 30 * diastrabajados), 2)
                         End If
 
+                        'primavacacionesgravada = (SueldoBase * 0.25 / 12 * (diastrabajados / 30)) - ((ValorUMA * 15 / 12) * (diastrabajados / 30))
+                        'primavacacionesexenta = ((ValorUMA * 15 / 12) * (diastrabajados / 30))
+
+                        'If primavacacionesgravada > 0 Then
+                        '    dtgDatos.Rows(x).Cells(30).Value = Math.Round(primavacacionesgravada, 2)
+                        '    dtgDatos.Rows(x).Cells(31).Value = Math.Round(primavacacionesexenta, 2)
+                        'Else
+                        '    primavacacionesexenta = (SueldoBase * 0.25 / 12 * (diastrabajados / 30))
+                        '    dtgDatos.Rows(x).Cells(30).Value = "0.00"
+                        '    dtgDatos.Rows(x).Cells(31).Value = Math.Round(primavacacionesexenta, 2)
+                        'End If
+
                         'Total Prima de vacaciones                    
-                        dtgDatos.Rows(x).Cells(32).Value = Math.Round(IIf(primavacacionesgravada > 0, primavacacionesgravada, 0) + primavacacionesexenta, 2)
+                        dtgDatos.Rows(x).Cells(32).Value = Math.Round(Double.Parse(dtgDatos.Rows(x).Cells(30).Value) + Double.Parse(dtgDatos.Rows(x).Cells(31).Value), 2)
                         'Total percepciones
                         dtgDatos.Rows(x).Cells(33).Value = Math.Round(SueldoBase + VACAPRO + dtgDatos.Rows(x).Cells(29).Value + dtgDatos.Rows(x).Cells(32).Value, 2)
                         'Total percepsiones para isr
@@ -4519,6 +4547,14 @@ Public Class frmnominasmarinos
 
             If rwPeriodo Is Nothing = False Then
                 FechaInicioPeriodoGlobal = Date.Parse(rwPeriodo(0)("dFechaInicio"))
+            End If
+
+            Sql = "select * from periodos where iIdPeriodo= " & cboperiodo.SelectedValue
+            Dim rwPeriodo2 As DataRow() = nConsulta(Sql)
+            If rwPeriodo2 Is Nothing = False Then
+
+                aniocostosocial = Date.Parse(rwPeriodo2(0)("dFechaInicio").ToString).Year
+
             End If
 
         Catch ex As Exception

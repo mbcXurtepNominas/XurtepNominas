@@ -2113,6 +2113,14 @@ Public Class frmnominasproceso
                 FechaInicioPeriodoGlobal = Date.Parse(rwPeriodo(0)("dFechaInicio"))
             End If
 
+            Sql = "select * from periodos where iIdPeriodo= " & cboperiodo.SelectedValue
+            Dim rwPeriodo2 As DataRow() = nConsulta(Sql)
+            If rwPeriodo2 Is Nothing = False Then
+
+                aniocostosocial = Date.Parse(rwPeriodo2(0)("dFechaInicio").ToString).Year
+
+            End If
+
         Catch ex As Exception
 
         End Try
@@ -5310,7 +5318,8 @@ Public Class frmnominasproceso
                         'Total percepciones
                         dtgDatos.Rows(x).Cells(33).Value = SueldoBase
                         'Total percepsiones para isr
-                        dtgDatos.Rows(x).Cells(34).Value = (Double.Parse(dtgDatos.Rows(x).Cells(16).Value) * diastrabajados) + AGUINALDOG + primavacacionesgravada
+                        'dtgDatos.Rows(x).Cells(34).Value = (Double.Parse(dtgDatos.Rows(x).Cells(16).Value) * diastrabajados) + AGUINALDOG + primavacacionesgravada
+                        dtgDatos.Rows(x).Cells(34).Value = SueldoBase - AGUINALDOE - primavacacionesexenta
                         'Incapacidad
 
 
