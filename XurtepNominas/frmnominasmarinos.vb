@@ -8675,10 +8675,10 @@ Public Class frmnominasmarinos
                     ' ''Otros Pagos
                     'hoja4.Columns("A").Width = 20
                     'hoja4.Columns("B").Width = 20
-                    'hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
-                    'hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
-                    'hoja4.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
-                    'hoja4.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
+                    hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
+                    hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
+                    hoja4.Cell(filaExcel, 3).Value = "0" 'dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
+                    hoja4.Cell(filaExcel, 4).Value = "0" ' dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
 
                     filaExcel = filaExcel + 1
 
