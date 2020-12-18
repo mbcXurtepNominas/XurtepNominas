@@ -2126,7 +2126,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub dtgDatos_CellMouseDown(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseDown
+    Private Sub dtgDatos_CellMouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseDown
         Try
             If e.RowIndex > -1 And e.ColumnIndex > -1 Then
                 dtgDatos.CurrentCell = dtgDatos.Rows(e.RowIndex).Cells(e.ColumnIndex)
@@ -2139,13 +2139,13 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub dtgDatos_CellMouseUp(sender As Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseUp
+    Private Sub dtgDatos_CellMouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dtgDatos.CellMouseUp
 
     End Sub
 
 
 
-    Private Sub dtgDatos_KeyPress(sender As Object, e As KeyPressEventArgs) Handles dtgDatos.KeyPress
+    Private Sub dtgDatos_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs) Handles dtgDatos.KeyPress
         Try
 
             SoloNumero.NumeroDec(e, sender)
@@ -2155,7 +2155,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub dtgDatos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dtgDatos.CellClick
+    Private Sub dtgDatos_CellClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dtgDatos.CellClick
         Try
             If e.ColumnIndex = 0 Then
                 dtgDatos.Rows(e.RowIndex).Cells(0).Value = Not dtgDatos.Rows(e.RowIndex).Cells(0).Value
@@ -2167,11 +2167,11 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub dtgDatos_CellEnter(sender As Object, e As DataGridViewCellEventArgs) Handles dtgDatos.CellEnter
+    Private Sub dtgDatos_CellEnter(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dtgDatos.CellEnter
         'MessageBox.Show("Ocurrio un error ", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End Sub
 
-    Private Sub TextboxNumeric_KeyPress(sender As Object, e As KeyPressEventArgs)
+    Private Sub TextboxNumeric_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
         Try
             'Dim columna As Integer
             'Dim fila As Integer
@@ -2212,7 +2212,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub dtgDatos_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dtgDatos.CellEndEdit
+    Private Sub dtgDatos_CellEndEdit(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dtgDatos.CellEndEdit
         Try
             If Not m_currentControl Is Nothing Then
                 RemoveHandler m_currentControl.KeyPress, AddressOf TextboxNumeric_KeyPress
@@ -2230,7 +2230,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub dtgDatos_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles dtgDatos.EditingControlShowing
+    Private Sub dtgDatos_EditingControlShowing(ByVal sender As Object, ByVal e As DataGridViewEditingControlShowingEventArgs) Handles dtgDatos.EditingControlShowing
         Try
             Dim columna As Integer
             m_currentControl = Nothing
@@ -2254,7 +2254,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub dtgDatos_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dtgDatos.ColumnHeaderMouseClick
+    Private Sub dtgDatos_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As DataGridViewCellMouseEventArgs) Handles dtgDatos.ColumnHeaderMouseClick
         Try
             Dim newColumn As DataGridViewColumn = dtgDatos.Columns(e.ColumnIndex)
 
@@ -2308,18 +2308,18 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub chkAll_CheckedChanged(sender As Object, e As EventArgs) Handles chkAll.CheckedChanged
+    Private Sub chkAll_CheckedChanged(ByVal sender As Object, ByVal e As EventArgs) Handles chkAll.CheckedChanged
         For x As Integer = 0 To dtgDatos.Rows.Count - 1
             dtgDatos.Rows(x).Cells(0).Value = Not dtgDatos.Rows(x).Cells(0).Value
         Next
         chkAll.Text = IIf(chkAll.Checked, "Desmarcar todos", "Marcar todos")
     End Sub
 
-    Private Sub cmdlayouts_Click(sender As Object, e As EventArgs) Handles cmdlayouts.Click
+    Private Sub cmdlayouts_Click(ByVal sender As Object, ByVal e As EventArgs) Handles cmdlayouts.Click
 
     End Sub
 
-    Function RemoverBasura(nombre As String) As String
+    Function RemoverBasura(ByVal nombre As String) As String
         Dim COMPSTR As String = "áéíóúÁÉÍÓÚ.ñÑ"
         Dim REPLSTR As String = "aeiouAEIOU nN"
         Dim Posicion As Integer
@@ -2336,7 +2336,7 @@ Public Class frmnominasproceso
         Return cadena
     End Function
 
-    Function TipoCuentaBanco(idempleado As String, idempresa As String) As String
+    Function TipoCuentaBanco(ByVal idempleado As String, ByVal idempresa As String) As String
         'Agregar el banco y el tipo de cuenta ya sea a terceros o interbancaria
         'Buscamos el banco y verificarmos el tipo de cuenta a tercero o interbancaria
         Dim Sql As String
@@ -2396,7 +2396,7 @@ Public Class frmnominasproceso
         Return cadenabanco
     End Function
 
-    Function CalculoPrimaSindicato(idempleado As String, idempresa As String) As String
+    Function CalculoPrimaSindicato(ByVal idempleado As String, ByVal idempresa As String) As String
         'Agregar el banco y el tipo de cuenta ya sea a terceros o interbancaria
         'Buscamos el banco y verificarmos el tipo de cuenta a tercero o interbancaria
         Dim Sql As String
@@ -2474,7 +2474,7 @@ Public Class frmnominasproceso
     End Function
 
 
-    Function CalculoDiasVacaciones(anios As Integer) As Integer
+    Function CalculoDiasVacaciones(ByVal anios As Integer) As Integer
         Dim dias As Integer
 
         If anios = 1 Then
@@ -2520,7 +2520,7 @@ Public Class frmnominasproceso
         Return dias
     End Function
 
-    Private Sub dtgDatos_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgDatos.CellContentClick
+    Private Sub dtgDatos_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dtgDatos.CellContentClick
         Try
             If e.RowIndex = -1 And e.ColumnIndex = 0 Then
                 Return
@@ -2532,7 +2532,7 @@ Public Class frmnominasproceso
     End Sub
 
 
-    Private Sub dtgDatos_DataError(sender As Object, e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles dtgDatos.DataError
+    Private Sub dtgDatos_DataError(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles dtgDatos.DataError
         Try
             e.Cancel = True
         Catch ex As Exception
@@ -2542,12 +2542,12 @@ Public Class frmnominasproceso
     End Sub
 
 
-    Private Sub cboserie_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboserie.SelectedIndexChanged
+    Private Sub cboserie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboserie.SelectedIndexChanged
         dtgDatos.Columns.Clear()
         dtgDatos.DataSource = ""
     End Sub
 
-    Private Sub cmdguardarnomina_Click(sender As System.Object, e As System.EventArgs) Handles cmdguardarnomina.Click
+    Private Sub cmdguardarnomina_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdguardarnomina.Click
         Try
             Dim sql As String
             Dim sql2 As String
@@ -3030,7 +3030,7 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub EliminarDeLaListaToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EliminarDeLaListaToolStripMenuItem.Click
+    Private Sub EliminarDeLaListaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EliminarDeLaListaToolStripMenuItem.Click
         If dtgDatos.CurrentRow Is Nothing = False Then
             Dim resultado As Integer = MessageBox.Show("¿Desea eliminar a este trabajador de la lista?", "Pregunta", MessageBoxButtons.YesNo)
             If resultado = DialogResult.Yes Then
@@ -3040,7 +3040,7 @@ Public Class frmnominasproceso
         End If
     End Sub
 
-    Private Sub AgregarTrabajadoresToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AgregarTrabajadoresToolStripMenuItem.Click
+    Private Sub AgregarTrabajadoresToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AgregarTrabajadoresToolStripMenuItem.Click
         Try
             Dim Forma As New frmAgregarEmpleado
             Dim ids As String()
@@ -4311,11 +4311,11 @@ Public Class frmnominasproceso
 
 
                     IMSS += dtgDatos.Rows(x).Cells(55).Value
-                     SAR += dtgDatos.Rows(x).Cells(56).Value
+                    SAR += dtgDatos.Rows(x).Cells(56).Value
                     INFONAVIT += dtgDatos.Rows(x).Cells(57).Value
                     ISN += dtgDatos.Rows(x).Cells(58).Value
 
-                    
+
                 Next x
                 'Sumar Descanso
                 llenargrid("1")
@@ -4407,11 +4407,11 @@ Public Class frmnominasproceso
 
     End Sub
 
-    Private Sub EditarEmpleadoToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EditarEmpleadoToolStripMenuItem.Click
+    Private Sub EditarEmpleadoToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EditarEmpleadoToolStripMenuItem.Click
 
     End Sub
 
-    Private Sub NoCalcularInofnavitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles NoCalcularInofnavitToolStripMenuItem.Click
+    Private Sub NoCalcularInofnavitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NoCalcularInofnavitToolStripMenuItem.Click
         Try
             Dim iFila As DataGridViewRow = Me.dtgDatos.CurrentRow()
             iFila.Tag = "1"
@@ -4421,7 +4421,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub ActivarCalculoInfonavitToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ActivarCalculoInfonavitToolStripMenuItem.Click
+    Private Sub ActivarCalculoInfonavitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ActivarCalculoInfonavitToolStripMenuItem.Click
         Try
             Dim iFila As DataGridViewRow = Me.dtgDatos.CurrentRow()
             iFila.Tag = ""
@@ -4431,7 +4431,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub cmdSubirDatos_Click(sender As System.Object, e As System.EventArgs) Handles cmdSubirDatos.Click
+    Private Sub cmdSubirDatos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSubirDatos.Click
         Try
             Dim Forma As New frmSubirDatos
             Dim ids As String()
@@ -4993,7 +4993,7 @@ Public Class frmnominasproceso
         End Try
     End Sub
 
-    Private Sub cmdcalcular_Click(sender As System.Object, e As System.EventArgs) Handles cmdcalcular.Click
+    Private Sub cmdcalcular_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdcalcular.Click
         Try
             Dim sql As String
             Dim sql2 As String
@@ -5080,7 +5080,7 @@ Public Class frmnominasproceso
                     End If
                 End If
 
-                
+
 
 
                 calcular()
@@ -5742,7 +5742,7 @@ Public Class frmnominasproceso
                     pgbProgreso.Value += 1
                     Application.DoEvents()
                 End If
-                
+
 
             Next
 
@@ -5880,7 +5880,7 @@ Public Class frmnominasproceso
                         End If
                     End If
 
-                    
+
 
                 Else
                     contador = 0

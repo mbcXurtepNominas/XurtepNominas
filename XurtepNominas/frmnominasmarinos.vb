@@ -2863,13 +2863,13 @@ Public Class frmnominasmarinos
                 dtgDatos.Rows(x).Cells(51).Value = RetencionOperadora
 
                 '%Comision
-                dtgDatos.Rows(x).Cells(52).Value = "2%"
+                dtgDatos.Rows(x).Cells(52).Value = "4%"
                 'Comision Maecco
-                ComisionOperadora = Math.Round((Operadora + RetencionOperadora) * 0.02, 2)
+                ComisionOperadora = Math.Round((Operadora + RetencionOperadora) * 0.04, 2)
                 dtgDatos.Rows(x).Cells(53).Value = ComisionOperadora
 
                 'Comision Complemento
-                ComisionAsimilados = Math.Round((ComplementoAsimilados + PrestamoPersonalAsimilados + AdeudoINfonavitAsimilados + DiferenciaInfonavitAsimilados) * 0.02, 2)
+                ComisionAsimilados = Math.Round((ComplementoAsimilados + PrestamoPersonalAsimilados + AdeudoINfonavitAsimilados + DiferenciaInfonavitAsimilados) * 0.035, 2)
                 dtgDatos.Rows(x).Cells(54).Value = ComisionAsimilados
 
 
