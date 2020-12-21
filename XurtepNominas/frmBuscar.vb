@@ -3,7 +3,7 @@
 
     Private Sub frmBuscart_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtbuscar.TabIndex = 1
-
+        rdbNombre.Checked = True
     End Sub
 
     Private Sub cmdCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -20,5 +20,17 @@
         Catch ex As Exception
 
         End Try
+    End Sub
+
+    Private Sub rdbNombre_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdbNombre.CheckedChanged
+        If rdbNombre.Checked = True Then
+            rdbCodigo.Checked = False
+        End If
+    End Sub
+
+    Private Sub rdbCodigo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rdbCodigo.CheckedChanged
+        If rdbCodigo.Checked = True Then
+            rdbNombre.Checked = False
+        End If
     End Sub
 End Class

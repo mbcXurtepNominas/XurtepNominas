@@ -10813,12 +10813,26 @@ Public Class frmnominasmarinos
 
                     fila.DefaultCellStyle.BackColor = Color.White
 
-                    If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
-                        fila.DefaultCellStyle.BackColor = Color.Yellow
-                        encontro = True
-                        temp = temp + 1
+                    If Forma.rdbNombre.Checked = True Then
+
+                        If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                            fila.DefaultCellStyle.BackColor = Color.Yellow
+                            encontro = True
+                            temp = temp + 1
+                        End If
+
+                    Else
+
+                        If fila.Cells.Item(3).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                            fila.DefaultCellStyle.BackColor = Color.Yellow
+                            encontro = True
+                            temp = temp + 1
+                        End If
 
                     End If
+                    
+
+
                 Next
 
             End If

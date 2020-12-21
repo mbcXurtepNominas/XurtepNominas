@@ -24,6 +24,8 @@ Partial Class frmBuscar
     Private Sub InitializeComponent()
         Me.cmdAceptar = New System.Windows.Forms.Button()
         Me.txtbuscar = New System.Windows.Forms.TextBox()
+        Me.rdbCodigo = New System.Windows.Forms.RadioButton()
+        Me.rdbNombre = New System.Windows.Forms.RadioButton()
         Me.SuspendLayout()
         '
         'cmdAceptar
@@ -42,10 +44,34 @@ Partial Class frmBuscar
         Me.txtbuscar.Size = New System.Drawing.Size(447, 26)
         Me.txtbuscar.TabIndex = 25
         '
+        'rdbCodigo
+        '
+        Me.rdbCodigo.AutoSize = True
+        Me.rdbCodigo.Location = New System.Drawing.Point(139, 55)
+        Me.rdbCodigo.Name = "rdbCodigo"
+        Me.rdbCodigo.Size = New System.Drawing.Size(69, 22)
+        Me.rdbCodigo.TabIndex = 29
+        Me.rdbCodigo.TabStop = True
+        Me.rdbCodigo.Text = "Codigo"
+        Me.rdbCodigo.UseVisualStyleBackColor = True
+        '
+        'rdbNombre
+        '
+        Me.rdbNombre.AutoSize = True
+        Me.rdbNombre.Location = New System.Drawing.Point(22, 55)
+        Me.rdbNombre.Name = "rdbNombre"
+        Me.rdbNombre.Size = New System.Drawing.Size(77, 22)
+        Me.rdbNombre.TabIndex = 28
+        Me.rdbNombre.TabStop = True
+        Me.rdbNombre.Text = "Nombre"
+        Me.rdbNombre.UseVisualStyleBackColor = True
+        '
         'frmBuscar
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
-        Me.ClientSize = New System.Drawing.Size(612, 69)
+        Me.ClientSize = New System.Drawing.Size(612, 89)
+        Me.Controls.Add(Me.rdbCodigo)
+        Me.Controls.Add(Me.rdbNombre)
         Me.Controls.Add(Me.txtbuscar)
         Me.Controls.Add(Me.cmdAceptar)
         Me.Cursor = System.Windows.Forms.Cursors.Default
@@ -61,4 +87,6 @@ Partial Class frmBuscar
     End Sub
     Friend WithEvents cmdAceptar As System.Windows.Forms.Button
     Friend WithEvents txtbuscar As System.Windows.Forms.TextBox
+    Friend WithEvents rdbCodigo As System.Windows.Forms.RadioButton
+    Friend WithEvents rdbNombre As System.Windows.Forms.RadioButton
 End Class

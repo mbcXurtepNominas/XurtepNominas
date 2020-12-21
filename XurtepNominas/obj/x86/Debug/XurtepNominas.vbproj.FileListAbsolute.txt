@@ -67,7 +67,6 @@ C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\X
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmNominaFinalE.resources
 D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmNominaFinalp.resources
-D:\Escritorio\Xurtep\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.vbprojResolveAssemblyReference.cache
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmNominaFinalp.resources
 C:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.frmNominaFinalE.resources
 E:\c\systemw\proyectos\XurtepNominas\XurtepNominas\XurtepNominas\obj\x86\Debug\XurtepNominas.exe
