@@ -26,18 +26,19 @@ Partial Class frmSubirDatos
         Me.lblRuta = New System.Windows.Forms.Label()
         Me.cmdCerrar = New System.Windows.Forms.Button()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.tsbNuevo = New System.Windows.Forms.ToolStripButton()
+        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbAgregar = New System.Windows.Forms.ToolStripButton()
         Me.tsbCancelar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
         Me.pnlCatalogo = New System.Windows.Forms.Panel()
         Me.pnlProgreso = New System.Windows.Forms.Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.pgbProgreso = New System.Windows.Forms.ProgressBar()
         Me.chkAll = New System.Windows.Forms.CheckBox()
         Me.lsvLista = New System.Windows.Forms.ListView()
-        Me.tsbNuevo = New System.Windows.Forms.ToolStripButton()
-        Me.tsbImportar = New System.Windows.Forms.ToolStripButton()
-        Me.tsbGuardar = New System.Windows.Forms.ToolStripButton()
-        Me.tsbAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.tsbProcesar = New System.Windows.Forms.ToolStripButton()
+        Me.tsbEmpelados = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.pnlCatalogo.SuspendLayout()
         Me.pnlProgreso.SuspendLayout()
@@ -69,12 +70,54 @@ Partial Class frmSubirDatos
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbAgregar, Me.tsbCancelar, Me.tsbProcesar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbNuevo, Me.tsbImportar, Me.tsbGuardar, Me.tsbEmpelados, Me.tsbAgregar, Me.tsbCancelar, Me.tsbProcesar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(808, 54)
         Me.ToolStrip1.TabIndex = 37
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'tsbNuevo
+        '
+        Me.tsbNuevo.Image = Global.XurtepNominas.My.Resources.Resources.sobresalir__1_
+        Me.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbNuevo.Name = "tsbNuevo"
+        Me.tsbNuevo.Size = New System.Drawing.Size(82, 51)
+        Me.tsbNuevo.Text = "Subir Archivo"
+        Me.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbImportar
+        '
+        Me.tsbImportar.Enabled = False
+        Me.tsbImportar.Image = Global.XurtepNominas.My.Resources.Resources._1477958538_import
+        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbImportar.Name = "tsbImportar"
+        Me.tsbImportar.Size = New System.Drawing.Size(99, 51)
+        Me.tsbImportar.Text = "Importar archivo"
+        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbGuardar
+        '
+        Me.tsbGuardar.AutoSize = False
+        Me.tsbGuardar.Enabled = False
+        Me.tsbGuardar.Image = Global.XurtepNominas.My.Resources.Resources.if_magnifier_data_532758
+        Me.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbGuardar.Name = "tsbGuardar"
+        Me.tsbGuardar.Size = New System.Drawing.Size(90, 51)
+        Me.tsbGuardar.Text = "Verificar"
+        Me.tsbGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        '
+        'tsbAgregar
+        '
+        Me.tsbAgregar.AutoSize = False
+        Me.tsbAgregar.Enabled = False
+        Me.tsbAgregar.Image = Global.XurtepNominas.My.Resources.Resources.if_rotation_job_seeker_employee_unemployee_work_2620504
+        Me.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbAgregar.Name = "tsbAgregar"
+        Me.tsbAgregar.Size = New System.Drawing.Size(100, 51)
+        Me.tsbAgregar.Text = "Agregar a Nomina"
+        Me.tsbAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbAgregar.ToolTipText = "Agregar"
         '
         'tsbCancelar
         '
@@ -87,11 +130,22 @@ Partial Class frmSubirDatos
         Me.tsbCancelar.Text = "Cancelar"
         Me.tsbCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         '
+        'tsbProcesar
+        '
+        Me.tsbProcesar.Enabled = False
+        Me.tsbProcesar.Image = CType(resources.GetObject("tsbProcesar.Image"), System.Drawing.Image)
+        Me.tsbProcesar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbProcesar.Name = "tsbProcesar"
+        Me.tsbProcesar.Size = New System.Drawing.Size(98, 51)
+        Me.tsbProcesar.Text = "Procesar archivo"
+        Me.tsbProcesar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbProcesar.Visible = False
+        '
         'pnlCatalogo
         '
         Me.pnlCatalogo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlCatalogo.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pnlCatalogo.Controls.Add(Me.pnlProgreso)
         Me.pnlCatalogo.Controls.Add(Me.chkAll)
@@ -144,8 +198,8 @@ Partial Class frmSubirDatos
         'lsvLista
         '
         Me.lsvLista.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lsvLista.CheckBoxes = True
         Me.lsvLista.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lsvLista.FullRowSelect = True
@@ -159,58 +213,17 @@ Partial Class frmSubirDatos
         Me.lsvLista.UseCompatibleStateImageBehavior = False
         Me.lsvLista.View = System.Windows.Forms.View.Details
         '
-        'tsbNuevo
+        'tsbEmpelados
         '
-        Me.tsbNuevo.Image = Global.XurtepNominas.My.Resources.Resources.sobresalir__1_
-        Me.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbNuevo.Name = "tsbNuevo"
-        Me.tsbNuevo.Size = New System.Drawing.Size(82, 51)
-        Me.tsbNuevo.Text = "Subir Archivo"
-        Me.tsbNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbImportar
-        '
-        Me.tsbImportar.Enabled = False
-        Me.tsbImportar.Image = Global.XurtepNominas.My.Resources.Resources._1477958538_import
-        Me.tsbImportar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbImportar.Name = "tsbImportar"
-        Me.tsbImportar.Size = New System.Drawing.Size(99, 51)
-        Me.tsbImportar.Text = "Importar archivo"
-        Me.tsbImportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbGuardar
-        '
-        Me.tsbGuardar.AutoSize = False
-        Me.tsbGuardar.Enabled = False
-        Me.tsbGuardar.Image = Global.XurtepNominas.My.Resources.Resources.if_magnifier_data_532758
-        Me.tsbGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbGuardar.Name = "tsbGuardar"
-        Me.tsbGuardar.Size = New System.Drawing.Size(90, 51)
-        Me.tsbGuardar.Text = "Verificar"
-        Me.tsbGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        '
-        'tsbAgregar
-        '
-        Me.tsbAgregar.AutoSize = False
-        Me.tsbAgregar.Enabled = False
-        Me.tsbAgregar.Image = Global.XurtepNominas.My.Resources.Resources.if_rotation_job_seeker_employee_unemployee_work_2620504
-        Me.tsbAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbAgregar.Name = "tsbAgregar"
-        Me.tsbAgregar.Size = New System.Drawing.Size(100, 51)
-        Me.tsbAgregar.Text = "Agregar a Nomina"
-        Me.tsbAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbAgregar.ToolTipText = "Agregar"
-        '
-        'tsbProcesar
-        '
-        Me.tsbProcesar.Enabled = False
-        Me.tsbProcesar.Image = CType(resources.GetObject("tsbProcesar.Image"), System.Drawing.Image)
-        Me.tsbProcesar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.tsbProcesar.Name = "tsbProcesar"
-        Me.tsbProcesar.Size = New System.Drawing.Size(98, 51)
-        Me.tsbProcesar.Text = "Procesar archivo"
-        Me.tsbProcesar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.tsbProcesar.Visible = False
+        Me.tsbEmpelados.AutoSize = False
+        Me.tsbEmpelados.Enabled = False
+        Me.tsbEmpelados.Image = CType(resources.GetObject("tsbEmpelados.Image"), System.Drawing.Image)
+        Me.tsbEmpelados.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.tsbEmpelados.Name = "tsbEmpelados"
+        Me.tsbEmpelados.Size = New System.Drawing.Size(100, 51)
+        Me.tsbEmpelados.Text = "Empleados"
+        Me.tsbEmpelados.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
+        Me.tsbEmpelados.ToolTipText = "Empleados"
         '
         'frmSubirDatos
         '
@@ -250,4 +263,5 @@ Partial Class frmSubirDatos
     Friend WithEvents pgbProgreso As System.Windows.Forms.ProgressBar
     Friend WithEvents chkAll As System.Windows.Forms.CheckBox
     Friend WithEvents lsvLista As System.Windows.Forms.ListView
+    Friend WithEvents tsbEmpelados As System.Windows.Forms.ToolStripButton
 End Class

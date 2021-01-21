@@ -311,7 +311,9 @@ Public Class frmEmpleados
             'Cargar los datos anteriores
         Else
             Limpiar(Me)
+
         End If
+        blnNuevo = True
     End Sub
 
     Private Sub cmdbuscar_Click(sender As Object, e As EventArgs) Handles cmdbuscar.Click

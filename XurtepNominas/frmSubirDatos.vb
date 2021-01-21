@@ -41,6 +41,7 @@ Public Class frmSubirDatos
         tsbCancelar.Enabled = False
         lsvLista.Visible = False
         tsbImportar.Enabled = False
+        tsbEmpelados.Enabled = False
         Me.cmdCerrar.Enabled = False
         Me.Cursor = Cursors.WaitCursor
         Me.Enabled = False
@@ -170,6 +171,7 @@ Public Class frmSubirDatos
                         tsbGuardar.Enabled = True
                         tsbCancelar.Enabled = True
                         tsbAgregar.Enabled = True
+                        tsbEmpelados.Enabled = True
                         lblRuta.Text = FormatNumber(lsvLista.Items.Count, 0) & " registros en el archivo."
                         Me.Enabled = True
                         Me.cmdCerrar.Enabled = True
@@ -224,6 +226,7 @@ Public Class frmSubirDatos
         tsbGuardar.Enabled = False
         tsbCancelar.Enabled = False
         tsbAgregar.Enabled = False
+        tsbEmpelados.Enabled = True
         tsbNuevo.Enabled = True
     End Sub
 
@@ -394,5 +397,17 @@ Public Class frmSubirDatos
 
     Private Sub frmSubirDatos_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub tsbEmpelados_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbEmpelados.Click
+        Try
+            Dim Forma As New frmEmpleados
+            ' Forma.gIdEmpresa = gIdEmpresa
+            ' Forma.gIdPeriodo = cboperiodo.SelectedValue
+            Forma.gIdTipoPuesto = 1
+            Forma.ShowDialog()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class

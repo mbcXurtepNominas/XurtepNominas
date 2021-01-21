@@ -2863,13 +2863,13 @@ Public Class frmnominasmarinos
                 dtgDatos.Rows(x).Cells(51).Value = RetencionOperadora
 
                 '%Comision
-                dtgDatos.Rows(x).Cells(52).Value = "2%"
+                dtgDatos.Rows(x).Cells(52).Value = "4%"
                 'Comision Maecco
-                ComisionOperadora = Math.Round((Operadora + RetencionOperadora) * 0.02, 2)
+                ComisionOperadora = Math.Round((Operadora + RetencionOperadora) * 0.04, 2)
                 dtgDatos.Rows(x).Cells(53).Value = ComisionOperadora
 
                 'Comision Complemento
-                ComisionAsimilados = Math.Round((ComplementoAsimilados + PrestamoPersonalAsimilados + AdeudoINfonavitAsimilados + DiferenciaInfonavitAsimilados) * 0.02, 2)
+                ComisionAsimilados = Math.Round((ComplementoAsimilados + PrestamoPersonalAsimilados + AdeudoINfonavitAsimilados + DiferenciaInfonavitAsimilados) * 0.035, 2)
                 dtgDatos.Rows(x).Cells(54).Value = ComisionAsimilados
 
 
@@ -7615,10 +7615,10 @@ Public Class frmnominasmarinos
                     formula1 = "='XURTEP ABORDO'!AB" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AC" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AD" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AE" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AF" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AG" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AH" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AI" & filaExcel + x + 1 & "+'XURTEP ABORDO'!AJ" & filaExcel + x + 1
                     formula1 &= "+'XURTEP DESCANSO'!AB" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AC" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AD" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AE" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AF" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AG" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AH" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AI" & filaExcel + x + 1 & "+'XURTEP DESCANSO'!AJ" & filaExcel + x + 1
                     hoja.Cell(filaExcel + x, 22).FormulaA1 = formula1
-                    hoja.Cell(filaExcel + x, 23).FormulaA1 = ""
-                    hoja.Cell(filaExcel + x, 24).FormulaA1 = "2%" '%COMISION
-                    hoja.Cell(filaExcel + x, 25).FormulaA1 = "=+((T" & filaExcel + x & "+V" & filaExcel + x & ")*X" & filaExcel + x & ")" 'COMISION XURTEP
-                    hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+(P" & filaExcel + x & "+Q" & filaExcel + x & "+U" & filaExcel + x & ")*X" & filaExcel + x  ' COMPLEMENTO COMISION
+                    hoja.Cell(filaExcel + x, 23).Value = "4%"
+                    hoja.Cell(filaExcel + x, 24).Value = "3.5%" '%COMISION
+                    hoja.Cell(filaExcel + x, 25).FormulaA1 = "=+((T" & filaExcel + x & "+V" & filaExcel + x & ")*W" & filaExcel + x & ")" 'COMISION XURTEP
+                    hoja.Cell(filaExcel + x, 26).FormulaA1 = "=+((P" & filaExcel + x & "+Q" & filaExcel + x & "+U" & filaExcel + x & ")*X" & filaExcel + x & ")"   ' COMPLEMENTO COMISION
                     hoja.Cell(filaExcel + x, 27).FormulaA1 = "=+'XURTEP ABORDO'!AN" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(55).Value 'IMSS
                     hoja.Cell(filaExcel + x, 28).FormulaA1 = "=+'XURTEP ABORDO'!AO" & filaExcel + x + 1 'dtgDatos.Rows(x).Cells(56).Value 'RCV
                     hoja.Cell(filaExcel + x, 29).FormulaA1 = "=+'XURTEP ABORDO'!AP" & filaExcel + x + 1 ' dtgDatos.Rows(x).Cells(57).Value 'INFONAVIT
@@ -8711,10 +8711,10 @@ Public Class frmnominasmarinos
                     ' ''Otros Pagos
                     'hoja4.Columns("A").Width = 20
                     'hoja4.Columns("B").Width = 20
-                    'hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
-                    'hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
-                    'hoja4.Cell(filaExcel, 3).Value = dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
-                    'hoja4.Cell(filaExcel, 4).Value = dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
+                    hoja4.Cell(filaExcel, 1).Value = dtgD.Rows(x).Cells(6).Value ' RFC
+                    hoja4.Cell(filaExcel, 2).Value = dtgD.Rows(x).Cells(4).Value 'NOMBRE
+                    hoja4.Cell(filaExcel, 3).Value = "0" 'dtgD.Rows(x).Cells(44).Value ' SUBSIDIO IMPORTE
+                    hoja4.Cell(filaExcel, 4).Value = "0" ' dtgD.Rows(x).Cells(45).Value ' SUBSIDIO CUSADO
 
                     filaExcel = filaExcel + 1
 
@@ -10813,12 +10813,26 @@ Public Class frmnominasmarinos
 
                     fila.DefaultCellStyle.BackColor = Color.White
 
-                    If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
-                        fila.DefaultCellStyle.BackColor = Color.Yellow
-                        encontro = True
-                        temp = temp + 1
+                    If Forma.rdbNombre.Checked = True Then
+
+                        If fila.Cells.Item(4).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                            fila.DefaultCellStyle.BackColor = Color.Yellow
+                            encontro = True
+                            temp = temp + 1
+                        End If
+
+                    Else
+
+                        If fila.Cells.Item(3).Value.ToString().Contains(Forma.txtbuscar.Text.ToUpper) Then
+                            fila.DefaultCellStyle.BackColor = Color.Yellow
+                            encontro = True
+                            temp = temp + 1
+                        End If
 
                     End If
+                    
+
+
                 Next
 
             End If
