@@ -13,6 +13,7 @@ Public Class frmPrincipal
                 AjustarBarra()
             End If
         End If
+        'subir datos
     End Sub
 
     Private Sub AjustarBarra()
